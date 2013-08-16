@@ -1,0 +1,15 @@
+﻿<Button x:Class="btnHelp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Height="22" Width="22">
+    <Button.Resources>
+        <BooleanToVisibilityConverter x:Key="MyConverter" />
+    </Button.Resources>
+    <Grid x:Name="thisGrid" MouseDown="thisGrid_MouseDown">
+        <Image Source="/MinecraftServerDashboard;component/Images/StatusAnnotations_Help_and_inconclusive_32xLG_color.png" />
+        <Image x:Name="MouseOver" Source="/MinecraftServerDashboard;component/Images/StatusAnnotations_Help_and_inconclusive_32xLG.png" Visibility="{Binding IsMouseOver, ElementName=thisGrid, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MyConverter}}" />
+    </Grid>
+</Button>

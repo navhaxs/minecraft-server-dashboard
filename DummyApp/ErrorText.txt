@@ -1,0 +1,445 @@
+﻿[INFO] Starting Minecraft server on *:25565
+[INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R4.0-b2222jnks (MC: 1.2.5) (Implementing API version 1.2.5-R4.0)
+[INFO] [myCB Interop] Loading myCB Interop vtest
+[INFO] [JSONAPI] Loading JSONAPI v3.9.7
+[INFO] Preparing level "world"
+[INFO] Default game type: 0
+[INFO] Preparing start region for level 0 (Seed: 6555041306777117604)
+[INFO] Preparing start region for level 1 (Seed: 6555041306777117604)
+[INFO] Preparing spawn area: 4%
+[INFO] Preparing start region for level 2 (Seed: 6555041306777117604)
+[INFO] Preparing spawn area: 0%
+[INFO] [myCB Interop] Enabling myCB Interop vtest
+[INFO] [myCB Interop] myCB Interop plugin loaded.
+[INFO] [JSONAPI] Enabling JSONAPI v3.9.7
+[INFO] [JSONAPI] Logging to file: false
+[INFO] [JSONAPI] Logging to console: true
+[INFO] [JSONAPI] IP Whitelist = None, all requests are allowed.
+[INFO] [JSONAPI] You don't have Vault installed, you cannot use permission methods!
+[INFO] [JSONAPI] Attempting to use port 20059
+[INFO] [JSONAPI] Waiting 2.000 seconds to load methods so that all the other plugins load...
+[INFO] [JSONAPI] Any requests in this time will not work...
+[INFO] Server permissions file permissions.yml is empty, ignoring it
+[WARNING] ----- Bukkit Auto Updater -----
+[WARNING] Your version of CraftBukkit is out of date. Version 1.4.7-R1.0 (build #2624) was released on Thu Jan 31 04:37:54 EST 2013.
+[WARNING] Details: /downloads/craftbukkit/view/01845_1.4.7-R1.0/
+[WARNING] Download: /downloads/craftbukkit/get/01845_1.4.7-R1.0/craftbukkit.jar
+[WARNING] ----- ------------------- -----
+[INFO] [JSONAPI] Chat cannot be loaded because it depends on a plugin that is not installed: 'Vault'
+[INFO] [JSONAPI] Dynmap cannot be loaded because it depends on a plugin that is not installed: 'dynmap'
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[INFO] [JSONAPI] Economy cannot be loaded because it depends on a plugin that is not installed: 'Vault'
+[INFO] [JSONAPI] Permission methods cannot be loaded because it depends on a plugin that is not installed: 'Vault'
+[INFO] [JSONAPI] Remote Toolkit cannot be loaded because it depends on a plugin that is not installed: 'RemoteToolkitPlugin'
+[INFO] [JSONAPI] 143 methods loaded in 6 namespaces.
+[INFO] [JSONAPI] JSON Server listening on 20059
+[INFO] [JSONAPI] JSON Stream Server listening on 20060
+[INFO] [JSONAPI] JSON WebSocket Stream Server listening on 20061
+[INFO] [JSONAPI] Active and listening for requests.
+[INFO] CONSOLE: Stopping the server..
+[INFO] Stopping server
+[INFO] [JSONAPI] Disabling JSONAPI v3.9.7
+[INFO] [myCB Interop] Disabling myCB Interop vtest
+[INFO] Saving chunks
+[INFO] Stopping server
+[INFO] Saving chunks
+[INFO] Starting minecraft server version 1.2.5
+[INFO] Loading properties
+[INFO] Starting Minecraft server on *:25565
+[INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R4.0-b2222jnks (MC: 1.2.5) (Implementing API version 1.2.5-R4.0)
+[INFO] [myCB Interop] Loading myCB Interop vtest
+[INFO] [JSONAPI] Loading JSONAPI v3.9.7
+[INFO] Preparing level "world"
+[INFO] Default game type: 0
+[INFO] Preparing start region for level 0 (Seed: 6555041306777117604)
+[INFO] Preparing start region for level 1 (Seed: 6555041306777117604)
+[INFO] Preparing spawn area: 3%
+[INFO] Preparing start region for level 2 (Seed: 6555041306777117604)
+[INFO] Preparing spawn area: 0%
+[WARNING] ----- Bukkit Auto Updater -----
+[WARNING] Your version of CraftBukkit is out of date. Version 1.4.7-R1.0 (build #2624) was released on Thu Jan 31 04:37:54 EST 2013.
+[WARNING] Details: /downloads/craftbukkit/view/01845_1.4.7-R1.0/
+[WARNING] Download: /downloads/craftbukkit/get/01845_1.4.7-R1.0/craftbukkit.jar
+[WARNING] ----- ------------------- -----
+[INFO] [myCB Interop] Enabling myCB Interop vtest
+[INFO] [myCB Interop] myCB Interop plugin loaded.
+[INFO] [JSONAPI] Enabling JSONAPI v3.9.7
+[INFO] [JSONAPI] Logging to file: false
+[INFO] [JSONAPI] Logging to console: true
+[INFO] [JSONAPI] IP Whitelist = None, all requests are allowed.
+[INFO] [JSONAPI] You don't have Vault installed, you cannot use permission methods!
+[INFO] [JSONAPI] Attempting to use port 20059
+[INFO] [JSONAPI] Waiting 2.000 seconds to load methods so that all the other plugins load...
+[INFO] [JSONAPI] Any requests in this time will not work...
+[INFO] Server permissions file permissions.yml is empty, ignoring it
+[INFO] Done (2.744s)! For help, type "help" or "?"
+[INFO] [JSONAPI] Chat cannot be loaded because it depends on a plugin that is not installed: 'Vault'
+[INFO] [JSONAPI] Dynmap cannot be loaded because it depends on a plugin that is not installed: 'dynmap'
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[SEVERE] java.lang.ClassNotFoundException: net.milkbowl.vault.economy.EconomyResponse
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.net.URLClassLoader$1.run(Unknown Source)
+[SEVERE] 	at java.security.AccessController.doPrivileged(Native Method)
+[SEVERE] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:41)
+[SEVERE] 	at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:29)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[SEVERE] 	at java.lang.Class.forName0(Native Method)
+[SEVERE] 	at java.lang.Class.forName(Unknown Source)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Argument.getClassFromName(Argument.java:84)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Method.<init>(Method.java:22)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.proccessMethodsWithNamespace(Caller.java:225)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.magicWithMethods(Caller.java:191)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.dynamic.Caller.loadFile(Caller.java:139)
+[SEVERE] 	at com.alecgorge.minecraft.jsonapi.JSONServer$1.run(JSONServer.java:75)
+[SEVERE] 	at java.lang.Thread.run(Unknown Source)
+[INFO] [JSONAPI] Economy cannot be loaded because it depends on a plugin that is not installed: 'Vault'
+[INFO] [JSONAPI] Permission methods cannot be loaded because it depends on a plugin that is not installed: 'Vault'
+[INFO] [JSONAPI] Remote Toolkit cannot be loaded because it depends on a plugin that is not installed: 'RemoteToolkitPlugin'
+[INFO] [JSONAPI] 143 methods loaded in 6 namespaces.
+[INFO] [JSONAPI] JSON Server listening on 20059
+[INFO] [JSONAPI] JSON Stream Server listening on 20060
+[INFO] [JSONAPI] JSON WebSocket Stream Server listening on 20061
+[INFO] [JSONAPI] Active and listening for requests.
+[INFO] Done (2.569s)! For help, type "help" or "?"

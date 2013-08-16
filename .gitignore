@@ -43,12 +43,25 @@ local.properties
 
 # Build results
 
+obj/
 [Dd]ebug/
 [Rr]elease/
 x64/
 build/
 [Bb]in/
 [Oo]bj/
+
+#Ignore packages directory
+Packages/
+
+#Allow NuGet.exe
+!NuGet.exe
+
+#Ignore generated nupkg files
+*.nupkg
+
+#Ignore local testsettings
+Local.testsettings
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -59,6 +72,8 @@ build/
 *.ilk
 *.meta
 *.obj
+*.exe
+*.lib
 *.pch
 *.pdb
 *.pgc

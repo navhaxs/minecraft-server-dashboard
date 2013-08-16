@@ -1,0 +1,28 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ExitWarning"
+    d:DesignWidth="690" d:DesignHeight="370">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF5387A5" Offset="0.773" />
+            <GradientStop Color="#7F000000" />
+            <GradientStop Color="#FF5387A5" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <Grid Width="570" Height="260" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFEAF7FF" Offset="1" />
+                <GradientStop Color="White" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock Text="The server is currently running." HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="You can't exit the dashboard whilst the server is still running, so we'll just minimise the dashboard instead." /><LineBreak /><LineBreak /><Run Text="If you wish to completely exit the dashboard, go back and " /><Bold><Run Text="stop" /></Bold><Run Text=" the server first." /></TextBlock>
+        <CheckBox x:Name="surpress" Content="Remeber my choice, don't ask me again" Margin="10,0,0,10" Height="18" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+        <Button Content="Minimize window" Margin="0,0,10,41" VerticalAlignment="Bottom" Click="btn_Minimize" Height="52" HorizontalAlignment="Right" Width="196" FontSize="16" IsDefault="True" />
+        <TextBlock Margin="0,10,10,0" FontSize="16" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="58">
+            <Hyperlink x:Name="btnCancel" >Go back</Hyperlink>
+        </TextBlock>
+        <Button Height="52" HorizontalAlignment="Left" Width="196" Margin="163,0,0,41" x:Name="btnStopSrv" FontSize="16" VerticalAlignment="Bottom" Content="Stop server and exit" />
+    </Grid>
+</UserControl>

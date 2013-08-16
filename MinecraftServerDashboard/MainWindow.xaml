@@ -1,0 +1,253 @@
+﻿<!--Main Window XAML Designer Code-->
+<!--Height="530" Width="915"-->
+<Window x:Class="MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="clr-namespace:MinecraftServerDashboard"
+		xmlns:metro="http://schemas.codeplex.com/elysium"
+		xmlns:params="http://schemas.codeplex.com/elysium/params"
+		params:Manager.Theme="Light"
+		MinHeight="301" MinWidth="614"
+		Height="530" Width="915"
+		Title="Minecraft Server Dasboard"
+		Closing="Window_Closing" Icon="appicon32.png">
+	<Window.Resources>
+		<local:InverseBooleanConverter x:Key="myInverseBooleanConverter" />
+		<local:BooleanToVisibilityConverter x:Key="ShowWhenOnline" />
+		<local:InverseBooleanToVisibilityConverter x:Key="ShowWhenOffline" />
+		<!--<local:TabPageToHeader x:Key="TabPageToHeader" />-->
+	</Window.Resources>
+	<!--params:Manager.Theme="Dark"
+		metro:Window.IsMainWindow="True"-->
+	<Window.CommandBindings>
+		<!--Keyboard shortcuts-->
+		<!--TODO: Keyboard shortcuts on config pages-->
+		<CommandBinding Command="{x:Static local:MainWindow.AppNav_GoBack}"
+						Executed="AppNav_GoBackExecuted" />
+		<CommandBinding Command="{x:Static local:MainWindow.AppNav_GoForward}"
+						Executed="AppNav_GoForwardExecuted" />
+	</Window.CommandBindings>
+	<Grid x:Name="FormControls"
+		  Background="#FF5387A5">
+		<DockPanel>
+			<Grid x:Name="header" DockPanel.Dock="Top" Height="36">
+				<Grid.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#004D8B9F" Offset="0.819" />
+						<GradientStop Color="#FF2D5B76" Offset="1" />
+					</LinearGradientBrush>
+				</Grid.Background>
+				<Button x:Name="BackButton1"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Stretch"
+						Width="34" Margin="5,1,0,1"
+						Background="{x:Null}"
+						Style="{StaticResource arrowBack}"
+						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+				<Button x:Name="BackButton1_Copy"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Stretch"
+						Width="29" Margin="39,5,0,5"
+						Background="{x:Null}"
+						Style="{StaticResource arrowBack}"
+						RenderTransformOrigin="0.5,0.5"
+						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+					<Button.RenderTransform>
+						<!--Flip a 'back button' to make it a 'forward button'-->
+						<TransformGroup>
+							<ScaleTransform ScaleX="-1" />
+							<SkewTransform />
+							<RotateTransform />
+							<TranslateTransform />
+						</TransformGroup>
+					</Button.RenderTransform>
+				</Button>
+
+				<!--Top Right corner indicator panel-->
+				<Grid HorizontalAlignment="Right" Width="139">
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#00000000" Offset="0" />
+							<GradientStop Color="#53000000" Offset="0.762" />
+						</LinearGradientBrush>
+					</Grid.Background>
+					<Label Content="offline" FontFamily="Segoe UI" FontSize="18" FontWeight="Light" Foreground="#FFEFEFEF" x:Name="lblserverstatus" HorizontalAlignment="Right" Width="117" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" />
+					<Grid Margin="0,10,119,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="15" Width="15">
+						<Ellipse x:Name="EllipseOnline" Stroke="#FF00C50C">
+							<Ellipse.Fill>
+								<RadialGradientBrush>
+									<GradientStop Color="#FF46FF00" Offset="0" />
+									<GradientStop Color="#FF16D803" Offset="0.996" />
+								</RadialGradientBrush>
+							</Ellipse.Fill>
+						</Ellipse>
+						<Ellipse x:Name="EllipseOffline" Stroke="#FF600000" Fill="#FFC75050" />
+					</Grid>
+				</Grid>
+
+				<Label FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light" OverridesDefaultStyle="False" IsManipulationEnabled="False" HorizontalAlignment="Stretch" Padding="10,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Bottom"
+					Margin="70,0,200,0">
+					<Binding Path="navTitle" FallbackValue="Overview"  Mode="OneWay" UpdateSourceTrigger="PropertyChanged" />
+				</Label>
+
+				<!--Menu bar-->
+				<Grid HorizontalAlignment="Right" Width="210" VerticalAlignment="Stretch" Margin="0,-4,129,-1" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+					<Menu x:Name="MyAppMenu" Background="{x:Null}" Foreground="White">
+						<MenuItem Header="Quick Actions">
+
+							<MenuItem x:Name="mnuStart" Foreground="Black" Header="Start server" Click="StartServer_Click" Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOffline}}" />
+							<MenuItem x:Name="mnuStop" Foreground="Black" Header="Stop server" Click="StopServer_Click" Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOnline}}" />
+							<MenuItem x:Name="mnuReload" Foreground="Black" Header="Reload server" Click="ReloadServer_Click"  Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOnline}}" />
+							<MenuItem x:Name="mnuKill" Foreground="Black" Header="Force stop server" Click="ForceStopServer_Click"  Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOnline}}" />
+							<Separator />
+							<MenuItem x:Name="mnuDoBackupNow" Foreground="Black" Header="Backup world now" />
+						</MenuItem>
+						<!--MenuItem Header="Goto">
+						<MenuItem Header="Overview" />
+						<MenuItem Header="Player management" />
+						<MenuItem Header="World management" />
+						<MenuItem Header="Console" Click="MenuItem_Click_1" />
+						<MenuItem Header="Chat" />
+						<MenuItem Header="Configuration" />
+						<MenuItem Header="Help" />
+						<MenuItem Header="CraftBukkit backend" Click="UpdteChk_Click" Name="UpdteChk" />
+					</MenuItem-->
+						<MenuItem Header="Tools">
+							<MenuItem Foreground="Black" Header="Join new players" Click="btnJoinNewPlayers_Click" />
+							<Separator />
+							<MenuItem Foreground="Black" Header="My Game Server Settings" Click="btn_ShowServerProperties_Screen" />
+							<MenuItem Foreground="Black" Header="Backend Set-Up" Click="btn_BackendSetUp" />
+							<MenuItem Foreground="Black" Header="Edit server.properties" x:Name="MenuItem1" />
+							<Separator />
+							<MenuItem Foreground="Black" Header="Hide dashboard tabs" x:Name="ShowHideDashboardTabs" IsCheckable="True" />
+							<!--<MenuItem Name="headertoggler" Header="Show header" Click="headertoggler_Click" IsCheckable="True" IsChecked="True" />-->
+							<!--<MenuItem Name="sidebartoggler" Header="Sidebar" Click="sidebartoggler_Click" IsCheckable="True" IsChecked="True" />-->
+							<!--<MenuItem x:Name="consolewraptoggler" Header="Wrap console text" IsCheckable="True" IsChecked="True" />-->
+						</MenuItem>
+						<MenuItem Header="Help">
+							<!--<MenuItem Foreground="Black" Header="Getting Started" />
+							<MenuItem Foreground="Black" Header="Help manual" />-->
+							<MenuItem Foreground="Black" Header="Online References">
+								<MenuItem Foreground="Black" Header="MinecraftForum.net" Click="MenuItem_Click" />
+								<MenuItem Foreground="Black" Header="MinecraftWiki.net" Click="MenuItem_Click_2" />
+							</MenuItem>
+							<MenuItem Foreground="Black" Header="About MCDashboard" Click="AboutMenuItem_Clicked" />
+							<!--<Separator />
+							<MenuItem Foreground="Black" Header="My Game server info" />-->
+						</MenuItem>
+					</Menu>
+				</Grid>
+			</Grid>
+			<TabControl x:Name="navDashboard"
+						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+						Margin="0" HorizontalAlignment="Stretch" Style="{StaticResource tabpage}">
+				<!--Background="White" -->
+				<!--Overview tab-->
+				<TabItem x:Name="tabOverview" Style="{StaticResource mytabitem}">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/Home_5699.png" Stretch="Uniform" />
+							<TextBlock FontFamily="Segoe UI"
+								FontWeight="Light"
+								FontSize="18px" Padding="5,0,0,0" >Overview</TextBlock>
+						</StackPanel>
+					</TabItem.Header>
+					<Grid>
+						<Frame x:Name="FrameDashboard" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+					</Grid>
+				</TabItem>
+
+				<!--Players tab-->
+				<TabItem  Style="{StaticResource mytabitem}">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/user_16xLG.png" Stretch="Uniform" />
+							<TextBlock  FontFamily="Segoe UI"
+								FontWeight="Light"
+								FontSize="18px" Padding="5,0,0,0" >Players</TextBlock>
+						</StackPanel>
+					</TabItem.Header>
+					<Grid>
+						<Frame x:Name="FramePlayers" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+					</Grid>
+				</TabItem>
+
+				<!--World tab-->
+				<TabItem Style="{StaticResource mytabitem}">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/globe_16xLG.png" Stretch="Uniform" />
+							<TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
+								FontWeight="Light"
+								FontSize="18px" >World</TextBlock>
+						</StackPanel>
+					</TabItem.Header>
+					<Grid>
+						<Frame x:Name="FrameWorld" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+					</Grid>
+				</TabItem>
+
+				<!--Console tab-->
+				<TabItem Style="{StaticResource mytabitem}">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/Console.png" Stretch="Uniform" />
+							<TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
+								FontWeight="Light"
+								FontSize="18px" >Console</TextBlock>
+						</StackPanel>
+					</TabItem.Header>
+					<Grid>
+						<Frame x:Name="FrameConsole" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+					</Grid>
+				</TabItem>
+
+				<!--Game tab-->
+
+				<!--Scheduler tab-->
+				<!--TODO: Disabled for now-->
+				<!--<TabItem Visibility="Collapsed">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/BrowseDefinition_5577.png" Stretch="Uniform" />
+							<TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
+								FontWeight="Light"
+								FontSize="18px" >Scheduler</TextBlock>
+						</StackPanel>
+					</TabItem.Header>
+					<Grid>
+						<Frame TabIndex="0" NavigationUIVisibility="Hidden" />
+					</Grid>
+				</TabItem>-->
+
+				<!--Configuration tab-->
+				<TabItem Style="{StaticResource mytabitem}">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/VirtualMachine_16xLG.png" Stretch="Uniform" />
+							<TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
+								FontWeight="Light"
+								FontSize="18px" >Configuration</TextBlock>
+						</StackPanel>
+					</TabItem.Header>
+					<Grid>
+						<Frame x:Name="FrameConfigHome" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+					</Grid>
+				</TabItem>
+
+				<!--Help tab - DISABLED -->
+				<!--<TabItem Visibility="Collapsed">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/StatusAnnotations_Help_and_inconclusive_16xLG.png" Stretch="Uniform" />
+							<TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
+								FontWeight="Light"
+								FontSize="18px" >Help</TextBlock>
+						</StackPanel>
+					</TabItem.Header>
+					<Grid Background="#FFE5E5E5" />
+				</TabItem>-->
+			</TabControl>
+		</DockPanel>
+	</Grid>
+</Window>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="NewWorldGenScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#E5000000">
+        <Grid Width="570" Height="393" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFEAF7FF" Offset="1" />
+                    <GradientStop Color="White" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Border Margin="10,147,10,67" Background="#FFFFF7C2" Padding="10,0" CornerRadius="2">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Level seed (optional, leave blank for none):" /></TextBlock>
+                    <TextBox x:Name="levelseed" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="276,9,0,7" />
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="254" Margin="276,45,0,0" Height="28" x:Name="leveltype">
+                        <ComboBoxItem Content="Default" x:Name="test" />
+                        <ComboBoxItem Content="Flat" />
+                        <ComboBoxItem Content="LargeBiomes" />
+                    </ComboBox>
+                    <TextBlock HorizontalAlignment="Left" Margin="0,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Level type:" /></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="0,88,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Generator-settings (Advanced users only):" /></TextBlock>
+                    <TextBox x:Name="generatorsettings" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="276,87,0,0" />
+                </Grid>
+            </Border>
+            <TextBlock Text="Generate new world" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" />
+            <TextBlock HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="This will allow you to re-create or reset the entire Minecraft world." /><LineBreak /><Run Text="Warning: The world is regenerated only on the next server start, and this will completely " /><Bold><Run Text="erase" /></Bold><Run Text=" your existing world data " /><Run x:Name="lbloptional" Text="" /><LineBreak /></TextBlock>
+            <Button Content="Go" Margin="0,0,10,10" Click="Button_Click_1" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsDefault="True" IsEnabled="{Binding IsChecked, ElementName=confirm}" />
+            <CheckBox x:Name="confirm"  FontSize="13" HorizontalAlignment="Left" Margin="10,115,0,0" Height="18" VerticalAlignment="Top" Width="550">
+                <TextBlock TextWrapping="Wrap" ><Run Text="I have backed-up my world data " /><Run Text="{Binding Text, ElementName=lbloptional}" /><Run Text=", or do not wish to save it" /></TextBlock>
+            </CheckBox>
+
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,9.366" TextWrapping="Wrap" VerticalAlignment="Bottom"><Hyperlink x:Name="btnCancel"><Run Text="Cancel" /></Hyperlink></TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

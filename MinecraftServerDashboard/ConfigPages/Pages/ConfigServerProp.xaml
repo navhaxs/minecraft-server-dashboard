@@ -1,0 +1,117 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:metro="http://schemas.codeplex.com/elysium"
+      xmlns:params="http://schemas.codeplex.com/elysium/params"
+      params:Manager.Theme="Light"
+        x:Class="ConfigServerProp"
+      mc:Ignorable="d"
+      d:DesignHeight="1112" d:DesignWidth="642"
+      Title="Server Properties"
+
+      xmlns:i="clr-namespace:Logitech.Windows.Input;assembly=WpfMouseWheelLib"
+      i:MouseWheel.Enhanced="True">
+    <Page.Resources>
+        <Style TargetType="ScrollBar" />
+    </Page.Resources>
+    <Grid>
+        <ScrollViewer x:Name="ScrollViewer1" Foreground="Black">
+            <Grid x:Name="ContentGrid">
+                <StackPanel Margin="20,10,0,0">
+                    <TextBlock Text="Basic" FontSize="18" Background="#FFDEAC00" Foreground="White" Padding="5,0,0,0" />
+                    <Border Margin="0,3,10,3" Background="#FFFFF7C2" Height="34" Padding="10,0" CornerRadius="2">
+                        <Grid>
+                            <TextBlock VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left"><Run Text="Server name / Message Of The Day 'MOTD':" /></TextBlock>
+                            <TextBox x:Name="prop_motd" Height="22" VerticalAlignment="Center" Margin="240,6,0,6" />
+                        </Grid>
+                    </Border>
+                    <Grid Margin="0,3" Width="350" HorizontalAlignment="Left">
+                        <TextBlock Text="Game mode:" VerticalAlignment="Center" />
+                        <ComboBox x:Name="gamemode" Width="200" HorizontalAlignment="Right">
+                            <ComboBoxItem Content="Survival" />
+                            <ComboBoxItem Content="Creative" />
+                            <ComboBoxItem Content="Adventure (Advanced users)" />
+                        </ComboBox>
+                    </Grid>
+                    <Grid Margin="0,3" Width="350" HorizontalAlignment="Left">
+                        <TextBlock Text="Difficulty:" VerticalAlignment="Center" />
+                        <ComboBox x:Name="difficulty" Width="200" HorizontalAlignment="Right">
+                            <ComboBoxItem Content="Peaceful" />
+                            <ComboBoxItem Content="Easy" />
+                            <ComboBoxItem Content="Normal" />
+                            <ComboBoxItem Content="Hard" />
+                        </ComboBox>
+                    </Grid>
+                    <Grid Margin="0,3" Width="350" HorizontalAlignment="Left">
+                        <TextBlock Text="Op permission level:" VerticalAlignment="Center" />
+                        <ComboBox x:Name="oppermissionlevel" Width="200" HorizontalAlignment="Right">
+                            <!--Sets permission level for ops.
+                                    1 - Ops can bypass spawn protection.
+                                    2 - Ops can use /clear, /difficulty, /effect, /gamemode, /gamerule, /give, and /tp, and can edit command blocks.
+                                    3 - Ops can use /ban, /deop, /kick, and /op.
+                                    4 - Ops can use /stop.-->
+                            <ComboBoxItem Content="1 - Ops can bypass spawn protection" />
+                            <ComboBoxItem Content="2 -  Ops can use /clear, /difficulty, /effect, /gamemode, /gamerule, /give, and /tp, and can edit command blocks" />
+                            <ComboBoxItem Content="3 - Ops can use /ban, /deop, /kick, and /op" />
+                            <ComboBoxItem Content="4 - Ops can use /stop" />
+                        </ComboBox>
+                    </Grid>
+
+                    <CheckBox Content="Allow flight for players in survival mode (where player has a flight mod)" HorizontalAlignment="Left" x:Name="CheckBox1" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox Content="Allows players to travel to the Nether" HorizontalAlignment="Left" x:Name="CheckBox2" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox x:Name="hardcore" Content="Hardcore mode (If enabled, players will be permanently banned if they die)" HorizontalAlignment="Left" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox Content="Online-mode (Enforce all players to be logged in with a valid Minecraft account)" HorizontalAlignment="Left" x:Name="CheckBox6" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox Content="Allow players to hurt other players - 'PvP'" HorizontalAlignment="Left" x:Name="CheckBox7" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+
+                    <TextBlock Text="World" Foreground="White" FontSize="18" Background="#FFDEAC00" Padding="5,0,0,0" Margin="0,20,0,0" />
+                    <Border Margin="0,3" Background="#FFFFF7C2" Height="30" HorizontalAlignment="Left" Padding="10,0" CornerRadius="2">
+                        <TextBlock VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left"><Run Text="See the " /><Hyperlink Click="Hyperlink_Click_3"><Run Text="World" /></Hyperlink><Run Text=" tab to create, restore/backup and manage worlds" /></TextBlock>
+                    </Border>
+                    <CheckBox Content="Spawn animals" HorizontalAlignment="Left" x:Name="CheckBox8" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox Content="Spawn monsters" HorizontalAlignment="Left"  x:Name="CheckBox9" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox Content="Spawn non-playable characters" HorizontalAlignment="Left"  x:Name="CheckBox10" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+
+                    <Border Margin="0,3" Background="#FFFFF7C2" Height="34" HorizontalAlignment="Left" Padding="10,0" CornerRadius="2">
+                        <Grid>
+                            <TextBlock VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left">The block radius of the spawn to protect:</TextBlock>
+                            <TextBox x:Name="spawnprotection" Width="80" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="230,4,0,4" />
+                        </Grid>
+                    </Border>
+
+                    <TextBlock Text="World generation" Foreground="White" FontSize="18" Margin="0,20,0,0" Padding="6,0,0,0" Background="#FFDEAC00" />
+
+                    <Border Margin="0,3" Background="#FFFFF7C2" Height="70" HorizontalAlignment="Left" Padding="10,0" CornerRadius="2">
+                        <StackPanel>
+                            <CheckBox Content="generate-structures" HorizontalAlignment="Left" x:Name="CheckBox5" VerticalAlignment="Top" IsThreeState="True" Margin="0,5" />
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left">
+                            Defines whether structures (such as villages) will be generated in new chunks.<LineBreak />
+                            Note: Dungeons and Nether Fortresses will still generate if this is set to false.</TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Margin="0,5" Background="#FFFFF7C2" Height="25" HorizontalAlignment="Left" Padding="10,0" CornerRadius="2">
+                        <!--generate-settings parameters-->
+                        <TextBlock VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left"><Hyperlink Click="Hyperlink_Click"><Run Text="Click here" /></Hyperlink><Run Text=" to generate a new world" /></TextBlock>
+                    </Border>
+
+                    <TextBlock Text="Other" Foreground="White" FontSize="18" Margin="0,20,0,0" Padding="6,0,0,0" Background="#FFDEAC00" />
+                    <CheckBox Content="Enable white-list: Players must be on the white list to join" HorizontalAlignment="Left" x:Name="CheckBox11" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox Content="Enable the sending of snoop data regularly to Mojang" HorizontalAlignment="Left" x:Name="snooperenabled" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <Border Margin="0,3" Background="#FFFFF7C2" Height="30" HorizontalAlignment="Left" Padding="10,0" CornerRadius="2">
+                        <TextBlock VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left"><Run Text="Modify the white-list in the " /><Hyperlink Click="Hyperlink_Click_1"><Run Text="player tab" /></Hyperlink></TextBlock>
+                    </Border>
+                    <Border Margin="0,3" Background="#FFFFF7C2" Height="30" HorizontalAlignment="Left" Padding="10,0" CornerRadius="2">
+                        <TextBlock VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left"><Hyperlink Click="Hyperlink_Click_2"><Run Text="rcon/query" /></Hyperlink><Run Text=" settings" /></TextBlock>
+                    </Border>
+                    <Grid Width="245" HorizontalAlignment="Left" Margin="0,20,0,0">
+                        <Button x:Name="btnRefreshData" Content="Undo changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" />
+                        <Button x:Name="btnSave" Content="Save changes" HorizontalAlignment="Right" VerticalAlignment="Top" Width="120" FontWeight="Bold" />
+                    </Grid>
+                    <TextBlock Margin="0,10,0,0"><Hyperlink x:Name="btn_advancedproperties" >Edit advanced properties</Hyperlink></TextBlock>
+                    <TextBlock Margin="0,10,0,100"><Hyperlink x:Name="btn_resetprop" >Reset settings</Hyperlink></TextBlock>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
