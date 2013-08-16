@@ -67,6 +67,7 @@ Local.testsettings
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+*.jar
 *_i.c
 *_p.c
 *.ilk
