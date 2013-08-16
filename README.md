@@ -16,6 +16,8 @@ License
 GNU General Public License, version 2 or later.
 
 ## Attributions
-DotNetZip dotnetzip.codeplex.com (Ms-PL)
-Elysium WPF theme elysium.codeplex.com (MIT)
+DotNetZip http://dotnetzip.codeplex.com (Ms-PL)
+
+Elysium WPF theme http://elysium.codeplex.com (MIT)
+
 Roger Vuistiner's MWLib (CPOL)
