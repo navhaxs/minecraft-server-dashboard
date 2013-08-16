@@ -22,9 +22,8 @@ Public Class ConfigJarfileBackend
             MyAppSettings.Jarfile = thisJar.SelectedValue
             MyServer.ReloadStartupParameters()
         Else
-            System.Windows.MessageBox.Show("Warning!" & vbNewLine & "You have not selected a jarfile to use. Make sure you select one before starting the server" & vbNewLine & "To return to this screen later, click on the Configuration tab and select 'Backend' settings")
+            System.Windows.MessageBox.Show("You havn't selected a jarfile yet! Dashboard can't start the server or make configuration changes until you've selected which jarfile to use." & vbNewLine & vbNewLine & "Return to this screen by clicking on the Configuration tab, and selecting 'Backend settings'", "Dashboard", MessageBoxButton.OK)
         End If
-
         superoverlay.Confirm_DoClose(Me)
     End Sub
 
@@ -153,7 +152,7 @@ Public Class ConfigJarfileBackend
 
         If My.Computer.FileSystem.FileExists(System.Environment.CurrentDirectory & "\" & thisJar.SelectedValue) Then
             MyAppSettings.Jarfile = thisJar.SelectedValue
-            If System.Windows.MessageBox.Show(thisJar.SelectedValue & " has been sucessfully selected as your server backend. Please ensure you have started the server at least once to create the necessary configuration files. Return to Dashboard home screen?", "Dashboard", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
+            If System.Windows.MessageBox.Show(thisJar.SelectedValue & " has been sucessfully selected as your server backend. Please ensure you start the server at least once to create the configuration file defaults." & vbNewLine & vbNewLine & "Return to the Dashboard home screen?", "Dashboard", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
                 superoverlay.Confirm_DoClose(Me)
             End If
         End If

@@ -101,10 +101,12 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Ionic.Zip.Reduced">
-      <HintPath>..\zip-v1.9-Reduced\Debug\Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>.\Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>.\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="System.Core" />
@@ -125,7 +127,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WpfMouseWheelLib">
-      <HintPath>..\Lib\WpfMouseWheelLib.dll</HintPath>
+      <HintPath>.\WpfMouseWheelLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

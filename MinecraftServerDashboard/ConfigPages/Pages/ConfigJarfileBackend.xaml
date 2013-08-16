@@ -7,7 +7,7 @@
       xmlns:params="http://schemas.codeplex.com/elysium/params"
       params:Manager.Theme="Light"
       mc:Ignorable="d"
-      d:DesignHeight="343.866" d:DesignWidth="919.761"
+      d:DesignHeight="335.866" d:DesignWidth="642.761"
       Title="Backend">
     <!--<Page.Resources>
         <Style x:Key="ShadowStyle">
@@ -100,60 +100,47 @@
             </Setter>
         </Style>
     </Page.Resources>-->
-    <DockPanel>
-
-        <!--Select the path to your CraftBukkit *.jar (java executable). If you currently don't have CraftBukkit downloaded on your computer, MyCraftBukkit can automatically download the latest CraftBukkit recommended release-->
-        <StackPanel>
-            <Grid Margin="0,10" HorizontalAlignment="Stretch">
-                <Grid x:Name="grid3">
-
-                    <Border  Margin="15,44,15,0" VerticalAlignment="Top" Background="#FFFFFBD4" Height="120" Padding="10,0" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1">
-                        <Grid>
-                            <TextBlock Margin="0,5,0,0"><Bold FontSize="20" FontWeight="Light">Minecraft server engine</Bold><LineBreak /></TextBlock>
-                            <TextBlock FontSize="13" Margin="541,5,0,5" TextWrapping="Wrap">
-
+    <Grid>
+        <Border  Margin="15,44,15,0" VerticalAlignment="Top" Background="#FFFFFBD4" Height="199" Padding="0" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1">
+            <Grid >
+                <TextBlock FontSize="13" Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,30,10,10">
                             <Bold>Select which jarfile to use as the Minecraft server engine</Bold><LineBreak />e.g. "Minecraft_Server.jar"
                             <LineBreak /><LineBreak />
-                            <Italic FontSize="13" >This file must be placed in the same directory as where you launched the dashboard</Italic>
-                            </TextBlock>
-                            <Grid VerticalAlignment="Bottom" Margin="0,0,0,10">
-                                <ComboBox x:Name="thisJar" VerticalAlignment="Center" Margin="0,0,0,26" Height="34" HorizontalAlignment="Left" Width="471" />
-                                <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="476,6,0,30" x:Name="refresh" TextWrapping="Wrap" RenderTransformOrigin="0.516,0.05" ><Hyperlink x:Name="refreshbtn" Click="refreshbtn_Click"><Run Text="Rescan" /></Hyperlink></TextBlock>
-                            </Grid>
-                        </Grid>
-                    </Border>
-                    <Border Height="120" x:Name="groupBox1" Margin="15,170,15,0" VerticalAlignment="Top" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1" Background="#FFFFFBD4">
-                        <Grid>
-                            <Grid Margin="47,31,0,0" HorizontalAlignment="Left" Width="465" Height="40" VerticalAlignment="Top">
-                                <TextBlock VerticalAlignment="Center">Select a Minecraft server type:</TextBlock>
-                                <ComboBox x:Name="combobox1" VerticalAlignment="Center" Margin="170,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
-                                    <ComboBoxItem Content="Official Mojang Server (Vanilla)" />
-                                    <ComboBoxItem Content="CraftBukkit" />
-                                    <ComboBoxItem Content="Tekkit" />
-                                    <ComboBoxItem Content="Forge" />
-                                </ComboBox>
-                            </Grid>
-                            <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" >Don't have the server files? Download the latest version!</TextBlock>
+                            <Bold>Not in the list?</Bold><LineBreak />
+                            Make sure you've launched Dashboard from the folder where your server files are located. The jarfile should be in the same directory.
+                </TextBlock>
+                <Grid VerticalAlignment="Bottom" Margin="10,0,10,10">
+                    <ComboBox x:Name="thisJar" VerticalAlignment="Top" Height="34" HorizontalAlignment="Left" Width="471" />
+                    <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="476,6,0,0" x:Name="refresh" TextWrapping="Wrap" RenderTransformOrigin="0.516,0.05" Height="20" VerticalAlignment="Top" ><Hyperlink x:Name="refreshbtn" Click="refreshbtn_Click">Refresh</Hyperlink></TextBlock>
+                </Grid>
+                <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" ><Run Text="Already have the server files?"/></TextBlock>
+            </Grid>
+        </Border>
+        <Border Height="120" x:Name="groupBox1" Margin="15,248,15,-24" VerticalAlignment="Top" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1" Background="#FFFFFBD4">
+            <Grid>
+                <Grid Margin="47,31,0,0" HorizontalAlignment="Left" Width="465" Height="40" VerticalAlignment="Top">
+                    <TextBlock VerticalAlignment="Center">Select a Minecraft server type:</TextBlock>
+                    <ComboBox x:Name="combobox1" VerticalAlignment="Center" Margin="170,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Official Mojang Server (Vanilla)" />
+                        <ComboBoxItem Content="CraftBukkit" />
+                        <ComboBoxItem Content="Tekkit" />
+                        <ComboBoxItem Content="Forge" />
+                    </ComboBox>
+                </Grid>
+                <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" >Don't have the server files? Download the latest version!</TextBlock>
 
-                            <Image Source="/MinecraftServerDashboard;component/Images/World/PickAxe_32xLG.png" Width="32" Height="32" Margin="10,34,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <Image Source="/MinecraftServerDashboard;component/Images/World/PickAxe_32xLG.png" Width="32" Height="32" Margin="10,34,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
-                            <Label FontSize="12" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" FontWeight="Bold" Margin="0,66,0,0">
-                                <TextBlock>
+                <Label FontSize="12" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" FontWeight="Bold" Margin="0,66,0,0">
+                    <TextBlock>
                                 <Run x:Name="LatestVerLabel" Text="" />
                                 <Hyperlink x:Name="hyperlinkWeb"><Run x:Name="hyperlinkWebText" Text="" /></Hyperlink>
-                                </TextBlock>
-                            </Label>
+                    </TextBlock>
+                </Label>
 
-                            <TextBlock FontSize="12" HorizontalAlignment="Left" Margin="5,92,0,0" x:Name="dwnldlink" TextWrapping="Wrap" ><Hyperlink x:Name="Button4">Download</Hyperlink></TextBlock>
-                        </Grid>
-                    </Border>
-                    <Label Content="Server backend" x:Name="label4_Copy" Margin="10,2,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" />
-                </Grid>
+                <TextBlock FontSize="12" HorizontalAlignment="Left" Margin="5,92,0,0" x:Name="dwnldlink" TextWrapping="Wrap" ><Hyperlink x:Name="Button4">Download</Hyperlink></TextBlock>
             </Grid>
-        </StackPanel>
-        <!--<Grid Height="43" HorizontalAlignment="Stretch" x:Name="pnlUnsavedChanges" VerticalAlignment="Bottom" Background="#FF2B2B2B" DockPanel.Dock="Bottom">
-            <Label Content="Unsaved changes have been made. Click Save to save changes" Margin="6,0,0,6" x:Name="Label3" Height="35" VerticalAlignment="Bottom" Foreground="White" HorizontalAlignment="Left" Width="444" />
-            <Button Content="Save" Style="{StaticResource InformButtonGreen}" HorizontalAlignment="Right" x:Name="Button6" Margin="0,0,5,6" Width="137" Height="31" VerticalAlignment="Bottom" />
-        </Grid>-->
-    </DockPanel>
+        </Border>
+        <Label Content="Server backend" x:Name="label4_Copy" Margin="10,2,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" />
+    </Grid>
 </Page>
