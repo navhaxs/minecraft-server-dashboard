@@ -9,6 +9,10 @@ Built for Windows using .NET Framework 4 and WPF
 
 Download
 --------
+Grab the latest releases from:
+https://github.com/navhaxs/minecraft-server-dashboard/releases
+
+Or alternatively from:
 http://navhaxs.tk/minecraft-dashboard/
 
 License
