@@ -20,6 +20,6 @@
         </Border>
         <TextBlock Text="Welcome to Minecraft Server Dashboard!" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" FontSize="20" />
         <Image HorizontalAlignment="Right" Height="100" Margin="0,10,10,0" VerticalAlignment="Top" Width="100" Source="/MinecraftServerDashboard;component/appicon.ico" />
-        <Button Content="Next" HorizontalAlignment="Right" Margin="0,0,22,24" VerticalAlignment="Bottom" Width="125" Height="50" FontSize="18" Click="Button_Click" />
+        <Button Content="Next" HorizontalAlignment="Right" Margin="0,0,22,24" VerticalAlignment="Bottom" Width="125" Height="50" FontSize="18" Click="Button_Click" IsDefault="True" />
     </Grid>
 </metro:Window>

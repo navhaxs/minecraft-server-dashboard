@@ -51,7 +51,7 @@
         If My.Computer.FileSystem.DirectoryExists(MyServer.MyStartupParameters.ServerPath & "\world-backups") Then
             System.Diagnostics.Process.Start("explorer.exe", MyServer.MyStartupParameters.ServerPath & "\world-backups")
         Else
-            MessageBox.Show("Either the server backend has not yet been set up, or there are no backups yet")
+            MessageBox.Show("No previous backups have been found, or the server backend has not yet been set up yet.")
         End If
     End Sub
 
