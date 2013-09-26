@@ -47,6 +47,21 @@
         End Property
 
         ''' <summary>
+        ''' Return just the integer value of the Minimum memory allocation parameter
+        ''' </summary>
+        ReadOnly Property UserSettings_SrvMinMemoryInt() As String
+            Get
+                If My.Settings.Startup_MemoryMin.ToLower.EndsWith("g") Then ' is this parameter given in GB, as denoted by 'G' at end?
+                    'Strip any 'M' and 'G' from the string, and also convert from GB to MB
+                    Return My.Settings.Startup_MemoryMin.ToLower.Replace("m", "").Replace("g", "") * 1024
+                Else
+                    'Strip any 'M' and 'G' from the string
+                    Return My.Settings.Startup_MemoryMin.ToLower.Replace("m", "").Replace("g", "")
+                End If
+            End Get
+        End Property
+
+        ''' <summary>
         ''' (User setting) Path to the Java executable. Defaults to "java" if unset.
         ''' </summary>
         Property JavaExec() As String

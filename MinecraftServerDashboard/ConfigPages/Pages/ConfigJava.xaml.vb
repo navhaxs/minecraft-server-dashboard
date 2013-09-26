@@ -9,8 +9,8 @@
 
         ' Add any initialization after the InitializeComponent() call.
         superoverlay = m
-        maxmem.Text = My.Settings.Startup_Memory.ToLower.Replace("m", "")
-        minmem.Text = My.Settings.Startup_MemoryMin.ToLower.Replace("m", "")
+        maxmem.Text = MyAppSettings.UserSettings_SrvMaxMemoryInt
+        minmem.Text = MyAppSettings.UserSettings_SrvMinMemoryInt
         jarpath.Text = MyAppSettings.JavaExec
         isInit = False
     End Sub
