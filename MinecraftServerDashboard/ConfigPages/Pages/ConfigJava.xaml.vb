@@ -1,5 +1,7 @@
 ﻿Public Class ConfigJava
 
+    Dim isInit As Boolean = True
+
     Sub New(m As SuperOverlay)
 
         ' This call is required by the designer.
@@ -10,6 +12,7 @@
         maxmem.Text = My.Settings.Startup_Memory.ToLower.Replace("m", "")
         minmem.Text = My.Settings.Startup_MemoryMin.ToLower.Replace("m", "")
         jarpath.Text = MyAppSettings.JavaExec
+        isInit = False
     End Sub
 
     Dim superoverlay As SuperOverlay
@@ -23,22 +26,32 @@
 
     ' Save settings on change
     Private Sub TextBox_TextChanged(sender As Object, e As TextChangedEventArgs)
-        My.Settings.Startup_Memory = CType(sender, TextBox).Text & "M"
+        If Not isInit Then
+            MyAppSettings.UserSettings_SrvMaxMemory = CType(sender, TextBox).Text & "M"
+        End If
     End Sub
 
     Private Sub TextBox_TextChanged_1(sender As Object, e As TextChangedEventArgs)
-        My.Settings.Startup_MemoryMin = CType(sender, TextBox).Text & "M"
+        If Not isInit Then
+            MyAppSettings.UserSettings_SrvMinMemory = CType(sender, TextBox).Text & "M"
+        End If
     End Sub
 
     Private Sub TextBox_TextChanged_2(sender As Object, e As TextChangedEventArgs)
-        My.Settings.Startup_JavaExec = CType(sender, TextBox).Text
+        If Not isInit Then
+            MyAppSettings.JavaExec = CType(sender, TextBox).Text
+        End If
     End Sub
 
     Private Sub TextBox_TextChanged_3(sender As Object, e As TextChangedEventArgs)
-        My.Settings.LaunchArgu_JAVA = CType(sender, TextBox).Text
+        If Not isInit Then
+            My.Settings.LaunchArgu_JAVA = CType(sender, TextBox).Text
+        End If
     End Sub
 
     Private Sub TextBox_TextChanged_4(sender As Object, e As TextChangedEventArgs)
-        My.Settings.LaunchArgu_SRV = CType(sender, TextBox).Text
+        If Not isInit Then
+            My.Settings.LaunchArgu_SRV = CType(sender, TextBox).Text
+        End If
     End Sub
 End Class

@@ -1,13 +1,12 @@
 ﻿Public Class StartupParameters
 
-    Property JavaParameters As String = " -client -Xmx" & MyAppSettings.UserSettings_SrvMaxMemory() & " -Xms" & MyAppSettings.UserSettings_SrvMinMemory()
-
     ' Set MyAppSettings.Jarfile to "DummyApp.exe" for testing.
 
     Property CB_ServerParameters As String = "--nojline nogui" '"nogui -d""yyyy-MM-dd HH:mm:ss"""
 
     ReadOnly Property FullParameters
         Get
+            Dim JavaParameters As String = " -client -Xmx" & MyAppSettings.UserSettings_SrvMaxMemory() & " -Xms" & MyAppSettings.UserSettings_SrvMinMemory()
             Return JavaParameters + " -jar " & Chr(34) & MyAppSettings.Jarfile & Chr(34) & " " & CB_ServerParameters
         End Get
     End Property
