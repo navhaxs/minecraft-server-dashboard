@@ -7,32 +7,84 @@
       xmlns:params="http://schemas.codeplex.com/elysium/params"
       params:Manager.Theme="Light"
       mc:Ignorable="d"
-      d:DesignHeight="475" d:DesignWidth="575"
-      Title="Java and startup">
+      d:DesignHeight="1000" d:DesignWidth="575"
+      Title="Java, memory and startup">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
     <Grid>
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="6,140,0,0" Name="TextBox1" VerticalAlignment="Top" Width="120" Visibility="Hidden" Grid.RowSpan="2" />
-        <Label Content="PathToJava" FontSize="16" FontWeight="Light" Height="28" HorizontalAlignment="Left" Margin="6,106,0,0" Name="Label2" VerticalAlignment="Top" Visibility="Hidden" />
-        <Label Content="MB (For advaned users)" Height="32" HorizontalAlignment="Left" Margin="291,146,0,0" x:Name="Label3_Copy1" VerticalAlignment="Top" />
-        <Label Content="Minimum memory to allocate to server:" Height="32" HorizontalAlignment="Left" Margin="10,146,0,0" x:Name="Label3_Copy2" VerticalAlignment="Top" />
-        <TextBox x:Name="minmem" HorizontalAlignment="Left" Height="23" Margin="235,147,0,0" TextWrapping="Wrap" Text="1024" VerticalAlignment="Top" Width="54" TextChanged="TextBox_TextChanged_1" />
-        <TextBox x:Name="jarpath" HorizontalAlignment="Left" Height="23" Margin="235,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" TextChanged="TextBox_TextChanged_2" />
-        <Label Content="Java executable (leave blank for default):" Height="32" HorizontalAlignment="Left" Margin="10,183,0,0" x:Name="Label3_Copy3" VerticalAlignment="Top" />
+        <StackPanel>
+            <!--Header-->
+            <!--<Label Content="Java, memory and startup" Margin="10,2,0,0" FontSize="20" FontWeight="Thin" />-->
 
-        <Grid Visibility="Hidden">
-            <TextBox Height="23" Margin="235,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextChanged="TextBox_TextChanged_3" HorizontalAlignment="Left" Width="330" />
-            <Label Content="Custom Java arguments:" Height="32" HorizontalAlignment="Left" Margin="10,142,0,0" x:Name="Label3_Copy4" VerticalAlignment="Top" />
-            <TextBox Height="23" Margin="235,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextChanged="TextBox_TextChanged_4" HorizontalAlignment="Left" Width="330" />
-            <Label Content="Custom server arguments:" Height="32" HorizontalAlignment="Left" Margin="10,174,0,0" x:Name="Label3_Copy5" VerticalAlignment="Top" />
-        </Grid>
-        <Label Content="Memory allocation" x:Name="label4_Copy" Margin="10,2,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" />
-        <Border Margin="10,44,0,0" Background="#FFFFF7C2" Padding="10,0" CornerRadius="2" HorizontalAlignment="Left" Width="438" Height="90" VerticalAlignment="Top" BorderBrush="#FFDEAC00" BorderThickness="1">
-            <Grid>
-                <Label x:Name="lblMaxMB" Content="MB" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="294,10,0,0" />
-                <Label Content="Maximum memory to allocate to server:" Height="32" HorizontalAlignment="Left" x:Name="Label3_Copy" VerticalAlignment="Top" Margin="-1,10,0,0" FontWeight="Bold" />
-                <TextBox x:Name="maxmem" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="1024" VerticalAlignment="Top" Width="54" TextChanged="TextBox_TextChanged" Margin="240,11,0,0" />
-                <TextBlock Text="Increasing the memory will improve server performance, particlarly as the number of connected players increases" Height="32" HorizontalAlignment="Left" x:Name="Label3_Copy6" VerticalAlignment="Top" Margin="4,39,0,0"  TextWrapping="Wrap" />
+            <!--Memory-->
+            <Border Background="#FFFFF7C2" Padding="10,0" HorizontalAlignment="Stretch" Height="100" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0">
+                <Grid>
+                    <Label Content="Memory" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
+
+                    <TextBlock x:Name="lblMaxMB" Text="MB" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,55,78,0" />
+
+                    <TextBox x:Name="maxmem" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="TextBox_TextChanged" Margin="0,52,101,0" BorderThickness="1" TextAlignment="Right" />
+                    <!--<TextBlock Text="Increasing the memory will improve server performance, particlarly as the number of connected players increases" Height="32" HorizontalAlignment="Left" x:Name="Label3_Copy6" VerticalAlignment="Top" Margin="0,42,0,0"  TextWrapping="Wrap" />-->
+                    <Slider x:Name="sliderMemory" Margin="10,52,160,0" VerticalAlignment="Top" Minimum="32"/>
+
+                    <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7" Visibility="Hidden"><Hyperlink Click="Hyperlink_Click">Advanced memory settings</Hyperlink></TextBlock>
+                </Grid>
+            </Border>
+
+            <!--HIDDEN: Min Memory-->
+            <Grid x:Name="MinMemory" Visibility="Collapsed">
+                <Label Content="MB (For advaned users)" Height="32" HorizontalAlignment="Left" Margin="291,146,0,0" x:Name="Label3_Copy1" VerticalAlignment="Top" />
+                <Label Content="Minimum memory to allocate to server:" Height="32" HorizontalAlignment="Left" Margin="10,146,0,0" x:Name="Label3_Copy2" VerticalAlignment="Top" />
+                <TextBox x:Name="minmem" HorizontalAlignment="Left" Height="23" Margin="235,147,0,0" TextWrapping="Wrap" Text="1024" VerticalAlignment="Top" Width="54" TextChanged="TextBox_TextChanged_1" />
             </Grid>
-        </Border>
+
+            <!--Startup paramters-->
+            <Border Background="#FFFFFADD" Padding="10,0" HorizontalAlignment="Stretch" Height="140" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" Visibility="Collapsed">
+                <Grid>
+                    <Label Content="Startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18"/>
+                    <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged_3" Margin="0,79,120,15" VerticalContentAlignment="Top" BorderThickness="1" >
+                        -nojline -nogui
+                    </TextBox>
+                    <TextBlock Height="32" HorizontalAlignment="Left" Margin="0,47,0,60" >
+                        <Image Height="16" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />
+                        The default CraftBukkit parameters will be applied:
+                    </TextBlock>
+                </Grid>
+            </Border>
+
+            <!--Java Executable-->
+            <Border Background="#FFFFFDF1" Padding="10,0" HorizontalAlignment="Stretch" Height="170" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" >
+                <Grid>
+                    <Label Content="Java" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
+                    <Label Content="Select the installation of Java on your machine to use:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,38,0,0" FontSize="13" Visibility="Collapsed"/>
+
+                    <RadioButton Margin="10,70,365,0" VerticalAlignment="Top" IsChecked="True" x:Name="jreauto" >
+                        <TextBlock>Recommended (<Hyperlink IsEnabled="{Binding IsChecked, ElementName=jreauto}">JRE 7 x64</Hyperlink>)</TextBlock>
+                    </RadioButton>
+                    <RadioButton x:Name="jremanual" Margin="10,90,0,10" VerticalAlignment="Bottom" >
+                        <Grid>
+                            <TextBlock Text="Or, manually specify the location to Java.exe" VerticalAlignment="Top" />
+                            <Button Content="..." HorizontalAlignment="Left" Margin="334,16,0,0" VerticalAlignment="Top" Width="71" Height="32"
+                                    IsEnabled="{Binding IsChecked, ElementName=jremanual}"/>
+                            <TextBox x:Name="jarpath" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" TextChanged="TextBox_TextChanged_2" Margin="-1,21,0,0" BorderThickness="1"
+                                    IsEnabled="{Binding IsChecked, ElementName=jremanual}"/>
+                        </Grid>
+                    </RadioButton>
+                </Grid>
+            </Border>
+
+            <!--Bottom separator-->
+            <Border Background="#FFFFFDF1" Padding="10,0" HorizontalAlignment="Stretch" Height="1" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0"/>
+
+        </StackPanel>
+
+
+
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="6,140,0,0" Name="TextBox1" VerticalAlignment="Top" Width="120" Visibility="Collapsed" Grid.RowSpan="2" />
+        <Label Content="PathToJava" FontSize="16" FontWeight="Light" Height="28" HorizontalAlignment="Left" Margin="6,106,0,0" Name="Label2" VerticalAlignment="Top" Visibility="Collapsed" />
+
+
         <!--TODO: Checl for Java-->
     </Grid>
 </Page>

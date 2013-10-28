@@ -8,7 +8,11 @@
         MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
     End Sub
 
-    Private Sub Button_Click_1(sender As Object, e As RoutedEventArgs)
+    Private Sub Hyperlink_Click(sender As Object, e As RoutedEventArgs)
         System.Diagnostics.Process.Start("http://navhaxs.tk/minecraft-dashboard/")
+    End Sub
+
+    Private Sub Hyperlink_Go_WWW(sender As Object, e As RequestNavigateEventArgs)
+        System.Diagnostics.Process.Start(e.Uri.ToString())
     End Sub
 End Class

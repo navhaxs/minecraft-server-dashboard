@@ -11,6 +11,11 @@
 
       xmlns:i="clr-namespace:Logitech.Windows.Input;assembly=WpfMouseWheelLib"
       i:MouseWheel.Enhanced="True">
+    <Page.Resources>
+        <!-- Reset ScrollBar Styles -->
+        <Style TargetType="ScrollBar">
+        </Style>
+    </Page.Resources>
     <Page.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFFFC386" Offset="1" />

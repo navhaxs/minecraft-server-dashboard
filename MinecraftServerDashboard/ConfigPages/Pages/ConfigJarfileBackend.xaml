@@ -101,46 +101,57 @@
         </Style>
     </Page.Resources>-->
     <Grid>
-        <Border  Margin="15,44,15,0" VerticalAlignment="Top" Background="#FFFFFBD4" Height="199" Padding="0" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1">
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Margin="15,44,10,0">
+        <Border VerticalAlignment="Top" Background="#FFFFFBD4" Padding="0" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1" Grid.Column="1" Height="150">
             <Grid >
-                <TextBlock FontSize="13" Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,30,10,10">
-                            <Bold>Select which jarfile to use as the Minecraft server engine</Bold><LineBreak />e.g. "Minecraft_Server.jar"
-                            <LineBreak /><LineBreak />
+                <Grid x:Name="isJarDetected">
+                        <TextBlock Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,30,10,10">
+                            Select which jarfile to use as the Minecraft server engine (e.g. "Minecraft_Server.jar")
+                        </TextBlock>
+                        <TextBlock Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,0,10,0" VerticalAlignment="Bottom">
                             <Bold>Not in the list?</Bold><LineBreak />
                             Make sure you've launched Dashboard from the folder where your server files are located. The jarfile should be in the same directory.
-                </TextBlock>
-                <Grid VerticalAlignment="Bottom" Margin="10,0,10,10">
-                    <ComboBox x:Name="thisJar" VerticalAlignment="Top" Height="34" HorizontalAlignment="Left" Width="471" />
-                    <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="476,6,0,0" x:Name="refresh" TextWrapping="Wrap" RenderTransformOrigin="0.516,0.05" Height="20" VerticalAlignment="Top" ><Hyperlink x:Name="refreshbtn" Click="refreshbtn_Click">Refresh</Hyperlink></TextBlock>
+                    </TextBlock>
+                    <Grid VerticalAlignment="Top" Margin="10,55,0,0">
+                        <ComboBox x:Name="thisJar" VerticalAlignment="Top" HorizontalAlignment="Left" Width="471" />
+                        <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="476,6,0,0" x:Name="refresh" TextWrapping="Wrap" RenderTransformOrigin="0.516,0.05" Height="20" VerticalAlignment="Top" ><Hyperlink x:Name="refreshbtn" Click="refreshbtn_Click">Refresh</Hyperlink></TextBlock>
+                    </Grid>
+                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" ><Run Text="Already have the server files?"/></TextBlock>
                 </Grid>
-                <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" ><Run Text="Already have the server files?"/></TextBlock>
+                <Grid x:Name="isJarDetectedFalse" Visibility="Collapsed">
+                        <Image HorizontalAlignment="Left" Margin="15,25,0,0" Height="32" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />
+                        <TextBlock FontSize="13" Margin="45,4,0,6" TextWrapping="Wrap" Padding="10,30,10,10">
+                            No server jar files were found. Make sure you copy and launch Dashboard from the folder where your server files are located. (If this is you, exit now and copy the Dashboard App *.exe to the correct folder)
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Foreground="#FF303030" Margin="0,0,0,0" FontSize="16" FontFamily="Segoe UI Light" ><Run Text="Already have the server files?"/></TextBlock>
+                </Grid>
             </Grid>
         </Border>
-        <Border Height="120" x:Name="groupBox1" Margin="15,248,15,-24" VerticalAlignment="Top" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1" Background="#FFFFFBD4">
+        <Border x:Name="groupBox1" VerticalAlignment="Top" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1" Background="#FFFFFBD4" Grid.Column="1" Height="120" Margin="0,10,0,0">
             <Grid>
-                <Grid Margin="47,31,0,0" HorizontalAlignment="Left" Width="465" Height="40" VerticalAlignment="Top">
-                    <TextBlock VerticalAlignment="Center">Select a Minecraft server type:</TextBlock>
-                    <ComboBox x:Name="combobox1" VerticalAlignment="Center" Margin="170,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
+                <Grid Margin="10,31,0,0" HorizontalAlignment="Left" Width="500" Height="40" VerticalAlignment="Top">
+                        <TextBlock VerticalAlignment="Center" ><Image Source="/MinecraftServerDashboard;component/Images/Tab/globe_16xLG.png" Width="16" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0" />Select a Minecraft server type:</TextBlock>
+                    <ComboBox x:Name="combobox1" VerticalAlignment="Center" Margin="190,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBoxItem Content="Official Mojang Server (Vanilla)" />
                         <ComboBoxItem Content="CraftBukkit" />
                         <ComboBoxItem Content="Tekkit" />
                         <ComboBoxItem Content="Forge" />
                     </ComboBox>
                 </Grid>
-                <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" >Don't have the server files? Download the latest version!</TextBlock>
+                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Foreground="#FF303030" Margin="0,0,0,0" FontSize="16" FontFamily="Segoe UI Light">Don't have the server files? Download the latest version!</TextBlock>
 
-                <Image Source="/MinecraftServerDashboard;component/Images/World/PickAxe_32xLG.png" Width="32" Height="32" Margin="10,34,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
-                <Label FontSize="12" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" FontWeight="Bold" Margin="0,66,0,0">
+                <Label FontSize="12" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" FontWeight="Bold" Margin="0,66,0,0" Padding="10">
                     <TextBlock>
                                 <Run x:Name="LatestVerLabel" Text="" />
                                 <Hyperlink x:Name="hyperlinkWeb"><Run x:Name="hyperlinkWebText" Text="" /></Hyperlink>
                     </TextBlock>
                 </Label>
 
-                <TextBlock FontSize="12" HorizontalAlignment="Left" Margin="5,92,0,0" x:Name="dwnldlink" TextWrapping="Wrap" ><Hyperlink x:Name="Button4">Download</Hyperlink></TextBlock>
+                <TextBlock FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" x:Name="dwnldlink" TextWrapping="Wrap" ><Hyperlink x:Name="Button4">Download</Hyperlink></TextBlock>
             </Grid>
         </Border>
-        <Label Content="Server backend" x:Name="label4_Copy" Margin="10,2,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" />
+        </StackPanel>
+        <Label Content="Server backend" x:Name="label4_Copy" Margin="10,2,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="37" Width="145" />
     </Grid>
 </Page>

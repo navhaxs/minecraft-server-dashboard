@@ -1,5 +1,6 @@
 ﻿Imports System.Net
 Imports System.IO
+Imports Newtonsoft.Json
 
 Module AppShared_UpdateEngine
     Friend myUpdateEngine As UpdateEngine
@@ -17,19 +18,62 @@ Public Class UpdateEngine
     End Sub
     Event UUComplete(e As ComponentModel.AsyncCompletedEventArgs, _rootDir As String, _FileName As String)
 
-    Function GetLatestVersionID_Online() As String
+    ReadOnly Property GetLatestVersion_Vanilla() As String
+        Get
+            If Not m_GetLatestVersion_Vanilla Is Nothing Then
+                Return m_GetLatestVersion_Vanilla
+            End If
+            Try
+                Using wc As New MyWebClient()
+                    Dim json = wc.DownloadString("https://s3.amazonaws.com/Minecraft.Download/versions/versions.json")
+                    Dim data = JsonConvert.DeserializeObject(Of MojangVersionJSON)(json)
+                    m_GetLatestVersion_Vanilla = data.Latest.release
+                    Return m_GetLatestVersion_Vanilla
+                End Using
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        End Get
+    End Property
+
+    Private m_GetLatestVersion_Vanilla As String
+
+    Private Class MojangVersionJSON
+        <JsonProperty("latest")> _
+        Public Property Latest() As VersionData
+            Get
+                Return m_VersionData
+            End Get
+            Set(value As VersionData)
+                m_VersionData = value
+            End Set
+        End Property
+        Private m_VersionData As VersionData
+
+    End Class
+
+    Private Class VersionData
+        <JsonProperty("release")> _
+        Public release As String
+        <JsonProperty("snapshot")> _
+        Public snapshot As String
+    End Class
+
+
+
+    Function GetLatestVersion_CraftBukkit() As String
         Try
             Dim url As String = "http://cbukk.it/craftbukkit.jar"
             Dim fileName As String
-            Using client As New MyWebClient()
+            Using wc As New MyWebClient()
                 If Not My.Computer.Network.IsAvailable Then
                     Return "Offline =("
                     Exit Function
                 End If
-                Using rawStream As Stream = client.OpenRead(url)
+                Using rawStream As Stream = wc.OpenRead(url)
 
                     ' Get the filename, which will include version info
-                    fileName = client.ResponseUri.AbsolutePath.Substring(client.ResponseUri.AbsolutePath.LastIndexOf("/") + 1)
+                    fileName = wc.ResponseUri.AbsolutePath.Substring(wc.ResponseUri.AbsolutePath.LastIndexOf("/") + 1)
                     Using reader As New StreamReader(rawStream)
                         Dim firstpos As String = fileName.Substring("craftbukkit-".Length)
                         Dim endpos As Integer = fileName.IndexOf("-", firstpos.Length)

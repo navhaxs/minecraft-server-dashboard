@@ -20,6 +20,6 @@
         Catch ex As Exception
 
         End Try
-        MessageBox.Show("The download was cancelled")
+        MessageBox.Show("The download has been cancelled")
     End Sub
 End Class

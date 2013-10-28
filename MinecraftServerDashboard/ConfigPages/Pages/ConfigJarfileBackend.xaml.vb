@@ -43,19 +43,22 @@ Public Class ConfigJarfileBackend
     ' The Mojang Minecraft server is downloaded from a static web address
 
     Dim myUpdaterEngine As New UpdateEngine(Me)
-    Private Sub StartDownloadBtn_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles Button4.Click
-        If combobox1.SelectedValue Is Nothing Then
-            Exit Sub
-        End If
+    Private Sub StartDownload_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles Button4.Click
+        If download_combobox.SelectedValue Is Nothing Then Exit Sub
+
 
         UpdaterModule = New UpdatePage(myUpdaterEngine)
 
         Me.NavigationService.Content = UpdaterModule
 
-        Select Case combobox1.SelectedValue.Content.ToString
+        Select Case download_combobox.SelectedValue.Content.ToString
             Case "Official Mojang Server (Vanilla)"
-                UpdaterModule.Label1.Content = "Downloading latest Minecraft server release from Mojang"
-                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule, "https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar")
+                UpdaterModule.Label1.Content = "Downloading latest Minecraft server release from Mojang: " & LatestVerLabel.Text
+
+                Dim Ver As String = myUpdateEngine.GetLatestVersion_Vanilla
+                Dim url As String = "https://s3.amazonaws.com/Minecraft.Download/versions/" + Ver + "/minecraft_server." + Ver + ".jar"
+
+                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule, url)
             Case "CraftBukkit"
                 UpdaterModule.Label1.Content = UpdaterModule.Label1.Content.ToString & ": " & LatestVerLabel.Text
                 myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule, "http://cbukk.it/craftbukkit.jar")
@@ -66,13 +69,27 @@ Public Class ConfigJarfileBackend
     Dim WithEvents webservice As New System.ComponentModel.BackgroundWorker
 
     Private Sub WebService_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles webservice.DoWork
-        e.Result = myUpdaterEngine.GetLatestVersionID_Online()
+        If Not My.Computer.Network.IsAvailable Then
+            e.Result = "Offline =("
+        Else
+            Select Case e.Argument
+                Case "vanilla"
+                    Dim fetch As String = myUpdaterEngine.GetLatestVersion_Vanilla()
+                    If Not fetch Is Nothing Then
+                        e.Result = "The latest version is " & fetch
+                    Else
+                        e.Result = "Could not retreive latest version number. Try downloading from http://minecraft.net/ manually."
+                    End If
+                Case "craftbukkit"
+                    e.Result = myUpdaterEngine.GetLatestVersion_CraftBukkit()
+            End Select
+        End If
     End Sub
     Private Sub WebService_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles webservice.RunWorkerCompleted
         Dispatcher.Invoke( _
                             New Action(Function()
                                            If Not e.Cancelled Then
-                                               combobox1.IsEnabled = True
+                                               download_combobox.IsEnabled = True
                                                LatestVerLabel.Text = e.Result
                                                hyperlinkWebText.Text = ""
                                                dwnldlink.Visibility = Windows.Visibility.Visible
@@ -86,7 +103,7 @@ Public Class ConfigJarfileBackend
         If e.IsAvailable Then
             ' Try fetch version info again if the network state has changed to 'internet'
             On Error Resume Next
-            If combobox1.SelectedValue.Content.ToString = "CraftBukkit" And (Not webservice.IsBusy) Then
+            If download_combobox.SelectedValue.Content.ToString = "CraftBukkit" And (Not webservice.IsBusy) Then
                 webservice.RunWorkerAsync()
             End If
         End If
@@ -99,24 +116,41 @@ Public Class ConfigJarfileBackend
 
         Select Case CType(sender, System.Windows.Controls.ComboBox).SelectedItem.Content.ToString
             Case "Official Mojang Server (Vanilla)"
-                LatestVerLabel.Text = "Click ""Download"" to begin downloading the latest Minecraft server release from Mojang"
+                LatestVerLabel.Text = "Contacting server..."
+                'LatestVerLabel.Text = "Click ""Download"" to begin downloading the latest Minecraft server release from Mojang"
                 hyperlinkWebText.Text = ""
                 dwnldlink.Visibility = Windows.Visibility.Visible
                 If webservice.IsBusy Then
-                    webservice.CancelAsync()
+                    Try
+                        webservice.CancelAsync()
+                        webservice.RunWorkerAsync("vanilla")
+                        download_combobox.IsEnabled = False
+                    Catch ex As Exception
+
+                    End Try
+                Else
+                    webservice.RunWorkerAsync("vanilla")
+                    download_combobox.IsEnabled = False
                 End If
+
 
                 'https://minecraft.net/download
             Case "CraftBukkit"
                 LatestVerLabel.Text = "Contacting server..."
                 hyperlinkWebText.Text = ""
                 dwnldlink.Visibility = Windows.Visibility.Collapsed
-                Try
-                    webservice.RunWorkerAsync()
-                    combobox1.IsEnabled = False
-                Catch ex As Exception
+                If webservice.IsBusy Then
+                    Try
+                        webservice.CancelAsync()
+                        webservice.RunWorkerAsync("craftbukkit")
+                        download_combobox.IsEnabled = False
+                    Catch ex As Exception
 
-                End Try
+                    End Try
+                Else
+                    webservice.RunWorkerAsync("craftbukkit")
+                    download_combobox.IsEnabled = False
+                End If
 
             Case "Tekkit"
                 LatestVerLabel.Text = "Get the latest Tekkit Minecraft server from "
@@ -136,7 +170,7 @@ Public Class ConfigJarfileBackend
     End Sub
 
     Sub hyperlinkWeb_Clicked() Handles hyperlinkWeb.Click
-        Select Case combobox1.SelectedItem.Content.ToString
+        Select Case download_combobox.SelectedItem.Content.ToString
             Case "Tekkit"
                 System.Diagnostics.Process.Start("http://www.technicpack.net/tekkit/")
             Case "Forge"
@@ -159,5 +193,4 @@ Public Class ConfigJarfileBackend
     End Sub
 
 #End Region
-
 End Class

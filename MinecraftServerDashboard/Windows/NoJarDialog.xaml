@@ -1,0 +1,13 @@
+﻿<metro:Window x:Class="NoJarDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Warning" Height="300" Width="300"
+    xmlns:metro="http://schemas.codeplex.com/elysium"
+    xmlns:params="http://schemas.codeplex.com/elysium/params"
+    params:Manager.Theme="Light"
+    ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid>
+        <Label Content="You have not set up the server yet." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</metro:Window>

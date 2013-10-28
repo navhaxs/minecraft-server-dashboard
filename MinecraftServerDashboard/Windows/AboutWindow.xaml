@@ -6,20 +6,63 @@
     xmlns:metro="http://schemas.codeplex.com/elysium"
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     params:Manager.Theme="Light"
-    Title="About" Height="331" Width="607.97" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    Title="About" Height="409" Width="638.97" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize">
 
     <Grid>
-        <Image Height="100" Margin="10,15,0,0" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/appicon.ico" HorizontalAlignment="Left" Width="100" />
-        <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="125,15,0,0" VerticalAlignment="Top" FontSize="20" Width="322" TextWrapping="Wrap" />
-        <TextBlock HorizontalAlignment="Left" Margin="125,47,0,0" FontSize="14" Width="339" TextWrapping="Wrap" VerticalAlignment="Top"><Italic><Run Text="Flexible Minecraft server management made easy" /></Italic><LineBreak /><Run Text="Sept2013 Beta, built 26/09/2013 (c) navhaxs 2013" /></TextBlock>
+        <Grid Background="#FFFFEEB4" Margin="10,0,18,0" Height="64" VerticalAlignment="Top">
+            <Image Height="64" Width="64" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/appicon.ico" HorizontalAlignment="Left" />
+            <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="72,5,0,0" VerticalAlignment="Top" FontSize="20" Width="322" TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Left" Margin="72,37,0,0" FontSize="14" Width="339" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Oct2013 Beta, built 28/10/2013 (c) navhaxs 2013" /></TextBlock>
+        </Grid>
 
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="125,90,0,15" Width="459"><Run Text="Minecraft Server Dashboard comes with ABSOLUTELY NO WARRANTY, and is licensed under the GNU General Public License, version 2 or later." /><LineBreak /><LineBreak /><Run Text="This product uses the Elysium library, which is licensed under the MIT License " /><Run Text="elysium.codeplex.com" /><LineBreak /><Run Text="This product uses the following third-party online services: DynDNS CheckIP " /><Run Text="dyndns.com" /><Run Text=", and the Minotar (Minecraft avatars) " /><Run Text="minotar.net" /><LineBreak /><Run Text="Usage of this software requires compliance with the terms and conditions of these services" /></TextBlock>
-        <Button Content="Done" Margin="0,0,18,15" Click="Button_Click" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="96" IsDefault="True" />
-        <Button Margin="14,0,0,15" Height="33" VerticalAlignment="Bottom" IsDefault="True" HorizontalAlignment="Left" Width="134" Click="Button_Click_1">
-            <Grid Width="110">
-                <Image Source="/MinecraftServerDashboard;component/Images/Tab/globe_16xLG.png" Stretch="None" HorizontalAlignment="Left" />
-                <TextBlock HorizontalAlignment="Right" >Visit us online</TextBlock>
-            </Grid>
-        </Button>
+        <Button Content="Done" Margin="0,0,18,15" Click="Button_Click" Height="33" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="96" IsDefault="True" />
+        <TabControl Margin="10,64,18,53" FontSize="14">
+            <TabItem Header="About">
+                <Grid>
+<ScrollViewer>
+                        <ScrollViewer.Resources>
+                            <!-- Reset ScrollBar Styles -->
+                            <Style TargetType="ScrollBar">
+                            </Style>
+                        </ScrollViewer.Resources>
+                    
+                    <TextBlock Margin="15" TextWrapping="Wrap">
+                        Minecraft Server Dashboard is flexible Minecraft server management made easy.<LineBreak />
+                        <LineBreak />
+                        <Bold>Acknowledgements</Bold>
+                        <LineBreak />
+                        <Run Text="This software is themed with Elysium, " /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://elysium.codeplex.com">elysium.codeplex.com</Hyperlink><Run Text=", licensed under the MIT License." />
+                        <Run Text="This software also uses the Json.NET library by James Newton-King," /> <Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://james.newtonking.com/json">james.newtonking.com/json</Hyperlink>
+                        <LineBreak />
+                        <LineBreak />
+                        <Bold>Service agreement</Bold>
+                        <LineBreak />
+                        <Run Text="Usage of this software requires compliance with the terms and conditions of the following third-party online services:" />
+                        <LineBreak />
+                        <Italic>DynDNS CheckIP</Italic><Run Text=" to determine your IP address, " /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://dyndns.com">dyndns.com</Hyperlink>
+                        <Run Text="and the " /><Italic>awesome Minotar</Italic><Run Text=" service for fetching Minecraft avatars, " /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://minotar.net">minotar.net</Hyperlink>
+                    </TextBlock>
+                        </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Licence">
+                <Grid>
+                        <TextBlock TextWrapping="Wrap" Margin="15">
+                        <Run Text="Minecraft Server Dashboard comes with ABSOLUTELY NO WARRANTY, and is licensed under the GNU General Public License, version 2 or later." /><LineBreak />
+                        </TextBlock>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Updates">
+                <Grid>
+                    <TextBlock Margin="15">
+                        For the latest updates and news, you should visit us online!
+                        <LineBreak/>
+                        <Image Source="/MinecraftServerDashboard;component/Images/Tab/globe_16xLG.png" Stretch="None" HorizontalAlignment="Left" />
+                        <Hyperlink Click="Hyperlink_Click">http://navhaxs.tk/minecraft-dashboard/</Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </metro:Window>

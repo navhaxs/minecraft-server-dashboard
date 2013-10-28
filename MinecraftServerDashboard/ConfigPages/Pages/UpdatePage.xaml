@@ -12,7 +12,7 @@
     <Grid>
         <ProgressBar Height="18" IsIndeterminate="False" Margin="12,59,12,0" Name="ProgressBar1" VerticalAlignment="Top" />
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="12,0,0,12" Name="Button1" Width="75" VerticalAlignment="Bottom" />
-        <Label Content="Downloading server files..." Height="51" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Label1" VerticalAlignment="Top" FontSize="15" />
+        <Label Content="Preparing to downloading server files..." Height="51" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Label1" VerticalAlignment="Top" FontSize="15" />
         <Label Height="28" HorizontalAlignment="Left" Margin="12,83,0,0" Name="Label2" VerticalAlignment="Top" />
     </Grid>
 </Page>
