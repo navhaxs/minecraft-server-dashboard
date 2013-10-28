@@ -7,7 +7,7 @@
     ReadOnly Property FullParameters
         Get
             Dim JavaParameters As String = " -client -Xmx" & MyAppSettings.UserSettings_SrvMaxMemory() & " -Xms" & MyAppSettings.UserSettings_SrvMinMemory()
-            Return JavaParameters + " -jar " & Chr(34) & MyAppSettings.Jarfile & Chr(34) & " " & CB_ServerParameters
+            Return JavaParameters + " -jar " & Chr(34) & MyAppSettings.Jarfile & Chr(34) & " " & My.Settings.LaunchArgu_SRV & " " & CB_ServerParameters
         End Get
     End Property
 

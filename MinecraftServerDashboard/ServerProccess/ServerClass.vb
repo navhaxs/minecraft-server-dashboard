@@ -42,9 +42,21 @@ Public Class ServerClass
     ''' </summary>
     Function ReloadStartupParameters()
 
+        Dim java As String
+        If MyAppSettings.JavaExec.Length = 0 Then 'Set the default if blank
+            If My.Computer.FileSystem.FileExists(DetectJava.FindPath & "\bin\java.exe") Then
+                java = DetectJava.FindPath & "\bin\java.exe"
+            Else
+                java = "java"
+            End If
+        Else
+            java = My.Settings.Startup_JavaExec
+        End If
+
+
         ServerProc = New Process With { _
             .StartInfo = New ProcessStartInfo() With { _
-                .FileName = "derp", _
+                .FileName = java, _
                 .WorkingDirectory = MyStartupParameters.ServerPath, _
                 .Arguments = MyStartupParameters.FullParameters, _
                 .RedirectStandardInput = True, _
@@ -54,13 +66,6 @@ Public Class ServerClass
                 .CreateNoWindow = True
             } _
         }
-
-
-        If MyAppSettings.JavaExec.Length = 0 Then
-            'Set the default if blank
-            My.Settings.Startup_JavaExec = "java"
-            Return "java"
-        End If
 
         ServerProc.EnableRaisingEvents = True ' Redirects the server process' console output into this application instead
 
@@ -207,7 +212,7 @@ Public Class ServerClass
 
             If isWaitingForWorldSavedActivity Then
                 ' Two different strings to detect depending on Minecraft server type (VANILLA (and Forge) servers // CraftBukkit servers)
-                If e.Data.EndsWith(" [INFO] CONSOLE: Save complete.") Or e.Data.EndsWith("[INFO] Saved the world") Then
+                If e.Data.EndsWith("INFO] CONSOLE: Save complete.") Or e.Data.EndsWith("INFO]: CONSOLE: Save complete.") Or e.Data.EndsWith("INFO] Saved the world") Then
                     isWaitingForWorldSavedActivity = False
                     RaiseEvent Detected_WorldSavedCompleted()
                 End If
@@ -219,7 +224,7 @@ Public Class ServerClass
             '2013-06-24 23:12:25 [INFO] Notch lost connection: disconnect.quitting
             '[INFO] bearbear12345 lost connection: disconnect.quitting
             '2013-06-24 23:28:27 [INFO] username lost connection: disconnect.genericReason
-            If e.Data.Contains(" [INFO] ") Then
+            If e.Data.Contains("INFO] ") Or e.Data.Contains("INFO]: ") Then
                 If e.Data.EndsWith(")") Then
                     If e.Data.Contains(" logged in with entity id ") And e.Data.Contains(" at (") Then
                         isGettingPlayerListActivity = isGettingPlayerListActivity_STATE.LookingForMatch 'Trigger the event to refresh the online player list
@@ -240,7 +245,16 @@ Public Class ServerClass
 
                 ' Remove [INFO] string if it exists
                 ' e.g. 2013-07-09 16:46:13 [INFO] bearbear12345
-                Dim f As String = " [INFO] "
+                Dim f As String
+                If e.Data.Contains("INFO]:") Then
+                    f = "INFO]: "
+                Else
+
+                    f = "INFO] "
+                End If
+
+
+
                 Dim i As Integer = e.Data.IndexOf(f)
                 Dim s As String = ""
                 If e.Data.Contains(f) Then
@@ -289,8 +303,8 @@ Public Class ServerClass
             End If
 
             If isGettingPlayerListActivity = isGettingPlayerListActivity_STATE.LookingForMatch Then
-                If e.Data.Contains(" [INFO] There are ") Then
-                    If e.Data.Contains(" [INFO] There are 0/") Then
+                If e.Data.Contains("INFO] There are ") Or e.Data.Contains("INFO]: There are ") Then
+                    If e.Data.Contains("INFO] There are 0/") Or e.Data.Contains("INFO]: There are 0/") Then
                         'If there are no players, simply clear player list UI now
                         navpageDashboard.Dispatcher.BeginInvoke( _
                                     New Action(Sub()
@@ -311,7 +325,7 @@ Public Class ServerClass
             'Check if the server has completed initializing, e.g. line matching the string:
             '2013-05-20 12:34:07 [INFO] Done (1.701s)! For help, type "help" or "?"
             If CurrentServerState = ServerState.WarmUp Then
-                If e.Data.Contains("[INFO] Done (") And e.Data.EndsWith("s)! For help, type ""help"" or ""?""") Then
+                If (e.Data.Contains("INFO] Done (") Or e.Data.Contains("INFO]: Done (")) And e.Data.EndsWith("s)! For help, type ""help"" or ""?""") Then
                     CurrentServerState = ServerState.Running
                 End If
             End If

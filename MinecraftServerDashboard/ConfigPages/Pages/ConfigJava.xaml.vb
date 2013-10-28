@@ -88,16 +88,17 @@
     End Sub
 
     Private Sub TextBox_TextChanged_3(sender As Object, e As TextChangedEventArgs)
-        If Not isInit Then
-            My.Settings.LaunchArgu_JAVA = CType(sender, TextBox).Text
-        End If
-    End Sub
-
-    Private Sub TextBox_TextChanged_4(sender As Object, e As TextChangedEventArgs)
+        'parameters RIGHT
         If Not isInit Then
             My.Settings.LaunchArgu_SRV = CType(sender, TextBox).Text
         End If
     End Sub
+
+    'Private Sub TextBox_TextChanged_4(sender As Object, e As TextChangedEventArgs)
+    '    If Not isInit Then
+    '        My.Settings.LaunchArgu_SRV = CType(sender, TextBox).Text
+    '    End If
+    'End Sub
 
     Private Sub Hyperlink_Click(sender As Object, e As RoutedEventArgs)
 
@@ -113,16 +114,16 @@
 
     'Allow the user to jump from the left side of the textbox to the right, and vice versa
     'Must use PreviewKeyDown, NOT KeyDown!! since the Left/Right key DON'T trigger KeyDown
-    Private Sub parameters_right_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_right.PreviewKeyDown
-        If e.Key = Key.Left Then
-            parameters_left.Focus()
-        End If
-    End Sub
-    Private Sub parameters_left_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_left.PreviewKeyDown
-        If e.Key = Key.Right Then
-            parameters_right.Focus()
-        End If
-    End Sub
+    'Private Sub parameters_right_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_right.PreviewKeyDown
+    '    If e.Key = Key.Left Then
+    '        parameters_left.Focus()
+    '    'End If
+    'End Sub
+    'Private Sub parameters_left_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_left.PreviewKeyDown
+    '    If e.Key = Key.Right Then
+    '        parameters_right.Focus()
+    '    End If
+    'End Sub
 
 #End Region
 
