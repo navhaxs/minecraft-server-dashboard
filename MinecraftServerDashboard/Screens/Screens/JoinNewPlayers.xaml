@@ -6,7 +6,6 @@
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     xmlns:local="clr-namespace:MinecraftServerDashboard"
     x:Class="JoinNewPlayers"
-    Title="Join new players"
     params:Manager.Theme="Light"
     ShowInTaskbar="False"
     ResizeMode="NoResize"

@@ -5,7 +5,7 @@
     xmlns:metro="http://schemas.codeplex.com/elysium"
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     xmlns:local="clr-namespace:MinecraftServerDashboard"
-    Title="" params:Manager.Theme="Light"
+    params:Manager.Theme="Light"
     ShowInTaskbar="False" ResizeMode="NoResize"
     Height="350" Width="600">
     <Grid>

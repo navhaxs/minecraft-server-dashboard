@@ -4,7 +4,7 @@ Imports Newtonsoft.Json
 
 Module AppShared_UpdateEngine
     Friend myUpdateEngine As UpdateEngine
-    Public UpdaterModule As UpdatePage
+    Public UpdaterModule As DownloadWindow
 End Module
 
 ''' <summary>
@@ -91,7 +91,7 @@ Public Class UpdateEngine
     Dim _rootDir As String
     Dim _FileName As String
 
-    Private m_UpdatePage As UpdatePage
+    Private m_UpdatePage As DownloadWindow
 
     ''' <summary>
     ''' Downloads a file from the internet
@@ -99,7 +99,7 @@ Public Class UpdateEngine
     ''' <param name="rootDir">Directory to save file in</param>
     ''' <param name="UpdateModule">Instance of UpdatePage (to update UI)</param>
     ''' <param name="url">Download URL</param>
-    Function AutoNewUpdate(rootDir As String, UpdateModule As UpdatePage, url As String) As Boolean
+    Function AutoNewUpdate(rootDir As String, UpdateModule As DownloadWindow, url As String) As Boolean
         m_UpdatePage = UpdateModule
 
         _rootDir = rootDir
@@ -120,18 +120,17 @@ Public Class UpdateEngine
             Using rawStream As Stream = client.OpenRead(url)
                 fileName = client.ResponseUri.AbsolutePath.Substring(client.ResponseUri.AbsolutePath.LastIndexOf("/") + 1)
                 Using reader As New StreamReader(rawStream)
-                    If MessageBox.Show("The server files will be downloaded to:" & vbNewLine & rootDir & "\" & fileName & vbNewLine & "Ready to start downloading?", "Minecraft Server Dashboard", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
-                        Debug.Print("Now saving " & fileName & " to " & rootDir & "\" & fileName & "...")
-                        _FileName = fileName
-                        ' Download file in separate thread (prevent UI from freezing)
-                        client.DownloadFileAsync(New Uri(url), rootDir & "\" & fileName)
+                    'If MessageBox.Show("The server files will be downloaded to:" & vbNewLine & rootDir & "\" & fileName & vbNewLine & "Ready to start downloading?", "Minecraft Server Dashboard", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
+                    Debug.Print("Now saving " & fileName & " to " & rootDir & "\" & fileName & "...")
+                    _FileName = fileName
+                    ' Download file in separate thread (prevent UI from freezing)
+                    client.DownloadFileAsync(New Uri(url), rootDir & "\" & fileName)
 
-                        Debug.Print("File download started in background")
-                    Else
-                        m_UpdatePage.NavigationService.GoBack()
-                        m_UpdatePage.NavigationService.RemoveBackEntry()
-                        Debug.Print("File download ABORTED")
-                    End If
+                    Debug.Print("File download started in background")
+                    'Else
+
+                    'Debug.Print("File download ABORTED")
+                    'End If
                     reader.Close()
                 End Using
                 rawStream.Close()
@@ -153,7 +152,14 @@ Public Class UpdateEngine
         m_UpdatePage.Dispatcher.Invoke( _
                     New Action(Function()
                                    m_UpdatePage.ProgressBar1.Value = e.ProgressPercentage
-                                   m_UpdatePage.Label2.Content = Decimal.Round(e.ProgressPercentage, 0) & "% " & Decimal.Round(CType(e.BytesReceived / 1024, Decimal), 2) & "KB/" & Decimal.Round(CType((e.TotalBytesToReceive / 1024) / 1024, Decimal), 2) & "MB"
+
+                                   Dim received As String = Decimal.Round(CType(e.BytesReceived / 1024, Decimal), 2)
+                                   If received > 1024 Then
+                                       received = Decimal.Round(CType(received, Decimal) / 1024, 2) & "MB"
+                                   Else
+                                       received = received & "KB"
+                                   End If
+                                   m_UpdatePage.Label2.Content = Decimal.Round(e.ProgressPercentage, 0) & "% " & received & "/" & Decimal.Round(CType((e.TotalBytesToReceive / 1024) / 1024, Decimal), 2) & "MB"
                                    Return True
                                End Function))
     End Sub
@@ -177,10 +183,9 @@ Public Class UpdateEngine
 
                                    UpdaterModule.Label1.Content = "Download completed."
                                    MessageBox.Show("Download completed! Make sure you select """ & _FileName & """ as the Jarfile location")
+                                   UpdaterModule.Button1.Content = "Done!"
 
                                    '_MainWindow.Frame1.Content = pageDashboard
-                                   m_UpdatePage.NavigationService.GoBack()
-                                   m_UpdatePage.NavigationService.RemoveBackEntry()
 
                                    If Not thisOwner Is Nothing Then
                                        thisOwner.UpdatePageContent()

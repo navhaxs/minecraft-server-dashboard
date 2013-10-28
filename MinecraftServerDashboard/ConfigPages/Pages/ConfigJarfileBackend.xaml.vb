@@ -47,20 +47,23 @@ Public Class ConfigJarfileBackend
         If download_combobox.SelectedValue Is Nothing Then Exit Sub
 
 
-        UpdaterModule = New UpdatePage(myUpdaterEngine)
+        UpdaterModule = New DownloadWindow(myUpdaterEngine)
 
-        Me.NavigationService.Content = UpdaterModule
+
+        UpdaterModule.Show()
+
 
         Select Case download_combobox.SelectedValue.Content.ToString
             Case "Official Mojang Server (Vanilla)"
-                UpdaterModule.Label1.Content = "Downloading latest Minecraft server release from Mojang: " & LatestVerLabel.Text
+                UpdaterModule.Label1.Content = "Now fetching the latest server files from the internet..."
 
-                Dim Ver As String = myUpdateEngine.GetLatestVersion_Vanilla
+
+                Dim Ver As String = UpdaterModule.m_UpdaterEngine.GetLatestVersion_Vanilla
                 Dim url As String = "https://s3.amazonaws.com/Minecraft.Download/versions/" + Ver + "/minecraft_server." + Ver + ".jar"
 
                 myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule, url)
             Case "CraftBukkit"
-                UpdaterModule.Label1.Content = UpdaterModule.Label1.Content.ToString & ": " & LatestVerLabel.Text
+                UpdaterModule.Label1.Content = "Now fetching the CraftBukkit server files from the internet..."
                 myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule, "http://cbukk.it/craftbukkit.jar")
         End Select
 

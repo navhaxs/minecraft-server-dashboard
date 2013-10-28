@@ -164,6 +164,9 @@
     <Compile Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml.vb">
       <DependentUpon>ConfigMyWorldBackups.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigPages\Pages\Dialogs\DownloadWindow.xaml.vb">
+      <DependentUpon>DownloadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConfigPages\Pages\Dialogs\MessageWindow.xaml.vb">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
@@ -231,9 +234,6 @@
     <Compile Include="ConfigPages\Pages\ConfigServerProp.xaml.vb">
       <DependentUpon>ConfigServerProp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\UpdatePage.xaml.vb">
-      <DependentUpon>UpdatePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\OnlinePlayerList.xaml.vb">
       <DependentUpon>OnlinePlayerList.xaml</DependentUpon>
     </Compile>
@@ -273,6 +273,10 @@
     <Page Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigPages\Pages\Dialogs\DownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConfigPages\Pages\Dialogs\MessageWindow.xaml">
       <SubType>Designer</SubType>
@@ -335,10 +339,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ConfigPages\Pages\ConfigServerProp.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ConfigPages\Pages\UpdatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

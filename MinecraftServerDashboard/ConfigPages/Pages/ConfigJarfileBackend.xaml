@@ -148,7 +148,7 @@
                     </TextBlock>
                 </Label>
 
-                <TextBlock FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" x:Name="dwnldlink" TextWrapping="Wrap" ><Hyperlink x:Name="Button4">Download</Hyperlink></TextBlock>
+                <TextBlock FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" x:Name="dwnldlink" TextWrapping="Wrap" Visibility="Collapsed" ><Hyperlink x:Name="Button4">Download</Hyperlink></TextBlock>
             </Grid>
         </Border>
         </StackPanel>

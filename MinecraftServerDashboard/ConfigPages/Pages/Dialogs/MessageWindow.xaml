@@ -6,7 +6,7 @@
     xmlns:metro="http://schemas.codeplex.com/elysium"
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     params:Manager.Theme="Light"
-    Title="Title" Height="240" Width="500" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize">
+    Title="Title" Height="240" Width="500" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True">
     <Grid>
         <TextBlock x:Name="Heading" FontSize="36" TextWrapping="Wrap" Margin="15" FontWeight="Light" Foreground="#FF292929">Oops</TextBlock>
         <TextBlock x:Name="Message" FontSize="14" TextWrapping="Wrap" Margin="15, 75, 15, 55" >Don't forget the milk!</TextBlock>
