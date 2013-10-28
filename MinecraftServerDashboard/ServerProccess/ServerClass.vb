@@ -44,7 +44,7 @@ Public Class ServerClass
 
         ServerProc = New Process With { _
             .StartInfo = New ProcessStartInfo() With { _
-                .FileName = MyAppSettings.JavaExec, _
+                .FileName = "derp", _
                 .WorkingDirectory = MyStartupParameters.ServerPath, _
                 .Arguments = MyStartupParameters.FullParameters, _
                 .RedirectStandardInput = True, _
@@ -54,6 +54,13 @@ Public Class ServerClass
                 .CreateNoWindow = True
             } _
         }
+
+
+        If MyAppSettings.JavaExec.Length = 0 Then
+            'Set the default if blank
+            My.Settings.Startup_JavaExec = "java"
+            Return "java"
+        End If
 
         ServerProc.EnableRaisingEvents = True ' Redirects the server process' console output into this application instead
 

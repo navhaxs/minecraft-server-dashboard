@@ -1,0 +1,15 @@
+﻿<metro:Window x:Class="MessageWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metro="http://schemas.codeplex.com/elysium"
+    xmlns:params="http://schemas.codeplex.com/elysium/params"
+    params:Manager.Theme="Light"
+    Title="Title" Height="240" Width="500" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock x:Name="Heading" FontSize="36" TextWrapping="Wrap" Margin="15" FontWeight="Light" Foreground="#FF292929">Oops</TextBlock>
+        <TextBlock x:Name="Message" FontSize="14" TextWrapping="Wrap" Margin="15, 75, 15, 55" >Don't forget the milk!</TextBlock>
+        <Button x:Name="Dismiss" Content="OK" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom" Width="75" IsDefault="True"/>
+    </Grid>
+</metro:Window>

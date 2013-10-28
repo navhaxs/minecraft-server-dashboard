@@ -164,6 +164,9 @@
     <Compile Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml.vb">
       <DependentUpon>ConfigMyWorldBackups.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigPages\Pages\Dialogs\MessageWindow.xaml.vb">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\btnHelp.xaml.vb">
       <DependentUpon>btnHelp.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,7 @@
     </Compile>
     <Compile Include="Converter\InverseBooleanConverter.vb" />
     <Compile Include="MainWindowViewModel.vb" />
+    <Compile Include="Modules\DetectJava.vb" />
     <Compile Include="Modules\GetIP.vb" />
     <Compile Include="Modules\GetIPViewModel.vb" />
     <Compile Include="Modules\MyAppSettings.vb" />
@@ -262,9 +266,6 @@
     <Compile Include="Screens\Screens\JoinNewPlayers.xaml.vb">
       <DependentUpon>JoinNewPlayers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NoJarDialog.xaml.vb">
-      <DependentUpon>NoJarDialog.xaml</DependentUpon>
-    </Compile>
     <Page Include="ConfigPages\Pages\ConfigMyApp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -272,6 +273,10 @@
     <Page Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigPages\Pages\Dialogs\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\btnHelp.xaml">
       <SubType>Designer</SubType>
@@ -388,10 +393,6 @@
     <Page Include="Screens\Screens\JoinNewPlayers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\NoJarDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

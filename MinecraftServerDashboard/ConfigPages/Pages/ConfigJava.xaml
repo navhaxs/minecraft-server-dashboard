@@ -68,14 +68,14 @@
                     <Label Content="Select the installation of Java on your machine to use:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,38,0,0" FontSize="13" Visibility="Collapsed"/>
 
                     <RadioButton Margin="10,70,365,0" VerticalAlignment="Top" IsChecked="True" x:Name="jreauto" >
-                        <TextBlock>Recommended (<Hyperlink IsEnabled="{Binding IsChecked, ElementName=jreauto}">JRE 7 x64</Hyperlink>)</TextBlock>
+                        <TextBlock>Recommended (<Hyperlink IsEnabled="{Binding IsChecked, ElementName=jreauto}" Click="Hyperlink_ExploreJavaPath"><Run x:Name="javainstalltype" Text="JRE 7 x64" /></Hyperlink>)</TextBlock>
                     </RadioButton>
                     <RadioButton x:Name="jremanual" Margin="10,90,0,10" VerticalAlignment="Bottom" >
                         <Grid>
                             <TextBlock Text="Or, manually specify the location to Java.exe" VerticalAlignment="Top" />
                             <Button Content="..." HorizontalAlignment="Left" Margin="334,16,0,0" VerticalAlignment="Top" Width="71" Height="32"
                                     IsEnabled="{Binding IsChecked, ElementName=jremanual}"/>
-                            <TextBox x:Name="jarpath" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" TextChanged="TextBox_TextChanged_2" Margin="-1,21,0,0" BorderThickness="1"
+                            <TextBox x:Name="jarpath" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" TextChanged="TextBox_TextChanged_JREpath" Margin="-1,21,0,0" BorderThickness="1"
                                     IsEnabled="{Binding IsChecked, ElementName=jremanual}"/>
                         </Grid>
                     </RadioButton>

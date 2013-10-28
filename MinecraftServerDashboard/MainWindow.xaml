@@ -113,7 +113,7 @@
 						<MenuItem Header="CraftBukkit backend" Click="UpdteChk_Click" Name="UpdteChk" />
 					</MenuItem-->
 						<MenuItem Header="Tools">
-							<MenuItem Foreground="Black" Header="Join new players" Click="btnJoinNewPlayers_Click" />
+							<MenuItem Foreground="Black" Header="Invite new players" Click="btnJoinNewPlayers_Click" />
 							<Separator />
 							<MenuItem Foreground="Black" Header="My Game Server Settings" Click="btn_ShowServerProperties_Screen" />
 							<MenuItem Foreground="Black" Header="Backend Set-Up" Click="btn_BackendSetUp" />

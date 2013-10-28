@@ -66,14 +66,8 @@
         ''' </summary>
         Property JavaExec() As String
             Get
-                Dim s As String = My.Settings.Startup_JavaExec
-                If s.Length = 0 Then
-                    'Set the default if blank
-                    My.Settings.Startup_JavaExec = "java"
-                    Return "java"
-                Else
-                    Return s
-                End If
+                Dim s As String = My.Settings.Startup_JavaExec                
+                Return s
             End Get
             Set(value As String)
                 My.Settings.Startup_JavaExec = value

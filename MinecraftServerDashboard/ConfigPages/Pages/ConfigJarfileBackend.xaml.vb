@@ -22,7 +22,7 @@ Public Class ConfigJarfileBackend
             MyAppSettings.Jarfile = thisJar.SelectedValue
             MyServer.ReloadStartupParameters()
         Else
-            System.Windows.MessageBox.Show("You havn't selected a jarfile yet! Dashboard can't start the server or make configuration changes until you've selected which jarfile to use." & vbNewLine & vbNewLine & "Return to this screen by clicking on the Configuration tab, and selecting 'Backend settings'", "Dashboard", MessageBoxButton.OK)
+            Dim n As New MessageWindow(MyMainWindow, "", "You havn't selected a jarfile yet! Dashboard can't start the server or make configuration changes until you've selected which jarfile to use." & vbNewLine & vbNewLine & "Return to this screen by clicking on the Configuration tab, and selecting 'Backend settings'", "Oops", "large")
         End If
         superoverlay.Confirm_DoClose(Me)
     End Sub
