@@ -131,7 +131,7 @@
             <Grid>
                 <Grid Margin="10,31,0,0" HorizontalAlignment="Left" Width="500" Height="40" VerticalAlignment="Top">
                         <TextBlock VerticalAlignment="Center" ><Image Source="/MinecraftServerDashboard;component/Images/Tab/globe_16xLG.png" Width="16" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0" />Select a Minecraft server type:</TextBlock>
-                    <ComboBox x:Name="combobox1" VerticalAlignment="Center" Margin="190,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBox x:Name="download_combobox" VerticalAlignment="Center" Margin="190,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBoxItem Content="Official Mojang Server (Vanilla)" />
                         <ComboBoxItem Content="CraftBukkit" />
                         <ComboBoxItem Content="Tekkit" />
