@@ -40,15 +40,23 @@
             </Grid>
 
             <!--Startup paramters-->
-            <Border Background="#FFFFFADD" Padding="10,0" HorizontalAlignment="Stretch" Height="140" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" Visibility="Collapsed">
+            <Border Background="#FFFFFADD" Padding="10,0" HorizontalAlignment="Stretch" Height="140" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0">
                 <Grid>
                     <Label Content="Startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18"/>
-                    <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged_3" Margin="0,79,120,15" VerticalContentAlignment="Top" BorderThickness="1" >
-                        -nojline -nogui
-                    </TextBox>
+                    <Border BorderBrush="#777777" BorderThickness="1" Margin="0,79,120,15" Background="White" Cursor="IBeam">
+                        <DockPanel>
+                            <TextBox x:Name="parameters_left" VerticalContentAlignment="Center" VerticalAlignment="Stretch"  TextWrapping="Wrap" TextChanged="TextBox_TextChanged_3" BorderThickness="0" >
+                            
+                        </TextBox>
+                            <TextBlock Cursor="Arrow" VerticalAlignment="Center" Margin="1,0,1,0">-nojline -nogui</TextBlock>
+                            <TextBox x:Name="parameters_right" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Stretch" TextChanged="TextBox_TextChanged_3" BorderThickness="0" HorizontalAlignment="Stretch">
+                        </TextBox>
+                        </DockPanel>
+                    </Border>
+                    
                     <TextBlock Height="32" HorizontalAlignment="Left" Margin="0,47,0,60" >
                         <Image Height="16" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />
-                        The default CraftBukkit parameters will be applied:
+                        The parameters <Italic>-nojline -nogui</Italic> must always be present
                     </TextBlock>
                 </Grid>
             </Border>

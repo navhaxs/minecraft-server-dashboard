@@ -96,4 +96,17 @@
             maxmem.Text = CType(sliderMemory.Value, Integer)
         End If
     End Sub
+
+    Private Sub parameters_right_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_right.PreviewKeyDown
+        If e.Key = Key.Left Then
+            parameters_left.Focus()
+        End If
+    End Sub
+
+    Private Sub parameters_left_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_left.PreviewKeyDown
+        If e.Key = Key.Right Then
+            parameters_right.Focus()
+        End If
+    End Sub
+
 End Class
