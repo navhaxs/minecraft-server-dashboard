@@ -588,5 +588,8 @@
     <Resource Include="Images\Blank.png" />
     <Resource Include="Images\BlankBW.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Newtonsoft.Json.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
