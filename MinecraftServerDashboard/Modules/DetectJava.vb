@@ -4,9 +4,6 @@ Namespace DetectJava
 
     Module DetectJava
 
-        'http://stackoverflow.com/questions/3639129/c-sharp-how-do-you-get-the-operating-system-architecture-x86-or-x64
-        Dim is64bit As Boolean = Not String.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))
-
         ''' <summary>
         ''' Attempt to find the install path of whatever java version is installed
         ''' This method should work for 99% of people using this software :)
@@ -24,11 +21,11 @@ Namespace DetectJava
                 match = True
             End If
             If Not match Then
-                Return "none"
+                Return "none installed"
             End If
 
             'Append arch of Java
-            If Not is64bit Then 'If x86 system, Java must obviously be x86 too
+            If Not System.Environment.Is64BitOperatingSystem Then 'If x86 system, Java must obviously be x86 too
                 r += " x86"
             ElseIf e.Contains("\Program Files (x86)\") Then
                 r += " x86"

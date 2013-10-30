@@ -125,6 +125,10 @@
     '    End If
     'End Sub
 
+    Private Sub DockPanel_GotFocus(sender As Object, e As RoutedEventArgs)
+        parameters_right.Focus()
+    End Sub
+
 #End Region
 
 
@@ -146,5 +150,13 @@
 
 #End Region
 
-    
+    Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+        Dim o As Microsoft.Win32.OpenFileDialog = New Microsoft.Win32.OpenFileDialog()
+        o.DefaultExt = "java.exe"
+        o.Filter = "Java Executable (java.exe)"
+        Dim result As Boolean = o.ShowDialog()
+        If result = True Then
+            jarpath.Text = o.FileName
+        End If
+    End Sub
 End Class

@@ -44,7 +44,7 @@
                 <Grid>
                     <Label Content="Startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18"/>
                     <Border BorderBrush="#777777" BorderThickness="1" Margin="0,79,120,15" Background="White" Cursor="IBeam">
-                        <DockPanel>
+                        <DockPanel GotFocus="DockPanel_GotFocus">
                             <TextBox x:Name="parameters_right" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Stretch" TextChanged="TextBox_TextChanged_3" BorderThickness="0" HorizontalAlignment="Stretch" Width="350"></TextBox>
                             <!--<TextBox x:Name="parameters_left" VerticalContentAlignment="Center" VerticalAlignment="Stretch"  TextWrapping="Wrap" TextChanged="TextBox_TextChanged_3" BorderThickness="0" >
                             
@@ -75,7 +75,7 @@
                         <Grid>
                             <TextBlock Text="Or, manually specify the location to Java.exe" VerticalAlignment="Top" />
                             <Button Content="..." HorizontalAlignment="Left" Margin="334,16,0,0" VerticalAlignment="Top" Width="71" Height="32"
-                                    IsEnabled="{Binding IsChecked, ElementName=jremanual}"/>
+                                    IsEnabled="{Binding IsChecked, ElementName=jremanual}" Click="Button_Click"/>
                             <TextBox x:Name="jarpath" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" TextChanged="TextBox_TextChanged_JREpath" Margin="-1,21,0,0" BorderThickness="1"
                                     IsEnabled="{Binding IsChecked, ElementName=jremanual}"/>
                         </Grid>

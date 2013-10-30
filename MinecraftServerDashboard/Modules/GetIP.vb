@@ -4,11 +4,6 @@ Imports System.IO
 Module GetIP
 
     Function NetworkIsOnline()
-        If Debugger.IsAttached Then
-            ' Save some bandwidth + ping requests whilst debugging
-            Return False
-        End If
-
         Dim myNetwork As New Microsoft.VisualBasic.Devices.Network
         Return myNetwork.IsAvailable
     End Function
@@ -17,7 +12,6 @@ Module GetIP
     'Does not function behind DET Proxy
     'http://bot.whatismyipaddress.com/ may work
     Public Function GetExternalIP() As String
-        'MessageBox.Show("?")
         If NetworkIsOnline() Then
             Try
                 Dim direction As [String] = ""
