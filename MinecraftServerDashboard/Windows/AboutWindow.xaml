@@ -39,8 +39,7 @@
                         <LineBreak />
                         <Run Text="Usage of this software requires compliance with the terms and conditions of the following third-party online services:" />
                         <LineBreak />
-                        <Italic>DynDNS CheckIP</Italic><Run Text=" to determine your IP address, " /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://dyndns.com">dyndns.com</Hyperlink>
-                        <Run Text="and the " /><Italic>awesome Minotar</Italic><Run Text=" service for fetching Minecraft avatars, " /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://minotar.net">minotar.net</Hyperlink>
+                        <Italic>DynDNS CheckIP</Italic><Run Text=" to determine your IP address (" /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://dyndns.com">dyndns.com</Hyperlink>)<Run Text=", and the " /><Italic>awesome Minotar</Italic><Run Text=" service for fetching Minecraft avatars (" /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://minotar.net">minotar.net</Hyperlink>)
                     </TextBlock>
                         </ScrollViewer>
                 </Grid>

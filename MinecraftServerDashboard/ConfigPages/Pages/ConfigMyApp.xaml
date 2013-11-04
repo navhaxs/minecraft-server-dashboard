@@ -29,16 +29,25 @@
                 <StackPanel Margin="20,10,0,0">
                     <TextBlock Text="General" FontSize="18" Background="#FFDE5B00" Foreground="White" Padding="5,0,0,0" />
                     <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
-                        <TextBlock Text="Default action on exit:" VerticalAlignment="Center" />
-                        <ComboBox Width="280" HorizontalAlignment="Right" x:Name="defaultexitaction">
-                            <ComboBoxItem Content="Ask me" />
-                            <ComboBoxItem Content="Stop the server, then exit" />
-                            <ComboBoxItem Content="Minimize the dashboard" />
-                        </ComboBox>
+                        <TextBlock Text="If the server is still running, closing the Dashboard window will:" VerticalAlignment="Center" />
                     </Grid>
                     <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
-                        <TextBlock Text="Default text editor:" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,4,0,3" />
-                        <TextBox Width="280" HorizontalAlignment="Right" x:Name="notepadExec" Grid.Column="1">
+                    <ComboBox Width="280" HorizontalAlignment="Left" x:Name="defaultexitaction">
+                            <ComboBoxItem>
+                                <TextBlock>Ask me what to do <Italic>(Default)</Italic></TextBlock>
+                            </ComboBoxItem>
+                            <Separator />
+                            <ComboBoxItem Content="Always stop the server, then exit" />
+                        <ComboBoxItem Content="Always Minimize the dashboard" />
+                    </ComboBox>
+                    </Grid>
+                    <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
+                        <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,4,0,3">
+                            Path to the default text editor, <Italic>the default is '<Bold>notepad</Bold>'</Italic>
+                        </TextBlock>
+                    </Grid>
+                    <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
+                            <TextBox HorizontalAlignment="Stretch" x:Name="notepadExec" Grid.Column="1">
                         </TextBox>
                     </Grid>
                     <Grid Margin="0,40,0,0" />
@@ -54,7 +63,10 @@
                         <TextBox Width="280" HorizontalAlignment="Right" x:Name="dir2exclude" Grid.Column="1" AcceptsReturn="True">
                         </TextBox>
                     </Grid>
-                    <TextBlock Text="(Note that directories ending with _the_end or _nether are treated as the same entity as the parent world directory)" VerticalAlignment="Top" Margin="0,0,244,0" Height="36" TextWrapping="Wrap" />
+                    <TextBlock VerticalAlignment="Top" Margin="0,0,244,0" Height="55" TextWrapping="Wrap" >
+                        Enter all the directories that you <Italic>don't</Italic> want to show up in World Profiles.<LineBreak />
+                        Note that directories ending with <Bold>_the_end</Bold> or <Bold>_nether</Bold> are automatically treated as the same entity as the parent world directory.
+                    </TextBlock>
                     <Button x:Name="btnReset" Content="Reset all Dashboard settings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Margin="0,40,0,0" />
                     <Button x:Name="btnSave" Content="Save changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontWeight="Bold"  Margin="0,10,0,50" />
                 </StackPanel>

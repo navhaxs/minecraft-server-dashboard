@@ -212,7 +212,9 @@ Public Class ServerClass
 
             If isWaitingForWorldSavedActivity Then
                 ' Two different strings to detect depending on Minecraft server type (VANILLA (and Forge) servers // CraftBukkit servers)
-                If e.Data.EndsWith("INFO] CONSOLE: Save complete.") Or e.Data.EndsWith("INFO]: CONSOLE: Save complete.") Or e.Data.EndsWith("INFO] Saved the world") Then
+                ' VANILLA 1.7.2
+                '    [...timestamp...] [Server thread/INFO]: Saved the world
+                If e.Data.EndsWith("INFO] CONSOLE: Save complete.") Or e.Data.EndsWith("INFO]: CONSOLE: Save complete.") Or e.Data.EndsWith("INFO] Saved the world") Or e.Data.EndsWith("[Server thread/INFO]: Saved the world") Then
                     isWaitingForWorldSavedActivity = False
                     RaiseEvent Detected_WorldSavedCompleted()
                 End If
@@ -392,6 +394,7 @@ Public Class ServerClass
     End Sub
 
     Sub StopServer()
+        On Error Resume Next
         If ServerIsOnline Then
             CurrentServerState = ServerState.Stopping
             ServerProc.StandardInput.WriteLine("stop")

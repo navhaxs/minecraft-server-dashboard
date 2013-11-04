@@ -49,7 +49,7 @@
                     <Grid Height="84" VerticalAlignment="Bottom" Background="#232323">
                         <Image Source="/MinecraftServerDashboard;component/Images/World/worldsel.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
                     </Grid>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="12,5,0,0" ><Run Text="Current World" FontWeight="Light" FontSize="26" /><LineBreak /><Run x:Name="txtCurrentWorld" Text="" /><LineBreak /><Run x:Name="txtCurrentWorldLocation" Text="" /><LineBreak /><Run x:Name="txtCurrentWorldSize" Text="" /><LineBreak /><Hyperlink Click="RefreshPageData">Refresh</Hyperlink></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="12,5,155,0" TextWrapping="Wrap" ><Run Text="Current World" FontWeight="Light" FontSize="26" /><LineBreak /><Run x:Name="txtCurrentWorld" Text="" /><LineBreak /><Run x:Name="txtCurrentWorldLocation" Text="" /><LineBreak /><Run x:Name="txtCurrentWorldSize" Text="" /><LineBreak /><Hyperlink Click="RefreshPageData">Refresh</Hyperlink></TextBlock>
                 </Grid>
             </Border>
 

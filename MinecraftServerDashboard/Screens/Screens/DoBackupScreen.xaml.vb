@@ -66,7 +66,9 @@ Public Class DoBackupScreen
 
         If MyServer.ServerIsOnline Then
             'Ensure that the server is NOT still writing to the files to be backed up (for a consistent backup)
+            'Make all saves...
             MyServer.SendCommand("save-all")
+            '...and right after, turn of saving until backup is completed...
             MyServer.SendCommand("save-off")
 
             ' DELAY BACKUP

@@ -57,6 +57,7 @@ Public Class PlayerLists
         UI_ClearAll_Items(PlayerListBox)
         isNoSelectionMessage.Visibility = Windows.Visibility.Collapsed
         EmptyMessage.Visibility = Windows.Visibility.Collapsed
+        bannerWhitelist.Visibility = Windows.Visibility.Collapsed
         Grid_canModify.IsEnabled = False
         EmptyMessage.Text = "This list is empty."
 
@@ -136,11 +137,14 @@ Public Class PlayerLists
     End Sub
 
     Public Sub AddPlayerToThisList(l As String)
+        ' Don't add the new entry if it already exists to prevent duplicates
         If Not PlayerListBox.Items.Contains(l) Then
             If thislist.AddPlayer(l) Then
                 PlayerListBox.Items.Add(l)
             End If
         End If
+        ' There must be at least one item in the list by now...
+        EmptyMessage.Visibility = Windows.Visibility.Collapsed
     End Sub
 
     Public Sub RemovePlayerFromThisList(l As String)
