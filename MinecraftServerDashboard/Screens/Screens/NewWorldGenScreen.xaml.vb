@@ -25,8 +25,9 @@
         End If
 
         ' Load any previously saved world generation settings
-        GetTextBoxStringOfProperty(levelseed, "level-seed")
-        Select Case GetStringOfProperty("level-type").ToString.ToLower
+        Dim configreader As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
+        GetTextBoxStringOfProperty(levelseed, "level-seed", configreader)
+        Select Case GetStringOfProperty("level-type", configreader).ToString.ToLower
             Case "default"
                 leveltype.SelectedIndex = 0
             Case "flat"
@@ -36,7 +37,7 @@
             Case Else
                 leveltype.SelectedIndex = 0
         End Select
-        GetTextBoxStringOfProperty(generatorsettings, "generator-settings")
+        GetTextBoxStringOfProperty(generatorsettings, "generator-settings", configreader)
     End Sub
 
     Private Sub Button_Click_1()

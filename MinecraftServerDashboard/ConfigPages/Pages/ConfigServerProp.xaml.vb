@@ -75,12 +75,14 @@
     ''' </summary>
     Friend Sub RefreshData() Handles btnRefreshData.Click
         On Error Resume Next
-        GetTextBoxStringOfProperty(prop_motd, "motd")
+        Dim configreader As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
 
-        gamemode.SelectedIndex = CType(GetStringOfProperty("gamemode"), Integer)
-        difficulty.SelectedIndex = CType(GetStringOfProperty("difficulty"), Integer)
+        GetTextBoxStringOfProperty(prop_motd, "motd", configreader)
 
-        Dim s As String = GetStringOfProperty("op-permission-level")
+        gamemode.SelectedIndex = CType(GetStringOfProperty("gamemode", configreader), Integer)
+        difficulty.SelectedIndex = CType(GetStringOfProperty("difficulty", configreader), Integer)
+
+        Dim s As String = GetStringOfProperty("op-permission-level", configreader)
         Select Case s
             Case Nothing
                 oppermissionlevel.SelectedValue = Nothing
@@ -88,21 +90,21 @@
                 oppermissionlevel.SelectedIndex = s - 1
         End Select
 
-        GetTextBoxStringOfProperty(spawnprotection, "spawn-protection")
+        GetTextBoxStringOfProperty(spawnprotection, "spawn-protection", configreader)
 
-        GetBooleanValueOfProperty(hardcore, "hardcore")
-        GetBooleanValueOfProperty(snooperenabled, "snooper-enabled")
+        GetBooleanValueOfProperty(hardcore, "hardcore", configreader)
+        GetBooleanValueOfProperty(snooperenabled, "snooper-enabled", configreader)
 
-        GetBooleanValueOfProperty(CheckBox1, "allow-flight")
-        GetBooleanValueOfProperty(CheckBox2, "allow-nether")
+        GetBooleanValueOfProperty(CheckBox1, "allow-flight", configreader)
+        GetBooleanValueOfProperty(CheckBox2, "allow-nether", configreader)
 
-        GetBooleanValueOfProperty(CheckBox5, "generate-structures")
-        GetBooleanValueOfProperty(CheckBox6, "online-mode")
-        GetBooleanValueOfProperty(CheckBox7, "pvp")
-        GetBooleanValueOfProperty(CheckBox8, "spawn-animals")
-        GetBooleanValueOfProperty(CheckBox9, "spawn-monsters")
-        GetBooleanValueOfProperty(CheckBox10, "spawn-npcs")
-        GetBooleanValueOfProperty(CheckBox11, "white-list")
+        GetBooleanValueOfProperty(CheckBox5, "generate-structures", configreader)
+        GetBooleanValueOfProperty(CheckBox6, "online-mode", configreader)
+        GetBooleanValueOfProperty(CheckBox7, "pvp", configreader)
+        GetBooleanValueOfProperty(CheckBox8, "spawn-animals", configreader)
+        GetBooleanValueOfProperty(CheckBox9, "spawn-monsters", configreader)
+        GetBooleanValueOfProperty(CheckBox10, "spawn-npcs", configreader)
+        GetBooleanValueOfProperty(CheckBox11, "white-list", configreader)
         isUnsavedChanges = False
         btnSave.IsEnabled = False
 

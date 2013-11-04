@@ -5,11 +5,8 @@
     ''' <param name="x">CheckBox object</param>
     ''' <param name="propertyname">Server.properties Property</param>
     ''' <remarks></remarks>
-    Sub GetBooleanValueOfProperty(x As CheckBox, propertyname As String)
-        Dim APIreader As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
-        'APIreader is created each time to enure that all prior changes are applied.
-
-        Dim result As String = APIreader.ReturnConfigValue(propertyname)
+    Sub GetBooleanValueOfProperty(x As CheckBox, propertyname As String, thisServerPropertiesFile As ServerProperties)
+        Dim result As String = thisServerPropertiesFile.ReturnConfigValue(propertyname)
         If result Is Nothing Then
             'Property non-existant in config
             x.IsThreeState = True
@@ -46,9 +43,8 @@
         End If
     End Sub
 
-    Public Function GetStringOfProperty(propertyname As String)
-        Dim APIreader As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
-        Dim result As String = APIreader.ReturnConfigValue(propertyname)
+    Public Function GetStringOfProperty(propertyname As String, thisServerPropertiesFile As ServerProperties)
+        Dim result As String = thisServerPropertiesFile.ReturnConfigValue(propertyname)
         Return result
     End Function
     Public Sub SetStringOfProperty(ByVal newvalue As String, ByVal propertyname As String)
@@ -58,9 +54,8 @@
         Catch ex As Exception
         End Try
     End Sub
-    Public Sub GetTextBoxStringOfProperty(x As TextBox, propertyname As String)
-        Dim APIreader As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
-        Dim result As String = APIreader.ReturnConfigValue(propertyname)
+    Public Sub GetTextBoxStringOfProperty(x As TextBox, propertyname As String, thisServerPropertiesFile As ServerProperties)
+        Dim result As String = thisServerPropertiesFile.ReturnConfigValue(propertyname)
         x.Text = result
     End Sub
     Public Sub SetTextBoxStringOfProperty(ByVal x As TextBox, ByVal propertyname As String)

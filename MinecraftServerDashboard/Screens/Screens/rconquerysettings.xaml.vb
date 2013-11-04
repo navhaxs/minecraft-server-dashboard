@@ -13,11 +13,12 @@
 
     ' Load settings on open
     Private Sub rconquerysettings_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        GetBooleanValueOfProperty(EnableQuery, "enable-query")
-        GetTextBoxStringOfProperty(queryPort, "query.port")
+        Dim configreader As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
+        GetBooleanValueOfProperty(EnableQuery, "enable-query", configreader)
+        GetTextBoxStringOfProperty(queryPort, "query.port", configreader)
 
-        GetBooleanValueOfProperty(EnableRcon, "enable-rcon")
-        GetTextBoxStringOfProperty(rconPasswd, "rcon.password")
-        GetTextBoxStringOfProperty(rconPort, "rcon.port")
+        GetBooleanValueOfProperty(EnableRcon, "enable-rcon", configreader)
+        GetTextBoxStringOfProperty(rconPasswd, "rcon.password", configreader)
+        GetTextBoxStringOfProperty(rconPort, "rcon.port", configreader)
     End Sub
 End Class
