@@ -500,4 +500,11 @@ Public Class ServerClass
 
 #End Region
 
+#Region "CPU monitor"
+    Sub Test()
+        Dim theCPUCounter As PerformanceCounter = New PerformanceCounter("Process", "% Processor Time", MyServer.ServerProc.ProcessName)
+        theCPUCounter.NextValue()
+    End Sub
+    
+#End Region
 End Class

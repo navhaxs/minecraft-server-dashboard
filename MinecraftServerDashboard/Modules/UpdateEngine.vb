@@ -91,16 +91,18 @@ Public Class UpdateEngine
     Dim _rootDir As String
     Dim _FileName As String
 
-    Private m_UpdatePage As DownloadWindow
+    'Private m_UpdatePage As DownloadWindow
+    Private m_UpdateProgressBarUI As Elysium.Controls.ProgressBar
+    Private m_PercentageCompleteUI As Run
 
     ''' <summary>
     ''' Downloads a file from the internet
     ''' </summary>
     ''' <param name="rootDir">Directory to save file in</param>
-    ''' <param name="UpdateModule">Instance of UpdatePage (to update UI)</param>
+    ''' <param name="UpdateProgressBarUI">Instance of ProgressBar UI for feedback</param>
     ''' <param name="url">Download URL</param>
-    Function AutoNewUpdate(rootDir As String, UpdateModule As DownloadWindow, url As String) As Boolean
-        m_UpdatePage = UpdateModule
+    Function AutoNewUpdate(rootDir As String, UpdateProgressBarUI As Elysium.Controls.ProgressBar, url As String) As Boolean
+        m_UpdateProgressBarUI = UpdateProgressBarUI
 
         _rootDir = rootDir
         If Not My.Computer.FileSystem.DirectoryExists(rootDir) Then
@@ -149,9 +151,9 @@ Public Class UpdateEngine
         Debug.Print(e.ProgressPercentage)
         Debug.Print(">>" & e.BytesReceived / e.TotalBytesToReceive * 100)
 
-        m_UpdatePage.Dispatcher.Invoke( _
+        MyMainWindow.Dispatcher.Invoke( _
                     New Action(Function()
-                                   m_UpdatePage.ProgressBar1.Value = e.ProgressPercentage
+                                   m_UpdateProgressBarUI.Value = e.ProgressPercentage
 
                                    Dim received As String = Decimal.Round(CType(e.BytesReceived / 1024, Decimal), 2)
                                    If received > 1024 Then
@@ -159,14 +161,14 @@ Public Class UpdateEngine
                                    Else
                                        received = received & "KB"
                                    End If
-                                   m_UpdatePage.Label2.Content = Decimal.Round(e.ProgressPercentage, 0) & "% " & received & "/" & Decimal.Round(CType((e.TotalBytesToReceive / 1024) / 1024, Decimal), 2) & "MB"
+                                   m_PercentageCompleteUI.Text = Decimal.Round(e.ProgressPercentage, 0) & "% " & received & "/" & Decimal.Round(CType((e.TotalBytesToReceive / 1024) / 1024, Decimal), 2) & "MB"
                                    Return True
                                End Function))
     End Sub
 
     Private Sub WWWclient_DownloadFileCompleted(sender As Object, e As ComponentModel.AsyncCompletedEventArgs)
         If Not e.Cancelled Then
-            m_UpdatePage.Dispatcher.Invoke( _
+            MyMainWindow.Dispatcher.Invoke( _
                     New Action(Function()
                                    ' Update UI
                                    MyAppSettings.Jarfile = _rootDir & "\" & _FileName
@@ -195,7 +197,7 @@ Public Class UpdateEngine
                                End Function))
             'MessageBox.Show("Download successful, CraftBukkit is now ready to start.")
         Else
-            m_UpdatePage.Dispatcher.Invoke( _
+            MyMainWindow.Dispatcher.Invoke( _
                     New Action(Function()
                                    UpdaterModule.Label1.Content = "Download cancelled."
                                    'If _MainWindow.Frame1.CanGoBack Then

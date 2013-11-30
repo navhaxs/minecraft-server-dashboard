@@ -7,6 +7,7 @@
     xmlns:metro="http://schemas.codeplex.com/elysium"
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     params:Manager.Theme="Light"
+    params:Manager.AccentBrush="#FF5387A5"
 	Title="PagePlayers">
     <Page.Background>
         <LinearGradientBrush

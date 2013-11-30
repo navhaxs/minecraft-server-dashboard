@@ -22,6 +22,7 @@
                 <ControlTemplate
 							TargetType="{x:Type TabItem}">
                     <Border x:Name="border"
+                                Height="40"
                                 BorderThickness="0,0,0,1"
                                 Margin="0"
                                 Padding="0">

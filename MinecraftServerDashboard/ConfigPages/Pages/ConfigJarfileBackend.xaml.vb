@@ -61,10 +61,10 @@ Public Class ConfigJarfileBackend
                 Dim Ver As String = UpdaterModule.m_UpdaterEngine.GetLatestVersion_Vanilla
                 Dim url As String = "https://s3.amazonaws.com/Minecraft.Download/versions/" + Ver + "/minecraft_server." + Ver + ".jar"
 
-                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule, url)
+                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule.UIProgressBar, url)
             Case "CraftBukkit"
                 UpdaterModule.Label1.Content = "Now fetching the CraftBukkit server files from the internet..."
-                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule, "http://cbukk.it/craftbukkit.jar")
+                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule.UIProgressBar, "http://cbukk.it/craftbukkit.jar")
         End Select
 
     End Sub

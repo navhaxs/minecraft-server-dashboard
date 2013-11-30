@@ -203,6 +203,9 @@
     <Compile Include="Screens\Screens\AddPlayerToList.xaml.vb">
       <DependentUpon>AddPlayerToList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Screens\Downloader\DownloaderFrame.xaml.vb">
+      <DependentUpon>DownloaderFrame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Screens\NewWorldProfile.xaml.vb">
       <DependentUpon>NewWorldProfile.xaml</DependentUpon>
     </Compile>
@@ -215,8 +218,8 @@
     <Compile Include="Screens\Screens\rconquerysettings.xaml.vb">
       <DependentUpon>rconquerysettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Screens\Welcome.xaml.vb">
-      <DependentUpon>Welcome.xaml</DependentUpon>
+    <Compile Include="Screens\Screens\QuickSetUp\WelcomeFrame.xaml.vb">
+      <DependentUpon>WelcomeFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerProccess\ServerRestartHelper.vb" />
     <Compile Include="Windows\AboutWindow.xaml.vb">
@@ -302,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Screens\Screens\Downloader\DownloaderFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Screens\NewWorldProfile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -318,7 +325,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screens\Screens\Welcome.xaml">
+    <Page Include="Screens\Screens\QuickSetUp\WelcomeFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -590,6 +597,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Screens\Screens\Downloader\official bukkit.png" />
+    <Resource Include="Screens\Screens\Downloader\official mojang.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
