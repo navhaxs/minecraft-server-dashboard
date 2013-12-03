@@ -222,6 +222,7 @@
       <DependentUpon>WelcomeFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerProccess\ServerRestartHelper.vb" />
+    <Compile Include="Settings.vb" />
     <Compile Include="Windows\AboutWindow.xaml.vb">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>

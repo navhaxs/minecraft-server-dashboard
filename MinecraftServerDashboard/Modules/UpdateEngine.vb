@@ -2,33 +2,29 @@
 Imports System.IO
 Imports Newtonsoft.Json
 
-Module AppShared_UpdateEngine
-    Friend myUpdateEngine As UpdateEngine
-    Public UpdaterModule As DownloadWindow
-End Module
-
 ''' <summary>
 ''' Used to download the server files from the internet
 ''' </summary>
-Public Class UpdateEngine
+Public Class JarDownloadEngine
 
-    Dim thisOwner As ConfigJarfileBackend
-    Sub New(e As ConfigJarfileBackend)
-        thisOwner = e
-    End Sub
-    Event UUComplete(e As ComponentModel.AsyncCompletedEventArgs, _rootDir As String, _FileName As String)
+    Public Event DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String)
 
-    ReadOnly Property GetLatestVersion_Vanilla() As String
+    Public Event DownloadCompleted(e As ComponentModel.AsyncCompletedEventArgs, rootDir As String, filename As String)
+
+#Region "Retrieve latest version numbers from the internet"
+
+    'We use the latest vanilla version number to determine the download url when requested
+    ReadOnly Property GetLatestVanillaVersion() As String
         Get
-            If Not m_GetLatestVersion_Vanilla Is Nothing Then
-                Return m_GetLatestVersion_Vanilla
+            If Not m_GetLatestVanillaVersion Is Nothing Then
+                Return m_GetLatestVanillaVersion
             End If
             Try
                 Using wc As New MyWebClient()
                     Dim json = wc.DownloadString("https://s3.amazonaws.com/Minecraft.Download/versions/versions.json")
                     Dim data = JsonConvert.DeserializeObject(Of MojangVersionJSON)(json)
-                    m_GetLatestVersion_Vanilla = data.Latest.release
-                    Return m_GetLatestVersion_Vanilla
+                    m_GetLatestVanillaVersion = data.Latest.release
+                    Return m_GetLatestVanillaVersion
                 End Using
             Catch ex As Exception
                 Return Nothing
@@ -36,7 +32,7 @@ Public Class UpdateEngine
         End Get
     End Property
 
-    Private m_GetLatestVersion_Vanilla As String
+    Private m_GetLatestVanillaVersion As String
 
     Private Class MojangVersionJSON
         <JsonProperty("latest")> _
@@ -59,9 +55,7 @@ Public Class UpdateEngine
         Public snapshot As String
     End Class
 
-
-
-    Function GetLatestVersion_CraftBukkit() As String
+    Function GetLatestCraftBukkitVersion() As String
         Try
             Dim url As String = "http://cbukk.it/craftbukkit.jar"
             Dim fileName As String
@@ -88,7 +82,10 @@ Public Class UpdateEngine
         End Try
     End Function
 
-    Dim _rootDir As String
+#End Region
+
+
+    Dim _rootDir As String  ' Rootdir should always be the current directory for simplicity of the app
     Dim _FileName As String
 
     'Private m_UpdatePage As DownloadWindow
@@ -101,7 +98,7 @@ Public Class UpdateEngine
     ''' <param name="rootDir">Directory to save file in</param>
     ''' <param name="UpdateProgressBarUI">Instance of ProgressBar UI for feedback</param>
     ''' <param name="url">Download URL</param>
-    Function AutoNewUpdate(rootDir As String, UpdateProgressBarUI As Elysium.Controls.ProgressBar, url As String) As Boolean
+    Function StartJarDownload(rootDir As String, UpdateProgressBarUI As Elysium.Controls.ProgressBar, url As String) As Boolean
         m_UpdateProgressBarUI = UpdateProgressBarUI
 
         _rootDir = rootDir
@@ -148,68 +145,32 @@ Public Class UpdateEngine
     ''' Update the UI with download progress
     ''' </summary>
     Private Sub WWWclient_DownloadProgressChanged(sender As Object, e As System.Net.DownloadProgressChangedEventArgs)
-        Debug.Print(e.ProgressPercentage)
-        Debug.Print(">>" & e.BytesReceived / e.TotalBytesToReceive * 100)
+        'Debug.Print(e.ProgressPercentage)
+        'Debug.Print(">>" & e.BytesReceived / e.TotalBytesToReceive * 100)
 
-        MyMainWindow.Dispatcher.Invoke( _
-                    New Action(Function()
-                                   m_UpdateProgressBarUI.Value = e.ProgressPercentage
+        Dim percentage As String = e.ProgressPercentage
 
-                                   Dim received As String = Decimal.Round(CType(e.BytesReceived / 1024, Decimal), 2)
-                                   If received > 1024 Then
-                                       received = Decimal.Round(CType(received, Decimal) / 1024, 2) & "MB"
-                                   Else
-                                       received = received & "KB"
-                                   End If
-                                   m_PercentageCompleteUI.Text = Decimal.Round(e.ProgressPercentage, 0) & "% " & received & "/" & Decimal.Round(CType((e.TotalBytesToReceive / 1024) / 1024, Decimal), 2) & "MB"
-                                   Return True
-                               End Function))
+        Dim received As String = Decimal.Round(CType(e.BytesReceived / 1024, Decimal), 2)
+        If received > 1024 Then
+            received = Decimal.Round(CType(received, Decimal) / 1024, 2) & "MB"
+        Else
+            received = received & "KB"
+        End If
+
+        Dim total As String = Decimal.Round(CType((e.TotalBytesToReceive / 1024) / 1024, Decimal), 2) & "MB"
+
+        RaiseEvent DownloadProgressChanged(percentage, received, total)
     End Sub
 
     Private Sub WWWclient_DownloadFileCompleted(sender As Object, e As ComponentModel.AsyncCompletedEventArgs)
         If Not e.Cancelled Then
-            MyMainWindow.Dispatcher.Invoke( _
-                    New Action(Function()
-                                   ' Update UI
-                                   MyAppSettings.Jarfile = _rootDir & "\" & _FileName
-
-                                   MyServer.ReloadStartupParameters()
-
-                                   If Not thisOwner.thisJar.Items.Contains(_FileName) Then
-                                       thisOwner.thisJar.Items.Add(_FileName)
-                                   End If
-
-                                   thisOwner.thisJar.SelectedValue = _FileName
-
-                                   thisOwner.UpdatePageContent()
-
-                                   UpdaterModule.Label1.Content = "Download completed."
-                                   MessageBox.Show("Download completed! Make sure you select """ & _FileName & """ as the Jarfile location")
-                                   UpdaterModule.Button1.Content = "Done!"
-
-                                   '_MainWindow.Frame1.Content = pageDashboard
-
-                                   If Not thisOwner Is Nothing Then
-                                       thisOwner.UpdatePageContent()
-                                   End If
-
-                                   Return True
-                               End Function))
-            'MessageBox.Show("Download successful, CraftBukkit is now ready to start.")
-        Else
-            MyMainWindow.Dispatcher.Invoke( _
-                    New Action(Function()
-                                   UpdaterModule.Label1.Content = "Download cancelled."
-                                   'If _MainWindow.Frame1.CanGoBack Then
-                                   '    _MainWindow.Frame1.GoBack()
-                                   'End If
-
-                                   'thisOwner.UpdatePageContent()
-                                   Return True
-                               End Function))
+            MyAppSettings.Jarfile = _rootDir & "\" & _FileName
+            MyServer.ReloadStartupParameters()
         End If
-        RaiseEvent UUComplete(e, _rootDir, _FileName)
+        RaiseEvent DownloadCompleted(e, _rootDir, _FileName)
     End Sub
+
+#Region "Custom webclient"
 
     Friend client As New MyWebClient()
 
@@ -233,5 +194,7 @@ Public Class UpdateEngine
             End Try
         End Function
     End Class
+
+#End Region
 
 End Class

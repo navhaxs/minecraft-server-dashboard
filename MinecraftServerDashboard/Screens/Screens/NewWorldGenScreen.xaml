@@ -24,7 +24,7 @@
                 </Grid>
             </Border>
             <TextBlock Text="Generate new world" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" />
-            <TextBlock HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="This will allow you to re-create or reset the entire Minecraft world." /><LineBreak /><Run Text="Warning: The world is regenerated only on the next server start, and this will completely " /><Bold><Run Text="erase" /></Bold><Run Text=" your existing world data " /><Run x:Name="lbloptional" Text="" /><LineBreak /></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="This will allow you to re-create or reset the entire Minecraft world." /><LineBreak /><Run Text="Warning: The world is regenerated only on the next server start, and this will completely " /><Bold><Run Text="DESTROY" /></Bold><Run Text=" your existing world." /><Run x:Name="lbloptional" Text="" /><LineBreak /></TextBlock>
             <Button Content="Go" Margin="0,0,10,10" Click="Button_Click_1" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsDefault="True" IsEnabled="{Binding IsChecked, ElementName=confirm}" />
             <CheckBox x:Name="confirm"  FontSize="13" HorizontalAlignment="Left" Margin="10,115,0,0" Height="18" VerticalAlignment="Top" Width="550">
                 <TextBlock TextWrapping="Wrap" ><Run Text="I have backed-up my world data " /><Run Text="{Binding Text, ElementName=lbloptional}" /><Run Text=", or do not wish to save it" /></TextBlock>

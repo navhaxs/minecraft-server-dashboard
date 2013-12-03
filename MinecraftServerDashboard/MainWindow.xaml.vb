@@ -61,9 +61,9 @@ Class MainWindow
                 x.DisplayConfig(l)
             End Using
             ' Ask user to set up game server engine
-            If Not My.Computer.FileSystem.FileExists(My.Settings.Jarfile) Then
-                navPageCBconfig.Go_BackendSetup()
-            End If
+            'If Not My.Computer.FileSystem.FileExists(My.Settings.Jarfile) Then
+            'navPageCBconfig.Go_BackendSetup()
+            'End If
         End If
 
     End Sub

@@ -32,7 +32,7 @@
                 <Label x:Name="SelectorText" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" Foreground="White" Content="1"/>
             </Grid>
         </Grid>
-        <TabControl x:Name="tabcontrol"  TabStripPlacement="Left" Margin="80,0,0,0">
+        <TabControl x:Name="tabcontrol"  TabStripPlacement="Left" Margin="80,0,0,0" SelectionChanged="tabcontrol_SelectionChanged">
             <TabItem Header="Welcome" Visibility="Collapsed">
                 <Grid>
                     <TextBlock Margin="10,0,0,0" FontSize="36" FontWeight="Light" Height="56" VerticalAlignment="Top" >Choose a server</TextBlock>
@@ -55,15 +55,12 @@
                 <StackPanel Margin="10,10,10,0">
                     <Border Background="#FF618B87" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="2">
                         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="White">
-                            <TextBlock TextWrapping="Wrap">Preparing your server</TextBlock>
+                            <TextBlock x:Name="lblStatus" TextWrapping="Wrap">Preparing your server</TextBlock>
                         </Label>
                     </Border>
                     <TextBlock Margin="0,10,0,10" TextWrapping="Wrap" FontSize="14">Downloading server files... (<Run x:Name="txtProgess">0</Run>%)</TextBlock>
-                    <metro:ProgressBar HorizontalAlignment="Stretch" State="Indeterminate" />
+                    <metro:ProgressBar x:Name="thisProgressBar" HorizontalAlignment="Stretch" State="Indeterminate" />
                 </StackPanel>
-            </TabItem>
-            <TabItem Header="Go!" Visibility="Collapsed">
-                <Grid Background="#FFD41212"/>
             </TabItem>
         </TabControl>
     </Grid>

@@ -12,7 +12,7 @@ Public Class ConfigJarfileBackend
         AddHandler NetworkChange.NetworkAvailabilityChanged, New NetworkAvailabilityChangedEventHandler(AddressOf NetworkChange_NetworkAvailabilityChanged)
 
         superoverlay = m
-        webservice.WorkerSupportsCancellation = True
+        latestverfetchservice.WorkerSupportsCancellation = True
         UpdatePageContent()
     End Sub
 
@@ -42,53 +42,57 @@ Public Class ConfigJarfileBackend
     ' Gathers latest version info from the internet ('CraftBukkit' only, the rest will open a hyperlink to their respective project websites)
     ' The Mojang Minecraft server is downloaded from a static web address
 
-    Dim myUpdaterEngine As New UpdateEngine(Me)
+    Dim UpdaterProgressWindow As DownloadWindow
+
+    Public WithEvents myDownloaderEngine As New JarDownloadEngine()
     Private Sub StartDownload_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles Button4.Click
         If download_combobox.SelectedValue Is Nothing Then Exit Sub
 
-
-        UpdaterModule = New DownloadWindow(myUpdaterEngine)
-
-
-        UpdaterModule.Show()
+        ' UI
+        UpdaterProgressWindow = New DownloadWindow(myDownloaderEngine)
+        UpdaterProgressWindow.Show()
 
 
         Select Case download_combobox.SelectedValue.Content.ToString
             Case "Official Mojang Server (Vanilla)"
-                UpdaterModule.Label1.Content = "Now fetching the latest server files from the internet..."
 
+                UpdaterProgressWindow.Label1.Content = "Now fetching the latest server files from the internet..."
 
-                Dim Ver As String = UpdaterModule.m_UpdaterEngine.GetLatestVersion_Vanilla
+                Dim Ver As String = myDownloaderEngine.GetLatestVanillaVersion
                 Dim url As String = "https://s3.amazonaws.com/Minecraft.Download/versions/" + Ver + "/minecraft_server." + Ver + ".jar"
 
-                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule.UIProgressBar, url)
+                myDownloaderEngine.StartJarDownload(System.Environment.CurrentDirectory, UpdaterProgressWindow.UIProgressBar, url)
             Case "CraftBukkit"
-                UpdaterModule.Label1.Content = "Now fetching the CraftBukkit server files from the internet..."
-                myUpdaterEngine.AutoNewUpdate(System.Environment.CurrentDirectory, UpdaterModule.UIProgressBar, "http://cbukk.it/craftbukkit.jar")
+                UpdaterProgressWindow.Label1.Content = "Now fetching the CraftBukkit server files from the internet..."
+                myDownloaderEngine.StartJarDownload(System.Environment.CurrentDirectory, UpdaterProgressWindow.UIProgressBar, "http://cbukk.it/craftbukkit.jar")
         End Select
 
     End Sub
 
-    Dim WithEvents webservice As New System.ComponentModel.BackgroundWorker
 
-    Private Sub WebService_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles webservice.DoWork
+#Region "Fetch latest version in background"
+
+    Dim WithEvents latestverfetchservice As New System.ComponentModel.BackgroundWorker
+
+    Private Sub WebService_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles latestverfetchservice.DoWork
         If Not My.Computer.Network.IsAvailable Then
             e.Result = "Offline =("
         Else
             Select Case e.Argument
                 Case "vanilla"
-                    Dim fetch As String = myUpdaterEngine.GetLatestVersion_Vanilla()
+                    Dim fetch As String = myDownloaderEngine.GetLatestVanillaVersion()
                     If Not fetch Is Nothing Then
                         e.Result = "The latest version is " & fetch
                     Else
                         e.Result = "Could not retreive latest version number. Try downloading from http://minecraft.net/ manually."
                     End If
                 Case "craftbukkit"
-                    e.Result = myUpdaterEngine.GetLatestVersion_CraftBukkit()
+                    e.Result = myDownloaderEngine.GetLatestCraftBukkitVersion()
             End Select
         End If
     End Sub
-    Private Sub WebService_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles webservice.RunWorkerCompleted
+
+    Private Sub WebService_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles latestverfetchservice.RunWorkerCompleted
         Dispatcher.Invoke( _
                             New Action(Function()
                                            If Not e.Cancelled Then
@@ -106,12 +110,14 @@ Public Class ConfigJarfileBackend
         If e.IsAvailable Then
             ' Try fetch version info again if the network state has changed to 'internet'
             On Error Resume Next
-            If download_combobox.SelectedValue.Content.ToString = "CraftBukkit" And (Not webservice.IsBusy) Then
-                webservice.RunWorkerAsync()
+            If download_combobox.SelectedValue.Content.ToString = "CraftBukkit" And (Not latestverfetchservice.IsBusy) Then
+                latestverfetchservice.RunWorkerAsync()
             End If
         End If
     End Sub
 
+
+#End Region
 #End Region
 
 #Region "UI"
@@ -123,16 +129,16 @@ Public Class ConfigJarfileBackend
                 'LatestVerLabel.Text = "Click ""Download"" to begin downloading the latest Minecraft server release from Mojang"
                 hyperlinkWebText.Text = ""
                 dwnldlink.Visibility = Windows.Visibility.Visible
-                If webservice.IsBusy Then
+                If latestverfetchservice.IsBusy Then
                     Try
-                        webservice.CancelAsync()
-                        webservice.RunWorkerAsync("vanilla")
+                        latestverfetchservice.CancelAsync()
+                        latestverfetchservice.RunWorkerAsync("vanilla")
                         download_combobox.IsEnabled = False
                     Catch ex As Exception
 
                     End Try
                 Else
-                    webservice.RunWorkerAsync("vanilla")
+                    latestverfetchservice.RunWorkerAsync("vanilla")
                     download_combobox.IsEnabled = False
                 End If
 
@@ -142,16 +148,16 @@ Public Class ConfigJarfileBackend
                 LatestVerLabel.Text = "Contacting server..."
                 hyperlinkWebText.Text = ""
                 dwnldlink.Visibility = Windows.Visibility.Collapsed
-                If webservice.IsBusy Then
+                If latestverfetchservice.IsBusy Then
                     Try
-                        webservice.CancelAsync()
-                        webservice.RunWorkerAsync("craftbukkit")
+                        latestverfetchservice.CancelAsync()
+                        latestverfetchservice.RunWorkerAsync("craftbukkit")
                         download_combobox.IsEnabled = False
                     Catch ex As Exception
 
                     End Try
                 Else
-                    webservice.RunWorkerAsync("craftbukkit")
+                    latestverfetchservice.RunWorkerAsync("craftbukkit")
                     download_combobox.IsEnabled = False
                 End If
 
@@ -159,15 +165,15 @@ Public Class ConfigJarfileBackend
                 LatestVerLabel.Text = "Get the latest Tekkit Minecraft server from "
                 hyperlinkWebText.Text = "http://www.technicpack.net/tekkit/"
                 dwnldlink.Visibility = Windows.Visibility.Collapsed
-                If webservice.IsBusy Then
-                    webservice.CancelAsync()
+                If latestverfetchservice.IsBusy Then
+                    latestverfetchservice.CancelAsync()
                 End If
             Case "Forge"
                 LatestVerLabel.Text = "Get the latest Forge Minecraft server from "
                 hyperlinkWebText.Text = "http://www.minecraftforge.net/wiki/Installation/Universal‎"
                 dwnldlink.Visibility = Windows.Visibility.Collapsed
-                If webservice.IsBusy Then
-                    webservice.CancelAsync()
+                If latestverfetchservice.IsBusy Then
+                    latestverfetchservice.CancelAsync()
                 End If
         End Select
     End Sub
@@ -196,4 +202,39 @@ Public Class ConfigJarfileBackend
     End Sub
 
 #End Region
+
+    Private Sub myDownloaderEngine_DownloadCompleted(e As System.ComponentModel.AsyncCompletedEventArgs, rootDir As String, filename As String) Handles myDownloaderEngine.DownloadCompleted
+        If Not e.Cancelled Then
+            MyMainWindow.Dispatcher.Invoke( _
+                    New Action(Function()
+                                   ' Update UI
+                                   
+                                   If Not thisJar.Items.Contains(filename) Then
+                                       thisJar.Items.Add(filename)
+                                   End If
+
+                                   thisJar.SelectedValue = filename
+
+                                   UpdatePageContent()
+
+                                   Return True
+                               End Function))
+            'MessageBox.Show("Download successful, CraftBukkit is now ready to start.")
+            'Else
+            '    MyMainWindow.Dispatcher.Invoke( _
+            '            New Action(Function()
+
+            '                           Return True
+            '                       End Function))
+        End If
+    End Sub
+
+    Private Sub myDownloaderEngine_DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String) Handles myDownloaderEngine.DownloadProgressChanged
+        MyMainWindow.Dispatcher.Invoke( _
+            New Action(Function()
+                           UpdaterProgressWindow.UIProgressText.Content = Decimal.Round(CInt(percentage), 0) & "% " & receiveddata & "/" & totaldata
+                           UpdaterProgressWindow.UIProgressBar.Value = percentage
+                           Return True
+                       End Function))
+    End Sub
 End Class

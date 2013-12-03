@@ -26,6 +26,7 @@
         <Image Source="/MinecraftServerDashboard;component/Images/cbclouds.png" Stretch="None"  VerticalAlignment="Top" HorizontalAlignment="Left" />
         <ScrollViewer Foreground="Black" Background="{x:Null}">
             <Grid x:Name="ContentGrid">
+                <Border BorderThickness="10" CornerRadius="10" Background="#7FF5DEB3" >
                 <StackPanel Margin="20,10,0,0">
                     <TextBlock Text="General" FontSize="18" Background="#FFDE5B00" Foreground="White" Padding="5,0,0,0" />
                     <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
@@ -67,9 +68,10 @@
                         Enter all the directories that you <Italic>don't</Italic> want to show up in World Profiles.<LineBreak />
                         Note that directories ending with <Bold>_the_end</Bold> or <Bold>_nether</Bold> are automatically treated as the same entity as the parent world directory.
                     </TextBlock>
-                    <Button x:Name="btnReset" Content="Reset all Dashboard settings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Margin="0,40,0,0" />
+                    <Button x:Name="btnReset" Content="Reset all Dashboard settings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Margin="0,20,0,0" />
                     <Button x:Name="btnSave" Content="Save changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontWeight="Bold"  Margin="0,10,0,50" />
                 </StackPanel>
+                </Border>
             </Grid>
         </ScrollViewer>
     </Grid>
