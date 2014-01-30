@@ -18,7 +18,7 @@
 
         Dim savedMemory As Integer = MyAppSettings.UserSettings_SrvMaxMemoryInt
 
-#If DEBUG Then
+#If DEBUG Then ' Make it easier to test the 'Memory' slider bar during testing
         If savedMemory < maxMemory Then
 #Else
         If savedMemory <= maxMemory Then
@@ -145,7 +145,11 @@
     End Sub
 
     Private Sub Hyperlink_ExploreJavaPath(sender As Object, e As RoutedEventArgs)
-        System.Diagnostics.Process.Start("explorer.exe", DetectJava.FindPath)
+        Dim path As String = DetectJava.FindPath
+        If Not My.Computer.FileSystem.DirectoryExists(path) Then
+            path = "http://java.com/en/download/"
+        End If
+        System.Diagnostics.Process.Start("explorer.exe", path)
     End Sub
 
 #End Region

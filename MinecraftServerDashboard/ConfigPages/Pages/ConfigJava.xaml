@@ -57,7 +57,7 @@
                     
                     <TextBlock Height="32" HorizontalAlignment="Left" Margin="0,47,0,60" >
                         <Image Height="16" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />
-                        The parameters <Italic>--nojline nogui</Italic> must always be present
+                        The <Italic>--nojline nogui</Italic> parameters are always appended
                     </TextBlock>
                 </Grid>
             </Border>
@@ -69,7 +69,7 @@
                     <Label Content="Select the installation of Java on your machine to use:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,38,0,0" FontSize="13" Visibility="Collapsed"/>
 
                     <RadioButton Margin="10,70,365,0" VerticalAlignment="Top" IsChecked="True" x:Name="jreauto" >
-                        <TextBlock>Recommended (<Hyperlink IsEnabled="{Binding IsChecked, ElementName=jreauto}" Click="Hyperlink_ExploreJavaPath"><Run x:Name="javainstalltype" Text="JRE 7 x64" /></Hyperlink>)</TextBlock>
+                        <TextBlock>Auto-detect (<Hyperlink IsEnabled="{Binding IsChecked, ElementName=jreauto}" Click="Hyperlink_ExploreJavaPath"><Run x:Name="javainstalltype" Text="JRE 7 x64" /></Hyperlink>)</TextBlock>
                     </RadioButton>
                     <RadioButton x:Name="jremanual" Margin="10,90,0,10" VerticalAlignment="Bottom" >
                         <Grid>

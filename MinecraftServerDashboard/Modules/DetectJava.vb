@@ -21,7 +21,7 @@ Namespace DetectJava
                 match = True
             End If
             If Not match Then
-                Return "none installed"
+                Return "Java not found or installed"
             End If
 
             'Append arch of Java
@@ -40,11 +40,40 @@ Namespace DetectJava
         Function FindPath()
             'http://stackoverflow.com/questions/17821960/best-way-to-find-java-path-in-c-sharp
             Dim javaKey As [String] = "SOFTWARE\JavaSoft\Java Runtime Environment"
-            Using baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(javaKey)
-                Dim currentVersion As [String] = baseKey.GetValue("CurrentVersion").ToString()
-                Using homeKey = baseKey.OpenSubKey(currentVersion)
-                    Return homeKey.GetValue("JavaHome").ToString()
-                End Using
+
+            Dim baseKey As Microsoft.Win32.RegistryKey
+            Dim result As String
+
+            ' Check for a 64 bit installation if Windows is 64 bit
+            If System.Environment.Is64BitOperatingSystem Then
+                baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(javaKey)
+                    result = ScanForJre(baseKey)
+                    If Not result Is "" Then
+                        Return result
+                    End If
+            End If
+
+            ' Otherwise, continue to check for a 32 bit installation
+            baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(javaKey)
+            result = ScanForJre(baseKey)
+            If Not result Is "" Then
+                Return result
+            End If
+
+            ' Lastly, return nothing if nothing was found
+            Return ""
+        End Function
+
+        Private Function ScanForJre(baseKey As Microsoft.Win32.RegistryKey) As String
+            If baseKey Is Nothing Then
+                Return ""
+            End If
+            Dim currentVersion As [String] = baseKey.GetValue("CurrentVersion", "").ToString()
+            If currentVersion Is "" Then
+                Return ""
+            End If
+            Using homeKey = baseKey.OpenSubKey(currentVersion)
+                Return homeKey.GetValue("JavaHome", "").ToString()
             End Using
         End Function
 
