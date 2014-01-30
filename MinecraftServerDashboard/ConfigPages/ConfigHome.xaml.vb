@@ -1,6 +1,6 @@
 ﻿Class PageConfig
 
-    Public Data As New PageConfigViewModel
+    Public Data As PageConfigViewModel
 
     Sub New()
 
@@ -8,6 +8,7 @@
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+        Data = New PageConfigViewModel
         Me.DataContext = Data
         IsServerIsOnline.DataContext = MyServer
     End Sub

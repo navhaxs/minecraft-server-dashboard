@@ -1,0 +1,28 @@
+﻿<Window x:Class="CrashReportUI"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="CrashReportUI" Height="319.173" Width="589.85">
+    <TabControl>
+        <TabItem Visibility="Collapsed">
+            <Grid>
+                <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="/MinecraftServerDashboard;component/MC2.ico"/>
+                <Label Content="Sorry :(" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <Label Content="Something bad happened which wasn't supposed to" HorizontalAlignment="Left" Margin="115,49,0,0" VerticalAlignment="Top" />
+                <TextBox Margin="115,106,10,10" TextWrapping="Wrap" Text="No information was able to be gathered" x:Name="txtReport" />
+                <Label Content="The following is an error report which you can send to the developers:" HorizontalAlignment="Left" Margin="115,75,0,0" VerticalAlignment="Top" FontWeight="Bold" />
+            </Grid>
+        </TabItem>
+        <TabItem Visibility="Collapsed">
+            <Grid>
+                <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="/MinecraftServerDashboard;component/MC2.ico"/>
+                <Label Content="Server Recovery" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <TextBlock HorizontalAlignment="Left" Margin="125,54,0,0" VerticalAlignment="Top"  TextWrapping="Wrap" >
+                    The Minecraft server is still running (java.exe PID: 100). Because Dashboard has crashed, the server must now be force closed.<LineBreak />
+                    If you can't otherwise safely shut down the server, follow these steps:
+                </TextBlock>
+                <Label Content="1. Run both the save-all and save-off commands from the in-game console" HorizontalAlignment="Left" Margin="115,115,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                <Label Content="2. Click here to force close the server" HorizontalAlignment="Left" Margin="115,145,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

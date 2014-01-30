@@ -12,7 +12,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <SourceAnalysisOverrideSettingsFile>E:\Jeremy\SharpDevelopPortable4.2\bin\..\Settings\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <SignAssembly>False</SignAssembly>
     <DelaySign>False</DelaySign>
     <RemoveIntegerChecks>False</RemoveIntegerChecks>
@@ -181,6 +182,10 @@
     </Compile>
     <Compile Include="Converter\InverseBooleanConverter.vb" />
     <Compile Include="MainWindowViewModel.vb" />
+    <Compile Include="Modules\CrashCollector.vb" />
+    <Compile Include="Modules\CrashReportUI.xaml.vb">
+      <DependentUpon>CrashReportUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\DetectJava.vb" />
     <Compile Include="Modules\GetIP.vb" />
     <Compile Include="Modules\GetIPViewModel.vb" />
@@ -295,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PlayerTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\CrashReportUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -521,7 +530,6 @@
     <Resource Include="Images\MyCBBK4.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Elysium.dll" />
     <EmbeddedResource Include="Ionic.Zip.Reduced.dll" />
     <EmbeddedResource Include="WpfMouseWheelLib.dll" />
   </ItemGroup>
@@ -602,6 +610,9 @@
   <ItemGroup>
     <Resource Include="Screens\Screens\Downloader\official bukkit.png" />
     <Resource Include="Screens\Screens\Downloader\official mojang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Elysium.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

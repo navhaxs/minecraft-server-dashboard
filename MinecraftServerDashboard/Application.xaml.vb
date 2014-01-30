@@ -7,6 +7,10 @@ Class Application
 
 #Region "http://social.msdn.microsoft.com/Forums/vstudio/en-US/ae6a3cc1-367d-4863-9976-a581a51d7d02/help-needed-with-reflectionembedded-reso"
 
+    Private Sub Application_DispatcherUnhandledException(sender As Object, e As Windows.Threading.DispatcherUnhandledExceptionEventArgs) Handles Me.DispatcherUnhandledException
+        CrashHelpMe(sender, e)
+    End Sub
+
     '' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     '' NOTE: The following code was taken from http://social.msdn.microsoft.com/Forums/vstudio/en-US/ae6a3cc1-367d-4863-9976-a581a51d7d02/help-needed-with-reflectionembedded-reso
     '' Allows all DLLs to be combined within the app's single EXE

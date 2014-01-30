@@ -5,8 +5,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml" />-->
+                <!--FIXME-->
+                <!--<ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>-->
+                
                 <ResourceDictionary Source="/MinecraftServerDashboard;component/Themes/AppTheme.xaml" />
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
