@@ -12,7 +12,7 @@
         <Grid Background="#FFFFEEB4" Margin="10,0,18,0" Height="64" VerticalAlignment="Top">
             <Image Height="64" Width="64" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/appicon.ico" HorizontalAlignment="Left" />
             <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="72,5,0,0" VerticalAlignment="Top" FontSize="20" Width="322" TextWrapping="Wrap" />
-            <TextBlock HorizontalAlignment="Left" Margin="72,37,0,0" FontSize="14" Width="339" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Jan2014 Beta, built 30/1/2014 (c) navhaxs 2013" /></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="72,37,0,0" FontSize="14" Width="339" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Jan2014 Beta, built 31/1/2014 (c) navhaxs 2013" /></TextBlock>
         </Grid>
 
         <Button Content="Done" Margin="0,0,18,15" Click="Button_Click" Height="33" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="96" IsDefault="True" />
