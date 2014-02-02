@@ -371,7 +371,10 @@ Public Class ServerClass
                 ' START the Minecraft server process and begin reading from its' console stream
                 With ServerProc
                     ConsoleStream += "[Dashboard] Startup parameters: " & .StartInfo.Arguments & vbLf
+                    ConsoleStream += "[Dashboard] Java executable: " & ServerProc.StartInfo.FileName & vbLf
+                    ConsoleStream += "[Dashboard] Starting server..."
                     .Start()
+                    ConsoleStream += " OK! [" & ServerProc.StartTime & "]" & vbLf
                     .BeginErrorReadLine()
                     .BeginOutputReadLine()
                 End With
@@ -384,9 +387,6 @@ Public Class ServerClass
                 _HasColdBootFlag = Visibility.Collapsed
                 OnPropertyChanged("ServerColdBoot")
 
-                ' Write startup status to the application' console UI
-                ConsoleStream += "[Dashboard] " & ServerProc.StartTime & " Starting server..." & vbLf
-
             Catch ex As Exception
                 MessageBox.Show("An error occured whilst trying to start the server!" & vbNewLine & "Exception error message: " & ex.Message, "Failed to launch server")
             End Try
@@ -397,6 +397,7 @@ Public Class ServerClass
         On Error Resume Next
         If ServerIsOnline Then
             CurrentServerState = ServerState.Stopping
+            ConsoleStream += "[Dashboard] Asking server to stop... " & vbLf
             ServerProc.StandardInput.WriteLine("stop")
         End If
     End Sub
