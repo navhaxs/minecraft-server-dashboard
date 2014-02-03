@@ -1,20 +1,19 @@
 ﻿Public Class ExitWarning
 
     Private Sub btn_Minimize()
+        If always_suppress.IsChecked = True Then
+            My.Settings.SuppressMinimiseMessage = "m" ' Set to always minimize
+        End If
         ' Close this dialog, minimise MainWindow
         MyMainWindow.isExitWindowOverlay = False
         MyMainWindow.FormControls.Children.Remove(Me)
         MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
         MyMainWindow.OverlayClosed()
         MyMainWindow.WindowState = WindowState.Minimized
-
-        If surpress.IsChecked = True Then
-            My.Settings.SurpressMinimiseMessage = "m" ' Set to always minimize
-        End If
     End Sub
 
     Private Sub ExitWarning_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        Select Case My.Settings.SurpressMinimiseMessage
+        Select Case My.Settings.SuppressMinimiseMessage
             Case "m"
                 btn_Minimize() ' Always minimize
             Case "s"
@@ -31,8 +30,8 @@
     End Sub
 
     Private Sub btn_StopSrv() Handles btnStopSrv.Click
-        If surpress.IsChecked = True Then
-            My.Settings.SurpressMinimiseMessage = "s" ' Set to always minimize
+        If always_suppress.IsChecked = True Then
+            My.Settings.SuppressMinimiseMessage = "s" ' Set to always minimize
         End If
         If MyServer.ServerIsOnline Then
             MyServer.StopServer()

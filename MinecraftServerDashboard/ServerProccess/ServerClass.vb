@@ -43,7 +43,7 @@ Public Class ServerClass
     Function ReloadStartupParameters()
 
         Dim java As String
-        If MyAppSettings.JavaExec.Length = 0 Then 'Set the default if blank
+        If MyUserSettings.JavaExec.Length = 0 Then 'Set the default if blank
             If My.Computer.FileSystem.FileExists(DetectJava.FindPath & "\bin\java.exe") Then
                 java = DetectJava.FindPath & "\bin\java.exe"
             Else
@@ -243,50 +243,9 @@ Public Class ServerClass
             End If
 
             If isGettingPlayerListActivity = isGettingPlayerListActivity_STATE.FoundMatch Then
-                Dim PlayerList As New List(Of String)
 
-                ' Remove [INFO] string if it exists
-                ' e.g. 2013-07-09 16:46:13 [INFO] bearbear12345
-                Dim f As String
-                If e.Data.Contains("INFO]:") Then
-                    f = "INFO]: "
-                Else
-
-                    f = "INFO] "
-                End If
-
-
-
-                Dim i As Integer = e.Data.IndexOf(f)
-                Dim s As String = ""
-                If e.Data.Contains(f) Then
-                    If Not ((i + f.Length) = (e.Data.Length - (i + f.Length))) Then
-                        s = e.Data.Substring(i + f.Length, e.Data.Length - (i + f.Length))
-                    Else
-                        s = ""
-                    End If
-                Else
-                    s = e.Data
-                End If
-
-                'If Not i + 8 = e.Data.Length Then
-
-                If Not s Is Nothing Then
-                    Dim words = s.Split({" "c}, StringSplitOptions.RemoveEmptyEntries)
-
-                    'Dim m As Integer
-                    For Each f In words
-                        'm += 1
-                        'Dim x As String = "17:19:53 [INFO] Connected players: "
-                        'Dim e As String = "2012-06-01 17:19:53 [INFO] Connected players: "
-                        If f.EndsWith(",") Then
-                            PlayerList.Add(f.Substring(0, f.Length - 1))
-                        Else
-                            PlayerList.Add(f)
-                        End If
-                    Next
-
-                End If
+                'Get the list of online players from the console output line
+                Dim PlayerList As List(Of String) = ProcessPlayerList(e.Data)
 
                 'Update UI
                 navpageDashboard.Dispatcher.BeginInvoke( _
@@ -300,7 +259,7 @@ Public Class ServerClass
                                                    navpageDashboard.MyOnlinePlayerList.lblPlayerCounter.Content = PlayerList.Count & "/" & b.ReturnConfigValue("max-players")
                                                End Sub))
 
-                'Clear the flag
+                'Clear the search flag
                 isGettingPlayerListActivity = isGettingPlayerListActivity_STATE.Null
             End If
 
@@ -456,7 +415,7 @@ Public Class ServerClass
         Dim total_machine_memory As ULong = (GetTotalMemoryInBytes() / (1024 * 1024))
 
         ' Get total_allocated_memory, as stored in startup parameters
-        Dim total_allocated_memory As ULong = MyAppSettings.UserSettings_SrvMaxMemoryInt
+        Dim total_allocated_memory As ULong = MyUserSettings.JVM_Xm_paramter_AsInteger(MyUserSettings.MaximumMemory)
 
         ' Calculate the server's memory usage against machines' total memory
         Dim ratio As Single = CSng(serverprocess_memory_usage) / CSng(total_machine_memory)

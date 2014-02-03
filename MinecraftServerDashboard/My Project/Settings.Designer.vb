@@ -53,99 +53,99 @@ Partial Friend NotInheritable Class MySettings
         End Get
     End Property
     
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-    Public Property SurpressMinimiseMessage() As String
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    Public Property SuppressMinimiseMessage() As String
         Get
-            Return CType(Me("SurpressMinimiseMessage"),String)
+            Return CType(Me("SuppressMinimiseMessage"), String)
         End Get
-        Set
-            Me("SurpressMinimiseMessage") = value
+        Set(value As String)
+            Me("SuppressMinimiseMessage") = value
         End Set
     End Property
-    
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("1G")>  _
+
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("1G")> _
     Public Property Startup_Memory() As String
         Get
-            Return CType(Me("Startup_Memory"),String)
+            Return CType(Me("Startup_Memory"), String)
         End Get
-        Set
+        Set(value As String)
             Me("Startup_Memory") = value
         End Set
     End Property
-    
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("512M")>  _
+
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("512M")> _
     Public Property Startup_MemoryMin() As String
         Get
-            Return CType(Me("Startup_MemoryMin"),String)
+            Return CType(Me("Startup_MemoryMin"), String)
         End Get
-        Set
+        Set(value As String)
             Me("Startup_MemoryMin") = value
         End Set
     End Property
-    
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("")> _
     Public Property Startup_JavaExec() As String
         Get
-            Return CType(Me("Startup_JavaExec"),String)
+            Return CType(Me("Startup_JavaExec"), String)
         End Get
-        Set
+        Set(value As String)
             Me("Startup_JavaExec") = value
         End Set
     End Property
-    
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("")> _
     Public Property UserSettings_DefaultTextEditor() As String
         Get
-            Return CType(Me("UserSettings_DefaultTextEditor"),String)
+            Return CType(Me("UserSettings_DefaultTextEditor"), String)
         End Get
-        Set
+        Set(value As String)
             Me("UserSettings_DefaultTextEditor") = value
         End Set
     End Property
-    
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("")> _
     Public Property Jarfile() As String
         Get
-            Return CType(Me("Jarfile"),String)
+            Return CType(Me("Jarfile"), String)
         End Get
-        Set
+        Set(value As String)
             Me("Jarfile") = value
         End Set
     End Property
-    
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("")> _
     Public Property LaunchArgu_JAVA() As String
         Get
-            Return CType(Me("LaunchArgu_JAVA"),String)
+            Return CType(Me("LaunchArgu_JAVA"), String)
         End Get
-        Set
+        Set(value As String)
             Me("LaunchArgu_JAVA") = value
         End Set
     End Property
-    
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-    Public Property LaunchArgu_SRV() As String
+
+    <Global.System.Configuration.UserScopedSettingAttribute(), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    Public Property JarLaunchArguments() As String
         Get
-            Return CType(Me("LaunchArgu_SRV"),String)
+            Return CType(Me("JarLaunchArguments"), String)
         End Get
-        Set
-            Me("LaunchArgu_SRV") = value
+        Set(value As String)
+            Me("JarLaunchArguments") = value
         End Set
     End Property
     

@@ -11,7 +11,7 @@
 
         DoInit(ContentGrid) ' Add event handlers to each property control (see 'DoInit' sub code)
 
-        Select Case My.Settings.SurpressMinimiseMessage ' Load settings
+        Select Case My.Settings.SuppressMinimiseMessage ' Load settings
             Case "s"
                 defaultexitaction.SelectedIndex = 1
             Case "m"
@@ -49,11 +49,11 @@
         ' Save settings
         Select Case defaultexitaction.SelectedIndex
             Case 1
-                My.Settings.SurpressMinimiseMessage = "s"
+                My.Settings.SuppressMinimiseMessage = "s"
             Case 2
-                My.Settings.SurpressMinimiseMessage = "m"
+                My.Settings.SuppressMinimiseMessage = "m"
             Case Else
-                My.Settings.SurpressMinimiseMessage = ""
+                My.Settings.SuppressMinimiseMessage = ""
         End Select
 
         My.Settings.ProfileDir_ExcludedDirectories.Clear()

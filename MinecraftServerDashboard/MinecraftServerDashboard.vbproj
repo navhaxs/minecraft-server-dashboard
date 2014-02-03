@@ -192,6 +192,7 @@
     <Compile Include="Modules\GetIPViewModel.vb" />
     <Compile Include="Modules\MyAppSettings.vb" />
     <Compile Include="Modules\PlayerListEditor.vb" />
+    <Compile Include="Modules\ProcessPlayerList.vb" />
     <Compile Include="Modules\ServerPropertiesEditorHelper.vb" />
     <Compile Include="Modules\UpdateEngine.vb">
       <SubType>Component</SubType>

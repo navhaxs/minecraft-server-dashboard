@@ -285,7 +285,7 @@ Class MainWindow
     End Sub
 
     Public Sub DoManualSrvPropertiesEdit() Handles MenuItem1.Click
-        System.Diagnostics.Process.Start(MyAppSettings.UserSettings_DefaultTextEditor, MyServer.MyStartupParameters.ServerProperties)
+        System.Diagnostics.Process.Start(MyUserSettings.UserSettings_DefaultTextEditor, MyServer.MyStartupParameters.ServerProperties)
     End Sub
 
 #End Region

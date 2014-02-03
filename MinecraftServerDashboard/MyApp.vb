@@ -71,7 +71,6 @@ Module MyApp
     ' Exit the app upon the exit of the server process, where elected by the user. (See the form: Screens -> Screens -> ExitWarning.xaml)
     Private Sub MyServer_ServerStopped() Handles MyServer.ServerStopped
         If MyMainWindow.TryQuitOnExit Then
-
             MyMainWindow.Dispatcher.BeginInvoke( _
                                             New Action(Sub()
                                                            MyMainWindow.Close()

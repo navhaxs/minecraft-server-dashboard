@@ -10,30 +10,9 @@
         ' Add any initialization after the InitializeComponent() call.
         superoverlay = m
 
-        ' Set the max of the slider's range to the total memory of system
-        Dim maxMemory As Integer = (ServerClass.GetTotalMemoryInBytes() / (1024 * 1024)) * 0.95 ' in MiB 
-        'Times by 0.95 to prevent allocating a ridiculous maximum memory value
+        ' Set the max of the slider's range to the total memory of system        
+        maxmem_Validate()
 
-        sliderMemory.Maximum = maxMemory
-
-        Dim savedMemory As Integer = MyAppSettings.UserSettings_SrvMaxMemoryInt
-
-#If DEBUG Then ' Make it easier to test the 'Memory' slider bar during testing
-        If savedMemory < maxMemory Then
-#Else
-        If savedMemory <= maxMemory Then
-#End If
-
-            maxmem.Text = savedMemory
-        Else
-            If maxMemory > 1024 Then
-                Dim n As New MessageWindow(MyMainWindow, "", "You've set the server more memory than you have available on this machine! Resetting the memory to the default (1GB)")
-                maxmem.Text = 1024
-            Else
-                Dim n As New MessageWindow(MyMainWindow, "", "You've set the server more memory than you have available on this machine! Please set another value for the memory")
-                maxmem.Text = 32
-            End If
-        End If
         Try
             sliderMemory.Value = maxmem.Text
         Catch ex As Exception
@@ -43,9 +22,9 @@
         javainstalltype.Text = DetectJava.FindJavaInstallType
 
         minmem.Text = My.Settings.Startup_MemoryMin.ToLower.Replace("m", "")
-        jarpath.Text = MyAppSettings.JavaExec
+        jarpath.Text = MyUserSettings.JavaExec
 
-        If MyAppSettings.JavaExec Is "" Then
+        If MyUserSettings.JavaExec Is "" Then
             jreauto.IsChecked = True
         Else
             jremanual.IsChecked = True
@@ -74,23 +53,26 @@
     End Sub
 
     ' Save settings on change
-    Private Sub TextBox_TextChanged(sender As Object, e As TextChangedEventArgs)
+    Private Sub maxmem_TextChanged(sender As Object, e As TextChangedEventArgs)
         If Not isInit Then
-            MyAppSettings.UserSettings_SrvMaxMemory = maxmem.Text & "M"
+            If CType(maxmem.Text, Integer) > 0 Then
+                'todo ignore if null2
+                MyUserSettings.MaximumMemory = maxmem.Text & "M"
+            End If
             'My.Settings.Startup_Memory = CType(sender, TextBox).Text & "M"
         End If
     End Sub
 
     Private Sub TextBox_TextChanged_1(sender As Object, e As TextChangedEventArgs)
         If Not isInit Then
-            MyAppSettings.UserSettings_SrvMinMemory = CType(sender, TextBox).Text & "M"
+            MyUserSettings.MinimumMemory = CType(sender, TextBox).Text & "M"
         End If
     End Sub
 
     Private Sub TextBox_TextChanged_3(sender As Object, e As TextChangedEventArgs)
         'parameters RIGHT
         If Not isInit Then
-            My.Settings.LaunchArgu_SRV = CType(sender, TextBox).Text
+            My.Settings.JarLaunchArguments = CType(sender, TextBox).Text
         End If
     End Sub
 
@@ -135,12 +117,12 @@
 #Region "Java selection"
 
     Private Sub jremanual_Checked(sender As Object, e As RoutedEventArgs) Handles jremanual.Unchecked
-        MyAppSettings.JavaExec = ""
+        MyUserSettings.JavaExec = ""
     End Sub
 
     Private Sub TextBox_TextChanged_JREpath(sender As Object, e As TextChangedEventArgs)
         If Not isInit Then
-            MyAppSettings.JavaExec = CType(sender, TextBox).Text
+            MyUserSettings.JavaExec = CType(sender, TextBox).Text
         End If
     End Sub
 
@@ -163,4 +145,30 @@
             jarpath.Text = o.FileName
         End If
     End Sub
+
+    Private Sub maxmem_LostFocus(sender As Object, e As RoutedEventArgs) Handles maxmem.LostFocus
+        maxmem_Validate()
+    End Sub
+
+    Private Sub maxmem_Validate()
+        Dim TotalMachineMemory As Integer = (ServerClass.GetTotalMemoryInBytes() / (1024 * 1024)) * 0.95 ' in MiB 
+        'Times by 0.95 to prevent allocating a ridiculous maximum memory value
+
+        sliderMemory.Maximum = TotalMachineMemory
+
+        Dim savedMemory As Integer = MyUserSettings.JVM_Xm_paramter_AsInteger(MyUserSettings.MaximumMemory)
+
+        If savedMemory <= TotalMachineMemory Then
+            maxmem.Text = savedMemory
+        Else
+            If TotalMachineMemory > 1024 Then
+                Dim n As New MessageWindow(MyMainWindow, "", "You've set the server more memory than you have available on this machine! Resetting the memory to the default (1GB)")
+                maxmem.Text = 1024
+            Else
+                Dim n As New MessageWindow(MyMainWindow, "", "You've set the server more memory than you have available on this machine! Please set another value for the memory")
+                maxmem.Text = 32
+            End If
+        End If
+    End Sub
+
 End Class

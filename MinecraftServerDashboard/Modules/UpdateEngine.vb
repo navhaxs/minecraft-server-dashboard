@@ -69,9 +69,11 @@ Public Class JarDownloadEngine
                     ' Get the filename, which will include version info
                     fileName = wc.ResponseUri.AbsolutePath.Substring(wc.ResponseUri.AbsolutePath.LastIndexOf("/") + 1)
                     Using reader As New StreamReader(rawStream)
-                        Dim firstpos As String = fileName.Substring("craftbukkit-".Length)
-                        Dim endpos As Integer = fileName.IndexOf("-", firstpos.Length)
-                        Return "Latest recommended release: " & fileName.Substring(firstpos.Length, fileName.Length - endpos - 1)
+                        'Dim firstpos As String = fileName.Substring("craftbukkit-".Length)
+                        'Dim endpos As Integer = fileName.IndexOf("-", firstpos.Length)
+
+                        fileName = fileName.Replace(".jar", "").Replace("craftbukkit-", "")
+                        Return "Latest recommended release: " & fileName '.Substring(firstpos.Length, fileName.Length - endpos - 1)
                         reader.Close()
                     End Using
                     rawStream.Close()
@@ -164,7 +166,7 @@ Public Class JarDownloadEngine
 
     Private Sub WWWclient_DownloadFileCompleted(sender As Object, e As ComponentModel.AsyncCompletedEventArgs)
         If Not e.Cancelled Then
-            MyAppSettings.Jarfile = _rootDir & "\" & _FileName
+            MyUserSettings.Jarfile = _rootDir & "\" & _FileName
             MyServer.ReloadStartupParameters()
         End If
         RaiseEvent DownloadCompleted(e, _rootDir, _FileName)

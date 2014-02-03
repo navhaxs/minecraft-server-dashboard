@@ -24,10 +24,13 @@
 
                     <TextBlock x:Name="lblMaxMB" Text="MB" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,55,78,0" />
 
-                    <TextBox x:Name="maxmem" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="TextBox_TextChanged" Margin="0,52,101,0" BorderThickness="1" TextAlignment="Right" />
+                    <TextBox x:Name="maxmem" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" TextChanged="maxmem_TextChanged" Margin="0,52,101,0" BorderThickness="1" TextAlignment="Right"
+                             Text="{Binding ElementName=sliderMemory, Path=Value, Mode=TwoWay}"
+                             
+                             />
                     <!--<TextBlock Text="Increasing the memory will improve server performance, particlarly as the number of connected players increases" Height="32" HorizontalAlignment="Left" x:Name="Label3_Copy6" VerticalAlignment="Top" Margin="0,42,0,0"  TextWrapping="Wrap" />-->
-                    <Slider x:Name="sliderMemory" Margin="10,52,160,0" VerticalAlignment="Top" Minimum="32"/>
-
+                    <Slider x:Name="sliderMemory" Margin="10,52,160,0" VerticalAlignment="Top" Minimum="512" IsSnapToTickEnabled="True" TickFrequency="1" />
+                    
                     <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7" Visibility="Hidden"><Hyperlink Click="Hyperlink_Click">Advanced memory settings</Hyperlink></TextBlock>
                 </Grid>
             </Border>

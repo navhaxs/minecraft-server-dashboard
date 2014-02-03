@@ -19,7 +19,7 @@ Public Class ConfigJarfileBackend
     Dim superoverlay As SuperOverlay
     Public Sub isClosing()
         If My.Computer.FileSystem.FileExists(System.Environment.CurrentDirectory & "\" & thisJar.SelectedValue) Then
-            MyAppSettings.Jarfile = thisJar.SelectedValue
+            MyUserSettings.Jarfile = thisJar.SelectedValue
             MyServer.ReloadStartupParameters()
         Else
             Dim n As New MessageWindow(MyMainWindow, "", "You havn't selected a jarfile yet! Dashboard can't start the server or make configuration changes until you've selected which jarfile to use." & vbNewLine & vbNewLine & "Return to this screen by clicking on the Configuration tab, and selecting 'Backend settings'", "Oops", "large")
@@ -35,7 +35,7 @@ Public Class ConfigJarfileBackend
         For Each file In My.Computer.FileSystem.GetDirectoryInfo(System.Environment.CurrentDirectory).GetFiles("*.jar", IO.SearchOption.TopDirectoryOnly)
             thisJar.Items.Add(file.Name.ToString)
         Next
-        thisJar.SelectedValue = MyAppSettings.Jarfile
+        thisJar.SelectedValue = MyUserSettings.Jarfile
     End Sub
 
 #Region "WebEngine"
@@ -194,7 +194,7 @@ Public Class ConfigJarfileBackend
     Private Sub thisJar_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles thisJar.SelectionChanged
 
         If My.Computer.FileSystem.FileExists(System.Environment.CurrentDirectory & "\" & thisJar.SelectedValue) Then
-            MyAppSettings.Jarfile = thisJar.SelectedValue
+            MyUserSettings.Jarfile = thisJar.SelectedValue
             If System.Windows.MessageBox.Show(thisJar.SelectedValue & " has been sucessfully selected as your server backend. Please ensure you start the server at least once to create the configuration file defaults." & vbNewLine & vbNewLine & "Return to the Dashboard home screen?", "Dashboard", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
                 superoverlay.Confirm_DoClose(Me)
             End If
