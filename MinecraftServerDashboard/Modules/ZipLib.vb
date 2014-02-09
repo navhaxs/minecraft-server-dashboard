@@ -30,6 +30,8 @@ Module MyZipLib
     Sub Compress(DirToPack As String, TargetZip As String, TargetZipPath As String)
         Using m As New ZipFile()
             With m
+                .ParallelDeflateThreshold = -1
+
                 .AddDirectory(DirToPack, DirToPack) ' Zip the directory in a folder within the ZIP archieve named "DirToPack"
                 If My.Computer.FileSystem.DirectoryExists(DirToPack & "_nether") Then
                     .AddDirectory(DirToPack & "_nether", DirToPack & "_nether")
@@ -37,7 +39,7 @@ Module MyZipLib
                 If My.Computer.FileSystem.DirectoryExists(DirToPack & "_the_end") Then
                     .AddDirectory(DirToPack & "_the_end", DirToPack & "_the_end")
                 End If
-                .FlattenFoldersOnExtract = False
+                
                 .Save(TargetZipPath)
             End With
         End Using
