@@ -102,6 +102,7 @@ Class MainWindow
             _IsInNavigation = True
             NavigationHistoryList_CurrentIndex -= 1 ' Go back one
             navDashboard.SelectedIndex = NavigationHistoryList(NavigationHistoryList_CurrentIndex)
+            UpdateDashboardTabHeaderLabel()
         End If
     End Sub
 
@@ -110,6 +111,7 @@ Class MainWindow
             _IsInNavigation = True
             NavigationHistoryList_CurrentIndex += 1 ' Go forward one
             navDashboard.SelectedIndex = NavigationHistoryList(NavigationHistoryList_CurrentIndex)
+            UpdateDashboardTabHeaderLabel()
         End If
     End Sub
 
@@ -120,26 +122,34 @@ Class MainWindow
             Exit Sub
         End If
 
+        UpdateDashboardTabHeaderLabel()
+
         If TypeOf e.Source Is System.Windows.Controls.TabControl Then
             ' Add new history record
             NavigationHistoryList_CurrentIndex += 1
             NavigationHistoryList.Add(navDashboard.SelectedIndex)
 
-            ' Update the current 'heading' UI label (e.g. "dashboard", "players", "world")
-            For index As Integer = e.Source.SelectedItem.Header.Children.Count - 1 To 0 Step -1
-                If TypeOf e.Source.SelectedItem.Header.Children(index) Is TextBlock Then
-                    MyMainWindowProperties.navTitle = CType(e.Source.SelectedItem.Header.Children(index), TextBlock).Text
-
-                    Select Case MyMainWindowProperties.navTitle
-                        Case "World"
-                            navpageWorld.RefreshPageData()
-                    End Select
-
-                    Exit Sub ' Exit loop once the heading label has been found in the heading controls
-                End If
-            Next
+            
         End If
 
+    End Sub
+
+    Sub UpdateDashboardTabHeaderLabel()
+        Dim thisHeader As Object = navDashboard.SelectedItem.Header
+
+        ' Update the current 'heading' UI label (e.g. "dashboard", "players", "world")
+        For index As Integer = thisHeader.Children.Count - 1 To 0 Step -1
+            If TypeOf thisHeader.Children(index) Is TextBlock Then
+                MyMainWindowProperties.navTitle = CType(thisHeader.Children(index), TextBlock).Text
+
+                Select Case MyMainWindowProperties.navTitle
+                    Case "World"
+                        navpageWorld.RefreshPageData()
+                End Select
+
+                Exit Sub ' Exit loop once the heading label has been found in the heading controls
+            End If
+        Next
     End Sub
 #End Region
 
