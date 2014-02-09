@@ -122,9 +122,11 @@ Class MainWindow
             Exit Sub
         End If
 
-        UpdateDashboardTabHeaderLabel()
+
 
         If TypeOf e.Source Is System.Windows.Controls.TabControl Then
+            UpdateDashboardTabHeaderLabel()
+
             ' Add new history record
             NavigationHistoryList_CurrentIndex += 1
             NavigationHistoryList.Add(navDashboard.SelectedIndex)
