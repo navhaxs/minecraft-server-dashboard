@@ -53,98 +53,98 @@ Partial Friend NotInheritable Class MySettings
         End Get
     End Property
     
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property SuppressMinimiseMessage() As String
         Get
-            Return CType(Me("SuppressMinimiseMessage"), String)
+            Return CType(Me("SuppressMinimiseMessage"),String)
         End Get
-        Set(value As String)
+        Set
             Me("SuppressMinimiseMessage") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("1G")> _
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("1G")>  _
     Public Property Startup_Memory() As String
         Get
-            Return CType(Me("Startup_Memory"), String)
+            Return CType(Me("Startup_Memory"),String)
         End Get
-        Set(value As String)
+        Set
             Me("Startup_Memory") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("512M")> _
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("512M")>  _
     Public Property Startup_MemoryMin() As String
         Get
-            Return CType(Me("Startup_MemoryMin"), String)
+            Return CType(Me("Startup_MemoryMin"),String)
         End Get
-        Set(value As String)
+        Set
             Me("Startup_MemoryMin") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property Startup_JavaExec() As String
         Get
-            Return CType(Me("Startup_JavaExec"), String)
+            Return CType(Me("Startup_JavaExec"),String)
         End Get
-        Set(value As String)
+        Set
             Me("Startup_JavaExec") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property UserSettings_DefaultTextEditor() As String
         Get
-            Return CType(Me("UserSettings_DefaultTextEditor"), String)
+            Return CType(Me("UserSettings_DefaultTextEditor"),String)
         End Get
-        Set(value As String)
+        Set
             Me("UserSettings_DefaultTextEditor") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property Jarfile() As String
         Get
-            Return CType(Me("Jarfile"), String)
+            Return CType(Me("Jarfile"),String)
         End Get
-        Set(value As String)
+        Set
             Me("Jarfile") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property LaunchArgu_JAVA() As String
         Get
-            Return CType(Me("LaunchArgu_JAVA"), String)
+            Return CType(Me("LaunchArgu_JAVA"),String)
         End Get
-        Set(value As String)
+        Set
             Me("LaunchArgu_JAVA") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Configuration.DefaultSettingValueAttribute("")> _
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property JarLaunchArguments() As String
         Get
-            Return CType(Me("JarLaunchArguments"), String)
+            Return CType(Me("JarLaunchArguments"),String)
         End Get
-        Set(value As String)
+        Set
             Me("JarLaunchArguments") = value
         End Set
     End Property
@@ -154,7 +154,8 @@ Partial Friend NotInheritable Class MySettings
      Global.System.Configuration.DefaultSettingValueAttribute("<?xml version=""1.0"" encoding=""utf-16""?>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"<ArrayOfString xmlns:xsi=""http://www.w3."& _ 
         "org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <s"& _ 
         "tring>world-backups</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>plugins</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>crash-report"& _ 
-        "s</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>logs</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"</ArrayOfString>")>  _
+        "s</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>logs</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>config</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>librar"& _ 
+        "ies</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>mods</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"</ArrayOfString>")>  _
     Public Property ProfileDir_ExcludedDirectories() As Global.System.Collections.Specialized.StringCollection
         Get
             Return CType(Me("ProfileDir_ExcludedDirectories"),Global.System.Collections.Specialized.StringCollection)

@@ -33,6 +33,9 @@
   &lt;string&gt;plugins&lt;/string&gt;
   &lt;string&gt;crash-reports&lt;/string&gt;
   &lt;string&gt;logs&lt;/string&gt;
+  &lt;string&gt;config&lt;/string&gt;
+  &lt;string&gt;libraries&lt;/string&gt;
+  &lt;string&gt;mods&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>
