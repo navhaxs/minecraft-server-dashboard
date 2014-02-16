@@ -12,7 +12,7 @@
         <Grid Background="#FFFFEEB4" Margin="10,0,18,0" Height="64" VerticalAlignment="Top">
             <Image Height="64" Width="64" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/appicon.ico" HorizontalAlignment="Left" />
             <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="72,5,0,0" VerticalAlignment="Top" FontSize="20" Width="322" TextWrapping="Wrap" />
-            <TextBlock HorizontalAlignment="Left" Margin="72,37,0,0" FontSize="14" Width="339" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Feb2014 Beta 2, built 17/2/2014 (c) navhaxs 2013-2014" /></TextBlock>
+            <TextBlock Margin="72,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Feb2014 Beta 2, built 17/2/2014 (c) navhaxs 2013-2014" /></TextBlock>
         </Grid>
 
         <Button Content="Done" Margin="0,0,18,15" Click="Button_Click" Height="33" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="96" IsDefault="True" />
@@ -25,8 +25,8 @@
                             <Style TargetType="ScrollBar">
                             </Style>
                         </ScrollViewer.Resources>
-                    
-                    <TextBlock Margin="15" TextWrapping="Wrap">
+
+                        <TextBlock Margin="15" TextWrapping="Wrap">
                         Minecraft Server Dashboard is flexible Minecraft server management made easy.<LineBreak />
                         <LineBreak />
                         <Bold>Acknowledgements</Bold>
@@ -40,15 +40,15 @@
                         <Run Text="Usage of this software requires compliance with the terms and conditions of the following third-party online services:" />
                         <LineBreak />
                         <Italic>DynDNS CheckIP</Italic><Run Text=" to determine your IP address (" /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://dyndns.com">dyndns.com</Hyperlink>)<Run Text=", and the " /><Italic>awesome Minotar</Italic><Run Text=" service for fetching Minecraft avatars (" /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://minotar.net">minotar.net</Hyperlink>)
-                    </TextBlock>
-                        </ScrollViewer>
+                        </TextBlock>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Licence" Background="WhiteSmoke">
                 <Grid>
-                        <TextBlock TextWrapping="Wrap" Margin="15">
+                    <TextBlock TextWrapping="Wrap" Margin="15">
                         <Run Text="Minecraft Server Dashboard comes with ABSOLUTELY NO WARRANTY, and is licensed under the GNU General Public License, version 2 or later." /><LineBreak />
-                        </TextBlock>
+                    </TextBlock>
                 </Grid>
             </TabItem>
             <TabItem Header="Support" Background="WhiteSmoke">
@@ -63,9 +63,9 @@
                         <LineBreak/>
                         <Image Source="/MinecraftServerDashboard;component/Images/Tab/globe_16xLG.png" Stretch="None" HorizontalAlignment="Left" />
                         <Hyperlink Click="Hyperlink_Click">http://www.minecraftforum.net/topic/1943186-minecraft-server-dashboard/</Hyperlink>
-                        
-                        
-                        
+
+
+
                     </TextBlock>
                 </Grid>
             </TabItem>
