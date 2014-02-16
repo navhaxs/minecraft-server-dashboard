@@ -214,7 +214,7 @@ Public Class ServerClass
                 ' Two different strings to detect depending on Minecraft server type (VANILLA (and Forge) servers // CraftBukkit servers)
                 ' VANILLA 1.7.2
                 '    [...timestamp...] [Server thread/INFO]: Saved the world
-                If e.Data.EndsWith("INFO] CONSOLE: Save complete.") Or e.Data.EndsWith("INFO]: CONSOLE: Save complete.") Or e.Data.EndsWith("INFO] Saved the world") Or e.Data.EndsWith("[Server thread/INFO]: Saved the world") Then
+                If e.Data.EndsWith("INFO] CONSOLE: Save complete.") Or e.Data.EndsWith("INFO]: CONSOLE: Save complete.") Or e.Data.EndsWith("INFO] Saved the world") Or e.Data.EndsWith("[Server thread/INFO]: Saved the world") Or e.Data.EndsWith("INFO] [Minecraft-Server] Saved the world") Then
                     isWaitingForWorldSavedActivity = False
                     RaiseEvent Detected_WorldSavedCompleted()
                 End If
@@ -264,7 +264,7 @@ Public Class ServerClass
             End If
 
             If isGettingPlayerListActivity = isGettingPlayerListActivity_STATE.LookingForMatch Then
-                If e.Data.Contains("INFO] There are ") Or e.Data.Contains("INFO]: There are ") Then
+                If e.Data.Contains("INFO] There are ") Or e.Data.Contains("INFO] [Minecraft-Server] There are 0") Or e.Data.Contains("INFO]: There are ") Then
                     If e.Data.Contains("INFO] There are 0/") Or e.Data.Contains("INFO]: There are 0/") Then
                         'If there are no players, simply clear player list UI now
                         navpageDashboard.Dispatcher.BeginInvoke( _
@@ -286,7 +286,7 @@ Public Class ServerClass
             'Check if the server has completed initializing, e.g. line matching the string:
             '2013-05-20 12:34:07 [INFO] Done (1.701s)! For help, type "help" or "?"
             If CurrentServerState = ServerState.WarmUp Then
-                If (e.Data.Contains("INFO] Done (") Or e.Data.Contains("INFO]: Done (")) And e.Data.EndsWith("s)! For help, type ""help"" or ""?""") Then
+                If (e.Data.Contains("INFO] Done (") Or e.Data.Contains("INFO]: Done (") Or e.Data.Contains("INFO] [Minecraft-Server] Done (")) And e.Data.EndsWith("s)! For help, type ""help"" or ""?""") Then
                     CurrentServerState = ServerState.Running
                 End If
             End If
@@ -465,6 +465,6 @@ Public Class ServerClass
         Dim theCPUCounter As PerformanceCounter = New PerformanceCounter("Process", "% Processor Time", MyServer.ServerProc.ProcessName)
         theCPUCounter.NextValue()
     End Sub
-    
+
 #End Region
 End Class

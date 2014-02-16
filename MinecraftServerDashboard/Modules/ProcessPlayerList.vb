@@ -1,15 +1,18 @@
-﻿Module PlayerList
+﻿Public Module PlayerList
 
-    Function ProcessPlayerList(input As String) As List(Of String)
+    Public Function ProcessPlayerList(input As String) As List(Of String)
         Dim PlayerList As New List(Of String)
 
         ' Remove [INFO] string if it exists
         ' e.g. 2013-07-09 16:46:13 [INFO] bearbear12345
+        ' or for Forge:
+        ' e.g. 2013-07-09 16:46:13 [INFO] [Minecraft-Server] bearbear12345
         Dim f As String
         If input.Contains("INFO]:") Then
             f = "INFO]: "
+        ElseIf input.Contains("INFO] [Minecraft-Server] ") Then
+            f = "INFO] [Minecraft-Server] "
         Else
-
             f = "INFO] "
         End If
 
