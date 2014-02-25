@@ -30,7 +30,7 @@
                              />
                     <!--<TextBlock Text="Increasing the memory will improve server performance, particlarly as the number of connected players increases" Height="32" HorizontalAlignment="Left" x:Name="Label3_Copy6" VerticalAlignment="Top" Margin="0,42,0,0"  TextWrapping="Wrap" />-->
                     <Slider x:Name="sliderMemory" Margin="10,52,160,0" VerticalAlignment="Top" Minimum="512" IsSnapToTickEnabled="True" TickFrequency="1" />
-                    
+
                     <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7" Visibility="Hidden"><Hyperlink Click="Hyperlink_Click">Advanced memory settings</Hyperlink></TextBlock>
                 </Grid>
             </Border>
@@ -43,25 +43,28 @@
             </Grid>
 
             <!--Startup paramters-->
-            <Border Background="#FFFFFADD" Padding="10,0" HorizontalAlignment="Stretch" Height="140" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0">
+            <Border Background="#FFFFFADD" Padding="10,0" HorizontalAlignment="Stretch" Height="160" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" >
                 <Grid>
-                    <Label Content="Startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18"/>
-                    <Border BorderBrush="#777777" BorderThickness="1" Margin="0,79,120,15" Background="White" Cursor="IBeam">
+                    <Label Content="Startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18" VerticalAlignment="Top" />
+                    <Border BorderBrush="#777777" BorderThickness="1" Margin="0,79,120,37" Background="White" Cursor="IBeam" >
                         <DockPanel GotFocus="DockPanel_GotFocus">
                             <TextBox x:Name="parameters_right" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Stretch" TextChanged="TextBox_TextChanged_3" BorderThickness="0" HorizontalAlignment="Stretch" Width="350"></TextBox>
                             <!--<TextBox x:Name="parameters_left" VerticalContentAlignment="Center" VerticalAlignment="Stretch"  TextWrapping="Wrap" TextChanged="TextBox_TextChanged_3" BorderThickness="0" >
                             
                         </TextBox>-->
                             <TextBlock Cursor="Arrow" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="1,0,1,0">--nojline nogui</TextBlock>
-                            
-                        
+
+
                         </DockPanel>
                     </Border>
-                    
-                    <TextBlock Height="32" HorizontalAlignment="Left" Margin="0,47,0,60" >
+
+                    <TextBlock Height="32" HorizontalAlignment="Left" Margin="0,47,0,60" VerticalAlignment="Top" >
                         <Image Height="16" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />
                         The <Italic>--nojline nogui</Italic> parameters are always appended
                     </TextBlock>
+
+                    <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7"><Hyperlink x:Name="btnSetJavaSpecificArgs">Edit Java parameters (Advanced)</Hyperlink></TextBlock>
+
                 </Grid>
             </Border>
 

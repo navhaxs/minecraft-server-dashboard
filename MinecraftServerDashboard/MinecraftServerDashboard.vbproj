@@ -166,6 +166,9 @@
     <Compile Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml.vb">
       <DependentUpon>ConfigMyWorldBackups.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigPages\Pages\Dialogs\AdvJavaArguementsDialog.xaml.vb">
+      <DependentUpon>AdvJavaArguementsDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConfigPages\Pages\Dialogs\DownloadWindow.xaml.vb">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
@@ -284,6 +287,10 @@
     <Page Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigPages\Pages\Dialogs\AdvJavaArguementsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConfigPages\Pages\Dialogs\DownloadWindow.xaml">
       <SubType>Designer</SubType>

@@ -171,4 +171,9 @@
         End If
     End Sub
 
+    Private Sub btnSetJavaSpecificArgs_Click(sender As Object, e As RoutedEventArgs) Handles btnSetJavaSpecificArgs.Click
+        Dim m As New AdvJavaArguementsDialog
+        m.Owner = MyMainWindow
+        m.ShowDialog()
+    End Sub
 End Class
