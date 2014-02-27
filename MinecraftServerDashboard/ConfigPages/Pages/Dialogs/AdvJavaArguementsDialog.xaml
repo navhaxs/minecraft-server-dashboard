@@ -3,12 +3,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:metro="http://schemas.codeplex.com/elysium"
     xmlns:params="http://schemas.codeplex.com/elysium/params"
-    params:Manager.Theme="Dark"
+    params:Manager.Theme="Light"
     Title="" MinHeight="231" MinWidth="323" Height="262" Width="445" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
     <Grid>
         <TextBox x:Name="txtJAVASpecificStartupParameters" Margin="10,80,10,58" TextWrapping="Wrap" Text="TextBox"/>
         <Button Content="OK" HorizontalAlignment="Right" Margin="0,0,10,22" Width="75" Click="Button_Click" Height="31" VerticalAlignment="Bottom"/>
-        <Label Content="Startup parameters for launching Java" Height="42" HorizontalAlignment="Left" Margin="5,0,0,0" FontWeight="Light" FontSize="18" VerticalAlignment="Top" Foreground="White" />
+        <Label Content="Startup parameters for launching Java" Height="42" HorizontalAlignment="Left" Margin="5,0,0,0" FontWeight="Light" FontSize="18" VerticalAlignment="Top" Foreground="Black" />
         <TextBlock Margin="10,42,10,0" VerticalAlignment="Top" TextWrapping="Wrap">
             <Italic>These parameters are appended before the -Jar {MyJarfile} and any other parameters set by Dashboard</Italic>
         </TextBlock>
