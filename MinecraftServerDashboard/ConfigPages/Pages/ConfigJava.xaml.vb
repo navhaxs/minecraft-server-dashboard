@@ -23,6 +23,7 @@
 
         minmem.Text = My.Settings.Startup_MemoryMin.ToLower.Replace("m", "")
         jarpath.Text = MyUserSettings.JavaExec
+        parameters_right.Text = My.Settings.JarLaunchArguments
 
         If MyUserSettings.JavaExec Is "" Then
             jreauto.IsChecked = True
