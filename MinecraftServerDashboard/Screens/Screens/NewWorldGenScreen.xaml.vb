@@ -15,7 +15,7 @@
 
             world_level_to_clear = My.Computer.FileSystem.GetDirectoryInfo(world_level_to_clear).Name
 
-            lbloptional.Text = "for the profile """ & world_level_to_clear & """"
+            lbloptional.Text = " (Affecting the profile """ & world_level_to_clear & """)"
         Else
             Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
             Dim s As String = b.ReturnConfigValue("level-name")
