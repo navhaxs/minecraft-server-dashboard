@@ -25,3 +25,5 @@ DotNetZip http://dotnetzip.codeplex.com (Ms-PL)
 Elysium WPF theme http://elysium.codeplex.com (MIT)
 
 Roger Vuistiner's MWLib (CPOL)
+
+Json.NET http://james.newtonking.com/json (MIT)
