@@ -6,28 +6,28 @@ Public Class ServerClass
     Implements INotifyPropertyChanged
 
     ''' <summary>
-    ''' The core Minecraft server process object as a System.Diagnostics.Process
+    ''' The Minecraft Java server process
     ''' </summary>
     Public WithEvents ServerProc As New Process
 
     ''' <summary>
-    ''' The parameters to start the Minecraft server with
+    ''' The startup Minecraft server parameters
     ''' </summary>
     Public Property MyStartupParameters As New StartupParameters
 
     ''' <summary>
-    ''' This event is fired when there is a change in the server's running state
+    ''' Fired when the server's running state is changed
     ''' </summary>
-    ''' <param name="newstate">The state that the Minecraft server has now switched to</param>
+    ''' <param name="newstate">The current state that the Minecraft server is now in</param>
     Public Event ServerStateChanged(ByVal newstate As ServerState)
 
     ''' <summary>
-    ''' This event is fired when the server process has exited
+    ''' Fired when the server process has exited
     ''' </summary>
     Public Event ServerStopped()
 
 #Region "INotifyPropertyChanged - WPF UI Binding"
-    'This code is used to enable bindings between the server console data to the frontend textbox UI
+    'This code is used to bind between the server's console data and the frontend textbox UI
 
     Public Event PropertyChanged(sender As Object, e As PropertyChangedEventArgs) Implements INotifyPropertyChanged.PropertyChanged
     ' Create the OnPropertyChanged method to raise the event
@@ -38,25 +38,24 @@ Public Class ServerClass
 
 #Region "My Server Settings"
     ''' <summary>
-    ''' Sets up the parameters in which to launch the server with
+    ''' Sets up the parameters in which to the server is to be launched with
     ''' </summary>
     Function ReloadStartupParameters()
 
-        Dim java As String
+        Dim javaexe As String
         If MyUserSettings.JavaExec.Length = 0 Then 'Set the default if blank
             If My.Computer.FileSystem.FileExists(DetectJava.FindPath & "\bin\java.exe") Then
-                java = DetectJava.FindPath & "\bin\java.exe"
+                javaexe = DetectJava.FindPath & "\bin\java.exe"
             Else
-                java = "java"
+                javaexe = "java"
             End If
         Else
-            java = My.Settings.Startup_JavaExec
+            javaexe = My.Settings.Startup_JavaExec
         End If
-
 
         ServerProc = New Process With { _
             .StartInfo = New ProcessStartInfo() With { _
-                .FileName = java, _
+                .FileName = javaexe, _
                 .WorkingDirectory = MyStartupParameters.ServerPath, _
                 .Arguments = MyStartupParameters.FullParameters, _
                 .RedirectStandardInput = True, _
@@ -67,7 +66,8 @@ Public Class ServerClass
             } _
         }
 
-        ServerProc.EnableRaisingEvents = True ' Redirects the server process' console output into this application instead
+        ' Redirect Java's stdio to Dashboard
+        ServerProc.EnableRaisingEvents = True
 
         Return True
     End Function
@@ -75,10 +75,10 @@ Public Class ServerClass
 
 #Region "Server's console stream/Log"
 
-    Private _consolestream As String ' This variable holds the entire output stream of the server process
+    Private _consolestream As String ' This variable holds the entire stdio of the server
 
     ''' <summary>
-    ''' The Minecraft server process' console output stream
+    ''' The server process' output stream
     ''' </summary>
     Public Property ConsoleStream As String
         Get
@@ -91,7 +91,7 @@ Public Class ServerClass
     End Property
 
     ''' <summary>
-    ''' Sends a command to the Minecraft server process
+    ''' Send a command to the Minecraft server
     ''' </summary>
     ''' <param name="command">The command to pass to the Minecraft server</param>
     Public Function SendCommand(command As String) As Boolean
@@ -207,6 +207,7 @@ Public Class ServerClass
 
 #End Region
 
+    'TODO: REGEX
     Private Sub ServerProc_ErrorDataReceived(sender As Object, e As DataReceivedEventArgs) Handles ServerProc.OutputDataReceived, ServerProc.ErrorDataReceived
         If Not (e.Data = Nothing) Then
 
@@ -264,7 +265,10 @@ Public Class ServerClass
             End If
 
             If isGettingPlayerListActivity = isGettingPlayerListActivity_STATE.LookingForMatch Then
-                If e.Data.Contains("INFO] There are ") Or e.Data.Contains("INFO] [Minecraft-Server] There are 0") Or e.Data.Contains("INFO]: There are ") Then
+                If e.Data.Contains("INFO] There are ") _
+                    Or e.Data.Contains("INFO] [Minecraft-Server] There are ") _
+                    Or e.Data.Contains("INFO]: There are ") Then
+
                     If e.Data.Contains("INFO] There are 0/") Or e.Data.Contains("INFO]: There are 0/") Then
                         'If there are no players, simply clear player list UI now
                         navpageDashboard.Dispatcher.BeginInvoke( _
@@ -327,13 +331,14 @@ Public Class ServerClass
                             .IsBackground = True _
                                 }
 
-                ' START the Minecraft server process and begin reading from its' console stream
+                ' Start the server process
                 With ServerProc
                     ConsoleStream += "[Dashboard] Startup parameters: " & .StartInfo.Arguments & vbLf
                     ConsoleStream += "[Dashboard] Java executable: " & ServerProc.StartInfo.FileName & vbLf
                     ConsoleStream += "[Dashboard] Starting server..."
                     .Start()
                     ConsoleStream += " OK! [" & ServerProc.StartTime & "]" & vbLf
+                    ' Begin reading from stdio (and stderr)
                     .BeginErrorReadLine()
                     .BeginOutputReadLine()
                 End With
@@ -378,7 +383,7 @@ Public Class ServerClass
     End Property
 
     ''' <summary>
-    ''' The current state of the server
+    ''' The current running state of the server
     ''' </summary>
     Public Property CurrentServerState() As ServerState
         Get
