@@ -55,7 +55,7 @@
 
     Private Function _DoClose() As Boolean
         If isUnsavedChanges Then
-            Select Case MessageBox.Show("You have made unsaved changes! Would you like to save these changes?", "Server Configuration", MessageBoxButton.YesNoCancel)
+            Select Case MessageBox.Show("There are unsaved changes" & vbLf & "Would you like to save these changes?", "Server Configuration", MessageBoxButton.YesNoCancel)
                 Case MessageBoxResult.Yes
                     btnSave_Click()
                     superoverlay.Confirm_DoClose(Me)

@@ -5,7 +5,7 @@
 
         ' Remove [INFO] string if it exists
         ' e.g. 2013-07-09 16:46:13 [INFO] bearbear12345
-        ' or for Forge:
+        ' or:
         ' e.g. 2013-07-09 16:46:13 [INFO] [Minecraft-Server] bearbear12345
         Dim f As String
         If input.Contains("INFO]:") Then

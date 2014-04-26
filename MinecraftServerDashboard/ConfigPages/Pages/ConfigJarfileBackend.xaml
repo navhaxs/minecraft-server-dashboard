@@ -106,17 +106,17 @@
             <Grid >
                 <Grid x:Name="isJarDetected">
                         <TextBlock Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,30,10,10">
-                            Select which jarfile to use as the Minecraft server engine (e.g. "Minecraft_Server.jar")
+                            Select which jarfile to use as the Minecraft server engine (such as "Minecraft_Server.jar")
                         </TextBlock>
                         <TextBlock Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,0,10,0" VerticalAlignment="Bottom">
                             <Bold>Not in the list?</Bold><LineBreak />
-                            Make sure you've launched Dashboard from the folder where your server files are located. The jarfile should be in the same directory.
+                            Make sure that you've launched Dashboard from the folder where your server files are located. The jarfile must be in this same directory.
                     </TextBlock>
                     <Grid VerticalAlignment="Top" Margin="10,55,0,0">
                         <ComboBox x:Name="thisJar" VerticalAlignment="Top" HorizontalAlignment="Left" Width="471" />
                         <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="476,6,0,0" x:Name="refresh" TextWrapping="Wrap" RenderTransformOrigin="0.516,0.05" Height="20" VerticalAlignment="Top" ><Hyperlink x:Name="refreshbtn" Click="refreshbtn_Click">Refresh</Hyperlink></TextBlock>
                     </Grid>
-                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" ><Run Text="Already have the server files?"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" ><Run Text="Server backend"/></TextBlock>
                 </Grid>
                 <Grid x:Name="isJarDetectedFalse" Visibility="Collapsed">
                         <Image HorizontalAlignment="Left" Margin="15,25,0,0" Height="32" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />

@@ -41,7 +41,7 @@
                     VerticalAlignment="Center"
                     Margin="50,0,0,0"
                     TextWrapping="Wrap">
-                    You've made changes that require a server restart to take effect. Click here to restart the server now
+                    A server restart is required for some changes to take effect. Click here to restart now
                 </TextBlock>
             </Grid>
         </Button>
@@ -63,7 +63,7 @@
                     VerticalAlignment="Center"
                     Margin="50,0,0,0"
                     TextWrapping="Wrap">
-                    Some settings are unavailable whilst the server is running. Click here to stop the server
+                    Some settings may be unavailable whilst the server is running. Click here to stop the server
                 </TextBlock>
             </Grid>
         </Button>

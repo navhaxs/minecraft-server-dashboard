@@ -33,12 +33,12 @@
     Private Sub DoBackgroundRestartServer()
         With MyServer
             If .ServerIsOnline Then
-                ' STOP server
+                ' Stop server
                 .CurrentServerState = ServerState.Stopping
                 Try
                     .StopServer()
 
-                    ' WAIT for server to exit
+                    ' Wait for server exit
                     .ServerProc.WaitForExit()
 
                     Dim i As Integer = 0
@@ -46,14 +46,14 @@
                         System.Threading.Thread.Sleep(1500)
                         i += 1
 
-                        ' TWO minute timeout
+                        ' Two minute timeout
                         If i = 120 / 1.5 Then
                             MessageBox.Show("An attempt to restart the server failed.")
                             Exit Sub
                         End If
                     End While
 
-                    ' START server again
+                    ' Start server again
                     .StartServer()
                 Catch
                 End Try
