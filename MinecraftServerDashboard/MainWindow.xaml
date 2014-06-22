@@ -24,7 +24,7 @@
 		<!--TODO: Keyboard shortcuts on config pages-->
 		<CommandBinding Command="{x:Static local:MainWindow.AppNav_GoBack}"
 						Executed="AppNav_GoBackExecuted" />
-		<CommandBinding Command="{x:Static local:MainWindow.AppNav_GoForward}"
+        <CommandBinding Command="{x:Static local:MainWindow.AppNav_GoForward}"
 						Executed="AppNav_GoForwardExecuted" />
 	</Window.CommandBindings>
 	<Grid x:Name="FormControls"

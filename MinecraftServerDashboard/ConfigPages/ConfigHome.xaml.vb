@@ -2,6 +2,8 @@
 
     Public Data As PageConfigViewModel
 
+    Friend viewSuperOverlay As SuperOverlay
+
     Sub New()
 
         ' This call is required by the designer.
@@ -16,27 +18,27 @@
 #Region "Button actions"
 
     Private Sub Go_JavaSettings(sender As Object, e As RoutedEventArgs) Handles Button4.Click
-        Dim s As New SuperOverlay
-        s.btnHelp.Visibility = Windows.Visibility.Visible
-        ShowConfigPage(New ConfigJava(s), s)
+        viewSuperOverlay = New SuperOverlay
+        viewSuperOverlay.btnHelp.Visibility = Windows.Visibility.Visible
+        ShowConfigPage(New ConfigJava(viewSuperOverlay), viewSuperOverlay)
     End Sub
 
     Public Sub Go_ServerPropertiesSettings() Handles Button6.Click
-        Dim s As New SuperOverlay
-        Dim m As New ConfigServerProp(s)
+        viewSuperOverlay = New SuperOverlay
+        Dim m As New ConfigServerProp(viewSuperOverlay)
         m.Load()
-        s.btnHelp.Visibility = Windows.Visibility.Visible
-        ShowConfigPage(m, s)
+        viewSuperOverlay.btnHelp.Visibility = Windows.Visibility.Visible
+        ShowConfigPage(m, viewSuperOverlay)
     End Sub
 
     Public Sub Go_BackendSetup() Handles Button1.Click
-        Dim s As New SuperOverlay
-        ShowConfigPage(New ConfigJarfileBackend(s), s)
+        viewSuperOverlay = New SuperOverlay
+        ShowConfigPage(New ConfigJarfileBackend(viewSuperOverlay), viewSuperOverlay)
     End Sub
 
     Private Sub Go_DashboardSettings(sender As Object, e As RoutedEventArgs) Handles Button2.Click
-        Dim s As New SuperOverlay
-        ShowConfigPage(New ConfigMyApp(s), s)
+        viewSuperOverlay = New SuperOverlay
+        ShowConfigPage(New ConfigMyApp(viewSuperOverlay), viewSuperOverlay)
     End Sub
 
     Private Sub RestartBanner_Click(sender As Object, e As RoutedEventArgs)

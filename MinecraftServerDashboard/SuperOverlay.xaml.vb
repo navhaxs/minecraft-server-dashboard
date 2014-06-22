@@ -5,9 +5,14 @@
 Public Class SuperOverlay
 
     Public Event isClosingTrigger()
+    Property isClosed As Boolean = False
 
     ' Call the isClosingTrigger to prevent unsaved changes, if any.
-    Private Sub BackButton1_Click(sender As Object, e As RoutedEventArgs) Handles BackButton1.Click
+    Private Sub BackButton_Click(sender As Object, e As RoutedEventArgs) Handles BackButton1.Click
+        tryClose()
+    End Sub
+
+    Sub tryClose()
         RaiseEvent isClosingTrigger()
     End Sub
 
@@ -18,6 +23,7 @@ Public Class SuperOverlay
         FrameConfigOverlay = New Frame ' Clear the screen content/controls
         Me.Visibility = Windows.Visibility.Hidden
         MyMainWindow.OverlayClosed()
+        isClosed = True
     End Sub
 
     Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs)

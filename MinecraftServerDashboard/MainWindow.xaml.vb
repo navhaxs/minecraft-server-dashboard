@@ -15,6 +15,9 @@ Class MainWindow
         AppNav_GoBack.InputGestures.Add(New KeyGesture(Key.Left, ModifierKeys.Alt))
         AppNav_GoForward.InputGestures.Add(New KeyGesture(Key.Right, ModifierKeys.Alt))
 
+        Me.CommandBindings.Add(New CommandBinding(NavigationCommands.BrowseBack, AddressOf AppNav_GoBackExecuted))
+        Me.CommandBindings.Add(New CommandBinding(NavigationCommands.BrowseForward, AddressOf AppNav_GoForwardExecuted))
+
         ' Allow this object to be accessed globally in project
         MyApp.MyMainWindow = Me
         ' Create instances of all required objects
@@ -81,8 +84,19 @@ Class MainWindow
     Public Shared AppNav_GoForward As RoutedCommand = New RoutedCommand()
 
     Sub AppNav_GoBackExecuted()
-        If navDashboard.IsEnabled Then
-            BackButton_Click()
+        Dim actionComplete As Boolean = False
+        If Not (navPageCBconfig.viewSuperOverlay Is Nothing) Then
+            If Not (navPageCBconfig.viewSuperOverlay.isClosed) Then
+
+                navPageCBconfig.viewSuperOverlay.tryClose()
+                actionComplete = True
+            End If
+        End If
+
+        If Not actionComplete Then
+            If navDashboard.IsEnabled Then
+                BackButton_Click()
+            End If
         End If
     End Sub
 
