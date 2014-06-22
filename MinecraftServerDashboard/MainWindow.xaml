@@ -205,22 +205,21 @@
 				<!--Game tab-->
 
 				<!--Scheduler tab-->
-				<!--TODO: Disabled for now-->
-				<!--<TabItem Visibility="Collapsed">
-					<TabItem.Header>
-						<StackPanel Orientation="Horizontal">
-							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/BrowseDefinition_5577.png" Stretch="Uniform" />
-							<TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
+                <TabItem Style="{StaticResource mytabitem}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/BrowseDefinition_5577.png" Stretch="Uniform" />
+                            <TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
 								FontWeight="Light"
 								FontSize="18px" >Scheduler</TextBlock>
-						</StackPanel>
-					</TabItem.Header>
-					<Grid>
-						<Frame TabIndex="0" NavigationUIVisibility="Hidden" />
-					</Grid>
-				</TabItem>-->
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Frame x:Name="FrameScheduler" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </TabItem>
 
-				<!--Configuration tab-->
+                <!--Configuration tab-->
 				<TabItem Style="{StaticResource mytabitem}">
 					<TabItem.Header>
 						<StackPanel Orientation="Horizontal">

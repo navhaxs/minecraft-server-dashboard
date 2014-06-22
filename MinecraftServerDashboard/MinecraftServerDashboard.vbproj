@@ -184,6 +184,9 @@
     <Compile Include="Controls\PlayerTile.xaml.vb">
       <DependentUpon>PlayerTile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SchedulerTaskItem.xaml.vb">
+      <DependentUpon>SchedulerTaskItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\InverseBooleanConverter.vb" />
     <Compile Include="MainWindowViewModel.vb" />
     <Compile Include="Modules\CrashCollector.vb" />
@@ -206,6 +209,9 @@
     </Compile>
     <Compile Include="Modules\ZipProgress.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\PageScheduler.xaml.vb">
+      <DependentUpon>PageScheduler.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\OverlayScreen.xaml.vb">
       <DependentUpon>OverlayScreen.xaml</DependentUpon>
@@ -232,6 +238,9 @@
       <DependentUpon>WelcomeFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerProccess\ServerRestartHelper.vb" />
+    <Compile Include="ServerProccess\TaskScheduler.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="Windows\AboutWindow.xaml.vb">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
@@ -312,7 +321,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\SchedulerTaskItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\CrashReportUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageScheduler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -466,6 +483,7 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -622,6 +640,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Elysium.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="AfterResolveReferences">

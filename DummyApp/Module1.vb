@@ -9,7 +9,8 @@ Module Module1
         Console.WriteLine(TimeNow() & " [INFO] Done (4.510s)! For help, type ""help"" or ""?""")
         Console.WriteLine(TimeNow() & " [WARNING] **** FAILED TO BIND TO PORT!")
         DoRandomErrorTextRightNow("ErrorText.txt")
-        ExitTimer.Interval = 5000
+        ExitTimer.Interval = 180000 ' Exit in 3 min to avoid stray 'java' processes when debugging
+        ' e.g. The app is stopped by the VS debugger without the app stopping 'java'
         ExitTimer.Start()
         While True
             Select Case Console.ReadLine()
@@ -18,7 +19,6 @@ Module Module1
                 Case "doerror"
                     DoRandomErrorTextRightNow("ErrorText.txt")
                 Case "list"
-                    Console.WriteLine(TimeNow() & " [INFO] Players...")
                     Console.WriteLine(TimeNow() & " [INFO] Players...")
             End Select
             System.Threading.Thread.Sleep("1000")

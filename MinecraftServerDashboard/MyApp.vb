@@ -1,5 +1,5 @@
 ﻿''' <summary>
-''' This module holds shared variables throughout this project
+''' This module holds global objects
 ''' </summary>
 Module MyApp
 
@@ -28,7 +28,25 @@ Module MyApp
             Case ServerState.Running
                 MyMainWindow.Dispatcher.BeginInvoke(Sub()
                                                         MyMainWindow.lblserverstatus.Content = "online"
+
+                                                        navpageScheduler.labelServerIsRunning.Visibility = Visibility.Visible
+                                                        For Each i In navpageScheduler.UITasksList.Children
+                                                            i.isEnabled = False
+                                                        Next
+
                                                     End Sub)
+                navpageScheduler.Dispatcher.BeginInvoke(Sub()
+                                                            ' Clear any previous tasks
+                                                            MyApp.taskScheduler.clearTasks()
+
+                                                            ' Pass the tasks to the scheduler
+                                                            For Each task In navpageScheduler.ListOfSchedulerTaskItem
+                                                                MyApp.taskScheduler.addTask(task.Task)
+                                                            Next
+
+                                                            taskScheduler.startScheduler()
+
+                                                        End Sub)
             Case ServerState.WarmUp
                 MyMainWindow.Dispatcher.BeginInvoke( _
                                                 New Action(Sub()
@@ -39,7 +57,11 @@ Module MyApp
                                                                End With
                                                            End Sub))
             Case ServerState.Stopping
-                MyMainWindow.Dispatcher.BeginInvoke(Sub() MyMainWindow.lblserverstatus.Content = "stopping")
+                MyMainWindow.Dispatcher.BeginInvoke(Sub()
+                                                        MyMainWindow.lblserverstatus.Content = "stopping"
+
+                                                        taskScheduler.stopScheduler() ' Stop scheduler now for a user-initiated server stop
+                                                    End Sub)
             Case ServerState.NotRunning
                 MyMainWindow.Dispatcher.BeginInvoke( _
                                 New Action(Sub()
@@ -50,6 +72,14 @@ Module MyApp
                                                    .lblserverstatus.Content = "offline"
                                                    .EllipseOffline.Visibility = Visibility.Visible
                                                End With
+
+                                               navpageScheduler.labelServerIsRunning.Visibility = Visibility.Hidden
+                                               For Each i In navpageScheduler.UITasksList.Children
+                                                   i.isEnabled = True
+                                               Next
+
+                                               taskScheduler.stopScheduler()
+
                                            End Sub))
         End Select
 
@@ -66,6 +96,8 @@ Module MyApp
 
     Public navpageConsole As PageConsole
 
+    Public navpageScheduler As PageScheduler
+
     Public navPageCBconfig As PageConfig
 
     ' Exit the app upon the exit of the server process, where elected by the user. (See the form: Screens -> Screens -> ExitWarning.xaml)
@@ -78,4 +110,8 @@ Module MyApp
 
         End If
     End Sub
+
+#Region "task scheduler"
+    Public taskScheduler As New TaskScheduler
+#End Region
 End Module
