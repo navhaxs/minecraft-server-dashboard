@@ -27,10 +27,19 @@
         My.Computer.FileSystem.WriteAllText(System.Environment.CurrentDirectory & "\" & filename, report, False)
         MessageBox.Show("An error report was generated: " & filename)
 
-        'Dim m As New CrashReportUI
-        'm.txtReport.Text = report
-        'm.Show()
-        'e.Handled = True
+        ' Show pretty crash handler
+        Dim m As New CrashReportUI
+        m.txtReport.Text = report
+        On Error Resume Next
+        m.Tab.SelectedIndex = 0
+        If Not (MyServer Is Nothing) Then
+            MsgBox(MyServer.ServerIsOnline)
+            If MyServer.ServerIsOnline Then
+                m.Tab.SelectedIndex = 1
+            End If
+        End If
+        m.Show()
+        e.Handled = True
     End Sub
 
 End Module
