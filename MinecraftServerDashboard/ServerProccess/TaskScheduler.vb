@@ -89,7 +89,7 @@ Public Class TaskScheduler
 
         Public Sub OnTimer(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
             Debug.Print("task fired")
-            Debug.Assert(MyServer.ServerIsOnline) ' No more mum approach (COMP1917)
+            Debug.Assert(MyServer.ServerIsOnline)
 
             CType(source, System.Timers.Timer).Enabled = False
             RemoveHandler CType(source, TaskStartTimer).Elapsed, AddressOf Me.OnTimer
@@ -102,7 +102,15 @@ Public Class TaskScheduler
                         MyServer.SendCommand(i)
                     Next
                 Case TaskActionType.doBackup
-                    'TODO
+
+                    Dim backupUtil As New WorldDataBackupUtil
+                    Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
+                    backupUtil.inWorldDirectory = b.ReturnConfigValue("level-name")
+                    backupUtil.outZipArchiveFile = MyServer.MyStartupParameters.ServerPath & "\world-backups\" & backupUtil.inWorldDirectory & "_" & DateTime.Now.ToString("yyyyMMddHHmmssfff") & ".zip"
+
+                    backupUtil.startBackup()
+
+                    ' Don't wait for backup completion
             End Select
 
 #If DEBUG Then

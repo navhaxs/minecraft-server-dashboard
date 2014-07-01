@@ -203,6 +203,7 @@
     <Compile Include="Modules\UpdateEngine.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\WorldDataBackup.vb" />
     <Compile Include="Modules\ZipLib.vb" />
     <Compile Include="Modules\ZipProgress.Designer.vb">
       <DependentUpon>ZipProgress.vb</DependentUpon>

@@ -143,6 +143,4 @@ Public Class ServerProperties
     Dim SelectedIndex As Integer
     Dim OriginalValues As New List(Of String)
 
-    Dim ListBox1 As New ListBox
-
 End Class

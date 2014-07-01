@@ -9,7 +9,7 @@
     params:Manager.Theme="Light"
     ShowInTaskbar="False"
     ResizeMode="NoResize"
-        Height="350" Width="600"
+    Height="350" Width="600"
     mc:Ignorable="d" x:Class="DoBackupScreen">
     <Grid>
         <Grid.Background>
@@ -22,7 +22,7 @@
             <Rectangle Fill="#FF3A3A3A" Height="70" VerticalAlignment="Bottom" />
             <TextBlock Text="Backup world" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" />
             <TextBlock HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="Keep a backup of your Minecraft world data that can be later restored." /></TextBlock>
-            <Button x:Name="btnGo" Content="Go" Margin="0,0,10,10" Click="Button_Click_1" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsEnabled="False" IsDefault="True" />
+            <Button x:Name="btnGo" Content="Go" Margin="0,0,10,10" Click="Button_StartBackup_Click" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsEnabled="False" IsDefault="True" />
 
             <Border Margin="10,74,10,187" Background="#FFFFF7C2" Padding="10,0" CornerRadius="2">
                 <StackPanel Orientation="Horizontal">
