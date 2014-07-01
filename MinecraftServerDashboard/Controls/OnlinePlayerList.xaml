@@ -33,7 +33,7 @@
                 <GradientStop Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="0/20" x:Name="lblPlayerCounter" Padding="5,7,5,5" Foreground="#FFBBC3C8" Margin="0,0,22,8" FontFamily="Segoe WP Black" FontSize="48" d:LayoutOverrides="Width" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+        <Label x:Name="lblPlayerCounter" Padding="5,7,5,5" Foreground="#FFBBC3C8" Margin="0,0,22,8" FontFamily="Segoe WP Black" FontSize="48" d:LayoutOverrides="Width" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
         <!-- Left stripe -->
         <Label BorderThickness="1,1,1,0">
             <Label.BorderBrush>

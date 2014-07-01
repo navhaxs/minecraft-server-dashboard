@@ -7,46 +7,42 @@ Public Class DoBackupScreen
         If HideLinkToBackupManager Then
             DoBackupScreen.Visibility = Windows.Visibility.Collapsed
         End If
-
     End Sub
 
-    Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
-    Dim TargetZipPath As String
-    Dim thislevelname As String
+    Private b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
+    Private WithEvents backupUtil As New WorldDataBackupUtil
 
-    Sub DoClose() Handles btnCancel.Click
-        Close() ' Simply close the dialog if there are no operations in progress
+    Sub closeDialog() Handles btnCancel.Click
+        Close()
     End Sub
 
-    Dim isWaitingForResonse As Boolean = False
-    Private Sub Button_Click_1()
-
-        If thislevelname Is Nothing Then
+    Private Sub Button_StartBackup_Click()
+        If backupUtil.inWorldDirectory Is Nothing Then
             MessageBox.Show("No world has been created yet! Nothing found to backup")
             Exit Sub
         End If
 
-        ' Create backup path if not already exists
-        If Not My.Computer.FileSystem.DirectoryExists(MyServer.MyStartupParameters.ServerPath & "\world-backups\") Then
-            My.Computer.FileSystem.CreateDirectory(MyServer.MyStartupParameters.ServerPath & "\world-backups\")
-        End If
+        'Provide user feedback
+        Me.IsBusy = True
+        Me.FormControls.IsEnabled = False
+        Me.Cursor = System.Windows.Input.Cursors.Wait
 
-        TargetZipPath = MyServer.MyStartupParameters.ServerPath & "\world-backups\" & txtFilename.Text
+        backupUtil.outZipArchiveFile = MyServer.MyStartupParameters.ServerPath & "\world-backups\" & txtFilename.Text
 
-        If My.Computer.FileSystem.FileExists(TargetZipPath & ".zip") Then
+        If My.Computer.FileSystem.FileExists(backupUtil.outZipArchiveFile & ".zip") Then
             Select Case MessageBox.Show("The file """ & txtFilename.Text & """ already exists. Overwrite?", "", MessageBoxButton.YesNoCancel)
                 Case MessageBoxResult.Yes
                     'Continue
                 Case MessageBoxResult.No
-                    Dim NewTargetZipPath As String = TargetZipPath
+                    Dim newTargetZipPath As String = backupUtil.outZipArchiveFile
                     Try
                         ' Append a (2) to end of filename if exists
                         Dim i As Integer = 1
-                        While My.Computer.FileSystem.FileExists(NewTargetZipPath & ".zip")
+                        While My.Computer.FileSystem.FileExists(newTargetZipPath & ".zip")
                             i += 1
-                            NewTargetZipPath = TargetZipPath & " (" & i & ")"
+                            newTargetZipPath = backupUtil.outZipArchiveFile & " (" & i & ")"
                         End While
-                        TargetZipPath = NewTargetZipPath
+                        backupUtil.outZipArchiveFile = newTargetZipPath
                     Catch ex As Exception
                         MessageBox.Show("Could not write to file """ & txtFilename.Text & """! Try another filename.")
                         Exit Sub
@@ -57,83 +53,57 @@ Public Class DoBackupScreen
             End Select
         End If
 
-        TargetZipPath = TargetZipPath & ".zip"
+        backupUtil.outZipArchiveFile = backupUtil.outZipArchiveFile & ".zip"
 
-        'Provide user feedback
-        Me.IsBusy = True
-        Me.FormControls.IsEnabled = False
-        Me.Cursor = System.Windows.Input.Cursors.Wait
+        backupUtil.startBackup()
 
-        If MyServer.ServerIsOnline Then
-            'Ensure that the server is NOT still writing to the files to be backed up (for a consistent backup)
-            'Make all saves...
-            MyServer.SendCommand("save-all")
-            '...and right after, turn of saving until backup is completed...
-            MyServer.SendCommand("save-off")
-
-            ' DELAY BACKUP
-            'Wait for "saved world" response before continuing
-            isWaitingForResonse = True ' Don't allow dialog to close whilst waiting
-            MyServer.isWaitingForWorldSavedActivity = True
-            AddHandler MyServer.Detected_WorldSavedCompleted, AddressOf CompleteWorldBckup
-        Else
-
-            ' DO BACKUP NOW
-            CompleteWorldBckup()
-        End If
     End Sub
 
     Private Sub DoBackupScreen_Closing(sender As Object, e As ComponentModel.CancelEventArgs) Handles Me.Closing
-        If isWaitingForResonse Then
-            If MessageBox.Show("Abort world backup?", "World Backup", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
-                'Abort operation and close
-                MyServer.SendCommand("save-on") ' Turn back on World saving
-                MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
-                'Continue closing this dialog
-            Else
-                e.Cancel = True
-            End If
+        If backupUtil.currentState = WorldDataBackupUtil.BackupStage.WaitingForServerResponse Then
+            'Abort operation and close
+            MyServer.SendCommand("save-on") ' Turn back on World saving
+            MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
+
+            MessageBox.Show("The world backup was aborted.")
+
         Else
             MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
-            'Continue closing this dialog
+            ' (Continue closing this dialog)
         End If
     End Sub
 
-    Sub CompleteWorldBckup()
+    Private Sub backupUtil_BackupCompleted(m As WorldDataBackupUtil.BackupResult) Handles backupUtil.BackupCompleted
         MyMainWindow.Dispatcher.BeginInvoke( _
-                                            New Action(Sub()
-                                                           isWaitingForResonse = False
-                                                           If MyServer.ServerIsOnline Then
-                                                               RemoveHandler MyServer.Detected_WorldSavedCompleted, AddressOf CompleteWorldBckup
-                                                           End If
+                                           New Action(Sub()
 
-                                                           Compress(thislevelname, My.Computer.FileSystem.GetFileInfo(TargetZipPath).Name, TargetZipPath)
+                                                          Me.IsBusy = False
+                                                          Me.Cursor = System.Windows.Input.Cursors.Arrow
 
-                                                           If MyServer.ServerIsOnline Then
-                                                               MyServer.SendCommand("save-on") ' Turn back on World saving
-                                                           End If
+                                                          Select Case m
+                                                              Case WorldDataBackupUtil.BackupResult.SUCCESS
+                                                                  MessageBox.Show("Saving world """ & backupUtil.outZipArchiveFile & """ is complete")
+                                                              Case Else
+                                                                  MessageBox.Show("Dashboard failed to save world """ & backupUtil.outZipArchiveFile, "Dashboard", MessageBoxButton.OK, MessageBoxImage.Error)
+                                                          End Select
 
-                                                           Me.IsBusy = False
-                                                           Me.Cursor = System.Windows.Input.Cursors.Arrow
+                                                          closeDialog()
 
-                                                           MessageBox.Show("Saving world """ & TargetZipPath & """ is complete")
-
-                                                           ' Close this dialog box once completed
-                                                           DoClose()
-
-                                                       End Sub))
+                                                      End Sub))
     End Sub
 
+#Region "UI"
+
     Private Sub NewWorldGenScreen_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        thislevelname = b.ReturnConfigValue("level-name")
+        backupUtil.inWorldDirectory = b.ReturnConfigValue("level-name")
     End Sub
 
     Private Sub txtFilename_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtFilename.TextChanged
         ' Check for valid filename
-        btnGo.IsEnabled = (txtFilename.Text.Length > 0) And FilenameIsOK(txtFilename.Text)
+        btnGo.IsEnabled = (txtFilename.Text.Length > 0) And validateFilename(txtFilename.Text)
     End Sub
 
-    Public Shared Function FilenameIsOK(ByVal fileName As String) As Boolean
+    Public Shared Function validateFilename(ByVal fileName As String) As Boolean
         'List of invalid characters, taken from
         'http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247%28v=vs.85%29.aspx
         '       < (less than)
@@ -159,4 +129,7 @@ Public Class DoBackupScreen
         MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.StandardDialog
         navpageWorld.btnOpenBackups_Click()
     End Sub
+
+#End Region
+
 End Class

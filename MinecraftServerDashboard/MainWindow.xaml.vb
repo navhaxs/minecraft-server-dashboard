@@ -27,6 +27,7 @@ Class MainWindow
         MyApp.navpagePlayers = New PagePlayers
         MyApp.navpageWorld = New pageWorld
         MyApp.navpageConsole = New PageConsole
+        MyApp.navpageScheduler = New PageScheduler
         MyApp.navPageCBconfig = New PageConfig
 
         ' Add each page to their respective tabpage
@@ -34,6 +35,7 @@ Class MainWindow
         FramePlayers.Content = navpagePlayers
         FrameWorld.Content = navpageWorld
         FrameConsole.Content = navpageConsole
+        FrameScheduler.Content = navpageScheduler
         FrameConfigHome.Content = navPageCBconfig
 
         ' Set up data bindings
@@ -250,7 +252,10 @@ Class MainWindow
 
     Private Sub ForceStopServer_Click(sender As Object, e As RoutedEventArgs)
         If MessageBox.Show("Are you sure you want to force quit the server? This will disconnect all players, and all unsaved data will be lost.", "Force stop server", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
-            MyServer.ServerProc.Kill()
+            On Error Resume Next ' crash handling done right in .net
+            If Not MyServer.ServerProc.HasExited Then
+                MyServer.ServerProc.Kill()
+            End If
         End If
     End Sub
 
