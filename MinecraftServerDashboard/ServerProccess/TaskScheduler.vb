@@ -88,7 +88,7 @@ Public Class TaskScheduler
         End Sub
 
         Public Sub OnTimer(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
-            Debug.Print("task fired")
+            Debug.Print("task " & _thisTask.ID & " fired")
             Debug.Assert(MyServer.ServerIsOnline)
 
             CType(source, System.Timers.Timer).Enabled = False
@@ -119,7 +119,6 @@ Public Class TaskScheduler
 #Else
             AddHandler New TaskStartTimer(_thisTask.Interval).Elapsed, AddressOf New TimerHandler(_thisTask).OnTimer
 #End If
-            Debug.Print("task fired")
         End Sub
 
     End Class
