@@ -17,23 +17,45 @@ Public Class TaskScheduler
     Public Enum TaskActionType As Integer
         sendCommand = 0
         doBackup = 1
+        sayThis = 2
     End Enum
 
-    Structure Task
+    ''' <summary>
+    ''' An automated job for Dashboard to execute
+    ''' </summary>
+    Class Task
+        ''' <summary>
+        ''' Task index
+        ''' </summary>
         Property ID As Integer
 
-        Property Action As TaskActionType
-        Property Interval As Integer
+        ''' <summary>
+        ''' The enabled state of this task
+        ''' </summary>
+        Property Enabled As Boolean = True
 
-        Property Commands As String()
-    End Structure
+        ''' <summary>
+        ''' The action of this task
+        ''' </summary>
+        Property Action As TaskActionType = TaskActionType.doBackup
+
+        ''' <summary>
+        ''' The time interval of when to execute this task, in milliseconds
+        ''' </summary>
+        Property Interval As Double = 10 * 60000
+
+        ''' <summary>
+        ''' An array of commands to execute for sayThis or doCommand
+        ''' </summary>
+        Property Commands As String() = {""}
+    End Class
 
     Public Function nextTaskID() As Integer
         Return TaskList.Count + 1
     End Function
 
     Public Sub startScheduler()
-        Debug.Print("Starting scheduler")
+        Debug.Print("Starting scheduler engine")
         If (Not _schedulerRunning) Then
             Debug.Print("...ok (not already running)")
             ListOfTaskStartTimer = New List(Of TaskStartTimer)
@@ -47,6 +69,8 @@ Public Class TaskScheduler
             Next
 
             _schedulerRunning = True
+        Else
+            Debug.Print("...fail (already running)")
         End If
     End Sub
 
@@ -101,8 +125,12 @@ Public Class TaskScheduler
                     For Each i In _thisTask.Commands
                         MyServer.SendCommand(i)
                     Next
+                Case TaskActionType.sayThis
+                    Debug.Assert(Not _thisTask.Commands Is Nothing)
+                    For Each i In _thisTask.Commands
+                        MyServer.SendCommand("say " & i)
+                    Next
                 Case TaskActionType.doBackup
-
                     Dim backupUtil As New WorldDataBackupUtil
                     Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
                     backupUtil.inWorldDirectory = b.ReturnConfigValue("level-name")
@@ -127,6 +155,10 @@ Public Class TaskScheduler
 
     Public Class TaskStartTimer : Inherits System.Timers.Timer
         Sub New(ByVal intervalMilliseconds As Integer)
+            If intervalMilliseconds < 0 Then
+                MessageBox.Show("Dashboard could not start one of your scheduled task jobs because its time interval was not set.")
+                Exit Sub
+            End If
             Me.Interval = intervalMilliseconds
             Me.Enabled = True
             ListOfTaskStartTimer.Add(Me)

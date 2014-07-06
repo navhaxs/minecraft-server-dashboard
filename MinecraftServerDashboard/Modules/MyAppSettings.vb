@@ -1,110 +1,118 @@
-﻿Module MyUserSettings
+﻿Imports System.IO
+Imports System.Web.Script.Serialization
 
-#Region "JVM -Xms -Xmx"
+Namespace MyUserSettings
 
-    ''' <summary>
-    ''' The user defined -Xmx value
-    ''' </summary>
-    ''' 
-    Property MaximumMemory() As String
-        Get
-            'Should end with M (MB) or G (GB)
-            Return My.Settings.Startup_Memory
-        End Get
-        Set(value As String)
-            My.Settings.Startup_Memory = value
-            My.Settings.Save()
-        End Set
-    End Property
+    Module MyUserSettings
 
-    ''' <summary>
-    ''' The user defined -Xms value
-    ''' </summary>
-    Property MinimumMemory() As String
-        Get
-            'Should end with M (MB) or G (GB)
-            Return My.Settings.Startup_MemoryMin
-        End Get
-        Set(value As String)
-            My.Settings.Startup_MemoryMin = value
-            My.Settings.Save()
-        End Set
-    End Property
+        Public settingsStore As MySettingsConfig
+        Public tasksStore As MyTasksConfig
 
-    ''' <summary>
-    ''' Returns the user defined -Xms or -Xmx value as an integer, converted to MB
-    ''' </summary>
-    Function JVM_Xm_paramter_AsInteger(Xms_or_Xmx As String) As Integer
-        If Xms_or_Xmx.ToLower.EndsWith("g") Then ' is this parameter given in GB, as denoted by 'G' at end?
-            'Strip any 'M' and 'G' from the string, and also convert from GB to MB
-            Return Xms_or_Xmx.ToLower.Replace("g", "") * 1024
-        Else
-            'Strip any 'M' and 'G' from the string
-            Return Xms_or_Xmx.ToLower.Replace("m", "")
-        End If
-    End Function
+        Public Sub Load()
+            settingsStore = MySettingsConfig.Load()
+            tasksStore = MyTasksConfig.Load("tasks.jsn")
+        End Sub
 
-#End Region
-
-#Region "JVM path + jarfile"
-
-    ''' <summary>
-    ''' Specifed path to the Java.exe executable. Dashboard defaults to "java" if empty.
-    ''' </summary>
-    Property JavaExec() As String
-        Get
-            Dim s As String = My.Settings.Startup_JavaExec
-            Return s
-        End Get
-        Set(value As String)
-            My.Settings.Startup_JavaExec = value
-            My.Settings.Save()
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' Stores the path to the jarfile, e.g. C:\Minecraft_server.jar
-    ''' </summary>
-    Property Jarfile() As String
-        Get
-            Return My.Settings.Jarfile
-        End Get
-        Set(value As String)
-            My.Settings.Jarfile = value
-            My.Settings.Save()
-        End Set
-    End Property
-
-#End Region
+        Public Sub Save()
+            ' Save the current list of scheduled tasks
+            tasksStore.TaskList.Clear()
+            For Each task In navpageScheduler.ListOfSchedulerTaskItem
+                tasksStore.TaskList.Add(task.Task)
+            Next
+            settingsStore.Save()
+            tasksStore.Save("tasks.jsn")
+        End Sub
 
 #Region "Dashboard customisation"
 
-    ''' <summary>
-    ''' Default text editor
-    ''' </summary>
-    Property UserSettings_DefaultTextEditor() As String
-        Get
-            Dim s As String = My.Settings.UserSettings_DefaultTextEditor
-            If s.Length = 0 Then
-                'Set the default if blank
-                My.Settings.UserSettings_DefaultTextEditor = "notepad"
-                My.Settings.Save()
-                Return "notepad"
-            Else
-                Return s
-            End If
+        ''' <summary>
+        ''' Default text editor
+        ''' </summary>
+        Property UserSettings_DefaultTextEditor() As String
+            Get
+                Dim s As String = MyUserSettings.settingsStore.UserSettings_DefaultTextEditor
+                If s.Length = 0 Then
+                    'Set the default if blank
+                    MyUserSettings.settingsStore.UserSettings_DefaultTextEditor = "notepad"
+                    Return "notepad"
+                Else
+                    Return s
+                End If
 
-        End Get
-        Set(value As String)
-            My.Settings.UserSettings_DefaultTextEditor = value
-            My.Settings.Save()
-        End Set
-    End Property
+            End Get
+            Set(value As String)
+                MyUserSettings.settingsStore.UserSettings_DefaultTextEditor = value
+            End Set
+        End Property
 
 #End Region
 
+        Public Function MaxMemoryInMB() As String
+            Dim MaxMemInMB As String
+            If MyUserSettings.settingsStore.Startup_Memory.ToUpper.EndsWith("G") Then
+                MaxMemInMB = MyUserSettings.settingsStore.Startup_Memory.Substring(0, MyUserSettings.settingsStore.Startup_Memory.Length - 1) * 1024
+            ElseIf MyUserSettings.settingsStore.Startup_Memory.ToUpper.EndsWith("M") Then
+                MaxMemInMB = MyUserSettings.settingsStore.Startup_Memory.Substring(0, MyUserSettings.settingsStore.Startup_Memory.Length - 1)
+            Else
+                MaxMemInMB = MyUserSettings.settingsStore.Startup_Memory.Substring(0, MyUserSettings.settingsStore.Startup_Memory.Length)
+            End If
+            Return MaxMemInMB
+        End Function
 
-    'TODO: Scheduler
+        ' dashboard.jsn
+        Public Class MySettingsConfig
+            Inherits AppSettings(Of MySettingsConfig)
+            Public App_SuppressMinimiseMessage As String = ""
+            Public Startup_Memory As String = "1G" ' TODO: Change to MB (integer)
+            Public Startup_MemoryMin As String = "512M" ' TODO: Change to MB (integer)
+            Public Startup_JavaExec As String = ""
+            Public UserSettings_DefaultTextEditor As String = ""
+            Public Jarfile As String = ""
+            Public LaunchArgu_JAVA As String = ""
+            Public JarLaunchArguments As String = ""
+            Public Startup_JavaSpecificArgs As String = ""
+            Public ProfileDir_ExcludedDirectories As New List(Of String)() From {"world-backups",
+                                                                 "plugins",
+                                                                 "crash-reports",
+                                                                 "logs",
+                                                                 "config",
+                                                                 "libraries",
+                                                                 "mods"}
+        End Class
 
+        ' tasks.jsn
+        Public Class MyTasksConfig
+            Inherits AppSettings(Of MyTasksConfig)
 
-End Module
+            Public schemaVersion As Integer = 1
+
+            Public TaskList As New List(Of TaskScheduler.Task)
+
+        End Class
+
+    End Module
+
+End Namespace
+
+' Store the app's settings in a local file, instead of the previous My.Settings implementation
+' To allow saving the scheduled tasks, and simplifies the storage for multiple instances of settings
+' http://stackoverflow.com/questions/8688724/how-to-store-a-list-of-objects-in-application-settings
+Public Class AppSettings(Of T As New)
+
+    'Serialize app settings to JSON format
+    Public Sub Save(Optional fileName As String = DEFAULT_CONFIG_FILENAME)
+        File.WriteAllText(fileName, (New JavaScriptSerializer()).Serialize(Me))
+    End Sub
+
+    Public Shared Sub Save(pSettings As T, Optional fileName As String = DEFAULT_CONFIG_FILENAME)
+        File.WriteAllText(fileName, (New JavaScriptSerializer()).Serialize(pSettings))
+    End Sub
+
+    Public Shared Function Load(Optional fileName As String = DEFAULT_CONFIG_FILENAME) As T
+        Dim t As New T()
+        If File.Exists(fileName) Then
+            t = (New JavaScriptSerializer()).Deserialize(Of T)(File.ReadAllText(fileName))
+        End If
+        Return t
+    End Function
+End Class
