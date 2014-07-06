@@ -24,8 +24,23 @@
 
         report = report & "e.Exception.Message" & e.Exception.ToString & vbNewLine
 
-        My.Computer.FileSystem.WriteAllText(System.Environment.CurrentDirectory & "\" & filename, report, False)
-        MessageBox.Show("An error report was generated: " & filename)
+        Try
+            My.Computer.FileSystem.WriteAllText(System.Environment.CurrentDirectory & "\" & filename, report, False)
+            MessageBox.Show("An error report was generated: " & filename)
+
+        Catch secError As Security.SecurityException
+            Try
+                My.Computer.FileSystem.WriteAllText(System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) & "\" & filename, report, False)
+                MessageBox.Show("An error report was generated: " & filename)
+
+            Catch ex As Exception
+                MessageBox.Show("Dashboard encountered an error, and futhermore the error report could not be created.")
+            End Try
+        Catch otherError As Exception
+            MessageBox.Show("Dashboard encountered an error, and futhermore the error report could not be created.")
+
+        End Try
+
 
         'Dim m As New CrashReportUI
         'm.txtReport.Text = report
