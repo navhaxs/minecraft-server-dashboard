@@ -2,12 +2,20 @@
 
     Friend ListOfSchedulerTaskItem As New List(Of SchedulerTaskItem)
 
-    Private Sub taskAdded(taskItem As SchedulerTaskItem)
+    Public Sub AddTask(newTask As TaskScheduler.Task)
+        Dim newTaskItem As New SchedulerTaskItem(newTask)
+        UITasksList.Children.Insert(0, newTaskItem) ' Add to top
+        ListOfSchedulerTaskItem.Add(newTaskItem)
+
+        AddHandler newTaskItem.taskIsEnabledStateChanged, AddressOf UpdateUI
+        AddHandler newTaskItem.taskRemoved, AddressOf taskRemoved
+
         UpdateUI()
     End Sub
 
     Private Sub taskRemoved(taskItem As SchedulerTaskItem)
         MyApp.taskScheduler.removeTask(taskItem.Task)
+        ListOfSchedulerTaskItem.Remove(taskItem)
 
         UITasksList.Children.Remove(taskItem)
         UpdateUI()
@@ -15,15 +23,9 @@
 
 #Region "UI"
     Private Sub addNewTaskButton_Click(sender As Object, e As RoutedEventArgs)
-
-        Dim newTaskItem As New SchedulerTaskItem(MyApp.taskScheduler.nextTaskID)
-        UITasksList.Children.Insert(0, newTaskItem) ' Add to top
-        ListOfSchedulerTaskItem.Add(newTaskItem)
-
-        AddHandler newTaskItem.taskIsEnabledStateChanged, AddressOf UpdateUI
-        AddHandler newTaskItem.taskRemoved, AddressOf taskRemoved
-
-        taskAdded(newTaskItem)
+        Dim newTask As New TaskScheduler.Task
+        newTask.ID = MyApp.taskScheduler.nextTaskID
+        AddTask(newTask)
     End Sub
 
     Private Sub UpdateUI()

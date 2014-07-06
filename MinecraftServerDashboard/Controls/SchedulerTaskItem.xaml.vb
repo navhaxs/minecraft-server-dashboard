@@ -2,11 +2,13 @@
     Event taskIsEnabledStateChanged(e As SchedulerTaskItem)
     Event taskRemoved(e As SchedulerTaskItem)
 
+    Private Const SECOND_TO_MS As Integer = 60000
+
     ReadOnly Property Task As TaskScheduler.Task
         Get
             ' Convert the minutes to milliseconds
             If UITimeInterval.Text > 0 Then
-                _Task.Interval = UITimeInterval.Text * 60000
+                _Task.Interval = UITimeInterval.Text * SECOND_TO_MS
                 Debug.Print("Interval (min): " & UITimeInterval.Text)
                 Debug.Print("Interval (ms): " & _Task.Interval)
             End If
@@ -19,18 +21,17 @@
                 _Task.Commands = list
                 Debug.Print("doCommand")
             ElseIf thisActionMode_ComboBox.SelectedItem Is sayThis Then
-                _Task.Action = TaskScheduler.TaskActionType.sendCommand
+                _Task.Action = TaskScheduler.TaskActionType.sayThis
                 Dim input As String = sayThisParamtersText.Text
                 Dim list As String() = input.Split(New [Char]() {ControlChars.Lf, ControlChars.Cr}, StringSplitOptions.RemoveEmptyEntries)
                 _Task.Commands = list
-                For Each i In _Task.Commands
-                    i = "say " & i
-                Next
-                Debug.Print("doCommand (say)")
+                Debug.Print("sayThis")
             ElseIf thisActionMode_ComboBox.SelectedItem Is doBackup Then
                 _Task.Action = TaskScheduler.TaskActionType.doBackup
                 Debug.Print("doBackup")
             End If
+
+            _Task.Enabled = chkboxIsTaskEnabled.IsChecked
 
             Return _Task
         End Get
@@ -38,13 +39,36 @@
 
     Private _Task As New TaskScheduler.Task
 
-    Sub New(taskID As Integer)
+    Sub New(taskToLoad As TaskScheduler.Task)
 
         ' This call is required by the designer.
         InitializeComponent()
 
-        ' Add any initialization after the InitializeComponent() call.
-        _Task.ID = taskID
+        _Task = taskToLoad
+        ' Load the task to the UI
+        UITimeInterval.Text = taskToLoad.Interval / SECOND_TO_MS
+        chkboxIsTaskEnabled.IsChecked = taskToLoad.Enabled
+        Select Case taskToLoad.Action
+            Case TaskScheduler.TaskActionType.doBackup
+                thisActionMode_ComboBox.SelectedItem = doBackup
+            Case TaskScheduler.TaskActionType.sendCommand
+                thisActionMode_ComboBox.SelectedItem = doCommand
+                If Not taskToLoad.Commands(0) = "" Then ' Clear the textbox if there is user-set data
+                    doCommandParamtersText.Text = ""
+                End If
+                For Each line In taskToLoad.Commands
+                    doCommandParamtersText.Text = doCommandParamtersText.Text & line & vbNewLine
+                Next
+            Case TaskScheduler.TaskActionType.sayThis
+                thisActionMode_ComboBox.SelectedItem = sayThis
+                If Not taskToLoad.Commands(0) = "" Then ' Clear the textbox if there is user-set data
+                    sayThisParamtersText.Text = ""
+                End If
+                For Each line In taskToLoad.Commands
+                    sayThisParamtersText.Text = sayThisParamtersText.Text & line & vbNewLine
+                Next
+        End Select
+        ComboBox_SelectionChanged()
     End Sub
 
     Private Sub btnRemoveTask_Click(sender As Object, e As RoutedEventArgs)
@@ -61,13 +85,13 @@
         RaiseEvent taskIsEnabledStateChanged(Me)
     End Sub
 
-    Private Sub ComboBox_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
+    Private Sub ComboBox_SelectionChanged()
         'WPF fires events even before all the controls have been initialised yet
         'http://stackoverflow.com/questions/2518231/wpf-getting-control-null-reference-during-initializecomponent
         If (sayThisParameters Is Nothing) Or (doCommandParamters Is Nothing) Then
             Exit Sub
         End If
-        
+
         If thisActionMode_ComboBox.SelectedItem Is doCommand Then
             UImoreParameters.Visibility = Windows.Visibility.Visible
             doCommandParamters.IsSelected = True

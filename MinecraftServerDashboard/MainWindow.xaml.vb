@@ -42,6 +42,8 @@ Class MainWindow
         Me.DataContext = MyMainWindowProperties
         MyAppMenu.DataContext = MyServer
 
+        ' Load user settings
+        MyUserSettings.Load()
     End Sub
 
     'Data bindings
@@ -75,6 +77,7 @@ Class MainWindow
 
     Private Sub MainWindow_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         My.Settings.Save()
+        MyUserSettings.Save()
     End Sub
 
 #End Region

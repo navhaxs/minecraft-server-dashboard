@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
   <Settings>
-    <Setting Name="SuppressMinimiseMessage" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Startup_Memory" Type="System.String" Scope="User">
       <Value Profile="(Default)">1G</Value>
     </Setting>
@@ -39,6 +36,9 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="Startup_JavaSpecificArgs" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="savedScheduledTasks" Type="System.Collections.Generic.List`1[SchedulerTaskItem]" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

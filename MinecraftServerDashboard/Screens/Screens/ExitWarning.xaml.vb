@@ -2,7 +2,7 @@
 
     Private Sub btn_Minimize()
         If always_suppress.IsChecked = True Then
-            My.Settings.SuppressMinimiseMessage = "m" ' Set to always minimize
+            MyUserSettings.SuppressMinimiseMessage = "m" ' Set to always minimize
         End If
         ' Close this dialog, minimise MainWindow
         MyMainWindow.isExitWindowOverlay = False
@@ -13,7 +13,7 @@
     End Sub
 
     Private Sub ExitWarning_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        Select Case My.Settings.SuppressMinimiseMessage
+        Select Case MyUserSettings.SuppressMinimiseMessage
             Case "m"
                 btn_Minimize() ' Always minimize
             Case "s"
@@ -31,7 +31,7 @@
 
     Private Sub btn_StopSrv() Handles btnStopSrv.Click
         If always_suppress.IsChecked = True Then
-            My.Settings.SuppressMinimiseMessage = "s" ' Set to always minimize
+            MyUserSettings.SuppressMinimiseMessage = "s" ' Set to always minimize
         End If
         If MyServer.ServerIsOnline Then
             MyServer.StopServer()
