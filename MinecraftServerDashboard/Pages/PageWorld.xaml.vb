@@ -106,7 +106,7 @@ Class pageWorld
                 '               world_nether
                 '               world_the_end
                 ' and include them as a set, where only the 'primary' folder is shown (ie. just show "world" only)
-                If (Not My.Settings.ProfileDir_ExcludedDirectories.Contains(My.Computer.FileSystem.GetDirectoryInfo(i).Name)) _
+                If (Not MyUserSettings.settingsStore.ProfileDir_ExcludedDirectories.Contains(My.Computer.FileSystem.GetDirectoryInfo(i).Name)) _
                     And (Not My.Computer.FileSystem.GetDirectoryInfo(i).Name.EndsWith("_nether")) _
                     And (Not My.Computer.FileSystem.GetDirectoryInfo(i).Name.EndsWith("_the_end")) Then
                     MyProfileDirs.Add(New ProfileDir(i))

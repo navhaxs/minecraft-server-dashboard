@@ -10,8 +10,8 @@
             '                           Note: The Server JVM is only included in the JDK download, NOT JRE
             '       --nojline           Required to redirect console output into Dashboard on CraftBukkit
             '       nogui               Required to redirect console output into Dashboard on Vanilla
-            Dim JavaParameters As String = " -client -Xmx" & MyUserSettings.MaximumMemory() & " -Xms" & MyUserSettings.MinimumMemory() + " " + My.Settings.Startup_JavaSpecificArgs
-            Return JavaParameters + " -jar " & Chr(34) & MyUserSettings.Jarfile & Chr(34) & " " & My.Settings.JarLaunchArguments & " --nojline nogui"
+            Dim JavaParameters As String = " -client -Xmx" & MyUserSettings.settingsStore.Startup_Memory & " -Xms" & MyUserSettings.settingsStore.Startup_MemoryMin + " " + MyUserSettings.settingsStore.LaunchArgu_JAVA
+            Return JavaParameters + " -jar " & Chr(34) & MyUserSettings.settingsStore.Jarfile & Chr(34) & " " & MyUserSettings.settingsStore.JarLaunchArguments & " --nojline nogui"
         End Get
     End Property
 
@@ -20,12 +20,12 @@
     ''' </summary>
     Public ReadOnly Property ServerPath As String
         Get
-            If MyUserSettings.Jarfile = Nothing Then
+            If MyUserSettings.settingsStore.Jarfile = Nothing Then
                 Return Nothing
-            ElseIf Not My.Computer.FileSystem.FileExists(MyUserSettings.Jarfile) Then
+            ElseIf Not My.Computer.FileSystem.FileExists(MyUserSettings.settingsStore.Jarfile) Then
                 Return Nothing
             Else
-                Return My.Computer.FileSystem.GetFileInfo(MyUserSettings.Jarfile).Directory.FullName
+                Return My.Computer.FileSystem.GetFileInfo(MyUserSettings.settingsStore.Jarfile).Directory.FullName
             End If
         End Get
     End Property
@@ -35,12 +35,12 @@
     ''' </summary>
     Public ReadOnly Property ServerProperties As String
         Get
-            If MyUserSettings.Jarfile = Nothing Then
+            If MyUserSettings.settingsStore.Jarfile = Nothing Then
                 Return Nothing
-            ElseIf Not My.Computer.FileSystem.FileExists(MyUserSettings.Jarfile) Then
+            ElseIf Not My.Computer.FileSystem.FileExists(MyUserSettings.settingsStore.Jarfile) Then
                 Return Nothing
             Else
-                Return My.Computer.FileSystem.GetFileInfo(MyUserSettings.Jarfile).Directory.FullName & "\server.properties"
+                Return My.Computer.FileSystem.GetFileInfo(MyUserSettings.settingsStore.Jarfile).Directory.FullName & "\server.properties"
             End If
         End Get
     End Property

@@ -166,7 +166,7 @@ Public Class JarDownloadEngine
 
     Private Sub WWWclient_DownloadFileCompleted(sender As Object, e As ComponentModel.AsyncCompletedEventArgs)
         If Not e.Cancelled Then
-            MyUserSettings.Jarfile = _rootDir & "\" & _FileName
+            MyUserSettings.settingsStore.Jarfile = _rootDir & "\" & _FileName
             MyServer.ReloadStartupParameters()
         End If
         RaiseEvent DownloadCompleted(e, _rootDir, _FileName)

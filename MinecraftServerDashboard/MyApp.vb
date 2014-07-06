@@ -87,6 +87,9 @@ Module MyApp
         MyMainWindow.Dispatcher.BeginInvoke(Sub() navpageDashboard.UpdateDashboardIndicators())
     End Sub
 
+    '''
+    Public Const DEFAULT_CONFIG_FILENAME As String = "dashboard.jsn"
+
     'TabPages:
     Public navpageDashboard As PageDashboard
 

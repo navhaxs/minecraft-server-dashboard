@@ -42,8 +42,10 @@ Class MainWindow
         Me.DataContext = MyMainWindowProperties
         MyAppMenu.DataContext = MyServer
 
-        ' Load user settings
-        MyUserSettings.Load()
+        ' Load saved scheduled tasks from stored settings
+        For Each task In MyUserSettings.tasksStore.TaskList
+            navpageScheduler.AddTask(task)
+        Next
     End Sub
 
     'Data bindings
@@ -61,22 +63,17 @@ Class MainWindow
                                       End Function))
 
         ' Check for first-time app start
-        If Not My.Computer.FileSystem.FileExists(My.Settings.Jarfile) Then
+        If Not My.Computer.FileSystem.FileExists(MyUserSettings.settingsStore.Jarfile) Then
             ' Display welcome screen
             Using l As New Welcome
                 Dim x As New OverlayDialog
                 x.DisplayConfig(l)
             End Using
-            ' Ask user to set up game server engine
-            'If Not My.Computer.FileSystem.FileExists(My.Settings.Jarfile) Then
-            'navPageCBconfig.Go_BackendSetup()
-            'End If
         End If
 
     End Sub
 
     Private Sub MainWindow_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        My.Settings.Save()
         MyUserSettings.Save()
     End Sub
 

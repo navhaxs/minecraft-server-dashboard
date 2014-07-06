@@ -31,7 +31,7 @@
                     <!--<TextBlock Text="Increasing the memory will improve server performance, particlarly as the number of connected players increases" Height="32" HorizontalAlignment="Left" x:Name="Label3_Copy6" VerticalAlignment="Top" Margin="0,42,0,0"  TextWrapping="Wrap" />-->
                     <Slider x:Name="sliderMemory" Margin="10,52,160,0" VerticalAlignment="Top" Minimum="512" IsSnapToTickEnabled="True" TickFrequency="1" />
 
-                    <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7" Visibility="Hidden"><Hyperlink Click="Hyperlink_Click">Advanced memory settings</Hyperlink></TextBlock>
+                    <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7" Visibility="Hidden"><Hyperlink>Advanced memory settings</Hyperlink></TextBlock>
                 </Grid>
             </Border>
 

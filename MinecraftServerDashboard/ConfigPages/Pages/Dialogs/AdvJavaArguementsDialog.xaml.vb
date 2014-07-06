@@ -9,8 +9,8 @@
     End Sub
 
     Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
-        My.Settings.Startup_JavaSpecificArgs = txtJAVASpecificStartupParameters.Text
-        My.Settings.Save()
+        MyUserSettings.settingsStore.Startup_JavaSpecificArgs = txtJAVASpecificStartupParameters.Text
+        MyUserSettings.settingsStore.Save()
         Me.Close()
     End Sub
 
@@ -20,6 +20,6 @@
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        txtJAVASpecificStartupParameters.Text = My.Settings.Startup_JavaSpecificArgs
+        txtJAVASpecificStartupParameters.Text = MyUserSettings.settingsStore.Startup_JavaSpecificArgs
     End Sub
 End Class

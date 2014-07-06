@@ -11,7 +11,7 @@
 
         DoInit(ContentGrid) ' Add event handlers to each property control (see 'DoInit' sub code)
 
-        Select Case MyUserSettings.SuppressMinimiseMessage ' Load settings
+        Select Case MyUserSettings.settingsStore.App_SuppressMinimiseMessage ' Load settings
             Case "s"
                 defaultexitaction.SelectedIndex = 1
             Case "m"
@@ -20,11 +20,11 @@
                 defaultexitaction.SelectedIndex = 0
         End Select
 
-        For Each i In My.Settings.ProfileDir_ExcludedDirectories
+        For Each i In MyUserSettings.settingsStore.ProfileDir_ExcludedDirectories
             dir2exclude.Text = dir2exclude.Text & i & vbLf
         Next
 
-        notepadExec.Text = My.Settings.UserSettings_DefaultTextEditor
+        notepadExec.Text = MyUserSettings.settingsStore.UserSettings_DefaultTextEditor
         isUnsavedChanges = False
     End Sub
 
@@ -49,21 +49,22 @@
         ' Save settings
         Select Case defaultexitaction.SelectedIndex
             Case 1
-                MyUserSettings.SuppressMinimiseMessage = "s"
+                MyUserSettings.settingsStore.App_SuppressMinimiseMessage = "s"
             Case 2
-                MyUserSettings.SuppressMinimiseMessage = "m"
+                MyUserSettings.settingsStore.App_SuppressMinimiseMessage = "m"
             Case Else
-                MyUserSettings.SuppressMinimiseMessage = ""
+                MyUserSettings.settingsStore.App_SuppressMinimiseMessage = ""
         End Select
 
-        My.Settings.ProfileDir_ExcludedDirectories.Clear()
         For Each i In dir2exclude.Text.Split(vbLf)
-            My.Settings.ProfileDir_ExcludedDirectories.Add(i)
+            MyUserSettings.settingsStore.ProfileDir_ExcludedDirectories.Add(i)
         Next
 
-        My.Settings.UserSettings_DefaultTextEditor = notepadExec.Text
+        MyUserSettings.settingsStore.UserSettings_DefaultTextEditor = notepadExec.Text
 
-        My.Settings.Save()
+        ' Store settings to disk now since this activity is the main app configuration screen
+        MyUserSettings.settingsStore.Save()
+
         isUnsavedChanges = False
     End Sub
 
@@ -102,10 +103,13 @@
             MessageBox.Show("Stop the server before proceeding")
             Exit Sub
         End If
-        If MessageBox.Show("This will restart the application. No data files will be deleted. Continue?", "Warning", MessageBoxButton.YesNoCancel) = MessageBoxResult.Yes Then
-            My.Settings.Reset()
+        If MessageBox.Show("This will restart the application and reset all Dashboard settings. None of your game data will be deleted. Continue?", "App Reset", MessageBoxButton.YesNoCancel) = MessageBoxResult.Yes Then
+            ' Force save a blank config
+            My.Computer.FileSystem.DeleteFile(DEFAULT_CONFIG_FILENAME)
+            MyUserSettings.Load()
+
+            'Restart Dashboard
             superoverlay.Confirm_DoClose(Me)
-            'Restart application
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location)
             Application.Current.Shutdown()
         End If

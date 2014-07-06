@@ -11,7 +11,7 @@
         If isFreshInstall Then
             result = True
         ElseIf My.Computer.FileSystem.FileExists(System.Environment.CurrentDirectory & "\" & thisJar.SelectedValue) Then
-            MyUserSettings.Jarfile = thisJar.SelectedValue
+            MyUserSettings.settingsStore.Jarfile = thisJar.SelectedValue
             MyServer.ReloadStartupParameters()
             result = True
         Else
@@ -52,14 +52,14 @@
         For Each file In My.Computer.FileSystem.GetDirectoryInfo(System.Environment.CurrentDirectory).GetFiles("*.jar", IO.SearchOption.TopDirectoryOnly)
             thisJar.Items.Add(file.Name.ToString)
         Next
-        thisJar.SelectedValue = MyUserSettings.Jarfile
+        thisJar.SelectedValue = MyUserSettings.settingsStore.Jarfile
 
     End Sub
 
     'Next btn once jar is selected
     Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
 
-        MyUserSettings.Jarfile = thisJar.SelectedValue
+        MyUserSettings.settingsStore.Jarfile = thisJar.SelectedValue
 
         Me.Close()
     End Sub
@@ -71,7 +71,7 @@
         isFreshInstall = True
         Dim m As New DownloaderFrame
         m.Owner = Me
-        If m.isSuccessfull() Then
+        If m.isSuccessful() Then
             Me.Close()
         End If
     End Sub

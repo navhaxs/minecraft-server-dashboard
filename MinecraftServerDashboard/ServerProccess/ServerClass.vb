@@ -43,14 +43,14 @@ Public Class ServerClass
     Function ReloadStartupParameters()
 
         Dim javaexe As String
-        If MyUserSettings.JavaExec.Length = 0 Then 'Set the default if blank
+        If MyUserSettings.settingsStore.Startup_JavaExec.Length = 0 Then 'Set the default if blank
             If My.Computer.FileSystem.FileExists(DetectJava.FindPath & "\bin\java.exe") Then
                 javaexe = DetectJava.FindPath & "\bin\java.exe"
             Else
                 javaexe = "java"
             End If
         Else
-            javaexe = My.Settings.Startup_JavaExec
+            javaexe = MyUserSettings.settingsStore.Startup_JavaExec
         End If
 
         ServerProc = New Process With { _
@@ -420,7 +420,7 @@ Public Class ServerClass
         Dim total_machine_memory As ULong = (GetTotalMemoryInBytes() / (1024 * 1024))
 
         ' Get total_allocated_memory, as stored in startup parameters
-        Dim total_allocated_memory As ULong = MyUserSettings.JVM_Xm_paramter_AsInteger(MyUserSettings.MaximumMemory)
+        Dim total_allocated_memory As ULong = MyUserSettings.MaxMemoryInMB
 
         ' Calculate the server's memory usage against machines' total memory
         Dim ratio As Single = CSng(serverprocess_memory_usage) / CSng(total_machine_memory)

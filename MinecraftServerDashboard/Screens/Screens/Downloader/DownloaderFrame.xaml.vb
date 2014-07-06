@@ -1,6 +1,6 @@
 ﻿Public Class DownloaderFrame
 
-    Function isSuccessfull() As Boolean
+    Function isSuccessful() As Boolean
         Me.ShowDialog()
         Return result
     End Function

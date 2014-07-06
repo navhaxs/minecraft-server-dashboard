@@ -80,7 +80,8 @@ Class Application
     '' Allows all DLLs to be combined within the app's single EXE
     '' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     Private Sub Application_Startup(sender As Object, e As StartupEventArgs) Handles MyBase.Startup
-
+        ' Load user settings
+        MyUserSettings.Load()
 
     End Sub
 #End Region
