@@ -56,6 +56,7 @@
                 MyUserSettings.settingsStore.App_SuppressMinimiseMessage = ""
         End Select
 
+        MyUserSettings.settingsStore.ProfileDir_ExcludedDirectories.Clear()
         For Each i In dir2exclude.Text.Split(vbLf)
             MyUserSettings.settingsStore.ProfileDir_ExcludedDirectories.Add(i)
         Next
