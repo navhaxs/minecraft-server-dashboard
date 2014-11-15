@@ -8,31 +8,36 @@ Public Class ServerProperties
     ''' DO NOT INCLUDE THE = sign at the end
     ''' </summary>
     Public Function ReturnConfigValue(ByVal PropertyName As String) As Object
-        Try
-
-            Dim objReader As New System.IO.StreamReader(conffile)
-
-            ' Read through the entire file line by line
-            Do Until objReader.EndOfStream
-                Dim line As String = objReader.ReadLine
-
-                If line.StartsWith(PropertyName) Then
-                    ' If this line is the required one, stop search and return result
-                    Dim endstring As New Integer
-                    endstring = line.IndexOf("=")
-
-                    objReader.Close()
-                    Return Microsoft.VisualBasic.Right(line, line.Length - (endstring + 1))
-                    'End function at return statement.
-                End If
-            Loop
-            objReader.Close()
-
-            'Not found
+        If Not My.Computer.FileSystem.FileExists(conffile) Then
             Return Nothing
-        Catch ex As Exception
-            Return Nothing
-        End Try
+        Else
+            Try
+
+                Dim objReader As New System.IO.StreamReader(conffile)
+
+                ' Read through the entire file line by line
+                Do Until objReader.EndOfStream
+                    Dim line As String = objReader.ReadLine
+
+                    If line.StartsWith(PropertyName) Then
+                        ' If this line is the required one, stop search and return result
+                        Dim endstring As New Integer
+                        endstring = line.IndexOf("=")
+
+                        objReader.Close()
+                        Return Microsoft.VisualBasic.Right(line, line.Length - (endstring + 1))
+                        'End function at return statement.
+                    End If
+                Loop
+                objReader.Close()
+
+                'Not found
+                Return Nothing
+            Catch ex As Exception
+                Return Nothing
+            End Try
+
+        End If
     End Function
 
     ''' <summary>

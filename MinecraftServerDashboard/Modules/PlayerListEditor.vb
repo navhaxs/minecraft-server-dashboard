@@ -86,29 +86,31 @@
         Else
             'Server is not running, must manually write to text file
             Try
-                ' Check if playername appears already in the file
-                Dim objReader As New System.IO.StreamReader(thisFilename)
+                If My.Computer.FileSystem.FileExists(thisFilename) Then
+                    ' Check if playername appears already in the file
+                    Dim objReader As New System.IO.StreamReader(thisFilename)
 
-                Do Until objReader.EndOfStream
-                    Dim line As String = objReader.ReadLine
+                    Do Until objReader.EndOfStream
+                        Dim line As String = objReader.ReadLine
 
-                    'Skip line when it is either empty, or is a comment
-                    If (Not line.StartsWith("#")) And (Not line.Replace(" ", "") = "") Then
-                        If line.IndexOf(" ") = -1 Then
-                            If line = s Then
-                                Return True ' Found match, don't need to write it again!
+                        'Skip line when it is either empty, or is a comment
+                        If (Not line.StartsWith("#")) And (Not line.Replace(" ", "") = "") Then
+                            If line.IndexOf(" ") = -1 Then
+                                If line = s Then
+                                    Return True ' Found match, don't need to write it again!
+                                End If
+                            Else
+                                If line.Substring(0, line.IndexOf("|")) = s Then
+                                    Return True ' Found match, don't need to write it again!
+                                End If
                             End If
-                        Else
-                            If line.Substring(0, line.IndexOf("|")) = s Then
-                                Return True ' Found match, don't need to write it again!
-                            End If
+
                         End If
+                    Loop
 
-                    End If
-                Loop
-
-                objReader.Close()
-                'objReader.Dispose()
+                    objReader.Close()
+                    'objReader.Dispose()
+                End If
 
                 Dim objWriter As System.IO.StreamWriter = System.IO.File.AppendText(thisFilename)
 

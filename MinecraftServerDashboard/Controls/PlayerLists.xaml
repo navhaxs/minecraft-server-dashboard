@@ -14,7 +14,7 @@
             <ComboBoxItem Content="Whitelist" />
             <!--<ListBoxItem Content="custom.." />-->
         </ComboBox>
-        <Grid Height="47" VerticalAlignment="Top" Background="#FFFFFFC8" DockPanel.Dock="Top" x:Name="bannerWhitelist" Visibility="Collapsed">
+        <Grid Height="47" VerticalAlignment="Top" Background="#FFFFFFC8" DockPanel.Dock="Top" x:Name="bannerRemindWhitelistIsDisabled" Visibility="Collapsed">
             <TextBlock Margin="5" TextWrapping="Wrap">
                 The whitelist is currently <Bold>not</Bold> enabled in the server properties. Click <Hyperlink Click="EnableWhitelist_Click">here</Hyperlink> to enable it now.
             </TextBlock>

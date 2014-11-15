@@ -57,7 +57,7 @@ Public Class PlayerLists
         UI_ClearAll_Items(PlayerListBox)
         isNoSelectionMessage.Visibility = Windows.Visibility.Collapsed
         EmptyMessage.Visibility = Windows.Visibility.Collapsed
-        bannerWhitelist.Visibility = Windows.Visibility.Collapsed
+        bannerRemindWhitelistIsDisabled.Visibility = Windows.Visibility.Collapsed
         Grid_canModify.IsEnabled = False
         EmptyMessage.Text = "This list is empty."
 
@@ -119,10 +119,16 @@ Public Class PlayerLists
                 ' Show a warning banner if the current list is 'white-list', where 'white-list' mode
                 ' is switched off in the game server settings.
                 Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
-                If b.ReturnConfigValue("white-list").ToString.ToLower = "true" Then
-                    bannerWhitelist.Visibility = Windows.Visibility.Collapsed
+                Dim isWhitelistEnabledConf As String = b.ReturnConfigValue("white-list")
+
+                If isWhitelistEnabledConf Is Nothing Then
+                    ' If server.properties does not exist yet, assume default state
+                    ' (the first server start will initialize all default values)
+                    bannerRemindWhitelistIsDisabled.Visibility = Windows.Visibility.Collapsed
+                ElseIf isWhitelistEnabledConf.ToString.ToLower = "true" Then
+                    bannerRemindWhitelistIsDisabled.Visibility = Windows.Visibility.Collapsed
                 Else
-                    bannerWhitelist.Visibility = Windows.Visibility.Visible
+                    bannerRemindWhitelistIsDisabled.Visibility = Windows.Visibility.Visible
                 End If
 
             Case Nothing
@@ -157,7 +163,7 @@ Public Class PlayerLists
     ''' Enables the white-list mode in the game server settings
     ''' </summary>
     Private Sub EnableWhitelist_Click(sender As Object, e As RoutedEventArgs)
-        bannerWhitelist.Visibility = Windows.Visibility.Collapsed
+        bannerRemindWhitelistIsDisabled.Visibility = Windows.Visibility.Collapsed
         Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
         b.WriteConfigLine("white-list", "true")
     End Sub

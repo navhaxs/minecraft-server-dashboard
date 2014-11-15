@@ -6,8 +6,7 @@
     xmlns:metro="http://schemas.codeplex.com/elysium"
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     params:Manager.Theme="Light"
-    Title="About" Height="409" Width="638.97" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize">
-
+    Title="About Dashboard" Height="409" Width="638.97" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
         <Grid Background="#FFFFEEB4" Margin="10,0,18,0" Height="64" VerticalAlignment="Top">
             <Image Height="64" Width="64" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/appicon.ico" HorizontalAlignment="Left" />
@@ -47,7 +46,9 @@
             <TabItem Header="Licence" Background="WhiteSmoke">
                 <Grid>
                     <TextBlock TextWrapping="Wrap" Margin="15">
-                        <Run Text="Minecraft Server Dashboard comes with ABSOLUTELY NO WARRANTY, and is licensed under the GNU General Public License, version 2 or later." /><LineBreak />
+                        <Run Text="Minecraft Server Dashboard comes with ABSOLUTELY NO WARRANTY, and is licensed under the" />
+                        <Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GNU General Public License, version 2</Hyperlink>
+                        <Run Text="or later." />
                     </TextBlock>
                 </Grid>
             </TabItem>

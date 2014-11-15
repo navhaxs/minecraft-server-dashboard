@@ -61,7 +61,7 @@ Public Class JarDownloadEngine
             Dim fileName As String
             Using wc As New MyWebClient()
                 If Not My.Computer.Network.IsAvailable Then
-                    Return "Offline =("
+                    Return "Connect to the internet and try again."
                     Exit Function
                 End If
                 Using rawStream As Stream = wc.OpenRead(url)
@@ -73,7 +73,8 @@ Public Class JarDownloadEngine
                         'Dim endpos As Integer = fileName.IndexOf("-", firstpos.Length)
 
                         fileName = fileName.Replace(".jar", "").Replace("craftbukkit-", "")
-                        Return "Latest recommended release: " & fileName '.Substring(firstpos.Length, fileName.Length - endpos - 1)
+                        Return "Latest recommended release: " & fileName '.Substring(firstpos.Length, fileName.Length - endpos - 1) 
+                        ' Oops forgot that the return breaks out right here...
                         reader.Close()
                     End Using
                     rawStream.Close()
@@ -191,6 +192,14 @@ Public Class JarDownloadEngine
                 Dim response As WebResponse = MyBase.GetWebResponse(request)
                 _responseUri = response.ResponseUri
                 Return response
+            Catch we As WebException
+                Dim response As HttpWebResponse = CType(we.Response, System.Net.HttpWebResponse)
+                If Not response Is Nothing Then
+                    If (response.StatusCode = 451) Then
+                        MsgBox("HTTP Error 451" & vbLf & "This content is unavailable as the direct result of a DMCA takedown request.")
+                    End If
+                End If
+                Return Nothing
             Catch ex As Exception
                 Return Nothing
             End Try

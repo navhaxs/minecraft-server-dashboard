@@ -29,6 +29,10 @@ Class Application
              Dim parentAssembly As Assembly = Assembly.GetExecutingAssembly()
 
              Dim name = args.Name.Substring(0, args.Name.IndexOf(","c)) & ".dll"
+             If name.EndsWith(".resources.dll") Then
+                 ' Let the framework deal with the embeded resources of the application itself
+                 Return Nothing
+             End If
              Dim resourceName = parentAssembly.GetManifestResourceNames().First(Function(s) s.EndsWith(name))
 
              Using stream As IO.Stream = parentAssembly.GetManifestResourceStream(resourceName)
