@@ -223,7 +223,7 @@
 				<TabItem Style="{StaticResource mytabitem}">
 					<TabItem.Header>
 						<StackPanel Orientation="Horizontal">
-							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/Tab/VirtualMachine_16xLG.png" Stretch="Uniform" />
+							<Image HorizontalAlignment="Left" Height="16" Margin="0" VerticalAlignment="Stretch" Width="16" Source="Images/World/gear_32xLG.png" Stretch="Uniform" />
 							<TextBlock Padding="5,0,0,0"  FontFamily="Segoe UI"
 								FontWeight="Light"
 								FontSize="18px" >Configuration</TextBlock>

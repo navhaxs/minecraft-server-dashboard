@@ -524,16 +524,16 @@
     <Resource Include="Images\Tab\BrowseDefinition_5577.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Tab\VirtualMachine_16xLG.png" />
-    <Resource Include="Images\Tab\WorkItem_16xLG.png" />
+    <None Include="Images\Tab\VirtualMachine_16xLG.png" />
+    <None Include="Images\Tab\WorkItem_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Tab\StatusAnnotations_Help_and_inconclusive_16xLG.png" />
     <Resource Include="Images\Tab\StatusAnnotations_Help_and_inconclusive_16xLG_color.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Buttons\Symbols_Play_32xLG.png" />
-    <Resource Include="Images\Buttons\Symbols_Stop_32xLG.png" />
+    <None Include="Images\Buttons\Symbols_Play_32xLG.png" />
+    <None Include="Images\Buttons\Symbols_Stop_32xLG.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\State\StatusAnnotations_Alert_32xLG_color.png" />
@@ -551,11 +551,11 @@
     <Resource Include="Images\MyCB_bgonly.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\help.png" />
+    <None Include="Images\help.png" />
     <Resource Include="Images\StatusAnnotations_Help_and_inconclusive_32xLG_color.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\MyCBBK4.png" />
+    <None Include="Images\MyCBBK4.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ionic.Zip.Reduced.dll" />
@@ -565,11 +565,11 @@
     <Resource Include="Images\BGTile\tilebg_MCsky.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Players\112_Plus_Green_16x16_72.png" />
+    <None Include="Images\Players\112_Plus_Green_16x16_72.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Players\112_LeftArrowShort_Blue_48x48_72.png" />
-    <Resource Include="Images\Players\112_RightArrowShort_Blue_48x48_72.png" />
+    <None Include="Images\Players\112_LeftArrowShort_Blue_48x48_72.png" />
+    <None Include="Images\Players\112_RightArrowShort_Blue_48x48_72.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Players\112_LeftArrowShort_Orange_48x48_72.png" />
@@ -594,8 +594,8 @@
   <ItemGroup>
     <Resource Include="Images\World\folder_Open_32xSM.png" />
     <Resource Include="Images\World\gear_32xLG.png" />
-    <Resource Include="Images\World\PickAxe_32xLG.png" />
-    <Resource Include="Images\World\server_Local_32xLG.png" />
+    <None Include="Images\World\PickAxe_32xLG.png" />
+    <None Include="Images\World\server_Local_32xLG.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\World\077_AddFile_24x24_72.png" />
@@ -630,7 +630,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Blank.png" />
-    <Resource Include="Images\BlankBW.png" />
+    <None Include="Images\BlankBW.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Newtonsoft.Json.dll" />

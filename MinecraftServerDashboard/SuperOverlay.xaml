@@ -15,8 +15,6 @@
         </LinearGradientBrush>
     </UserControl.Background>
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,0,0,0" x:Name="ContentFrame">
-        <Image HorizontalAlignment="Left" Height="96" VerticalAlignment="Top" Width="243" Source="Images/cbclouds.png" Margin="-100,0,0,0" Visibility="Hidden" />
-        <Image HorizontalAlignment="Left" Width="100" Source="Images/MyCBBK4.png" Margin="-100,-37,0,-412" Stretch="Fill" Height="760" VerticalAlignment="Bottom" Visibility="Hidden" />
         <Grid Background="#FF00486A">
             <Frame x:Name="FrameConfigOverlay" TabIndex="0" NavigationUIVisibility="Hidden"  Margin="0,40,0,0">
                 <Frame.Background>

@@ -196,7 +196,7 @@ Public Class JarDownloadEngine
                 Dim response As HttpWebResponse = CType(we.Response, System.Net.HttpWebResponse)
                 If Not response Is Nothing Then
                     If (response.StatusCode = 451) Then
-                        MsgBox("HTTP Error 451" & vbLf & "This content is unavailable as the direct result of a DMCA takedown request.")
+                        MsgBox("Message from webserver:" & vbLf & we.Message, MsgBoxStyle.OkOnly)
                     End If
                 End If
                 Return Nothing
