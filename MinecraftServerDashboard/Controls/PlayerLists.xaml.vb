@@ -1,8 +1,7 @@
 ﻿' This contol is used twice in the Players tab - both the left and right player lists
 Public Class PlayerLists
 
-    Public thislist As New PlayerListEditor()
-    Dim thisfilename As String
+    Public thislist As New PlayerListEditor(PlayerListEditor.PlayerListType.None)
 
     Event ComboBoxSelectionChanged(sender As PlayerLists, thisindex As Integer, thisvalue As String)
 
@@ -72,11 +71,13 @@ Public Class PlayerLists
             Case "Online Players"
                 ' Get the online players directly from the Dashboard tab's 'online players' control
                 If Not MyServer.ServerIsOnline Then
-                    thislist.thisPlayerList = PlayerListEditor.PlayerListType.OnlinePlayers
+                    thislist = New PlayerListEditor(PlayerListEditor.PlayerListType.OnlinePlayers)
                     EmptyMessage.Visibility = Windows.Visibility.Visible
                     EmptyMessage.Text = "The server is offline."
                     Exit Sub
                 Else
+                    EmptyMessage.Text = "Nobody is online at the moment."
+
                     For Each i As Object In navpageDashboard.MyOnlinePlayerList.StackPanel1.Children
                         If TypeOf i Is PlayerTile Then
                             PlayerListBox.Items.Add(CType(i, PlayerTile).username)
@@ -86,33 +87,32 @@ Public Class PlayerLists
                 End If
                 Grid_canModify.IsEnabled = False
             Case "Banned IP's"
+                thislist = New PlayerListEditor(PlayerListEditor.PlayerListType.BannedIP)
 
-                thisfilename = MyServer.MyStartupParameters.ServerPath & "\banned-ips.txt"
-
-                For Each i In thislist.GetPlayersFrom(thisfilename)
-                    PlayerListBox.Items.Add(i.Name)
+                For Each i In thislist.getListItems()
+                    PlayerListBox.Items.Add(i)
                 Next
                 Grid_canModify.IsEnabled = True
             Case "Banned Players"
+                thislist = New PlayerListEditor(PlayerListEditor.PlayerListType.BannedPlayers)
 
-                thisfilename = MyServer.MyStartupParameters.ServerPath & "\banned-players.txt"
-                For Each i In thislist.GetPlayersFrom(thisfilename)
-                    PlayerListBox.Items.Add(i.Name)
+                For Each i In thislist.getListItems()
+                    PlayerListBox.Items.Add(i)
                 Next
                 Grid_canModify.IsEnabled = True
             Case "Ops"
+                thislist = New PlayerListEditor(PlayerListEditor.PlayerListType.Ops)
 
-                thisfilename = MyServer.MyStartupParameters.ServerPath & "\ops.txt"
-                For Each i In thislist.GetPlayersFrom(thisfilename)
-                    PlayerListBox.Items.Add(i.Name)
+                For Each i In thislist.getListItems()
+                    PlayerListBox.Items.Add(i)
                 Next
                 Grid_canModify.IsEnabled = True
 
             Case "Whitelist"
-                thisfilename = MyServer.MyStartupParameters.ServerPath & "\white-list.txt"
+                thislist = New PlayerListEditor(PlayerListEditor.PlayerListType.Whitelist)
 
-                For Each i In thislist.GetPlayersFrom(thisfilename)
-                    PlayerListBox.Items.Add(i.Name)
+                For Each i In thislist.getListItems()
+                    PlayerListBox.Items.Add(i)
                 Next
                 Grid_canModify.IsEnabled = True
 
@@ -132,7 +132,7 @@ Public Class PlayerLists
                 End If
 
             Case Nothing
-                thislist.thisPlayerList = PlayerListEditor.PlayerListType.None
+                thislist = New PlayerListEditor(PlayerListEditor.PlayerListType.None)
                 isNoSelectionMessage.Visibility = Windows.Visibility.Visible
                 Exit Sub
         End Select
@@ -145,7 +145,7 @@ Public Class PlayerLists
     Public Sub AddPlayerToThisList(l As String)
         ' Don't add the new entry if it already exists to prevent duplicates
         If Not PlayerListBox.Items.Contains(l) Then
-            If thislist.AddPlayer(l) Then
+            If thislist.addPlayer(l) Then
                 PlayerListBox.Items.Add(l)
             End If
         End If
@@ -154,7 +154,7 @@ Public Class PlayerLists
     End Sub
 
     Public Sub RemovePlayerFromThisList(l As String)
-        If thislist.RemovePlayer(l) Then
+        If thislist.removePlayer(l) Then
             PlayerListBox.Items.Remove(l)
         End If
     End Sub

@@ -22,16 +22,16 @@
 
         ' Don't allow the copying of items from the following lists
         ' since IP addresses cannot be used in any other type of list (the rest are lists of usernames)
-        If RightPlayerList.thislist.thisPlayerList = PlayerListEditor.PlayerListType.None Or LeftPlayerList.thislist.thisPlayerList = PlayerListEditor.PlayerListType.None Then
+        If RightPlayerList.thislist.getPlayerlistType = PlayerListEditor.PlayerListType.None Or LeftPlayerList.thislist.getPlayerlistType = PlayerListEditor.PlayerListType.None Then
             btnMoveLeft.IsEnabled = False
             btnMoveRight.IsEnabled = False
         End If
 
-        If RightPlayerList.thislist.thisPlayerList = PlayerListEditor.PlayerListType.BannedIP Then
+        If RightPlayerList.thislist.getPlayerlistType = PlayerListEditor.PlayerListType.BannedIP Then
             btnMoveLeft.IsEnabled = False
         End If
 
-        If LeftPlayerList.thislist.thisPlayerList = PlayerListEditor.PlayerListType.BannedIP Then
+        If LeftPlayerList.thislist.getPlayerlistType = PlayerListEditor.PlayerListType.BannedIP Then
             btnMoveRight.IsEnabled = False
         End If
 
