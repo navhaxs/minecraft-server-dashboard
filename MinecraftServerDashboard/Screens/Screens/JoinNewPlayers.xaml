@@ -11,13 +11,14 @@
     ResizeMode="NoResize"
     Height="350" Width="600">
     <Grid>
-        <Border Background="#FFFFF7C2" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="2">
+        <Border Background="#FFFFF7C2" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="2" Padding="30">
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
                 <TextBlock ><Run Text="Your IP address is: " /><Run Text="{Binding ExternalIP, FallbackValue=127.0.0.1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" /><Run x:Name="lblPortNumber" Text=":25565" />
                 </TextBlock>
             </Label>
         </Border>
         <TextBlock Text="Invite your friends to join your server" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" />
-        <local:btnHelp HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="32" Width="32" Click="btnHelp_Click" />
+        <local:btnHelp HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="32" Width="32" Click="btnHelp_Click" ToolTip="What do I do with my &quot;IP address&quot;?" />
+        <TextBlock HorizontalAlignment="Center" Margin="0,160,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Hyperlink>Copy to clipboard (Ctrl+C)</Hyperlink></TextBlock>
     </Grid>
 </metro:Window>

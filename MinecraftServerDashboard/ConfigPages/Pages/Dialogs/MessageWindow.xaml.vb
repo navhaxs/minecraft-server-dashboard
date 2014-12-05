@@ -1,5 +1,7 @@
 ﻿Public Class MessageWindow
 
+    'TODO make size an enum property
+
     Sub New(owner As Object, titleString As String, messageString As String, Optional headerString As String = "Oops", Optional size As String = "small")
 
         ' This call is required by the designer.

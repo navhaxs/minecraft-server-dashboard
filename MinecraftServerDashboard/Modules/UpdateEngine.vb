@@ -22,8 +22,8 @@ Public Class JarDownloadEngine
             Try
                 Using wc As New MyWebClient()
                     Dim json = wc.DownloadString("https://s3.amazonaws.com/Minecraft.Download/versions/versions.json")
-                    Dim data = JsonConvert.DeserializeObject(Of MojangVersionJSON)(json)
-                    m_GetLatestVanillaVersion = data.Latest.release
+                    Dim response = JsonConvert.DeserializeObject(Of MojangVersionJSON)(json)
+                    m_GetLatestVanillaVersion = response.Latest.release
                     Return m_GetLatestVanillaVersion
                 End Using
             Catch ex As Exception
@@ -195,7 +195,7 @@ Public Class JarDownloadEngine
             Catch we As WebException
                 Dim response As HttpWebResponse = CType(we.Response, System.Net.HttpWebResponse)
                 If Not response Is Nothing Then
-                    If (response.StatusCode = 451) Then
+                    If (response.StatusCode = 451) Then ' todo make generic
                         MsgBox("Message from webserver:" & vbLf & we.Message, MsgBoxStyle.OkOnly)
                     End If
                 End If

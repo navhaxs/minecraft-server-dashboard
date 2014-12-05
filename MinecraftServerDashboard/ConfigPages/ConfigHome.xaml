@@ -76,7 +76,7 @@
                     <Button FontSize="16" Height="95" x:Name="Button6" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"   VerticalAlignment="Top" HorizontalAlignment="Left" Width="600" Margin="0,0,0,4">
                         <Grid>
                             <TextBlock FontWeight="Light" FontSize="24">Server properties</TextBlock>
-                            <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Configure your Game Server with options such as the maximum amount of players, mob difficulty level, etc.</TextBlock>
+                            <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Configure your Game Server with settings such as the maximum amount of players, mob difficulty level, etc.</TextBlock>
                         </Grid>
                     </Button>
                     <Button FontSize="16" Height="95" x:Name="Button1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"   VerticalAlignment="Top" HorizontalAlignment="Left" Width="600" Margin="0,0,0,4">
