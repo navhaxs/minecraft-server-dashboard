@@ -15,7 +15,7 @@ Imports System.Windows
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("navhaxs")> 
 <Assembly: AssemblyProduct("MinecraftServerDashboard")> 
-<Assembly: AssemblyCopyright("Copyright © navhaxs 2013")> 
+<Assembly: AssemblyCopyright("Copyright © navhaxs 2014")> 
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(False)> 
 
