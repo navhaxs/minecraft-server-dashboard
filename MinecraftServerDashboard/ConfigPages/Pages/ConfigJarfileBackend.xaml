@@ -7,151 +7,126 @@
       xmlns:params="http://schemas.codeplex.com/elysium/params"
       params:Manager.Theme="Light"
       mc:Ignorable="d"
-      d:DesignHeight="335.866" d:DesignWidth="642.761"
+      d:DesignHeight="382.866" d:DesignWidth="608.761"
       Title="Backend">
-    <!--<Page.Resources>
-        <Style x:Key="ShadowStyle">
-            <Setter Property="Control.Foreground" Value="LightGray" />
+    <Page.Resources>
+        <Style TargetType="ListBox" x:Key="SpecialListBoxStyle" BasedOn="{StaticResource {x:Type ListBox}}">
+            <Style.Triggers>
+                <DataTrigger 
+            Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" 
+            Value="0">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBlock Padding="5" Margin="25" HorizontalAlignment="Center" VerticalAlignment="Top">None found.</TextBlock>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
-        <Style x:Key="MyFocusVisualGreen">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Control}">
-                        <Grid Margin="3 2">
-                            <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2" />
-                            <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+
+        <DataTemplate x:Key="ItemTemplate">
+            <TextBlock Text="{Binding}" Foreground="Black" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="SelectedTemplate">
+            <TextBlock Text="{Binding}" Foreground="Black" FontWeight="Bold"/>
+        </DataTemplate>
+
+        <Style x:Key="SpecialListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="ContentTemplate" Value="{StaticResource ItemTemplate}" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="ContentTemplate" Value="{StaticResource SelectedTemplate}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
-        <Style x:Key="InformButtonGreen" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="FontFamily" Value="Segoe UI" />
-            <Setter Property="FontSize" Value="16px" />
-            <Setter Property="FontWeight" Value="Light" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisualGreen}" />
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#FA54B420" Offset="0.2" />
-                        <GradientStop Color="#FA2E7A3B" Offset="0.85" />
-                        <GradientStop Color="#FA24A72E" Offset="1" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
-				BorderThickness="1"
-				Padding="4,2"
-				BorderBrush="DarkGray"
-				CornerRadius="3"
-				Background="{TemplateBinding Background}">
-                            <Grid>
-                                <ContentPresenter HorizontalAlignment="Center"
-	                           VerticalAlignment="Center" x:Name="contentShadow"
-					Style="{StaticResource ShadowStyle}">
-                                    <ContentPresenter.RenderTransform>
-                                        <TranslateTransform X="1.0" Y="1.0" />
-                                    </ContentPresenter.RenderTransform>
-                                </ContentPresenter>
-                                <ContentPresenter HorizontalAlignment="Center"
-                            VerticalAlignment="Center" x:Name="content" />
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
-                                <Setter Property="Foreground" Value="#FF4788c8" />
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                            <GradientStop Color="#FA20B3E0" Offset="0.2" />
-                                            <GradientStop Color="#FA20AEE0" Offset="0.85" />
-                                            <GradientStop Color="#FA20EDE0" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter TargetName="content" Property="RenderTransform">
-                                    <Setter.Value>
-                                        <TranslateTransform Y="1.0" />
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsDefaulted" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="border" Property="Opacity" Value="0.7" />
-                                <Setter Property="Foreground" Value="Gray" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>-->
-    <Grid>
-        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Margin="15,44,10,0">
-        <Border VerticalAlignment="Top" Background="#FFFFFBD4" Padding="0" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1" Grid.Column="1" Height="150">
-            <Grid >
-                <Grid x:Name="isJarDetected">
-                        <TextBlock Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,30,10,10">
-                            Select which jarfile to use as the Minecraft server engine (such as "Minecraft_Server.jar")
-                        </TextBlock>
-                        <TextBlock Margin="0,4,0,6" TextWrapping="Wrap" Padding="10,0,10,0" VerticalAlignment="Bottom">
-                            <Bold>Not in the list?</Bold><LineBreak />
-                            Make sure that you've launched Dashboard from the folder where your server files are located. The jarfile must be in this same directory.
-                    </TextBlock>
-                    <Grid VerticalAlignment="Top" Margin="10,55,0,0">
-                        <ComboBox x:Name="thisJar" VerticalAlignment="Top" HorizontalAlignment="Left" Width="471" />
-                        <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="476,6,0,0" x:Name="refresh" TextWrapping="Wrap" RenderTransformOrigin="0.516,0.05" Height="20" VerticalAlignment="Top" ><Hyperlink x:Name="refreshbtn" Click="refreshbtn_Click">Refresh</Hyperlink></TextBlock>
-                    </Grid>
-                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Background="#FFDEAC00" Foreground="White" Margin="0,0,0,0" FontSize="13" ><Run Text="Server backend"/></TextBlock>
-                </Grid>
-                <Grid x:Name="isJarDetectedFalse" Visibility="Collapsed">
-                        <Image HorizontalAlignment="Left" Margin="15,25,0,0" Height="32" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />
-                        <TextBlock FontSize="13" Margin="45,4,0,6" TextWrapping="Wrap" Padding="10,30,10,10">
-                            No server jar files were found. Make sure you copy and launch Dashboard from the folder where your server files are located. (If this is you, exit now and copy the Dashboard App *.exe to the correct folder)
-                    </TextBlock>
-                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Foreground="#FF303030" Margin="0,0,0,0" FontSize="16" FontFamily="Segoe UI Light" ><Run Text="Already have the server files?"/></TextBlock>
-                </Grid>
-            </Grid>
-        </Border>
-        <Border x:Name="groupBox1" VerticalAlignment="Top" CornerRadius="2" BorderBrush="#FFDEAC00" BorderThickness="1" Background="#FFFFFBD4" Grid.Column="1" Height="120" Margin="0,10,0,0">
+
+    </Page.Resources>
+    <Grid Background="White">
+        <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap">
+            This screen lets you change the selection of the Minecraft server.<LineBreak />
+            Upgrade the server version, or change from the vanilla server to a different server mod.
+        </TextBlock>
+        <Border BorderThickness="1" Margin="10,61,10,10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF747F85" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE8EFF3" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
-                <Grid Margin="10,31,0,0" HorizontalAlignment="Left" Width="500" Height="40" VerticalAlignment="Top">
-                        <TextBlock VerticalAlignment="Center" ><Image Source="/MinecraftServerDashboard;component/Images/Tab/globe_16xLG.png" Width="16" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0" />Select a Minecraft server type:</TextBlock>
-                        <ComboBox x:Name="download_combobox" VerticalAlignment="Center" Margin="190,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
-                        <ComboBoxItem Content="Official Mojang Server (Vanilla)" />
-                        <ComboBoxItem Content="CraftBukkit" />
-                        <ComboBoxItem Content="Tekkit" />
-                        <ComboBoxItem Content="Forge" />
-                    </ComboBox>
-                </Grid>
-                    <TextBlock HorizontalAlignment="Stretch" Padding="5" VerticalAlignment="Top" Foreground="#FF303030" Margin="0,0,0,0" FontSize="16" FontFamily="Segoe UI Light">Don't have the server files? Download the latest version!</TextBlock>
+                <Label Margin="10,2,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" Height="37" 
+               Content="Server engine selection:" />
+                <Border
+                        BorderBrush="LightGray"
+                        BorderThickness="1" Background="White" Margin="10,44,0,10" HorizontalAlignment="Left" Width="360">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Bottom">
+                            <Separator Background="LightGray" Margin="10"/>
+                            <!--<ComboBox Margin="10"  IsEditable="True"
+                                      IsReadOnly="True"
+                                      Text="Download the latest server release" SelectionChanged="ComboBox_SelectionChanged">
+                                <ComboBoxItem x:Name="Vanilla">
+                                    <TextBlock>Vanilla
+                                    <Run x:Name="txtVanillaVersion" /></TextBlock>
+                                </ComboBoxItem>
+                                <ComboBoxItem x:Name="CraftBukkit">
+                                    <TextBlock>CraftBukkit
+                                    <Run x:Name="txtCraftBukkitVersion" /></TextBlock>
+                                </ComboBoxItem>
+                            </ComboBox>-->
+                            <Button x:Name="btnCb" Margin="10,0,10,5"
+                                    params:Design.AccentBrush="#FFBF5E5E"
+                                    HorizontalContentAlignment="Left" Click="btnCb_Click">
+                                <TextBlock>Download latest CraftBukkit <Run x:Name="txtCraftBukkitVer" Text="" />
+                                </TextBlock>
+                            </Button>
+                            <Button x:Name="btnVn" Margin="10,0,10,10"
+                                    params:Design.AccentBrush="#FF784444"
+                                    HorizontalContentAlignment="Left" Click="btnVn_Click">
+                                <TextBlock>Download latest Vanilla
+                                <Run x:Name="txtVanillaVer" Text="" />
+                                </TextBlock>
+                            </Button>
+                        </StackPanel>
+                        <ListBox x:Name="jarList" Style="{StaticResource SpecialListBoxStyle}"
+                            ItemContainerStyle="{StaticResource SpecialListBoxItemStyle}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 SelectionChanged="jarList_SelectionChanged">
+                            <!--<TextBlock HorizontalAlignment="Center" Foreground="Gray"><Image />Drag a jar file here</TextBlock>-->
+                        </ListBox>
+                    </DockPanel>
+                </Border>
 
+                <TextBlock TextWrapping="Wrap" Margin="388,44,10,0">
+                    <Bold>Not found?</Bold>
+                    <LineBreak />• Make sure that the jarfile and Dashboard are in the same folder.
+                </TextBlock>
 
-                <Label FontSize="12" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" FontWeight="Bold" Margin="0,66,0,0" Padding="10">
-                    <TextBlock>
-                                <Run x:Name="LatestVerLabel" Text="" />
-                                <Hyperlink x:Name="hyperlinkWeb"><Run x:Name="hyperlinkWebText" Text="" /></Hyperlink>
-                    </TextBlock>
-                </Label>
+                <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="10">
+                    <Hyperlink Click="UpdatePageContent">Refresh</Hyperlink>
+                </TextBlock>
 
-                <TextBlock FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" x:Name="dwnldlink" TextWrapping="Wrap" Visibility="Collapsed" ><Hyperlink x:Name="Button4">Download</Hyperlink></TextBlock>
             </Grid>
         </Border>
-        </StackPanel>
-        <Label Content="Server backend" x:Name="label4_Copy" Margin="10,2,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="37" Width="145" />
+
     </Grid>
 </Page>
+<!--<Grid Margin="10,31,0,0" HorizontalAlignment="Left" Width="500" Height="40" VerticalAlignment="Top">
+    <TextBlock VerticalAlignment="Center" ><Image Source="/MinecraftServerDashboard;component/Images/Tab/globe_16xLG.png" Width="16" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0" />Select a Minecraft server type:</TextBlock>
+    <ComboBox x:Name="download_combobox" VerticalAlignment="Center" Margin="190,0,0,0" Height="34" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBoxItem Content="Official Mojang Server (Vanilla)" />
+        <ComboBoxItem Content="CraftBukkit" />
+        <ComboBoxItem Content="Tekkit" />
+        <ComboBoxItem Content="Forge" />
+    </ComboBox>
+</Grid>-->

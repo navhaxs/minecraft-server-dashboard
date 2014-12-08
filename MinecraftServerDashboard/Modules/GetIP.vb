@@ -7,10 +7,10 @@ Module GetIP
     Const URL As String = "http://checkip.dyndns.org/"
 
     Public Function GetExternalIP() As String
-        If Debugger.IsAttached Then
-            ' Dont fetch this when debugging to reduce number of requests
-            Return Nothing
-        End If
+        'If Debugger.IsAttached Then
+        '    ' Dont fetch this when debugging to reduce number of requests
+        '    Return Nothing
+        'End If
         If NetworkIsOnline() Then
             Try
                 Dim direction As [String] = ""

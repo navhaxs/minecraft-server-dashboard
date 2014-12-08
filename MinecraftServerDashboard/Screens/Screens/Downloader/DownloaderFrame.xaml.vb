@@ -55,7 +55,7 @@
                                End Function))
     End Sub
 
-    Private Sub myUpdaterEngine_DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String) Handles DownloaderFrame_UpdaterEngine.DownloadProgressChanged
+    Private Sub myUpdaterEngine_DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String, filename As String) Handles DownloaderFrame_UpdaterEngine.DownloadProgressChanged
         MyMainWindow.Dispatcher.Invoke( _
                     New Action(Function()
                                    thisProgressBar.State = Elysium.Controls.ProgressState.Normal

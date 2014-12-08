@@ -48,6 +48,7 @@
                             <Image HorizontalAlignment="Right" Height="84" Source="official mojang.png" />
                         </Grid>
                     </RadioButton>
+                    <TextBlock Text="Looking for CraftBukkit? Following the recent events regarding the legal action, please instead download it manually from https://savebukkit.org/ " TextWrapping="Wrap" Margin="10,287,0,0"/>
                     <Button Content="Download &gt;&gt;" HorizontalAlignment="Right" Margin="0,10,10,10" VerticalAlignment="Bottom" Width="200" Height="50" FontSize="18" IsDefault="True" Click="Button_Click" />
                 </Grid>
             </TabItem>

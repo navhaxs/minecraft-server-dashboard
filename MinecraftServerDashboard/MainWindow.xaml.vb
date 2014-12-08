@@ -318,10 +318,12 @@ Class MainWindow
     Public Sub DoManualSrvPropertiesEdit() Handles MenuItem1.Click
         If Not My.Computer.FileSystem.FileExists(MyServer.MyStartupParameters.ServerProperties) Then
             Dim n As New MessageWindow(MyMainWindow, "", "Please launch the server at least once.", "Oops", "large")
-        ElseIf Not My.Computer.FileSystem.FileExists(MyUserSettings.UserSettings_DefaultTextEditor) Then
-            Dim n As New MessageWindow(MyMainWindow, "", "Could not find the text editor:" & vbNewLine & """" & MyUserSettings.UserSettings_DefaultTextEditor & """" & vbNewLine & "Ensure that the correct path for the text editor is set, or leave it empty, in Dashboard settings.", "Error", "large")
         Else
-            System.Diagnostics.Process.Start(MyUserSettings.UserSettings_DefaultTextEditor, MyServer.MyStartupParameters.ServerProperties)
+            Try
+                System.Diagnostics.Process.Start(MyUserSettings.UserSettings_DefaultTextEditor, MyServer.MyStartupParameters.ServerProperties)
+            Catch ex As Exception
+                Dim n As New MessageWindow(MyMainWindow, "", "Could not start the text editor:" & vbNewLine & """" & MyUserSettings.UserSettings_DefaultTextEditor & """" & vbNewLine & "Set the correct executable in the Dashboard app settings screen, or just leave it empty for notepad :)", "Error", "large")
+            End Try
         End If
     End Sub
 

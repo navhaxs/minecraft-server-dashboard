@@ -19,6 +19,6 @@
         </Border>
         <TextBlock Text="Invite your friends to join your server" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" />
         <local:btnHelp HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="32" Width="32" Click="btnHelp_Click" ToolTip="What do I do with my &quot;IP address&quot;?" />
-        <TextBlock HorizontalAlignment="Center" Margin="0,160,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Hyperlink>Copy to clipboard (Ctrl+C)</Hyperlink></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Margin="0,160,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Hyperlink Click="Hyperlink_Click">Copy to clipboard (Ctrl+C)</Hyperlink></TextBlock>
     </Grid>
 </metro:Window>

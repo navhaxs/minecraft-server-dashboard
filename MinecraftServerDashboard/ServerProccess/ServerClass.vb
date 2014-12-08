@@ -302,7 +302,7 @@ Public Class ServerClass
 
 #Region "Console UI"
     'This flag is used to toggle-off the 'server not started' message in the UI's Console tab
-    Dim _HasColdBootFlag As System.Windows.Visibility = Visibility.Visible
+    Dim _HasColdBootFlag As System.Windows.Visibility = Visibility.Collapsed
     Public ReadOnly Property ServerColdBoot As System.Windows.Visibility
         Get
             Return _HasColdBootFlag
@@ -316,6 +316,8 @@ Public Class ServerClass
     Public Sub StartServer()
         If Not ServerIsOnline Then
             Try
+                ' Update flags
+                CurrentServerState = ServerState.WarmUp
 
                 ' Initialize startup parameters
 
@@ -346,9 +348,8 @@ Public Class ServerClass
                 ' Start RAM monitor thread
                 RAMmonitorThread.Start()
 
-                ' Update flags
-                CurrentServerState = ServerState.WarmUp
-                _HasColdBootFlag = Visibility.Collapsed
+                ' Update UI
+                _HasColdBootFlag = Visibility.Visible
                 OnPropertyChanged("ServerColdBoot")
 
             Catch ex As Exception
