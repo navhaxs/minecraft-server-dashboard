@@ -122,7 +122,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Ionic.Zip">
-      <HintPath>packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>.\Microsoft.Windows.Shell.dll</HintPath>
