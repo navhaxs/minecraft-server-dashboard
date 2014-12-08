@@ -316,6 +316,8 @@ Public Class ServerClass
     Public Sub StartServer()
         If Not ServerIsOnline Then
             Try
+                ' Update flags
+                CurrentServerState = ServerState.WarmUp
 
                 ' Initialize startup parameters
 
@@ -346,8 +348,7 @@ Public Class ServerClass
                 ' Start RAM monitor thread
                 RAMmonitorThread.Start()
 
-                ' Update flags
-                CurrentServerState = ServerState.WarmUp
+                ' Update UI
                 _HasColdBootFlag = Visibility.Collapsed
                 OnPropertyChanged("ServerColdBoot")
 

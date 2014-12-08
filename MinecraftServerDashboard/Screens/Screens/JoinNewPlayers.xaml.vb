@@ -38,4 +38,5 @@ Public Class JoinNewPlayers
 
         My.Computer.Clipboard.SetText(copyStr.ToString)
     End Sub
+
 End Class

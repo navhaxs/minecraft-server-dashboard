@@ -24,7 +24,6 @@
 
                 ' Don't add this value to the history if it was the same as the last one
                 If Not lastvalue = CommandTextBox.Text Then
-                    Debug.Print("Adding " & CommandTextBox.Text & " because it is not " & lastvalue)
                     commandHistory.Add(CommandTextBox.Text)
                 End If
 
