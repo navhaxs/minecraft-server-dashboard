@@ -13,7 +13,7 @@
             <Grid>
             <Image Height="64" Width="64" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/appicon.ico" HorizontalAlignment="Left" />
                 <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="72,5,0,0" VerticalAlignment="Top" FontSize="20" Width="322" TextWrapping="Wrap" />
-                <TextBlock Margin="72,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="December 2014 build 6/12/2014 (uuid testing branch) " /><Run Text="© navhaxs 2013-2014" /></TextBlock>
+                <TextBlock Margin="72,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="December 2014 build 8/12/2014 (uuid testing branch) " /><Run Text="© navhaxs 2013-2014" /></TextBlock>
             </Grid>
         </Border>
 
