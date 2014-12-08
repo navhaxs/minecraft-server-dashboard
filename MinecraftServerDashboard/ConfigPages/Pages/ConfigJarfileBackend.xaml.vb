@@ -49,6 +49,7 @@ Public Class ConfigJarfileBackend
         Next
         On Error Resume Next
         jarList.SelectedValue = My.Computer.FileSystem.GetFileInfo(MyUserSettings.settingsStore.Jarfile).Name
+        _selectedJarfile = jarList.SelectedValue
     End Sub
 
     Dim UpdaterProgressWindow As DownloadWindow
