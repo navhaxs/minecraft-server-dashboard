@@ -24,7 +24,8 @@
                     </LinearGradientBrush>
                 </Frame.Background>
             </Frame>
-            <Label x:Name="lblHeader" Content="Configuration" Height="40" VerticalAlignment="Top" FontSize="22" Margin="50,0,0,0" Foreground="White" />
+            <Label x:Name="lblHeader" Content="Configuration" Height="40" VerticalAlignment="Top" Margin="50,0,0,0"
+                   FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light"/>
             <Button HorizontalAlignment="Left" x:Name="BackButton1" Width="45" Height="45" Background="{x:Null}" Margin="0,-5,0,0" Style="{StaticResource arrowBack}" VerticalAlignment="Top" />
             <Grid HorizontalAlignment="Left" Margin="-7,0,0,0" VerticalAlignment="Stretch" Width="7">
                 <Grid.Background>
@@ -35,6 +36,6 @@
                 </Grid.Background>
             </Grid>
         </Grid>
-        <local:btnHelp HorizontalAlignment="Right" Height="22" Margin="0,10,10,0" VerticalAlignment="Top" Width="24" Click="btnHelp_Click" Visibility="Hidden" x:Name="btnHelp" />
+        <local:btnHelp HorizontalAlignment="Right" Height="28" Margin="0,6,10,0" VerticalAlignment="Top" Width="32" Click="btnHelp_Click" x:Name="btnHelp" />
     </Grid>
 </UserControl>

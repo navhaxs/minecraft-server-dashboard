@@ -11,22 +11,46 @@
       i:MouseWheel.Enhanced="True"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="console" Background="Black">
+      Title="console">
     <Page.Resources>
+        <!-- Force windows native theming on scrollbars -->
         <Style TargetType="ScrollBar" />
     </Page.Resources>
-
+    <Page.Background>
+        <LinearGradientBrush
+			EndPoint="0.5,1"
+			StartPoint="0.5,0">
+            <GradientStop
+				Color="White"
+				Offset="0" />
+            <GradientStop
+				Color="#FFEDEDED"
+				Offset="1" />
+        </LinearGradientBrush>
+    </Page.Background>
     <Grid>
-
-        <Grid HorizontalAlignment="Left" Width="12" Margin="0,0,0,0" Visibility="Hidden">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                    <GradientStop Color="#FF377599" Offset="0.013" />
-                    <GradientStop Color="#00000000" Offset="1" />
-                </LinearGradientBrush>
-            </Grid.Background>
-        </Grid>
-        <Grid Margin="0">
+        <Border x:Name="InfoTip_EmptyConsole_N00b" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid>
+                <Border Height="41" VerticalAlignment="Top">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#00616161" Offset="0.338"/>
+                            <GradientStop Color="#192D5062"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+             
+                    <Image Width="32" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" HorizontalAlignment="Right" Margin="0,0,5,0" />
+                    <TextBlock VerticalAlignment="Center"  TextWrapping="Wrap" FontSize="13" Margin="6" Grid.ColumnSpan="1" Grid.Column="1" Foreground="#FF474747"><Run Text="Select " /><Bold><Run Text="&quot;Start server&quot;" /></Bold><Run Text=" from the " /><Bold><Run Text="Quick Actions" /></Bold><Run Text=" menu or from the " /><Bold><Run Text="Overview" /></Bold><Run Text=" tab to start the Minecraft game server" /></TextBlock>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Margin="0" Background="Black" Visibility="{Binding ServerColdBoot, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=Collapsed}">
             <!--<Grid Margin="12,0,0,0">-->
             <DockPanel LastChildFill="True">
                 <TextBox
@@ -63,24 +87,5 @@
                 </UniformGrid>
             </DockPanel>
         </Grid>
-
-        <Border x:Name="InfoTip_EmptyConsole_N00b" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding ServerColdBoot, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-            <Grid>
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="0" />
-                        <GradientStop Color="#FFEDEDED" Offset="1" />
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Grid HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image Width="32" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" HorizontalAlignment="Right" Margin="0,0,5,0" />
-                    <TextBlock VerticalAlignment="Center"  TextWrapping="Wrap" FontSize="13" Margin="6" Grid.ColumnSpan="1" Grid.Column="1" Foreground="#FF474747"><Run Text="Select " /><Bold><Run Text="&quot;Start server&quot;" /></Bold><Run Text=" from the " /><Bold><Run Text="Quick Actions" /></Bold><Run Text=" menu or from the " /><Bold><Run Text="Overview" /></Bold><Run Text=" tab to start the Minecraft game server" /></TextBlock>
-                </Grid>
-            </Grid>
-        </Border>
     </Grid>
 </Page>

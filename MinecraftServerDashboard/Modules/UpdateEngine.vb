@@ -7,7 +7,7 @@ Imports Newtonsoft.Json
 ''' </summary>
 Public Class JarDownloadEngine
 
-    Public Event DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String)
+    Public Event DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String, filename As String)
 
     Public Event DownloadCompleted(e As ComponentModel.AsyncCompletedEventArgs, rootDir As String, filename As String)
 
@@ -55,38 +55,36 @@ Public Class JarDownloadEngine
         Public snapshot As String
     End Class
 
-    Function GetLatestCraftBukkitVersion() As String
+    Function GetLatestCraftBukkitVersion(Optional silent As Boolean = False) As String
+        Dim result As String = "--"
         Try
             Dim url As String = "http://cbukk.it/craftbukkit.jar"
             Dim fileName As String
             Using wc As New MyWebClient()
                 If Not My.Computer.Network.IsAvailable Then
-                    Return "Connect to the internet and try again."
-                    Exit Function
+                    Return result
+                End If
+                If silent Then
+                    wc.SetSilent()
                 End If
                 Using rawStream As Stream = wc.OpenRead(url)
-
                     ' Get the filename, which will include version info
                     fileName = wc.ResponseUri.AbsolutePath.Substring(wc.ResponseUri.AbsolutePath.LastIndexOf("/") + 1)
                     Using reader As New StreamReader(rawStream)
-                        'Dim firstpos As String = fileName.Substring("craftbukkit-".Length)
-                        'Dim endpos As Integer = fileName.IndexOf("-", firstpos.Length)
-
                         fileName = fileName.Replace(".jar", "").Replace("craftbukkit-", "")
-                        Return "Latest recommended release: " & fileName '.Substring(firstpos.Length, fileName.Length - endpos - 1) 
-                        ' Oops forgot that the return breaks out right here...
+                        result = "" & fileName
                         reader.Close()
                     End Using
                     rawStream.Close()
                 End Using
             End Using
         Catch ex As Exception
-            Return "Could not retrieve latest version number. Try visiting http://dl.bukkit.org/ manually."
+
         End Try
+        Return result
     End Function
 
 #End Region
-
 
     Dim _rootDir As String  ' Rootdir should always be the current directory for simplicity of the app
     Dim _FileName As String
@@ -162,7 +160,7 @@ Public Class JarDownloadEngine
 
         Dim total As String = Decimal.Round(CType((e.TotalBytesToReceive / 1024) / 1024, Decimal), 2) & "MB"
 
-        RaiseEvent DownloadProgressChanged(percentage, received, total)
+        RaiseEvent DownloadProgressChanged(percentage, received, total, _FileName)
     End Sub
 
     Private Sub WWWclient_DownloadFileCompleted(sender As Object, e As ComponentModel.AsyncCompletedEventArgs)
@@ -181,6 +179,12 @@ Public Class JarDownloadEngine
         Inherits WebClient
         Private _responseUri As Uri
 
+        Dim _silent As Boolean = False
+
+        Public Sub SetSilent()
+            _silent = True
+        End Sub
+
         Public ReadOnly Property ResponseUri() As Uri
             Get
                 Return _responseUri
@@ -195,7 +199,7 @@ Public Class JarDownloadEngine
             Catch we As WebException
                 Dim response As HttpWebResponse = CType(we.Response, System.Net.HttpWebResponse)
                 If Not response Is Nothing Then
-                    If (response.StatusCode = 451) Then ' todo make generic
+                    If (response.StatusCode = 451) And (Not _silent) Then ' todo make generic
                         MsgBox("Message from webserver:" & vbLf & we.Message, MsgBoxStyle.OkOnly)
                     End If
                 End If

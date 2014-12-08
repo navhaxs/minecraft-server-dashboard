@@ -1,12 +1,12 @@
 ﻿Public Class OverlayDialog
 
     ''' <summary>
-    ''' Display a page as a dialog within the MainWindow
+    ''' Display a page as an embeded screen within the MainWindow
     ''' </summary>
     Public Function DisplayConfig(ContentToDisplay As Object)
         With MyMainWindow
             .FormControls.Children.Add(Me) ' Adds shaded background
-            .OverlayOpened() ' Lock controls on MainWindow
+            .OverlayOpened() ' Lock controls on MainWindow from being selected (e.g. by using tab on the keyboard)
             .MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.StandardDialog
         End With
 

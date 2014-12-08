@@ -85,7 +85,7 @@
 					</Grid>
 				</Grid>
 
-				<Label FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light" OverridesDefaultStyle="False" IsManipulationEnabled="False" HorizontalAlignment="Stretch" Padding="10,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Bottom"
+				<Label FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light" HorizontalAlignment="Stretch" Padding="10,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Bottom"
 					Margin="70,0,200,0">
 					<Binding Path="navTitle" FallbackValue="Overview"  Mode="OneWay" UpdateSourceTrigger="PropertyChanged" />
 				</Label>
@@ -153,8 +153,21 @@
 						</StackPanel>
 					</TabItem.Header>
 					<Grid>
-						<Frame x:Name="FrameDashboard" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
-					</Grid>
+                        <Frame x:Name="FrameDashboard" TabIndex="0" NavigationUIVisibility="Hidden" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                            <Frame.Background>
+                                <LinearGradientBrush
+			                        EndPoint="0.5,1"
+			                        StartPoint="0.5,0">
+                                    <GradientStop
+				                        Color="White"
+				                        Offset="0" />
+                                    <GradientStop
+				                        Color="#FFEDEDED"
+				                        Offset="1" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                        </Frame>
+                    </Grid>
 				</TabItem>
 
 				<!--Players tab-->

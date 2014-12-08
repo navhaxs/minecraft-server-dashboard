@@ -32,7 +32,7 @@
                 <Label x:Name="SelectorText" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" Foreground="White" Content="1"/>
             </Grid>-->
         </Grid>
-        <TabControl x:Name="tabcontrol"  TabStripPlacement="Left" Margin="80,0,0,0">
+        <TabControl x:Name="tabcontrol" TabStripPlacement="Left" Margin="80,0,0,0" Padding="0,0,5,0">
             <TabItem x:Name="tabWelcome" Header="Welcome" Visibility="Collapsed">
                 <Grid>
                     <Button x:Name="btnGetNew" Content="Download the latest server files for me &gt;&gt;" Margin="20,166,10,0" VerticalAlignment="Top" Height="90" FontSize="18" HorizontalContentAlignment="Left" Padding="30,1,1,1"/>
@@ -51,7 +51,7 @@
                     <Border BorderThickness="2" BorderBrush="#FFF3F3F3">
                         <ListBox x:Name="thisJar" Height="140" />
                     </Border>
-                    <Button x:Name="_1btnNext" Content="Next &gt;&gt;" HorizontalAlignment="Right" Margin="0,10,10,10" VerticalAlignment="Bottom" Width="200" Height="50" FontSize="18" Click="Button_Click" IsDefault="True" />
+                    <Button x:Name="_1btnNext" Content="Next &gt;&gt;" HorizontalAlignment="Right" Margin="0,10,0,10" VerticalAlignment="Bottom" Width="200" Height="50" FontSize="18" Click="Button_Click" IsDefault="True" />
                 </StackPanel>
             </TabItem>
         </TabControl>
