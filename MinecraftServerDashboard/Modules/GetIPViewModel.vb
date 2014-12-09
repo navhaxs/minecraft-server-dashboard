@@ -3,7 +3,7 @@
 Public Class GetIPViewModel
     Implements INotifyPropertyChanged
 
-    Private _externalIP As String
+    Private _externalIP As String = "(please wait)"
     Public Property ExternalIP As String
         Get
             Return _externalIP

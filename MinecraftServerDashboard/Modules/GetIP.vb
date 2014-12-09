@@ -29,14 +29,14 @@ Module GetIP
                 Return direction
             Catch ex As WebException
                 Debug.Print(ex.Message)
-                Return Nothing
+                Return "(Error)"
             Catch ex As Exception
                 Debug.Print(ex.Message)
-                Return Nothing
+                Return "(Error)"
             End Try
         Else
             Debug.Print("[GetIP] The network is unavailable.")
-            Return Nothing
+            Return "(Offline)"
         End If
     End Function
 

@@ -26,6 +26,14 @@ Public Class JoinNewPlayers
     End Sub
 
     Private Sub Hyperlink_Click(sender As Object, e As RoutedEventArgs)
+        CopyToClipboard()
+    End Sub
+
+    Private Sub CommandBinding_Executed(sender As Object, e As ExecutedRoutedEventArgs)
+        CopyToClipboard()
+    End Sub
+
+    Sub CopyToClipboard()
         Dim copyStr As New StringBuilder
         copyStr.Append(MyExternalIPAddressViewModel.ExternalIP)
 
@@ -38,5 +46,4 @@ Public Class JoinNewPlayers
 
         My.Computer.Clipboard.SetText(copyStr.ToString)
     End Sub
-
 End Class

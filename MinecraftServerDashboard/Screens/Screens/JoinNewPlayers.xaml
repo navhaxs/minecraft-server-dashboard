@@ -10,6 +10,15 @@
     ShowInTaskbar="False"
     ResizeMode="NoResize"
     Height="350" Width="600">
+    <metro:Window.InputBindings>
+        <KeyBinding Key="C"
+                    Modifiers="Ctrl"
+                    Command="Copy"/>
+    </metro:Window.InputBindings>
+    <metro:Window.CommandBindings>
+        <CommandBinding Command="Copy"
+                        Executed="CommandBinding_Executed"/>
+    </metro:Window.CommandBindings>
     <Grid>
         <Border Background="#FFFFF7C2" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="2" Padding="30">
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
