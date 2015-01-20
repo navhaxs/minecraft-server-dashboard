@@ -70,10 +70,38 @@
         </Grid>
         <Label x:Name="lblServerStatus" Content="Server offline" Margin="115,85,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Light" Height="43" Grid.ColumnSpan="2" />
         <Label Background="{x:Null}" Content="Stats" Height="28" VerticalAlignment="Top" Margin="23,324,10,0" BorderBrush="#FF335D99" BorderThickness="0,0,0,1" />
-        <Label Background="{x:Null}" Content="Memory usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="23,357,0,0" />
 
-        <ProgressBar x:Name="progbarRAM" Height="25" Margin="141,360,10,0" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFB87979" BorderBrush="#FFB2B2B2" />
+        <Label Background="{x:Null}" Content="Memory usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="23,357,0,0" />
+        <Grid Margin="141,360,10,0" Height="25" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ProgressBar x:Name="progbarRAM" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFB87979" BorderBrush="#FFB2B2B2" />
+            <TextBlock x:Name="txtRAM" Grid.ColumnSpan="2" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
+        </Grid>
+
         <Label Background="{x:Null}" Content="Server memory load:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="23,387,0,0" />
-        <ProgressBar x:Name="progbarRAMalloc" Height="25" Margin="141,390,10,0" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFE8E8E8" BorderBrush="#FFB2B2B2" />
+        <Grid Margin="141,390,10,0" Height="25" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ProgressBar x:Name="progbarRAMalloc" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFE8E8E8" BorderBrush="#FFB2B2B2" />
+            <TextBlock x:Name="txtRAMAlloc" Grid.ColumnSpan="2" Text="0MiB" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
+        </Grid>
+
+        <Label Background="{x:Null}" Content="CPU Usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="23,415,0,0" />
+        <Grid Margin="141,420,10,0" Height="25" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ProgressBar x:Name="progbarCPUUsage" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFE8E8E8" BorderBrush="#FFB2B2B2" />
+            <TextBlock x:Name="txtCPUUsage" Grid.ColumnSpan="2" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
+        </Grid>
     </Grid>
 </Page>
