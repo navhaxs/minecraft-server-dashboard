@@ -481,6 +481,11 @@ Public Class ServerClass
         'On process exit, clear info & update UI
         serverprocess_RAMusage = 0
         serverprocess_ComputedCPUUsage = 0
+        If Not IsNothing(serverProcess_CPUCounter) Then
+            serverProcess_CPUCounter.Dispose()
+            serverProcess_CPUCounter = Nothing
+        End If
+
         Execute_UpdateServerStats_graph()
     End Sub
 
