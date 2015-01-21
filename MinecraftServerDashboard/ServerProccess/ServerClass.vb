@@ -401,21 +401,25 @@ Public Class ServerClass
 
 #End Region
 
-#Region "RAM monitor"
+#Region "Stats monitor"
 
     Private serverprocess_RAMusage As ULong
+    Private serverprocess_PreviousCPUUsage As CounterSample
+    Private serverprocess_CurrentCPUUsage As CounterSample
+    Private serverprocess_ComputedCPUUsage As Single
+    Private serverProcess_CPUCounter As PerformanceCounter
 
     Public Shared Function GetTotalMemoryInBytes() As ULong
         ' (Total memory of PC used to calculate % of total used by server)
         Return New Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory
     End Function
 
-    Public Sub Execute_UpdateRAMstat_graph()
+    Public Sub Execute_UpdateServerStats_graph()
         ' Begin updating the RAM usage info
-        MyMainWindow.Dispatcher.Invoke(New Action(AddressOf UpdateRAMstat_graph))
+        MyMainWindow.Dispatcher.Invoke(New Action(AddressOf UpdateServerStats_graph))
     End Sub
 
-    Private Sub UpdateRAMstat_graph()
+    Private Sub UpdateServerStats_graph()
         ' Convert from bytes to MegaBytes
         Dim serverprocess_memory_usage As ULong = (serverprocess_RAMusage / (1024 * 1024))
         Dim total_machine_memory As ULong = (GetTotalMemoryInBytes() / (1024 * 1024))
@@ -426,10 +430,15 @@ Public Class ServerClass
         ' Calculate the server's memory usage against machines' total memory
         Dim ratio As Single = CSng(serverprocess_memory_usage) / CSng(total_machine_memory)
         navpageDashboard.progbarRAM.Value = ratio * 100
+        navpageDashboard.txtRAM.Text = String.Format("{0:0.00}%", navpageDashboard.progbarRAM.Value)
 
         ' Calculate the usage of the server's own memory allocation
         Dim ratio2 As Single = CSng(serverprocess_memory_usage) / CSng(total_allocated_memory)
         navpageDashboard.progbarRAMalloc.Value = ratio2 * 100
+        navpageDashboard.txtRAMAlloc.Text = String.Format("{0:0.00}MiB", serverprocess_memory_usage)
+
+        navpageDashboard.progbarCPUUsage.Value = serverprocess_ComputedCPUUsage
+        navpageDashboard.txtCPUUsage.Text = String.Format("{0:0.00}%", serverprocess_ComputedCPUUsage)
     End Sub
 
     Private Sub ProcessStatMonitor()
@@ -444,33 +453,75 @@ Public Class ServerClass
         ' Polls every 1 sec.
         Do
             If Not MyServer.ServerProc.HasExited Then
+                If IsNothing(serverProcess_CPUCounter) Then
+                    serverProcess_CPUCounter = GetPerfCounterForProcessId(MyServer.ServerProc.Id)
+                    serverprocess_CurrentCPUUsage = serverProcess_CPUCounter.NextSample()
+                    serverprocess_PreviousCPUUsage = serverprocess_CurrentCPUUsage ' Just to have a non Nothing value at start
+                End If
+
                 ' Refresh the current process property values.
                 MyServer.ServerProc.Refresh()
 
                 ' Display current process statistics.
                 serverprocess_RAMusage = CULng(MyServer.ServerProc.WorkingSet64)
-                Execute_UpdateRAMstat_graph()
+                Execute_UpdateServerStats_graph()
 
                 ' Update the values for the overall peak memory statistics.
                 peakPagedMem = MyServer.ServerProc.PeakPagedMemorySize64
                 peakVirtualMem = MyServer.ServerProc.PeakVirtualMemorySize64
                 peakWorkingSet = MyServer.ServerProc.PeakWorkingSet64
 
+                'Update values for current CPU usage %
+                serverprocess_PreviousCPUUsage = serverprocess_CurrentCPUUsage
+                serverprocess_CurrentCPUUsage = serverProcess_CPUCounter.NextSample()
+                serverprocess_ComputedCPUUsage = CounterSampleCalculator.ComputeCounterValue(serverprocess_PreviousCPUUsage, serverprocess_CurrentCPUUsage) / Environment.ProcessorCount
             End If
         Loop While Not MyServer.ServerProc.WaitForExit(1000)
 
         'On process exit, clear info & update UI
         serverprocess_RAMusage = 0
-        Execute_UpdateRAMstat_graph()
+        serverprocess_ComputedCPUUsage = 0
+        If Not IsNothing(serverProcess_CPUCounter) Then
+            serverProcess_CPUCounter.Dispose()
+            serverProcess_CPUCounter = Nothing
+        End If
+
+        Execute_UpdateServerStats_graph()
     End Sub
 
-#End Region
+    Private Function GetPerfCounterForProcessId(processId As Integer, Optional processCounterName As String = "% Processor Time") As PerformanceCounter
+        Dim instance As String
+        instance = GetInstanceNameForProcessId(processId)
+        If String.IsNullOrEmpty(instance) Then
+            Return Nothing
+        End If
 
-#Region "CPU monitor"
-    Sub Test()
-        Dim theCPUCounter As PerformanceCounter = New PerformanceCounter("Process", "% Processor Time", MyServer.ServerProc.ProcessName)
-        theCPUCounter.NextValue()
-    End Sub
+        Return New PerformanceCounter("Process", processCounterName, instance)
+    End Function
+
+    Private Function GetInstanceNameForProcessId(processId As Integer) As String
+        Dim process As Process
+        Dim processName As String
+        Dim cat As PerformanceCounterCategory
+        Dim instances As String()
+
+        process = process.GetProcessById(processId)
+        processName = IO.Path.GetFileNameWithoutExtension(process.ProcessName)
+        cat = New PerformanceCounterCategory("Process")
+
+        instances = (From inst In cat.GetInstanceNames() Where inst.StartsWith(processName)).ToArray()
+
+        For Each instance In instances
+            Using cnt As PerformanceCounter = New PerformanceCounter("Process", "ID Process", instance, True)
+                Dim val As Integer = CInt(cnt.RawValue)
+                If val = processId Then
+                    Return instance
+                End If
+            End Using
+        Next
+
+        Return Nothing
+    End Function
 
 #End Region
 
