@@ -20,13 +20,15 @@
     ''' </summary>
     Public ReadOnly Property ServerPath As String
         Get
-            If MyUserSettings.settingsStore.Jarfile = Nothing Then
-                Return Nothing
-            ElseIf Not My.Computer.FileSystem.FileExists(MyUserSettings.settingsStore.Jarfile) Then
-                Return Nothing
-            Else
-                Return My.Computer.FileSystem.GetFileInfo(MyUserSettings.settingsStore.Jarfile).Directory.FullName
-            End If
+            ' Super simple stuff: keep the Dashboard exe in the same directory as the jar by design!
+            'If MyUserSettings.settingsStore.Jarfile = Nothing Then
+            '    Return Nothing
+            'ElseIf Not My.Computer.FileSystem.FileExists(MyUserSettings.settingsStore.Jarfile) Then
+            '    Return Nothing
+            'Else
+            '    Return My.Computer.FileSystem.GetFileInfo(MyUserSettings.settingsStore.Jarfile).Directory.FullName
+            'End If
+            Return System.Environment.CurrentDirectory
         End Get
     End Property
 
