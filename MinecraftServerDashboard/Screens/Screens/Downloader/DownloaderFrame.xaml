@@ -21,7 +21,7 @@
                 <Button x:Name="BackButton"
 						HorizontalAlignment="Stretch" 
 						Style="{StaticResource arrowBack}"
-						VerticalAlignment="Stretch" />
+						VerticalAlignment="Stretch" Foreground="White" />
             </Grid>
             <Grid x:Name="SelectorBubble" HorizontalAlignment="Stretch" Height="60" VerticalAlignment="Top" Visibility="Collapsed">
                 <Ellipse Stroke="#FF5387A5" StrokeThickness="2">
@@ -48,7 +48,7 @@
                             <Image HorizontalAlignment="Right" Height="84" Source="official mojang.png" />
                         </Grid>
                     </RadioButton>
-                    <TextBlock Text="Looking for CraftBukkit? Following the recent events regarding the legal action, please instead download it manually from https://savebukkit.org/ " TextWrapping="Wrap" Margin="10,287,0,0"/>
+                    <TextBlock Text="Looking for CraftBukkit? Following the recent events regarding the legal action, please instead download it manually from https://savebukkit.org/ " TextWrapping="Wrap" Margin="10,287,0,0" Padding="5,0"/>
                     <Button Content="Download &gt;&gt;" HorizontalAlignment="Right" Margin="0,10,10,10" VerticalAlignment="Bottom" Width="200" Height="50" FontSize="18" IsDefault="True" Click="Button_Click" />
                 </Grid>
             </TabItem>

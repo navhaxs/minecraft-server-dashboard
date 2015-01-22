@@ -28,17 +28,14 @@
             My.Computer.FileSystem.WriteAllText(System.Environment.CurrentDirectory & "\" & filename, report, False)
             MessageBox.Show("An error report was generated: " & filename)
 
-        Catch secError As Security.SecurityException
+        Catch otherError As Exception
             Try
                 My.Computer.FileSystem.WriteAllText(System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) & "\" & filename, report, False)
                 MessageBox.Show("An error report was generated: " & filename)
 
             Catch ex As Exception
-                MessageBox.Show("Dashboard encountered an error, and futhermore the error report could not be created.")
+                MessageBox.Show("Dashboard encountered an error, and futhermore the error report could not be created." & vbNewLine & ex.Message)
             End Try
-        Catch otherError As Exception
-            MessageBox.Show("Dashboard encountered an error, and futhermore the error report could not be created.")
-
         End Try
 
 

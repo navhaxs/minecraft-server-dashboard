@@ -15,7 +15,6 @@ Public Class NewWorldProfile
     End Sub
 
     Private Sub NewWorldProfile_Closing(sender As Object, e As ComponentModel.CancelEventArgs) Handles Me.Closing
-        MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
         navpageWorld.RefreshPageData()
     End Sub
 

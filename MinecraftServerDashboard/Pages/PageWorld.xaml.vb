@@ -77,7 +77,7 @@ Class pageWorld
 
         If Not s Is Nothing Then
             If s = "" Then s = "world"
-            txtCurrentWorld.Text = "Current World: " & s
+            txtCurrentWorld.Text = s
 
             Dim p As String = MyServer.MyStartupParameters.ServerPath & "\" & s
 
@@ -90,6 +90,7 @@ Class pageWorld
                     size += file.Length
                 Next
                 size = size / (1024 ^ 2)
+
                 txtCurrentWorldSize.Text = Decimal.Round(size, 2) & " MB"
             Else
                 txtCurrentWorldSize.Text = "Empty"
@@ -143,32 +144,21 @@ Class pageWorld
 
         If Not ListBox_MyWorldProfiles.SelectedIndex = -1 Then
 
+            btnDeleteProfile.IsEnabled = True
+
             'Don't allow "Set as active" for the already active world
             btnSwitchTo.IsEnabled = Not ListBox_MyWorldProfiles.SelectedItem.ToString.EndsWith("(Active)")
-
-            'Don't allow "recreate world" if the server is online, and this is the currently active world
-            If MyServer.ServerIsOnline Then
-                btnRegenSelWorld.IsEnabled = Not ListBox_MyWorldProfiles.SelectedItem.ToString.EndsWith("(Active)")
-            Else
-                btnRegenSelWorld.IsEnabled = True
-            End If
-
-            'Don't allow the deletion of the currently active world
+            
+            'Don't allow the deletion of the currently active (running) world
             If ListBox_MyWorldProfiles.SelectedItem.ToString.EndsWith("(Active)") Then
                 btnDeleteProfile.IsEnabled = Not MyServer.ServerIsOnline
-            Else
-                btnDeleteProfile.IsEnabled = True
             End If
+
         Else
             'Nothing selected
             btnSwitchTo.IsEnabled = False
             btnDeleteProfile.IsEnabled = False
-            btnRegenSelWorld.IsEnabled = False
         End If
-
-        'Don't allow any buttons if nothing is selected
-        gridSelectedButtons.IsEnabled = Not CBool(ListBox_MyWorldProfiles.SelectedIndex = -1)
-
     End Sub
 
 #Region "UI Button actions"
@@ -188,6 +178,7 @@ Class pageWorld
         Using l As New NewWorldProfile
             Dim x As New OverlayDialog
             x.DisplayConfig(l)
+            MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
         End Using
     End Sub
 
@@ -207,25 +198,11 @@ Class pageWorld
     ''' Display new world re-create dialog for the active profile
     ''' </summary>
     Public Sub GenerateNewWorld()
-        Dim M As New NewWorldGenScreen
-        With MyMainWindow
-            .FormControls.Children.Add(M)
-            .OverlayOpened()
-            .MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.StandardDialog
-        End With
-    End Sub
-
-    ''' <summary>
-    ''' Display new world re-create dialog for the selected profile
-    ''' </summary>
-    Public Sub GenerateNewWorldSelected()
-        SetAsActive()
-        Dim M As New NewWorldGenScreen(MyProfileDirs(ListBox_MyWorldProfiles.SelectedIndex).FullDirName)
-        With MyMainWindow
-            .FormControls.Children.Add(M)
-            .OverlayOpened()
-            .MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.StandardDialog
-        End With
+        Using l As New NewWorldGenScreen
+            Dim x As New OverlayDialog
+            x.DisplayConfig(l)
+            MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
+        End Using
     End Sub
 
     ''' <summary>
@@ -264,8 +241,12 @@ Class pageWorld
     ''' <summary>
     ''' Delete the selected profile
     ''' </summary>
-    Private Sub Button_Click_1(sender As Object, e As RoutedEventArgs)
+    Private Sub DeleteWorld_Click(sender As Object, e As RoutedEventArgs)
         Dim s As Integer = ListBox_MyWorldProfiles.SelectedIndex
+
+        Dim _m As New ConfirmWorldDeletion
+        If Not _m.ShowMessage(MyProfileDirs(s).DirName) Then Exit Sub
+
         Try
             My.Computer.FileSystem.DeleteDirectory(MyProfileDirs(s).DirName, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
             ListBox_MyWorldProfiles.Items.RemoveAt(s)
@@ -297,5 +278,11 @@ Class pageWorld
         navPageCBconfig.Go_ExploreSreverDirectory_inWindowsExplorer()
     End Sub
 
+    Private Sub Hyperlink_Click(sender As Object, e As RoutedEventArgs)
+        RefreshPageData()
+    End Sub
+
 #End Region
+
+
 End Class

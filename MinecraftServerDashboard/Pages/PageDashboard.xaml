@@ -25,7 +25,7 @@
 
         <Rectangle x:Name="barRAMusage" Fill="#FF363636" Height="28" Margin="115,357,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" />
 
-        <Image x:Name="imgServerState_Copy1" Height="144" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/Images/cbclouds.png" Stretch="None" RenderTransformOrigin="0.406,0.938" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="850" />
+        <Image Height="144" VerticalAlignment="Top" Source="/MinecraftServerDashboard;component/Images/cbclouds.png" Stretch="None" RenderTransformOrigin="0.406,0.938" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="850" />
 
         <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="33,49,0,0" VerticalAlignment="Top" Width="75" Source="/MinecraftServerDashboard;component/MC2.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
 

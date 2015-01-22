@@ -37,22 +37,31 @@
 
     End Sub
 
-    Private Sub btnMoveLeft_Click(sender As Object, e As RoutedEventArgs) Handles btnMoveLeft.Click
-        LeftPlayerList.AddPlayerToThisList(RightPlayerList.PlayerListBox.SelectedItem)
-        If Not My.Computer.Keyboard.ShiftKeyDown Then ' Only copy if SHIFT is held down, else MOVE
-            RightPlayerList.RemovePlayerFromThisList(RightPlayerList.PlayerListBox.SelectedItem)
-        End If
+    ' Copy or move an entry from either list to the other
+    Private Sub btnMoveToLeft_Click(sender As Object, e As RoutedEventArgs) Handles btnMoveLeft.Click
+        If Not RightPlayerList.PlayerListBox.SelectedIndex = -1 Then ' Ensure an item to transfer is selected
 
-        CheckForEmptyList()
+            LeftPlayerList.AddPlayerToThisList(RightPlayerList.PlayerListBox.SelectedItem)
+            If Not My.Computer.Keyboard.ShiftKeyDown Then ' Only copy if SHIFT is held down, else MOVE
+                RightPlayerList.RemovePlayerFromThisList(RightPlayerList.PlayerListBox.SelectedItem)
+            End If
+
+            CheckForEmptyList()
+
+        End If
     End Sub
 
-    Private Sub btnMoveRight_Click(sender As Object, e As RoutedEventArgs) Handles btnMoveRight.Click
-        RightPlayerList.AddPlayerToThisList(LeftPlayerList.PlayerListBox.SelectedItem)
-        If Not My.Computer.Keyboard.ShiftKeyDown Then ' Only copy if SHIFT is held down, else MOVE
-            LeftPlayerList.RemovePlayerFromThisList(LeftPlayerList.PlayerListBox.SelectedItem)
-        End If
+    Private Sub btnMoveToRight_Click(sender As Object, e As RoutedEventArgs) Handles btnMoveRight.Click
+        If Not LeftPlayerList.PlayerListBox.SelectedIndex = -1 Then ' Ensure an item to transfer is selected
 
-        CheckForEmptyList()
+            RightPlayerList.AddPlayerToThisList(LeftPlayerList.PlayerListBox.SelectedItem)
+            If Not My.Computer.Keyboard.ShiftKeyDown Then ' Only copy if SHIFT is held down, else MOVE
+                LeftPlayerList.RemovePlayerFromThisList(LeftPlayerList.PlayerListBox.SelectedItem)
+            End If
+
+            CheckForEmptyList()
+
+        End If
     End Sub
 
     ' Update UI for empty lists (shows 'this list is empty' text)
@@ -69,7 +78,7 @@
         End If
     End Sub
 
-    Sub RefreshBtn_Click() Handles Button1.Click
+    Sub RefreshBtn_Click()
         ReloadPlayerLists()
     End Sub
 

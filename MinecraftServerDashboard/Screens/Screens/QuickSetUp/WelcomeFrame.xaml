@@ -7,21 +7,21 @@
     xmlns:local="clr-namespace:MinecraftServerDashboard"
     params:Manager.Theme="Light"
     params:Manager.AccentBrush="#FF5387A5"
-    Height="390" Width="600" Title="Quick set up"
-    ShowInTaskbar="False" ResizeMode="NoResize">
+    Height="390" Width="600" Title="Welcome to Dashboard"
+    ShowInTaskbar="False" ResizeMode="NoResize" Background="White">
     <Grid>
         <Grid Margin="10,24,0,84" Width="60" HorizontalAlignment="Left">
             <!--<Border Background="#FF5387A5" HorizontalAlignment="Center" Height="250" Margin="0,10,0,0" VerticalAlignment="Top" Width="4" CornerRadius="2"/>-->
             <Grid HorizontalAlignment="Stretch" Height="60" VerticalAlignment="Top">
-            <Ellipse Stroke="#FF5387A5" StrokeThickness="2">
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource="/MinecraftServerDashboard;component/Images/World/worldsel.png" Stretch="UniformToFill"/>
-                </Ellipse.Fill>
-            </Ellipse>
+                <Ellipse Stroke="#FF5387A5" StrokeThickness="2">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/MinecraftServerDashboard;component/Images/World/worldsel.png" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
                 <Button x:Name="BackButton"
 						HorizontalAlignment="Stretch" 
 						Style="{StaticResource arrowBack}"
-						VerticalAlignment="Stretch" />
+						VerticalAlignment="Stretch" Foreground="White" />
             </Grid>
             <!--<Grid x:Name="SelectorBubble" HorizontalAlignment="Stretch" Height="60" VerticalAlignment="Top">
             <Ellipse Stroke="#FF5387A5" StrokeThickness="2">
@@ -34,10 +34,13 @@
         </Grid>
         <TabControl x:Name="tabcontrol" TabStripPlacement="Left" Margin="80,0,0,0" Padding="0,0,5,0">
             <TabItem x:Name="tabWelcome" Header="Welcome" Visibility="Collapsed">
-                <Grid>
-                    <Button x:Name="btnGetNew" Content="Download the latest server files for me &gt;&gt;" Margin="20,166,10,0" VerticalAlignment="Top" Height="90" FontSize="18" HorizontalContentAlignment="Left" Padding="30,1,1,1"/>
-                    <Button x:Name="btnSelectExisting" Content="I already have existing server files on my PC &gt;&gt;" Margin="20,71,10,0" VerticalAlignment="Top" Height="90" FontSize="18" HorizontalContentAlignment="Left" Padding="30,1,1,1" />
-                    <TextBlock Margin="20,10,80,0" FontSize="36" FontWeight="Light" Height="56" VerticalAlignment="Top" >Let's Get Started</TextBlock>
+                <Grid Margin="15,0,0,0">
+
+
+
+                    <Button x:Name="btnGetNew" Content="Download the latest server files for me &gt;&gt;" Margin="10,152,20,0" VerticalAlignment="Top" Height="90" FontSize="18" HorizontalContentAlignment="Left" Padding="30,1,1,1"/>
+                    <Button x:Name="btnSelectExisting" Content="I already have existing server files on my PC &gt;&gt;" Margin="10,57,20,0" VerticalAlignment="Top" Height="90" FontSize="18" HorizontalContentAlignment="Left" Padding="30,1,1,1" />
+                    <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" FontSize="25" FontWeight="Light" VerticalAlignment="Top" ><Run Text="Let's get your Minecraft Server started!"/></TextBlock>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabExisting" Header="Set up" Visibility="Collapsed">
@@ -55,5 +58,6 @@
                 </StackPanel>
             </TabItem>
         </TabControl>
+        
     </Grid>
 </metro:Window>

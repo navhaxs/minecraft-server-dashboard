@@ -119,7 +119,7 @@
             End With
         Else
             ' Final warning
-            If MessageBox.Show("WARNING! This will revert the world to the backup. All changes since the backup will be permanently earased. Continue?", "Restore World Backup", MessageBoxButton.YesNoCancel) = MessageBoxResult.Yes Then
+            If MessageBox.Show("WARNING! This will revert the world to the backup. All changes since the backup will be permanently erased. Continue?", "Restore World Backup", MessageBoxButton.YesNoCancel) = MessageBoxResult.Yes Then
                 ' Overwrite any existing data, unzips the backup file
                 MyZipLib.Extract(s.FileName, MyServer.MyStartupParameters.ServerPath)
             End If

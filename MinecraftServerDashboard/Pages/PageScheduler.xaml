@@ -42,7 +42,7 @@
                     <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,3" Foreground="White" FontWeight="Light" FontSize="14" >
                         <Run x:Name="lblEnabledCount" Text="0"/><Run Text=" tasks enabled"/>
                     </TextBlock>
-                    <TextBlock x:Name="labelServerIsRunning" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,21" Foreground="White" Visibility="Hidden"><Run Text="Stop the server to make changes to tasks"/></TextBlock>
+                    <TextBlock x:Name="labelServerIsRunning" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,9,22" Foreground="White" Visibility="Hidden"><Run Text="Stop the server to make changes to tasks"/></TextBlock>
                 </Grid>
                 <TextBlock x:Name="InfoOverlay" Foreground="#FF5F5F5F" FontWeight="Light" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="40,0,0,30">
                             Use the scheduler to automate routine tasks,<LineBreak />

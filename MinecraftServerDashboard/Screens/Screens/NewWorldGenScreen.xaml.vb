@@ -3,26 +3,10 @@
     Dim thisConfigServerProp As New ConfigServerProp(Nothing)
     Dim FullDirNameToDelete As String
 
-    Sub New(Optional world_level_to_clear As String = Nothing)
+    Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-
-        ' Determine which folder is to be deleted
-        If Not world_level_to_clear Is Nothing Then
-            ' Load default world directory as the folder to clear
-            FullDirNameToDelete = world_level_to_clear
-
-            world_level_to_clear = My.Computer.FileSystem.GetDirectoryInfo(world_level_to_clear).Name
-
-            lbloptional.Text = " (Affecting the profile """ & world_level_to_clear & """)"
-        Else
-            Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
-            Dim s As String = b.ReturnConfigValue("level-name")
-            If s = "" Then s = "word"
-            FullDirNameToDelete = MyServer.MyStartupParameters.ServerPath & "\" & s
-            world_level_to_clear = s
-        End If
 
         ' Load any previously saved world generation settings
         Dim configreader As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
@@ -46,17 +30,7 @@
         SetStringOfProperty(leveltype.SelectedValue.Content.ToString.ToUpper, "level-type")
         SetTextBoxStringOfProperty(generatorsettings, "generator-settings")
         On Error Resume Next
-        ' Attempt to clear current world
-        My.Computer.FileSystem.DeleteDirectory(FullDirNameToDelete, FileIO.DeleteDirectoryOption.DeleteAllContents)
-        My.Computer.FileSystem.CreateDirectory(FullDirNameToDelete)
-        MessageBox.Show("Success! This world will be automatically regenerated on the next start of the server.", "Reset world", MessageBoxButton.OK)
         Close()
     End Sub
 
-    Sub Close() Handles btnCancel.Click
-        MyMainWindow.FormControls.Children.Remove(Me)
-        MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None
-        MyMainWindow.OverlayClosed()
-        navpageWorld.RefreshPageData()
-    End Sub
 End Class

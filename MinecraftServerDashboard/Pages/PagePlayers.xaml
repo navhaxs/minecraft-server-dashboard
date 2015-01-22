@@ -2,89 +2,90 @@
 <Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:MinecraftServerDashboard"
 	x:Class="PagePlayers"
 	mc:Ignorable="d"
-	d:DesignHeight="434.451"
-	d:DesignWidth="756"
+	d:DesignHeight="527.501"
+	d:DesignWidth="868"
     xmlns:metro="http://schemas.codeplex.com/elysium"
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     params:Manager.Theme="Light"
     params:Manager.AccentBrush="#FF5387A5"
-	Title="PagePlayers">
-    <Page.Background>
-        <LinearGradientBrush
-			EndPoint="0.5,1"
-			StartPoint="0.5,0">
-            <GradientStop
-				Color="White"
-				Offset="0" />
-            <GradientStop
-				Color="#FFEDEDED"
-				Offset="1" />
-        </LinearGradientBrush>
-    </Page.Background>
+	Title="PagePlayers" Background="White">
     <Grid>
-        <Border Height="41" VerticalAlignment="Top">
-            <Border.Background>
+        <Border Height="110" VerticalAlignment="Top">
+            <!--<Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#00616161" Offset="0.338"/>
                     <GradientStop Color="#192D5062"/>
                 </LinearGradientBrush>
-            </Border.Background>
+            </Border.Background>-->
             <Grid>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="12,5,0,0" ><Run Text="Manage your player lists" FontWeight="Light" FontSize="26" /></TextBlock>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00616161" Offset="0.338"/>
+                        <GradientStop Color="#192D5062"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Label Content="Manage your Player lists" FontWeight="Light" FontSize="26" Margin="12,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <Border
+            	Margin="5,45,5,0"
+            	VerticalAlignment="Top"
+                Background="#4CC9D9DE" Height="43" Padding="10,0" CornerRadius="0">
+                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
+                    See who's online. Promote players to Op. Ban certain players from joining.
+                    <LineBreak />
+                    Hold shift down to copy instead of moving when using the transfer right/left arrows. To select multiple items, also hold down shift.
+                    </TextBlock>
+                </Border>
+                <TextBlock
+				VerticalAlignment="Top"
+				Margin="0,10,10,0"
+				HorizontalAlignment="Right"><Hyperlink Click="RefreshBtn_Click">Refresh</Hyperlink></TextBlock>
             </Grid>
         </Border>
 
         <Grid x:Name="ContentFrame"
-				Margin="0,46,0,-6">
+				Margin="0,93,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
             		Width="*" />
                 <ColumnDefinition
-            		Width="60" />
+            		Width="45" />
                 <ColumnDefinition
             		Width="*" />
             </Grid.ColumnDefinitions>
             <Button
         		x:Name="btnMoveLeft"
-        		Height="48"
+        		Height="40"
         		HorizontalAlignment="Center"
-        		Margin="0,48,0,0"
-        		VerticalAlignment="Top" Width="58" Grid.ColumnSpan="1" Grid.Column="1" IsEnabled="False">
-                <Image
-        			Source="/MinecraftServerDashboard;component/Images/Players/112_LeftArrowShort_Orange_48x48_72.png" />
-            </Button>
+        		Margin="0,60,0,0"
+                Style="{StaticResource arrowBackwithGrayOut}"    
+                VerticalAlignment="Top" Width="58" Grid.ColumnSpan="1" Grid.Column="1" IsEnabled="False" Foreground="#FF224154" />
             <Button
         		x:Name="btnMoveRight"
-        		Height="48"
+        		Height="40"
         		HorizontalAlignment="Center"
-        		Margin="0,101,0,0"
-        		VerticalAlignment="Top" Width="58" Grid.ColumnSpan="1" Grid.Column="1" IsEnabled="False">
-                <Image
-        			Source="/MinecraftServerDashboard;component/Images/Players/112_RightArrowShort_Orange_48x48_72.png" />
+        		Margin="0,110,0,0"
+                Style="{StaticResource arrowBackwithGrayOut}"
+        		VerticalAlignment="Top" Width="58" Grid.ColumnSpan="1" Grid.Column="1" IsEnabled="False" RenderTransformOrigin="0.5,0.5" Foreground="#FF224154" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                        <SkewTransform AngleY="0" AngleX="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
             </Button>
             <local:PlayerLists
 					x:Name="LeftPlayerList"
-					Margin="10,48,5,10"
-					ComboBoxSelectionChanged="LeftPlayerList_ComboBoxSelectionChanged" />
+                    Margin="5,0,0,5"
+					ComboBoxSelectionChanged="LeftPlayerList_ComboBoxSelectionChanged" BorderBrush="{DynamicResource LightBorderBrush}" BorderThickness="0,0,1,0" />
             <local:PlayerLists
+                    Grid.Column="2" 
 					x:Name="RightPlayerList"
-					Margin="5,48,10,10"
-					ComboBoxSelectionChanged="RightPlayerList_ComboBoxSelectionChanged"
-					Grid.Column="2" />
-            <Border
-            	Margin="10,0,10,0"
-            	VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="3"
-                Background="#4CC9D9DE" Height="45" Padding="10,0" CornerRadius="0">
-                <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
-                    Hold down the shift key to copy instead of moving when using the transfer right/left arrows. Use the shift key to also select multiple items
-                </TextBlock>
-            </Border>
+                    Margin="0,0,5,5"
+                    ComboBoxSelectionChanged="RightPlayerList_ComboBoxSelectionChanged" BorderBrush="{StaticResource LightBorderBrush}" BorderThickness="1,0,0,0" />
+
         </Grid>
-        <TextBlock
-				VerticalAlignment="Top"
-				Margin="0,10,10,0"
-				HorizontalAlignment="Right"><Hyperlink
-					x:Name="Button1"><Run
-						Text="Refresh" /></Hyperlink></TextBlock>
+
     </Grid>
 </Page>

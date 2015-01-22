@@ -56,7 +56,7 @@ Public Class JarDownloadEngine
     End Class
 
     Function GetLatestCraftBukkitVersion(Optional silent As Boolean = False) As String
-        Dim result As String = "--"
+        Dim result As String = "error"
         Try
             Dim url As String = "http://cbukk.it/craftbukkit.jar"
             Dim fileName As String

@@ -15,8 +15,12 @@
     Private Sub ExitWarning_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         Select Case MyUserSettings.settingsStore.App_SuppressMinimiseMessage
             Case "m"
+                always_suppress.IsChecked = True
+                always_suppress.IsEnabled = False
                 btn_Minimize() ' Always minimize
             Case "s"
+                always_suppress.IsChecked = True
+                always_suppress.IsEnabled = False
                 btn_StopSrv() ' Always stop server and exit
         End Select
     End Sub

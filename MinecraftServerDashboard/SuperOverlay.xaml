@@ -26,7 +26,7 @@
             </Frame>
             <Label x:Name="lblHeader" Content="Configuration" Height="40" VerticalAlignment="Top" Margin="50,0,0,0"
                    FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light"/>
-            <Button HorizontalAlignment="Left" x:Name="BackButton1" Width="45" Height="45" Background="{x:Null}" Margin="0,-5,0,0" Style="{StaticResource arrowBack}" VerticalAlignment="Top" />
+            <Button HorizontalAlignment="Left" x:Name="BackButton1" Width="45" Height="45" Background="{x:Null}" Margin="0,-5,0,0" Style="{StaticResource arrowBack}" VerticalAlignment="Top" Foreground="White" />
             <Grid HorizontalAlignment="Left" Margin="-7,0,0,0" VerticalAlignment="Stretch" Width="7">
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">

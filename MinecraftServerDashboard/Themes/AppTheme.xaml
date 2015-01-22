@@ -4,11 +4,15 @@
                     xmlns:metro="http://schemas.codeplex.com/elysium"
                     xmlns:params="http://schemas.codeplex.com/elysium/params">
 
+    <!-- Player Management Page -->
+    <SolidColorBrush x:Key="LightBorderBrush" Color="#D8D8D8" />
+
     <!-- PlayerTile -->
     <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#DDD" />
 
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
 
+    
     <!-- Themed TabControl -->
     <Style TargetType="{x:Type TabItem}" x:Key="mytabitem">
         <Setter Property="Background">
@@ -318,7 +322,7 @@
                             <Grid>
                                 <Path x:Name="arrowTop" Width="262" Height="198" Canvas.Left="45" Canvas.Top="70"
                                             Stretch="Fill" StrokeThickness="6" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
-                                            StrokeLineJoin="Round" Stroke="#FFFF" Fill="#FFF"
+                                            StrokeLineJoin="Round" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}"
                                             Data="F1 M 48.5143,170L 144.514,73.9999L 195.514,74L 121.515,150L 304.514,150L 304.514,190L 121.514,190L 195.514,266L 144.514,266L 48.5143,170 Z " RenderTransformOrigin="0.5,0.5">
                                     <Path.RenderTransform>
                                         <TransformGroup>
@@ -331,7 +335,7 @@
                                 </Path>
                                 <Path x:Name="arrow" Width="262" Height="198" Canvas.Left="45" Canvas.Top="70"
                                             Stretch="Fill" StrokeThickness="6" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
-                                            StrokeLineJoin="Round" Stroke="#FFFF" Fill="#FFF"
+                                            StrokeLineJoin="Round" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}"
                                             Data="F1 M 48.5143,170L 144.514,73.9999L 195.514,74L 121.515,150L 304.514,150L 304.514,190L 121.514,190L 195.514,266L 144.514,266L 48.5143,170 Z " RenderTransformOrigin="0.5,0.5">
                                     <Path.RenderTransform>
                                         <TransformGroup>
@@ -342,7 +346,7 @@
                                         </TransformGroup>
                                     </Path.RenderTransform>
                                 </Path>
-                                <Ellipse x:Name="ellipse" Width="340" Height="340" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeThickness="15" StrokeLineJoin="Round" Opacity=".6" Stroke="#FFFFFF" Fill="#00000000" />
+                                <Ellipse x:Name="ellipse" Width="340" Height="340" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeThickness="15" StrokeLineJoin="Round" Opacity=".6" Stroke="{TemplateBinding Foreground}" Fill="#00000000" />
                             </Grid>
                         </Viewbox>
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True" />
@@ -365,7 +369,76 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
-                        <Trigger Property="IsEnabled" Value="False" />
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Alternate BACK BUTTON with gray out on IsEnabled=False -->
+    <Style x:Key="arrowBackwithGrayOut" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Background="Transparent">
+                        <Viewbox>
+                            <Grid>
+                                <Path x:Name="arrowTop" Width="262" Height="198" Canvas.Left="45" Canvas.Top="70"
+                                            Stretch="Fill" StrokeThickness="6" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                                            StrokeLineJoin="Round" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}"
+                                            Data="F1 M 48.5143,170L 144.514,73.9999L 195.514,74L 121.515,150L 304.514,150L 304.514,190L 121.514,190L 195.514,266L 144.514,266L 48.5143,170 Z " RenderTransformOrigin="0.5,0.5">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                                            <SkewTransform />
+                                            <RotateTransform />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Path x:Name="arrow" Width="262" Height="198" Canvas.Left="45" Canvas.Top="70"
+                                            Stretch="Fill" StrokeThickness="6" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                                            StrokeLineJoin="Round" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}"
+                                            Data="F1 M 48.5143,170L 144.514,73.9999L 195.514,74L 121.515,150L 304.514,150L 304.514,190L 121.514,190L 195.514,266L 144.514,266L 48.5143,170 Z " RenderTransformOrigin="0.5,0.5">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                                            <SkewTransform />
+                                            <RotateTransform />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Ellipse x:Name="ellipse" Width="340" Height="340" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeThickness="15" StrokeLineJoin="Round" Opacity=".6" Stroke="{TemplateBinding Foreground}" Fill="#00000000" />
+                            </Grid>
+                        </Viewbox>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True" />
+                        <Trigger Property="IsDefaulted" Value="True" />
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ellipse" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ellipse" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="50" ShadowDepth="0" RenderingBias="Quality"  Color="White" Opacity=".75" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="arrow" Property="Effect">
+                                <Setter.Value>
+                                    <BlurEffect Radius="30" RenderingBias="Quality" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False" >
+                            <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource LightBorderBrush}" />
+                            <Setter TargetName="arrowTop" Property="Stroke" Value="{StaticResource LightBorderBrush}" />
+                            <Setter TargetName="arrow" Property="Fill" Value="{StaticResource LightBorderBrush}" />
+                            <Setter TargetName="arrowTop" Property="Fill" Value="{StaticResource LightBorderBrush}" />
+                            <Setter TargetName="ellipse" Property="Stroke" Value="{StaticResource LightBorderBrush}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -7,9 +7,8 @@
              d:DesignHeight="200" d:DesignWidth="300">
     <UserControl.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF5387A5" Offset="0.773" />
+            <GradientStop Color="#995387A5" Offset="1" />
             <GradientStop Color="#7F000000" />
-            <GradientStop Color="#FF5387A5" Offset="1" />
         </LinearGradientBrush>
     </UserControl.Background>
 </UserControl>

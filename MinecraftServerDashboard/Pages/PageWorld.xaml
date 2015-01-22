@@ -9,7 +9,8 @@
       params:Manager.Theme="Light"
       params:Manager.AccentBrush="#FF5387A5"
       mc:Ignorable="d"
-      d:DesignHeight="601.386" d:DesignWidth="848.705"
+      MinHeight="430"
+      d:DesignHeight="610.5" d:DesignWidth="698.205"
       Title="pageWorld">
     <Page.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -28,7 +29,7 @@
               Background="#FFFF6666"
               Margin="0"
               Height="50">
-                <Image Source="..\ConfigPages\stripered.png" Stretch="Fill" />
+                <Image Source="..\Pages\ConfigPages\stripered.png" Stretch="Fill" />
                 <Image
                     HorizontalAlignment="Left"
                     Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Warning_32xLG_color.png"
@@ -43,58 +44,79 @@
                 </TextBlock>
             </Grid>
         </Button>
-
-        <Grid>
-            <Border Height="124" VerticalAlignment="Top" Background="#FF151515">
-                <Grid>
-                    <Grid Height="84" VerticalAlignment="Bottom" Background="#232323">
-                        <Image Source="/MinecraftServerDashboard;component/Images/World/worldsel.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                    </Grid>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="12,5,155,0" TextWrapping="Wrap" ><Run Text="Current World" FontWeight="Light" FontSize="26" /><LineBreak /><Run x:Name="txtCurrentWorld" Text="" /><LineBreak /><Run x:Name="txtCurrentWorldLocation" Text="" /><LineBreak /><Run x:Name="txtCurrentWorldSize" Text="" /><LineBreak /><Hyperlink Click="RefreshPageData">Refresh</Hyperlink></TextBlock>
-                </Grid>
-            </Border>
-
-            <TextBlock Margin="18,175,201,0" VerticalAlignment="Top" Height="27">
-                Store your creations in different worlds, and swap between different worlds with <Italic>World Profiles</Italic>
-            </TextBlock>
-            <Button Content="Create Backup" HorizontalAlignment="Right" Margin="0,45,10,0" VerticalAlignment="Top" Width="145" Click="DoBackupScreen" />
-            <Button Content="Re-create world" Margin="0,82,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="145" params:Manager.AccentBrush="#FFE2481B"  params:Manager.ContrastBrush="White"  params:Manager.Theme="Dark"   Click="GenerateNewWorld" IsEnabled="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource myInverseBooleanConverter}}" />
-            <Rectangle HorizontalAlignment="Left" x:Name="Rectangle1" Width="18" Margin="0" Visibility="Hidden">
-                <Rectangle.Fill>
-                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                        <GradientStop Color="#FF377599" Offset="0" />
-                        <GradientStop Color="#005387A5" Offset="1" />
+        <DockPanel>
+            <Border MinHeight="130" VerticalAlignment="Top" DockPanel.Dock="Top">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00616161" Offset="0.338"/>
+                        <GradientStop Color="#192D5062"/>
                     </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Button x:Name="btnNewProfile" HorizontalAlignment="Right" VerticalAlignment="Top" Width="173" Click="NewProfile" Margin="0,139,10,0" Height="47">
-                <StackPanel Orientation="Horizontal">
-                    <Image HorizontalAlignment="Left" Width="32" Source="/MinecraftServerDashboard;component/Images/World/077_AddFile_24x24_72.png" Stretch="None" />
-                    <TextBlock VerticalAlignment="Center" >Create new profile</TextBlock>
-                </StackPanel>
-            </Button>
-            <Border x:Name="gridSelectedButtons" Background="#232323"    HorizontalAlignment="Right" Margin="0,202,10,46" Width="191">
-                <Grid Margin="0,0,0,0">
-                    <Grid.Resources>
-                        <Style TargetType="Button">
-                        </Style>
-                    </Grid.Resources>
-                    <Image Source="/MinecraftServerDashboard;component/Images/World/worldsel.png" VerticalAlignment="Bottom" StretchDirection="UpOnly" Stretch="None" />
-                    <Button x:Name="btnSwitchTo" Content="Set this profile as active" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Click="SetAsActive" Margin="10,68,0,0" Height="33" />
-                    <Button x:Name="btnDeleteProfile" Content="Delete profile" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="145" Click="Button_Click_1" Height="33" />
-                    <Button x:Name="btnRegenSelWorld" Content="Re-create world" VerticalAlignment="Top" Click="GenerateNewWorldSelected" Margin="10,143,0,0" HorizontalAlignment="Left" Width="145" Height="32" />
-                    <TextBlock Text="Selected profile actions" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White"  FontWeight="Light" TextWrapping="Wrap" />
+                </Border.Background>
+                <Grid>
+                    <Border BorderThickness="1" Margin="20,45,0,0" VerticalAlignment="Stretch">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                <GradientStop Color="#FFE8EFF3"/>
+                                <GradientStop Color="#00E8EFF3" Offset="1"/>
+                                <GradientStop Color="#9EE8EFF3" Offset="0.705"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                <GradientStop Color="#FF747F85" Offset="0.932"/>
+                                <GradientStop Color="#7F747F85" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Grid>
+                            <TextBlock FontWeight="Light" FontSize="18" Margin="115,6,146,0" VerticalAlignment="Top"><Run x:Name="txtCurrentWorld" /></TextBlock>
+                            <Ellipse HorizontalAlignment="Left" Height="70" Margin="20,0,0,0" VerticalAlignment="Center" Width="70">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/MinecraftServerDashboard;component/appicon.ico"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <TextBlock FontWeight="Light" Margin="115,32,146,0" VerticalAlignment="Top" FontSize="14"><Run x:Name="txtCurrentWorldSize"/></TextBlock>
+                            <TextBlock x:Name="txtCurrentWorldLocation" Margin="115,54,146,10" LineHeight="15" LineStackingStrategy="BlockLineHeight" TextWrapping="WrapWithOverflow" />
+                            <Button x:Name="btnBackup" Content="Backup" HorizontalAlignment="Right" Margin="0,6,10,0" VerticalAlignment="Top" Width="131" Click="DoBackupScreen" Height="53" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
+                            	params:Manager.AccentBrush="#224154"  params:Manager.ContrastBrush="White" FontWeight="Normal" />
+
+                        </Grid>
+                    </Border>
+                    <Label Content="Current World" FontWeight="Light" FontSize="26" Margin="15,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,10,0"><Hyperlink Click="Hyperlink_Click"><Run Text="Refresh"/></Hyperlink></TextBlock>
                 </Grid>
             </Border>
-            <TextBlock VerticalAlignment="Bottom" Margin="10,0,0,9" HorizontalAlignment="Left">
-                <Hyperlink x:Name="btnOpenBackups">
-                View or restore My World Backups</Hyperlink></TextBlock>
-            <ListBox x:Name="ListBox_MyWorldProfiles" Margin="10,202,201,46" BorderThickness="1" />
+            <Grid VerticalAlignment="Stretch">
+                <TextBlock Margin="21,50,-1,0" VerticalAlignment="Top">Change which world the server is currently hosting.</TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Margin="20,0,0,10" HorizontalAlignment="Left">
+                <Hyperlink Click="GenerateNewWorld"><Run Text="New world generation settings"/></Hyperlink><LineBreak />
+                <Hyperlink x:Name="btnOpenBackups"><Run Text="View or restore backups"/></Hyperlink><LineBreak />
+                <Hyperlink x:Name="btnOpenProfiles"><Run Text="Add and remove worlds in Windows Explorer" /></Hyperlink>
+                </TextBlock>
+                <Grid Margin="20,72,10,63">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="195"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnNewProfile" Click="NewProfile" HorizontalContentAlignment="Left" Grid.Row="0" Grid.Column="1" FontWeight="Normal"
+                        params:Manager.AccentBrush="#FF2D5B76" Content="New world"/>
+                    <Button x:Name="btnSwitchTo" Content="Make this the Current World" HorizontalContentAlignment="Left"  Click="SetAsActive" Grid.Row="2"  Grid.Column="1"
+                         params:Manager.AccentBrush="#224154"  params:Manager.ContrastBrush="White" FontWeight="Normal" />
+                    <Button x:Name="btnDeleteProfile" Content="Delete selected" HorizontalContentAlignment="Left"  Click="DeleteWorld_Click"  Grid.Row="1"  Grid.Column="1" FontWeight="Normal"
+                        params:Manager.AccentBrush="#FF2D5B76"/>
+                    <ListBox x:Name="ListBox_MyWorldProfiles" BorderThickness="1" Grid.Column="0" Grid.RowSpan="4"
+                         params:Manager.AccentBrush="#224154"/>
+                </Grid>
+                <Label Content="My Worlds" FontWeight="Light" FontSize="26" Margin="14,11,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            </Grid>
 
-            <TextBlock VerticalAlignment="Bottom" Margin="10,0,0,25" HorizontalAlignment="Left">
-                <Hyperlink x:Name="btnOpenProfiles">
-                <Run Text="Add and remove worlds in Windows Explorer" /></Hyperlink></TextBlock>
-            <Label Content="My World Profiles" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" FontSize="20" />
-        </Grid>
+        </DockPanel>
     </DockPanel>
 </Page>

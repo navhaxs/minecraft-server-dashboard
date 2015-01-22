@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignWidth="600"
+             d:DesignWidth="492"
              HorizontalAlignment="Stretch"
              Background="#FFA6A6A6" Height="128">
     <UserControl.Resources>
@@ -16,10 +16,6 @@
         <Grid x:Name="DrawBackupOnlyBackground" Background="#FFC2DEF1" Visibility="Hidden" />
         <Border BorderBrush="#FFDEAC00" BorderThickness="0,0,0,1" Margin="5,0,5,0">
             <DockPanel>
-                <Grid Width="150" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                    <Button Content="Remove" HorizontalAlignment="Right" Margin="0,35,57,0" VerticalAlignment="Top" Width="64" Height="29" Click="btnRemoveTask_Click" />
-                    <CheckBox x:Name="chkboxIsTaskEnabled" HorizontalAlignment="Right" Margin="0,39,21,0" VerticalAlignment="Top" IsChecked="True" Click="chkboxIsTaskEnabled_Click" />
-                </Grid>
                 <Grid>
                     <StackPanel Orientation="Horizontal" Height="30" Margin="0,9,0,0" VerticalAlignment="Top">
                         <Label Content="Every" HorizontalAlignment="Left" FontSize="14"/>
@@ -66,6 +62,8 @@
                             Text="toggledownfall&#x0a;say Great weather today.&#x0a;" FontFamily="Consolas"/>
                         </TabItem>
                     </TabControl>
+                    <Button Content="Remove" HorizontalAlignment="Right" Margin="0,35,50,0" VerticalAlignment="Top" Width="64" Height="28" Click="btnRemoveTask_Click" />
+                    <CheckBox x:Name="chkboxIsTaskEnabled" HorizontalAlignment="Right" Margin="0,39,15,0" VerticalAlignment="Top" IsChecked="True" Click="chkboxIsTaskEnabled_Click" />
                 </Grid>
             </DockPanel>
         </Border>

@@ -19,8 +19,13 @@ Namespace MyUserSettings
             For Each task In navpageScheduler.ListOfSchedulerTaskItem
                 tasksStore.TaskList.Add(task.Task)
             Next
-            settingsStore.Save()
-            tasksStore.Save("tasks.jsn")
+            Try
+                settingsStore.Save()
+                tasksStore.Save("tasks.jsn")
+            Catch ex As Exception
+                MessageBox.Show("Could not write the Dashboard configuration to disk. Make sure you extracted Dashboard!")
+            End Try
+            
         End Sub
 
 #Region "Dashboard customisation"

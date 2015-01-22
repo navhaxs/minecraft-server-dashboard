@@ -315,6 +315,10 @@ Class MainWindow
         System.Diagnostics.Process.Start("http://MinecraftWiki.net")
     End Sub
 
+    Private Sub btn_ExploreServerDir(sender As Object, e As RoutedEventArgs)
+        ExploreServerDir()
+    End Sub
+
     Public Sub DoManualSrvPropertiesEdit() Handles MenuItem1.Click
         If Not My.Computer.FileSystem.FileExists(MyServer.MyStartupParameters.ServerProperties) Then
             Dim n As New MessageWindow(MyMainWindow, "", "Please launch the server at least once.", "Oops", "large")
@@ -367,6 +371,18 @@ Class MainWindow
                          End Function))
     End Sub
 
+#End Region
+
+#Region "Helpers"
+    Public Function ExploreServerDir() As Boolean
+        If My.Computer.FileSystem.DirectoryExists(MyServer.MyStartupParameters.ServerPath) Then
+            System.Diagnostics.Process.Start("explorer.exe", MyServer.MyStartupParameters.ServerPath)
+            Return True
+        Else
+            Dim n As New MessageWindow(MyMainWindow, "", "Please configure the server backend first.")
+            Return False
+        End If
+    End Function
 #End Region
 
 End Class

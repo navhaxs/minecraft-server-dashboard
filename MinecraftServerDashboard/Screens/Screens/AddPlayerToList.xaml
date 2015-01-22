@@ -10,7 +10,7 @@
     mc:Ignorable="d" x:Class="AddPlayerToList"
     ShowInTaskbar="False"
     ResizeMode="NoResize"
-    Height="250" Width="600">
+    Height="171" Width="509">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -19,11 +19,10 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid x:Name="FormControls">
-            <TextBlock Text="Player management" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" />
-            <TextBlock x:Name="lbldescription" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="Add a player to the selected list." /></TextBlock>
-            <Button x:Name="btnGo" Content="Go" Margin="0,0,10,10" Click="Button_Click_1" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsEnabled="False" IsDefault="True" />
-            <TextBox x:Name="txtUsername" Height="23" Margin="128,96,10,0" TextWrapping="Wrap" VerticalAlignment="Top" />
-            <TextBlock x:Name="txtLabel" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Player's username:" /></TextBlock>
+            <TextBlock x:Name="lbldescription" HorizontalAlignment="Left" Margin="10,10,-57,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="Add a player to the selected list." /></TextBlock>
+            <Button x:Name="btnGo" Content="Done" Margin="0,0,10,10" Click="Button_Click_1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" IsEnabled="False" IsDefault="True" />
+            <TextBox x:Name="txtUsername" Height="23" Margin="129,47,9,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+            <TextBlock x:Name="txtLabel" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Player's username:" /></TextBlock>
         </Grid>
 
         <!-- Don't place the cancel button inside 'FormControls' so that it is not disabled (allowing the cancel button to be pressed at all times -->

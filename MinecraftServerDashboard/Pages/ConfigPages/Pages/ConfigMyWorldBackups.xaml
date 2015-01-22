@@ -8,7 +8,7 @@
       xmlns:params="http://schemas.codeplex.com/elysium/params"
       params:Manager.Theme="Light"
       mc:Ignorable="d"
-      d:DesignHeight="439.597" d:DesignWidth="808.164"
+      d:DesignHeight="374.597" d:DesignWidth="700.164"
       Title="Backups">
     <!--http://stackoverflow.com/questions/12012721/how-to-add-listviewitem-to-wpf-multicolumn-listview-by-hand-no-binding-in-xaml-->
     <Page.Background>
@@ -18,9 +18,9 @@
         </LinearGradientBrush>
     </Page.Background>
     <Grid>
-        <Label Content="My World Backups:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" />
-        <Button Content="New backup" Margin="10,47,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="125" Click="Button_Click_2" />
-        <StackPanel x:Name="gridSelectedButtons" HorizontalAlignment="Left" Margin="140,47,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+        <Label Content="My World Backups" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" />
+        <!--<Button Content="New backup" Margin="10,47,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="125" Click="Button_Click_2" />-->
+        <StackPanel x:Name="gridSelectedButtons" HorizontalAlignment="Right" Margin="0,0,100,15" VerticalAlignment="Bottom" Orientation="Horizontal">
             <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="btnDelete_Click_1" Margin="0,0,5,0" />
             <Button Content="Restore" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,0,5,0" Click="Button_Click" />
         </StackPanel>
@@ -28,7 +28,7 @@
             <Hyperlink x:Name="btnOpenBackups">Show backups in Windows Explorer</Hyperlink></TextBlock>
         <TextBlock VerticalAlignment="Top" Margin="10,10,10,9" HorizontalAlignment="Right">
             <Hyperlink Click="RefreshPageData">Refresh</Hyperlink></TextBlock>
-        <ListView x:Name="ListBox_MyWorldBackups" Margin="10,84,100,50">
+        <ListView x:Name="ListBox_MyWorldBackups" Margin="10,47,100,50">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Backup Name" Width="380"

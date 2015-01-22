@@ -73,7 +73,7 @@ Public Class PlayerListEditor
             thisFilename = MyServer.MyStartupParameters.ServerPath & filename(type, TXT_INDEX)
             If Not My.Computer.FileSystem.FileExists(MyServer.MyStartupParameters.ServerPath & filename(type, TXT_INDEX)) Then
                 ' Create a new blank file
-                System.IO.File.WriteAllText(thisFilename, "")
+                System.IO.File.WriteAllText(My.Computer.FileSystem.CurrentDirectory & "\" & thisFilename, "")
             End If
         End If
 
@@ -100,14 +100,15 @@ Public Class PlayerListEditor
                 End If
             Next
 
-        Else
+        ElseIf (My.Computer.FileSystem.FileExists(My.Computer.FileSystem.CurrentDirectory & "\" & thisFilename)) Then
+
             '============== Sample player list *.txt file produced by the server ==============
             '
             '# Updated 20/05/13 5:50 PM by Minecraft 1.5.1
             '# victim name | ban date | banned by | banned until | reason
             '
 
-            Dim objReader As New System.IO.StreamReader(thisFilename)
+            Dim objReader As New System.IO.StreamReader(My.Computer.FileSystem.CurrentDirectory & "\" & thisFilename)
 
             Do Until objReader.EndOfStream
                 ' Parse line by line
@@ -128,7 +129,8 @@ Public Class PlayerListEditor
 
             Loop
             objReader.Close()
-
+        Else
+            ' Return an empty list for a blank file
         End If
 
         Return items
@@ -232,11 +234,14 @@ Public Class PlayerListEditor
             Try
 
                 If Not thisJSONList Is Nothing Then
+                    Dim key As String = filename(thisPlayerList, KEY_INDEX)
+
                     Dim toDelete As New List(Of JObject)
 
                     For Each item In thisJSONList
-                        If (item.Type = JTokenType.Object) And (Not item(KEY_INDEX) Is Nothing) Then
-                            If item(KEY_INDEX) = player Then
+                        If (item.Type = JTokenType.Object) And (Not item(key) Is Nothing) Then
+
+                            If item(key) = player Then
                                 toDelete.Add(item)
                             End If
                         End If

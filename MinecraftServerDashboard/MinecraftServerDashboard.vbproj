@@ -155,20 +155,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConfigPages\ConfigHomeViewModel.vb" />
-    <Compile Include="ConfigPages\Pages\ConfigMyApp.xaml.vb">
+    <Compile Include="Pages\ConfigPages\ConfigHomeViewModel.vb" />
+    <Compile Include="Pages\ConfigPages\Pages\ConfigMyApp.xaml.vb">
       <DependentUpon>ConfigMyApp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml.vb">
+    <Compile Include="Pages\ConfigPages\Pages\ConfigMyWorldBackups.xaml.vb">
       <DependentUpon>ConfigMyWorldBackups.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\Dialogs\AdvJavaArguementsDialog.xaml.vb">
+    <Compile Include="Pages\ConfigPages\Pages\Dialogs\AdvJavaArguementsDialog.xaml.vb">
       <DependentUpon>AdvJavaArguementsDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\Dialogs\DownloadWindow.xaml.vb">
+    <Compile Include="Pages\ConfigPages\Pages\Dialogs\DownloadWindow.xaml.vb">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\Dialogs\MessageWindow.xaml.vb">
+    <Compile Include="Pages\ConfigPages\Pages\Dialogs\MessageWindow.xaml.vb">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\btnHelp.xaml.vb">
@@ -219,6 +219,9 @@
     <Compile Include="Screens\Screens\Downloader\DownloaderFrame.xaml.vb">
       <DependentUpon>DownloaderFrame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Screens\ConfirmWorldDeletion.xaml.vb">
+      <DependentUpon>ConfirmWorldDeletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Screens\NewWorldProfile.xaml.vb">
       <DependentUpon>NewWorldProfile.xaml</DependentUpon>
     </Compile>
@@ -242,16 +245,16 @@
     <Compile Include="Windows\AboutWindow.xaml.vb">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\ConfigHome.xaml.vb">
+    <Compile Include="Pages\ConfigPages\ConfigHome.xaml.vb">
       <DependentUpon>ConfigHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\ConfigJarfileBackend.xaml.vb">
+    <Compile Include="Pages\ConfigPages\Pages\ConfigJarfileBackend.xaml.vb">
       <DependentUpon>ConfigJarfileBackend.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\ConfigJava.xaml.vb">
+    <Compile Include="Pages\ConfigPages\Pages\ConfigJava.xaml.vb">
       <DependentUpon>ConfigJava.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPages\Pages\ConfigServerProp.xaml.vb">
+    <Compile Include="Pages\ConfigPages\Pages\ConfigServerProp.xaml.vb">
       <DependentUpon>ConfigServerProp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\OnlinePlayerList.xaml.vb">
@@ -286,23 +289,23 @@
     <Compile Include="Screens\Screens\JoinNewPlayers.xaml.vb">
       <DependentUpon>JoinNewPlayers.xaml</DependentUpon>
     </Compile>
-    <Page Include="ConfigPages\Pages\ConfigMyApp.xaml">
+    <Page Include="Pages\ConfigPages\Pages\ConfigMyApp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ConfigPages\Pages\ConfigMyWorldBackups.xaml">
+    <Page Include="Pages\ConfigPages\Pages\ConfigMyWorldBackups.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ConfigPages\Pages\Dialogs\AdvJavaArguementsDialog.xaml">
+    <Page Include="Pages\ConfigPages\Pages\Dialogs\AdvJavaArguementsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigPages\Pages\Dialogs\DownloadWindow.xaml">
+    <Page Include="Pages\ConfigPages\Pages\Dialogs\DownloadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigPages\Pages\Dialogs\MessageWindow.xaml">
+    <Page Include="Pages\ConfigPages\Pages\Dialogs\MessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -342,6 +345,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Screens\ConfirmWorldDeletion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Screens\Screens\NewWorldProfile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -366,19 +373,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigPages\ConfigHome.xaml">
+    <Page Include="Pages\ConfigPages\ConfigHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigPages\Pages\ConfigJarfileBackend.xaml">
+    <Page Include="Pages\ConfigPages\Pages\ConfigJarfileBackend.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ConfigPages\Pages\ConfigJava.xaml">
+    <Page Include="Pages\ConfigPages\Pages\ConfigJava.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ConfigPages\Pages\ConfigServerProp.xaml">
+    <Page Include="Pages\ConfigPages\Pages\ConfigServerProp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -553,19 +560,8 @@
     <Resource Include="Images\BGTile\tilebg_MCsky.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\Players\112_Plus_Green_16x16_72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Players\112_LeftArrowShort_Blue_48x48_72.png" />
-    <None Include="Images\Players\112_RightArrowShort_Blue_48x48_72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Players\112_LeftArrowShort_Orange_48x48_72.png" />
-    <Resource Include="Images\Players\112_RightArrowShort_Orange_48x48_72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ConfigPages\stripered.png" />
-    <Resource Include="ConfigPages\stripeyellow.png" />
+    <Resource Include="Pages\ConfigPages\stripered.png" />
+    <Resource Include="Pages\ConfigPages\stripeyellow.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\StatusAnnotations_Help_and_inconclusive_32xLG.png" />
@@ -581,9 +577,6 @@
     <Resource Include="Images\World\gear_32xLG.png" />
     <None Include="Images\World\PickAxe_32xLG.png" />
     <None Include="Images\World\server_Local_32xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\World\077_AddFile_24x24_72.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\World\worldsel.png" />

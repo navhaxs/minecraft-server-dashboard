@@ -59,12 +59,7 @@
     End Sub
 
     Public Sub Go_ExploreSreverDirectory_inWindowsExplorer() Handles Button5.Click
-        If My.Computer.FileSystem.DirectoryExists(MyServer.MyStartupParameters.ServerPath) Then
-            System.Diagnostics.Process.Start("explorer.exe", MyServer.MyStartupParameters.ServerPath)
-        Else
-            Dim n As New MessageWindow(MyMainWindow, "", "Please configure the server backend first.")
-            Go_BackendSetup()
-        End If
+        If Not MyMainWindow.ExploreServerDir Then Go_BackendSetup()
     End Sub
 
 #End Region
