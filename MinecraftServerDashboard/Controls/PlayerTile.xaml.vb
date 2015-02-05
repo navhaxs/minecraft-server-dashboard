@@ -78,18 +78,18 @@ Public Class PlayerTile
     End Sub
 
     Private Sub btnKick_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnKick.Click
-        MyServer.SendCommand("kick """ + thisplayer.Username + """")
+        MyServer.SendCommand("kick " + thisplayer.Username)
     End Sub
 
     Private Sub btnBan_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnBan.Click
-        MyServer.SendCommand("ban """ + thisplayer.Username + """")
+        MyServer.SendCommand("ban " + thisplayer.Username)
     End Sub
 
     Private Sub btnOp_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnOp.Click
-        MyServer.SendCommand("op """ + thisplayer.Username + """")
+        MyServer.SendCommand("op " + thisplayer.Username)
     End Sub
 
     Private Sub btnDeOp_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnDeOp.Click
-        MyServer.SendCommand("deop """ + thisplayer.Username + """")
+        MyServer.SendCommand("deop " + thisplayer.Username)
     End Sub
 End Class

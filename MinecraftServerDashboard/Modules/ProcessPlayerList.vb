@@ -1,7 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 
 Public Module PlayerList
-    '"[^A-Z0-9.$ ]$"
+    Const HEADERCHARS As String = "[:.$]" 'Strip off the list header - e.g. "Developers:" (Essentials plugin)
     Const VALIDCHARS As String = "[^abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.$]"
 
     Public Function ProcessPlayerList(consoleOutput As String) As List(Of Player)
@@ -53,12 +53,15 @@ Public Module PlayerList
         'Filter through words with invalid characters, until the next proper username is found.
         'Combine this proper username with the current set of invalid words ('tags'), and add this. Repeat.
         Dim r As Regex = New Regex(VALIDCHARS)
+        Dim h As Regex = New Regex(HEADERCHARS)
         Dim curr As String = ""
 
         For Each item In wordList
             If (r.IsMatch(item)) Then
                 ' validation failed
-                curr &= item & " "
+                If Not h.IsMatch(item) Then ' Ignore "headers"
+                    curr &= item & " "
+                End If
             Else
                 playerList.Add(New Player(curr & item, item))
                 curr = ""
