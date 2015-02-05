@@ -53,7 +53,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid>
-                    <Border BorderThickness="1" Margin="20,45,0,0" VerticalAlignment="Stretch">
+                    <Border BorderThickness="1" Margin="20,45,10,0" VerticalAlignment="Stretch">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                 <GradientStop Color="#FFE8EFF3"/>

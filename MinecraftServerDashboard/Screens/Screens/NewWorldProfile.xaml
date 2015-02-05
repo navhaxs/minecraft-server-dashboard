@@ -11,23 +11,23 @@
     ShowInTaskbar="False"
     ResizeMode="NoResize"
     Height="233" Width="585"
-    Title="New World Profile">
+    Title="Create a new World">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFEAF7FF" Offset="1" />
-                <GradientStop Color="White" />
+                <GradientStop Color="White" Offset="0.731" />
             </LinearGradientBrush>
         </Grid.Background>
         <Grid x:Name="FormControls">
-            <TextBlock Margin="10,10,10,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Height="48"><Run Text="World profiles let you store multiple Minecraft worlds simultaneously, which you can switch between" /></TextBlock>
+            <TextBlock Margin="10,10,18,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Height="27"><Run Text="Start an entirely new World from scratch, without overriding any other existing Worlds." /></TextBlock>
             <Button x:Name="btnGo" Content="OK" Margin="0,0,10,10" Click="GoBtn_Click" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsEnabled="False" IsDefault="True" />
-            <Border Margin="10,63,10,0" Background="#FFFFF7C2" Padding="10,0" CornerRadius="2" Height="60" VerticalAlignment="Top">
+            <Border Margin="10,48,10,0" Background="#FFFFF7C2" Padding="10,0" CornerRadius="5" Height="60" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14"><Run Text="Enter a name for the profile:" /></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="0,20" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14"><Run Text="Enter a new name:" /></TextBlock>
                 </StackPanel>
             </Border>
-            <TextBox x:Name="txtFilename" Margin="209,77,18,0" TextWrapping="Wrap" HorizontalAlignment="Stretch" Height="33" VerticalAlignment="Top" />
+            <TextBox x:Name="txtFilename" Margin="143,62,20,0" TextWrapping="Wrap" HorizontalAlignment="Stretch" Height="33" VerticalAlignment="Top" />
         </Grid>
 
         <!-- Don't place the cancel button inside 'FormControls' so that it is not disabled (allowing the cancel button to be pressed at all times -->

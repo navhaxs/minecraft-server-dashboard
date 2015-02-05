@@ -73,7 +73,7 @@ Public Class PlayerListEditor
             thisFilename = MyServer.MyStartupParameters.ServerPath & filename(type, TXT_INDEX)
             If Not My.Computer.FileSystem.FileExists(MyServer.MyStartupParameters.ServerPath & filename(type, TXT_INDEX)) Then
                 ' Create a new blank file
-                System.IO.File.WriteAllText(My.Computer.FileSystem.CurrentDirectory & "\" & thisFilename, "")
+                System.IO.File.WriteAllText(thisFilename, "")
             End If
         End If
 

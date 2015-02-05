@@ -2,16 +2,16 @@
 Imports System.IO
 
 Public Class PlayerTile
-    Public Property username As String
+    Public Property thisplayer As Player
 
-    Sub New(_username As String)
+    Sub New(_thisplayer As Player)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        username = _username
-        Label1.Content = _username
+        thisplayer = _thisplayer
+        Label1.Content = thisplayer.DisplayName
 
         ' Load the player's AVARTAR (skin) from the internet
         Dim UserTileImage As New BitmapImage()
@@ -36,7 +36,7 @@ Public Class PlayerTile
                     'UserTileImage = New BitmapImage(myuri)
                 Else
                     UserTileImage.BeginInit()
-                    UserTileImage.UriSource = New Uri("http://minotar.net/avatar/" & _username & "/" & Image1.Height & ".png", UriKind.Absolute)
+                    UserTileImage.UriSource = New Uri("http://minotar.net/avatar/" & thisplayer.Username & "/" & Image1.Height & ".png", UriKind.Absolute)
                     UserTileImage.CacheOption = BitmapCacheOption.OnDemand
                     UserTileImage.EndInit()
 
@@ -58,38 +58,38 @@ Public Class PlayerTile
     End Sub
 
     Private Sub PlayerItemContextmenu_Opened(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles PlayerItemContextmenu.Opened
-        Dim bc As New BrushConverter
-        Me.Background = bc.ConvertFrom("#FF2A90C1")
+        'Dim bc As New BrushConverter
+        'Me.Background = bc.ConvertFrom("#FF2A90C1")
     End Sub
 
     Private Sub PlayerItemContextmenu_Closed(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles PlayerItemContextmenu.Closed
-        Dim bc As New BrushConverter
-        Me.Background = bc.ConvertFrom("#FF1A6D93")
+        'Dim bc As New BrushConverter
+        'Me.Background = bc.ConvertFrom("#FF1A6D93")
     End Sub
 
     Private Sub UserControl_MouseEnter(sender As System.Object, e As System.Windows.Input.MouseEventArgs) Handles MyBase.MouseEnter
-        Dim bc As New BrushConverter
-        Me.Background = bc.ConvertFrom("#FF2A90C1")
+        'Dim bc As New BrushConverter
+        'Me.Background = bc.ConvertFrom("#FF2A90C1")
     End Sub
 
     Private Sub UserControl_MouseLeave(sender As System.Object, e As System.Windows.Input.MouseEventArgs) Handles MyBase.MouseLeave
-        Dim bc As New BrushConverter
-        Me.Background = bc.ConvertFrom("#FF1A6D93")
+        'Dim bc As New BrushConverter
+        'Me.Background = bc.ConvertFrom("#FF1A6D93")
     End Sub
 
     Private Sub btnKick_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnKick.Click
-        MyServer.SendCommand("kick " + username)
+        MyServer.SendCommand("kick """ + thisplayer.Username + """")
     End Sub
 
     Private Sub btnBan_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnBan.Click
-        MyServer.SendCommand("ban " + username)
+        MyServer.SendCommand("ban """ + thisplayer.Username + """")
     End Sub
 
     Private Sub btnOp_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnOp.Click
-        MyServer.SendCommand("op " + username)
+        MyServer.SendCommand("op """ + thisplayer.Username + """")
     End Sub
 
     Private Sub btnDeOp_Click(sender As System.Object, e As System.Windows.RoutedEventArgs) Handles btnDeOp.Click
-        MyServer.SendCommand("deop " + username)
+        MyServer.SendCommand("deop """ + thisplayer.Username + """")
     End Sub
 End Class

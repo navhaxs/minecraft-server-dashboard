@@ -4,9 +4,8 @@
     d:DesignWidth="867" d:DesignHeight="559">
     <UserControl.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF5387A5" Offset="0.773" />
             <GradientStop Color="#7F000000" />
-            <GradientStop Color="#FF5387A5" Offset="1" />
+            <GradientStop Color="#995387A5" Offset="1" />
         </LinearGradientBrush>
     </UserControl.Background>
     <Grid Width="400" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF383838">

@@ -42,17 +42,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <Image x:Name="imgServerState" HorizontalAlignment="Left" Height="32" Margin="76,91,0,0" VerticalAlignment="Top" Width="32" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Critical_32xLG_color.png" Stretch="None" RenderTransformOrigin="0.406,0.938" />
-        <Border x:Name="lblALLTips" Margin="23,246,0,0" VerticalAlignment="Top" Background="#4C48595F" CornerRadius="5" Padding="5" Height="67">
-            <Grid>
-                <Grid x:Name="lblTipServerOnline" Visibility="Hidden">
-                    <TextBlock FontSize="14" TextWrapping="Wrap"><Bold><Run Text="The server is ready for players to join." /></Bold><LineBreak /><Run Text="Your IP address is: " /><Run x:Name="lblIPaddress" Text="{Binding ExternalIP, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,FallbackValue=127.0.0.1}" /><LineBreak /><Run Text="Use this to join the game." /></TextBlock>
-                </Grid>
-                <Grid x:Name="lblTipServerOffline">
-                    <TextBlock FontSize="14" TextWrapping="Wrap"><Run Text="Click " /><Bold><Run Text="Start server" /></Bold><Run Text=" to launch the Minecraft game server." /></TextBlock>
-                </Grid>
-            </Grid>
-        </Border>
-        <local:OnlinePlayerList x:Name="MyOnlinePlayerList" Margin="26,242,10,0" Grid.Column="1" />
+        <local:OnlinePlayerList x:Name="MyOnlinePlayerList" Margin="11,242,10,0" Grid.Column="1" />
 
         <Grid Margin="18,313,0,0" HorizontalAlignment="Left" Width="349" Visibility="Hidden" Grid.Column="1">
             <Grid.Background>
@@ -69,39 +59,50 @@
             <Label Background="#FF2D5B76" Content="Common tasks" Foreground="White" Height="28" x:Name="Label3" VerticalAlignment="Top" Margin="2,0,0,0" />
         </Grid>
         <Label x:Name="lblServerStatus" Content="Server offline" Margin="115,85,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Light" Height="43" Grid.ColumnSpan="2" />
-        <Label Background="{x:Null}" Content="Stats" Height="28" VerticalAlignment="Top" Margin="23,324,10,0" BorderBrush="#FF335D99" BorderThickness="0,0,0,1" />
+        <DockPanel LastChildFill="True" Margin="23,246,10,0">
+        	<Border x:Name="lblALLTips" VerticalAlignment="Top" Background="#4C48595F" CornerRadius="5" Padding="5" MinHeight="67" DockPanel.Dock="Top">
+        		<Grid>
+        			<Grid x:Name="lblTipServerOnline" Visibility="Hidden">
+        				<TextBlock FontSize="14" TextWrapping="Wrap"><Bold><Run Text="The server is ready for players to join." /></Bold><LineBreak /><Run Text="Your IP address is: " /><Run x:Name="lblIPaddress" Text="{Binding ExternalIP, FallbackValue=127.0.0.1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" /><LineBreak /><Run Text="Use this to join the game." /></TextBlock>
+        			</Grid>
+        			<Grid x:Name="lblTipServerOffline">
+        				<TextBlock FontSize="14" TextWrapping="Wrap"><Run Text="Click " /><Bold><Run Text="Start server" /></Bold><Run Text=" to launch the Minecraft game server." /></TextBlock>
+        			</Grid>
+        		</Grid>
+        	</Border>
+        	<Grid Margin="0,10,0,0">
+        		<Label Background="{x:Null}" Content="Stats" Height="28" VerticalAlignment="Top" BorderBrush="#FF335D99" BorderThickness="0,0,0,1" />
+        		<Label Background="{x:Null}" Content="Memory usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,30,0,0" />
+        		<Grid Margin="118,33,0,0" Height="25" VerticalAlignment="Top">
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="*" />
+        				<ColumnDefinition Width="Auto" />
+        			</Grid.ColumnDefinitions>
 
-        <Label Background="{x:Null}" Content="Memory usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="23,357,0,0" />
-        <Grid Margin="141,360,10,0" Height="25" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        			<ProgressBar x:Name="progbarRAM" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFB87979" BorderBrush="#FFB2B2B2" />
+        			<TextBlock x:Name="txtRAM" Grid.ColumnSpan="2" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
+        		</Grid>
+        		<Label Background="{x:Null}" Content="Server memory load:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,60,0,0" />
+        		<Grid Margin="118,63,0,0" Height="25" VerticalAlignment="Top">
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="*" />
+        				<ColumnDefinition Width="Auto" />
+        			</Grid.ColumnDefinitions>
 
-            <ProgressBar x:Name="progbarRAM" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFB87979" BorderBrush="#FFB2B2B2" />
-            <TextBlock x:Name="txtRAM" Grid.ColumnSpan="2" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
-        </Grid>
+        			<ProgressBar x:Name="progbarRAMalloc" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFE8E8E8" BorderBrush="#FFB2B2B2" />
+        			<TextBlock x:Name="txtRAMAlloc" Grid.ColumnSpan="2" Text="0MiB" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
+        		</Grid>
+        		<Label Background="{x:Null}" Content="CPU Usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,88,0,0" />
+        		<Grid Margin="118,93,0,0" Height="25" VerticalAlignment="Top">
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="*" />
+        				<ColumnDefinition Width="Auto" />
+        			</Grid.ColumnDefinitions>
 
-        <Label Background="{x:Null}" Content="Server memory load:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="23,387,0,0" />
-        <Grid Margin="141,390,10,0" Height="25" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <ProgressBar x:Name="progbarRAMalloc" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFE8E8E8" BorderBrush="#FFB2B2B2" />
-            <TextBlock x:Name="txtRAMAlloc" Grid.ColumnSpan="2" Text="0MiB" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
-        </Grid>
-
-        <Label Background="{x:Null}" Content="CPU Usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="23,415,0,0" />
-        <Grid Margin="141,420,10,0" Height="25" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <ProgressBar x:Name="progbarCPUUsage" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFE8E8E8" BorderBrush="#FFB2B2B2" />
-            <TextBlock x:Name="txtCPUUsage" Grid.ColumnSpan="2" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
-        </Grid>
+        			<ProgressBar x:Name="progbarCPUUsage" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" Foreground="#FF707070" Background="#FFE8E8E8" BorderBrush="#FFB2B2B2" />
+        			<TextBlock x:Name="txtCPUUsage" Grid.ColumnSpan="2" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify"/>
+        		</Grid>
+        	</Grid>
+        </DockPanel>
     </Grid>
 </Page>

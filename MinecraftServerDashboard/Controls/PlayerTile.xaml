@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="48" d:DesignWidth="290" Background="#FF1A6D93" Foreground="White" Height="48" Margin="2,0,0,0">
+             d:DesignHeight="48" d:DesignWidth="290" Foreground="White" Height="48" Margin="2,1,0,1">
     <UserControl.ContextMenu>
         <ContextMenu Name="PlayerItemContextmenu">
             <!--<ContextMenu.Style>
@@ -17,8 +17,8 @@
         </ContextMenu>
     </UserControl.ContextMenu>
     <Grid>
-        <Label Margin="0" BorderBrush="#F09609" BorderThickness="6,0,0,0" />
-        <Image Name="Image1" Stretch="Uniform" HorizontalAlignment="Left" Width="48" Height="48" Margin="2,0,0,0" />
-        <Label Content="Username" Margin="54,0,0,0" Name="Label1" VerticalContentAlignment="Center" FontSize="15" Foreground="White" />
+        <Label Margin="0" BorderThickness="2,0,0,0" />
+        <Image Name="Image1" Stretch="Uniform" HorizontalAlignment="Left" Width="48" Height="48" Margin="2,0,0,0" Source="/MinecraftServerDashboard;component/Images/Blank.png" />
+        <Label Content="Username" Margin="50,0,0,0" Name="Label1" VerticalContentAlignment="Center" FontSize="15" Foreground="White" Background="#B21A6D93" />
     </Grid>
 </UserControl>

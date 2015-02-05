@@ -1,53 +1,72 @@
-﻿Public Module PlayerList
+﻿Imports System.Text.RegularExpressions
 
-    Public Function ProcessPlayerList(input As String) As List(Of String)
-        Dim PlayerList As New List(Of String)
+Public Module PlayerList
+    '"[^A-Z0-9.$ ]$"
+    Const VALIDCHARS As String = "[^abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.$]"
 
-        ' Remove [INFO] string if it exists
-        ' e.g. 2013-07-09 16:46:13 [INFO] bearbear12345
-        ' or:
-        ' e.g. 2013-07-09 16:46:13 [INFO] [Minecraft-Server] bearbear12345
-        Dim f As String
-        If input.Contains("INFO]:") Then
-            f = "INFO]: "
-        ElseIf input.Contains("INFO] [Minecraft-Server] ") Then
-            f = "INFO] [Minecraft-Server] "
+    Public Function ProcessPlayerList(consoleOutput As String) As List(Of Player)
+        Dim playerList As New List(Of Player)
+
+        Dim s As String = ""
+
+        'First, strip of any prefixing "[INFO]" tag strings if required
+        '           e.g. 2013-07-09 16:46:13 [INFO] bearbear12345
+        '                or
+        '           e.g. 2013-07-09 16:46:13 [INFO] [Minecraft-Server] bearbear12345
+        Dim prefix As String
+        If consoleOutput.Contains("INFO]:") Then
+            prefix = "INFO]: "
+        ElseIf consoleOutput.Contains("INFO] [Minecraft-Server] ") Then
+            prefix = "INFO] [Minecraft-Server] "
         Else
-            f = "INFO] "
+            prefix = "INFO] "
         End If
 
-        Dim i As Integer = input.IndexOf(f)
-        Dim s As String = ""
-        If input.Contains(f) Then
-            If Not ((i + f.Length) = (input.Length - (i + f.Length))) Then
-                s = input.Substring(i + f.Length, input.Length - (i + f.Length))
+        Dim i As Integer = consoleOutput.IndexOf(prefix)
+
+        If consoleOutput.Contains(prefix) Then
+            If Not ((i + prefix.Length) = (consoleOutput.Length - (i + prefix.Length))) Then
+                s = consoleOutput.Substring(i + prefix.Length, consoleOutput.Length - (i + prefix.Length))
             Else
                 s = ""
             End If
         Else
-            s = input
+            s = consoleOutput
         End If
 
-        'If Not i + 8 = input.Length Then
-
+        'Break up the string into its separate words
+        Dim wordList As New List(Of String)
         If Not s Is Nothing Then
             Dim words = s.Split({" "c}, StringSplitOptions.RemoveEmptyEntries)
 
-            'Dim m As Integer
-            For Each f In words
-                'm += 1
-                'Dim x As String = "17:19:53 [INFO] Connected players: "
-                'Dim e As String = "2012-06-01 17:19:53 [INFO] Connected players: "
-                If f.EndsWith(",") Then
-                    PlayerList.Add(f.Substring(0, f.Length - 1))
+            For Each prefix In words
+                'Remove any trailing comma
+                If prefix.EndsWith(",") Then
+                    wordList.Add(prefix.Substring(0, prefix.Length - 1))
                 Else
-                    PlayerList.Add(f)
+                    wordList.Add(prefix)
                 End If
             Next
 
         End If
 
-        Return PlayerList
+        'Filter through words with invalid characters, until the next proper username is found.
+        'Combine this proper username with the current set of invalid words ('tags'), and add this. Repeat.
+        Dim r As Regex = New Regex(VALIDCHARS)
+        Dim curr As String = ""
+
+        For Each item In wordList
+            If (r.IsMatch(item)) Then
+                ' validation failed
+                curr &= item & " "
+            Else
+                playerList.Add(New Player(curr & item, item))
+                curr = ""
+            End If
+
+        Next
+
+        Return playerList
     End Function
 
 End Module

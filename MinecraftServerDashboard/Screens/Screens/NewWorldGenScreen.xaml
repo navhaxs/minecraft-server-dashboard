@@ -26,6 +26,6 @@
 				<TextBlock Text="New world generation settings" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" />
 			</Border>
             <TextBlock HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="These settings are used whenever the server needs to generate Minecraft world data." /><Run x:Name="lbloptional" Text="" /><LineBreak /></TextBlock>
-            <Button Content="Done" Margin="0,0,10,10" Click="Button_Click_1" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsDefault="True" IsEnabled="{Binding IsChecked, ElementName=confirm}" />
+            <Button Content="Done" Margin="0,0,10,10" Click="btn_OK" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsDefault="True" IsEnabled="{Binding IsChecked, ElementName=confirm}" />
     </Grid>
 </metro:Window>

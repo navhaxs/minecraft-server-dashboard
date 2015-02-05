@@ -2,21 +2,26 @@
 
 Public Class OnlinePlayerList
 
-    Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
     Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
 
-        ' Add any initialization after the InitializeComponent() call.
-        Me.DataContext = MyServer
+        If Not System.ComponentModel.DesignerProperties.GetIsInDesignMode(Me) Then
 
-        ' Intial value of online player counter
-        Dim s As String = b.ReturnConfigValue("max-players")
-        If s = Nothing Then
-            lblPlayerCounter.Content = ""
-        Else
-            lblPlayerCounter.Content = "0/" & b.ReturnConfigValue("max-players")
+            ' Add any initialization after the InitializeComponent() call.
+            Me.DataContext = MyServer
+
+            ' Intial value of online player counter
+            Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
+
+            Dim s As String = b.ReturnConfigValue("max-players")
+            If s = Nothing Then
+                lblPlayerCounter.Content = ""
+            Else
+                lblPlayerCounter.Content = "0/" & b.ReturnConfigValue("max-players")
+            End If
+
         End If
     End Sub
 

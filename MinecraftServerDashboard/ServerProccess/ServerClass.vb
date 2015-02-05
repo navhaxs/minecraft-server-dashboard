@@ -53,6 +53,8 @@ Public Class ServerClass
             javaexe = MyUserSettings.settingsStore.Startup_JavaExec
         End If
 
+        'DEBUGGING javaexe = System.Environment.CurrentDirectory & "\java.exe"
+
         ServerProc = New Process With { _
             .StartInfo = New ProcessStartInfo() With { _
                 .FileName = javaexe, _
@@ -246,15 +248,15 @@ Public Class ServerClass
             If isGettingPlayerListActivity = isGettingPlayerListActivity_STATE.FoundMatch Then
 
                 'Get the list of online players from the console output line
-                Dim PlayerList As List(Of String) = ProcessPlayerList(e.Data)
+                Dim PlayerList As List(Of Player) = ProcessPlayerList(e.Data)
 
                 'Update UI
                 navpageDashboard.Dispatcher.BeginInvoke( _
                                     New Action(Sub()
 
-                                                   navpageDashboard.MyOnlinePlayerList.StackPanel1.Children.Clear()
+                                                   navpageDashboard.MyOnlinePlayerList.StackPanel.Children.Clear()
                                                    For Each p In PlayerList
-                                                       navpageDashboard.MyOnlinePlayerList.StackPanel1.Children.Add(New PlayerTile(p))
+                                                       navpageDashboard.MyOnlinePlayerList.StackPanel.Children.Add(New PlayerTile(p))
                                                    Next
                                                    Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
                                                    navpageDashboard.MyOnlinePlayerList.lblPlayerCounter.Content = PlayerList.Count & "/" & b.ReturnConfigValue("max-players")
@@ -274,7 +276,7 @@ Public Class ServerClass
                         navpageDashboard.Dispatcher.BeginInvoke( _
                                     New Action(Sub()
 
-                                                   navpageDashboard.MyOnlinePlayerList.StackPanel1.Children.Clear()
+                                                   navpageDashboard.MyOnlinePlayerList.StackPanel.Children.Clear()
                                                    Dim b As New ServerProperties(MyServer.MyStartupParameters.ServerProperties)
                                                    navpageDashboard.MyOnlinePlayerList.lblPlayerCounter.Content = "0/" & b.ReturnConfigValue("max-players")
                                                End Sub))

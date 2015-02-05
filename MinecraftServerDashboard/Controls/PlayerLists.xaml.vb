@@ -78,9 +78,9 @@ Public Class PlayerLists
                 Else
                     EmptyMessage.Text = "Nobody is online at the moment."
 
-                    For Each i As Object In navpageDashboard.MyOnlinePlayerList.StackPanel1.Children
+                    For Each i As Object In navpageDashboard.MyOnlinePlayerList.StackPanel.Children
                         If TypeOf i Is PlayerTile Then
-                            PlayerListBox.Items.Add(CType(i, PlayerTile).username)
+                            PlayerListBox.Items.Add(CType(i, PlayerTile).thisplayer.Username)
                         End If
                     Next
 

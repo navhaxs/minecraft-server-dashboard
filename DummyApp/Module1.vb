@@ -19,7 +19,8 @@ Module Module1
                 Case "doerror"
                     DoRandomErrorTextRightNow("ErrorText.txt")
                 Case "list"
-                    Console.WriteLine(TimeNow() & " [INFO] Players...")
+                    Console.WriteLine(TimeNow() & " [INFO] There are 4/20 players online:")
+                    Console.WriteLine(TimeNow() & " [INFO] Developers: [Developer] Coolguy95691 [Op] Notch NormalGuy [Admin] SmileyGuy")
             End Select
             System.Threading.Thread.Sleep("1000")
         End While

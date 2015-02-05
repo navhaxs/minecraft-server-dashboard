@@ -14,7 +14,7 @@
     <metro:Window.TitleBar>
         <Grid IsHitTestVisible="False" Width="535" >
             <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" FontSize="20" TextWrapping="Wrap" />
-            <TextBlock Margin="0,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="January 2015 build 22/01/2015 " /><Run Text="© navhaxs and contributors 2013-2015" /></TextBlock>
+            <TextBlock Margin="0,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="Feb15 build 5/02/2015 " /><Run Text="© navhaxs and contributors 2013-2015" /></TextBlock>
         </Grid>
     </metro:Window.TitleBar>
     <Grid>
@@ -37,6 +37,9 @@
                         Minecraft Server Dashboard is flexible Minecraft server management made easy.<LineBreak />
                         <LineBreak />
                         <Bold>Acknowledgements</Bold>
+                        <LineBreak />
+                        <Run Text="Special thanks to the many people who have contributed to Dashboard in some way or another - from reporting bugs to directly contributing to code!" />    
+                        <LineBreak />
                         <LineBreak />
                         <Run Text="This software is themed with Elysium, " /><Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://elysium.codeplex.com">elysium.codeplex.com</Hyperlink><Run Text=", licensed under the MIT License." />
                         <Run Text="This software also uses the Json.NET library by James Newton-King," /> <Hyperlink RequestNavigate="Hyperlink_Go_WWW" NavigateUri="http://james.newtonking.com/json">james.newtonking.com/json</Hyperlink>

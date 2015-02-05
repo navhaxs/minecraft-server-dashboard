@@ -237,6 +237,7 @@
     <Compile Include="Screens\Screens\QuickSetUp\WelcomeFrame.xaml.vb">
       <DependentUpon>WelcomeFrame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ServerProccess\DataTypes\PlayerInfo.vb" />
     <Compile Include="ServerProccess\ServerRestartHelper.vb" />
     <Compile Include="ServerProccess\TaskScheduler.vb">
       <SubType>Component</SubType>
