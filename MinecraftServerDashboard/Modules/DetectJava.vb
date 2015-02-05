@@ -13,7 +13,10 @@ Namespace DetectJava
             Dim r As String = ""
 
             Dim match As Boolean = False
-            If e.Contains("\Java\jre7") Then
+            If e.Contains("\Java\jre1.8") Then
+                r = "JRE 8"
+                match = True
+            ElseIf e.Contains("\Java\jre7") Then
                 r = "JRE 7"
                 match = True
             ElseIf e.Contains("\Java\jre6") Then
