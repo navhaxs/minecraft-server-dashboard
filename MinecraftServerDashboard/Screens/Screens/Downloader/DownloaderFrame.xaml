@@ -6,8 +6,8 @@
     xmlns:params="http://schemas.codeplex.com/elysium/params"
     xmlns:local="clr-namespace:MinecraftServerDashboard"
     params:Manager.Theme="Dark"
-    params:Manager.AccentBrush="#FF5387A5"
-    Height="430" Width="600"
+    params:Manager.AccentBrush="#FFD37323"
+    Height="340" Width="520"
     ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid Margin="10,24,0,84" Width="60" HorizontalAlignment="Left">
@@ -35,31 +35,32 @@
         <TabControl x:Name="tabcontrol"  TabStripPlacement="Left" Margin="80,0,0,0" SelectionChanged="tabcontrol_SelectionChanged">
             <TabItem Header="Welcome" Visibility="Collapsed">
                 <Grid>
-                    <TextBlock Margin="10,0,0,0" FontSize="36" FontWeight="Light" Height="56" VerticalAlignment="Top" >Choose a server</TextBlock>
-                    <RadioButton x:Name="btnCraftBukkit" Margin="20,166,10,0"  VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Stretch" Padding="30,1,1,1" >
+                    <TextBlock Margin="20,0,0,0" FontSize="36" FontWeight="Light" Height="56" VerticalAlignment="Top" >Server files download</TextBlock>
+                    <RadioButton x:Name="btnCraftBukkit" Margin="20,166,10,0"  VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Stretch" Padding="30,1,1,1" Visibility="Collapsed" >
                         <Grid Background="#FFFF8B00">
                             <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" FontSize="18" FontWeight="Normal">CraftBukkit server</TextBlock>
                             <Image HorizontalAlignment="Right" Height="84" Source="official bukkit.png" />
                         </Grid>
                     </RadioButton>
-                    <RadioButton x:Name="btnVanilla" Margin="20,71,10,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Stretch" Padding="30,1,1,1" IsChecked="True" >
+                    <TextBlock Text="Dashboard can download the Vanilla server for you." TextWrapping="Wrap" Margin="20,56,10,0" Padding="5,0" FontSize="16" VerticalAlignment="Top"/>
+                    <TextBlock Text="Looking for CraftBukkit? Visit www.spigotmc.org for how to download the CraftBukkit and Spigot servers, then return to the previous screen." TextWrapping="Wrap" Margin="20,90,10,0" Padding="5,0" FontSize="16" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="btnVanilla" Margin="10,171,20,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Stretch" Padding="30,1,1,1" IsChecked="True"  Visibility="Hidden">
                         <Grid Background="#FF4A6697">
                             <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" FontSize="18" FontWeight="Normal">Official 'Vanilla' server</TextBlock>
                             <Image HorizontalAlignment="Right" Height="84" Source="official mojang.png" />
                         </Grid>
                     </RadioButton>
-                    <TextBlock Text="Looking for CraftBukkit? Following the recent events regarding the legal action, please instead download it manually from https://savebukkit.org/ " TextWrapping="Wrap" Margin="10,287,0,0" Padding="5,0"/>
                     <Button Content="Download &gt;&gt;" HorizontalAlignment="Right" Margin="0,10,10,10" VerticalAlignment="Bottom" Width="200" Height="50" FontSize="18" IsDefault="True" Click="Button_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Downloading" Visibility="Collapsed">
                 <StackPanel Margin="10,10,10,0">
-                    <Border Background="#FF618B87" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="2">
+                    <Border Background="#FFD37323" Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="2">
                         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="White">
-                            <TextBlock x:Name="lblStatus" TextWrapping="Wrap">Preparing your server</TextBlock>
+                            <TextBlock x:Name="lblStatus" TextWrapping="Wrap">Hang on tight, preparing your server!</TextBlock>
                         </Label>
                     </Border>
-                    <TextBlock Margin="0,10,0,10" TextWrapping="Wrap" FontSize="14">Downloading server files... (<Run x:Name="txtProgess">0</Run>%)</TextBlock>
+                    <TextBlock Margin="0,10,0,10" TextWrapping="Wrap" FontSize="14">Fetching server files... (<Run x:Name="txtProgess">0</Run>%)</TextBlock>
                     <metro:ProgressBar x:Name="thisProgressBar" HorizontalAlignment="Stretch" State="Indeterminate" />
                 </StackPanel>
             </TabItem>

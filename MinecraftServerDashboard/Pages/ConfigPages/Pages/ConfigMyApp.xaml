@@ -58,27 +58,20 @@
 
                     <Grid Margin="0,40,0,0" />
                     <TextBlock Text="My World Profiles" FontSize="18" Background="#FFDE5B00" Foreground="White" Padding="5,0,0,0" />
-                    <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="19*" />
-                            <ColumnDefinition Width="121*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Exclude the following directories:" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,4,0,3" />
-                        <TextBox Width="240" HorizontalAlignment="Right" x:Name="dir2exclude" Grid.Column="1" AcceptsReturn="True">
-                        </TextBox>
-                    </Grid>
-                        <TextBlock VerticalAlignment="Top" Margin="0,0,150,20" TextWrapping="Wrap" Foreground="#FF535353" >
-                        All child directories in Dashboard's directory are listed as separate 'Worlds' in the World Profiles tab.
-                        However, other non-world data directories such as 'plugins' should be excluded.<LineBreak />
-                        <LineBreak />
-                        Note that folders ending with <Bold>_the_end</Bold> or <Bold>_nether</Bold> are automatically treated as part of the same 'World' as the parent world directory.
+                    <TextBlock Text="Exclude the following directories from being listed as 'Worlds':" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,4,0,3" />
+                    <TextBox Width="240" HorizontalAlignment="Left" x:Name="dir2exclude" Grid.Column="1" AcceptsReturn="True" />
+                    <TextBlock VerticalAlignment="Top" Margin="0,0,150,20" TextWrapping="Wrap" Foreground="#FF535353" >
+                    All child directories in Dashboard's directory are listed as separate 'Worlds' in the World Profiles tab.<LineBreak />
+                    However, other non-world data directories such as 'plugins' should be excluded.<LineBreak />
+                    Note: Folders ending with <Bold>_the_end</Bold> or <Bold>_nether</Bold> are automatically treated as part of the same 'World' as the parent world directory.
                     </TextBlock>
+                    <Separator Margin="0,0,0,50" />
+
                         <Button x:Name="btnSave" Content="Save changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontWeight="Bold"  Margin="0,10,0,50" />
-                        <Separator Margin="0,0,0,50" />
                         <TextBlock Text="Factory Reset" FontSize="18" Background="#FFDE5B00" Foreground="White" Padding="5,0,0,0" />
-                        <TextBlock VerticalAlignment="Top" Margin="0,10,150,0" TextWrapping="Wrap" >
-                        This will reset all customisations made to the Dashboard application. You will be asked on the next startup to set up the server for the first time.<LineBreak /><Bold>None of your 'physical' server files (server properties, player lists, world saves, backups, etc.) will be deleted.</Bold>
-                     </TextBlock>
+                    <TextBlock VerticalAlignment="Top" Margin="0,10,150,0" TextWrapping="Wrap" >
+                    This will reset all customisations made to the Dashboard application. You will be asked on the next startup to set up the server for the first time.<LineBreak /><Bold>None of your 'physical' server files (server properties, player lists, world saves, backups, etc.) will be deleted.</Bold>
+                    </TextBlock>
                      <Button x:Name="btnReset" Content="Factory reset all Dashboard settings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="360" Margin="0,20,0,20" />
                     
                 </StackPanel>

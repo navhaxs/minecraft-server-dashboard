@@ -10,7 +10,7 @@
     <Grid>
         <metro:ProgressBar x:Name="UIProgressBar" Height="18" Margin="12,59,12,0" VerticalAlignment="Top" />
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="12,0,0,12" Name="Button1" Width="75" VerticalAlignment="Bottom" />
-        <Label Foreground="White" Content="Fetching the latest server files from the internet" Height="51" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Label1" VerticalAlignment="Top" FontSize="15" />
-        <Label Foreground="White" Height="28" HorizontalAlignment="Left" Margin="12,83,0,0" Name="UIProgressText" VerticalAlignment="Top" />
+        <TextBlock Foreground="White" Text="Fetching the latest server files from the internet" Height="51" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Label1" VerticalAlignment="Top" FontSize="15" />
+        <TextBlock Foreground="White" Height="28" HorizontalAlignment="Left" Margin="12,83,0,0" Name="UIProgressText" VerticalAlignment="Top" />
     </Grid>
 </metro:Window>

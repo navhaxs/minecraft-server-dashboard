@@ -7,8 +7,12 @@ Public Class NewWorldProfile
 
     Private Sub GoBtn_Click()
         Try
-            My.Computer.FileSystem.CreateDirectory(MyServer.MyStartupParameters.ServerPath & "\" & txtFilename.Text)
-            Close()
+            If My.Computer.FileSystem.DirectoryExists(MyServer.MyStartupParameters.ServerPath & "\" & txtFilename.Text) Then
+                Dim n As New MessageWindow(MyMainWindow, "", "A directory of the same name already exists. Pick another name.", "Already exists", "large")
+            Else
+                My.Computer.FileSystem.CreateDirectory(MyServer.MyStartupParameters.ServerPath & "\" & txtFilename.Text)
+                Close()
+            End If
         Catch ex As Exception
             MessageBox.Show("Could not create new world profile:" & vbNewLine & ex.Message)
         End Try

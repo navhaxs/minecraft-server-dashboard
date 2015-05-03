@@ -2,7 +2,7 @@
 Imports System.Text.RegularExpressions
 Imports System.ComponentModel
 
-Public Class ServerClass
+Public Class ServerManager
     Implements INotifyPropertyChanged
 
     ''' <summary>
@@ -25,6 +25,11 @@ Public Class ServerClass
     ''' Fired when the server process has exited
     ''' </summary>
     Public Event ServerStopped()
+
+    ''' <summary>
+    ''' Fired when the server requires the EULA signed
+    ''' </summary>
+    Public Event PromptEULAUserAction()
 
 #Region "INotifyPropertyChanged - WPF UI Binding"
     'This code is used to bind between the server's console data and the frontend textbox UI
@@ -75,7 +80,7 @@ Public Class ServerClass
     End Function
 #End Region
 
-#Region "Server's console stream/Log"
+#Region "Server console stream parsing"
 
     Private _consolestream As String ' This variable holds the entire stdio of the server
 
@@ -287,13 +292,14 @@ Public Class ServerClass
                     End If
                 End If
             End If
-            'End If
 
             'Check if the server has completed initializing, e.g. line matching the string:
             '2013-05-20 12:34:07 [INFO] Done (1.701s)! For help, type "help" or "?"
             If CurrentServerState = ServerState.WarmUp Then
                 If (e.Data.Contains("INFO] Done (") Or e.Data.Contains("INFO]: Done (") Or e.Data.Contains("INFO] [Minecraft-Server] Done (")) And e.Data.EndsWith("s)! For help, type ""help"" or ""?""") Then
                     CurrentServerState = ServerState.Running
+                ElseIf (e.Data.Contains(" [Server thread/INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.")) Then
+                    RaiseEvent PromptEULAUserAction()
                 End If
             End If
 

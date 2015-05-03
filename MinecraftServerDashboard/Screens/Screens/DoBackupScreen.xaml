@@ -29,7 +29,7 @@
                     <TextBlock HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14"><Run Text="Enter a name for the backup:" /></TextBlock>
                 </StackPanel>
             </Border>
-            <TextBlock x:Name="DoBackupScreen" HorizontalAlignment="Left" Margin="10,0,0,102" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="16"><Hyperlink x:Name="btnOpenBackups"><Run Text="View and restore previous backups" /></Hyperlink></TextBlock>
+            <TextBlock x:Name="DoBackupScreen" HorizontalAlignment="Left" Margin="10,0,0,102" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="14">See also: <Hyperlink x:Name="btnOpenBackups"><Run Text="View and restore previous backups" /></Hyperlink></TextBlock>
 
             <TextBox x:Name="txtFilename" Margin="203,88,20,200" TextWrapping="Wrap" HorizontalAlignment="Stretch" />
         </Grid>

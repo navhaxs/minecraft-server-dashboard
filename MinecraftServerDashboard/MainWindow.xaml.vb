@@ -21,7 +21,7 @@ Class MainWindow
         ' Allow this object to be accessed globally in project
         MyApp.MyMainWindow = Me
         ' Create instances of all required objects
-        MyApp.MyServer = New ServerClass()
+        MyApp.MyServer = New ServerManager()
 
         MyApp.navpageDashboard = New PageDashboard
         MyApp.navpagePlayers = New PagePlayers

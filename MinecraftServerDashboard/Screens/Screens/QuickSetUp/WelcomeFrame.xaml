@@ -7,8 +7,9 @@
     xmlns:local="clr-namespace:MinecraftServerDashboard"
     params:Manager.Theme="Light"
     params:Manager.AccentBrush="#FF5387A5"
+    IsMainWindow="True"
     Height="390" Width="600" Title="Welcome to Dashboard"
-    ShowInTaskbar="False" ResizeMode="NoResize" Background="White">
+    ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
         <Grid Margin="10,24,0,84" Width="60" HorizontalAlignment="Left">
             <!--<Border Background="#FF5387A5" HorizontalAlignment="Center" Height="250" Margin="0,10,0,0" VerticalAlignment="Top" Width="4" CornerRadius="2"/>-->
@@ -23,36 +24,21 @@
 						Style="{StaticResource arrowBack}"
 						VerticalAlignment="Stretch" Foreground="White" />
             </Grid>
-            <!--<Grid x:Name="SelectorBubble" HorizontalAlignment="Stretch" Height="60" VerticalAlignment="Top">
-            <Ellipse Stroke="#FF5387A5" StrokeThickness="2">
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource="/MinecraftServerDashboard;component/Images/World/worldsel.png" Stretch="UniformToFill"/>
-                </Ellipse.Fill>
-            </Ellipse>
-                <Label x:Name="SelectorText" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" Foreground="White" Content="1"/>
-            </Grid>-->
         </Grid>
         <TabControl x:Name="tabcontrol" TabStripPlacement="Left" Margin="80,0,0,0" Padding="0,0,5,0">
             <TabItem x:Name="tabWelcome" Header="Welcome" Visibility="Collapsed">
                 <Grid Margin="15,0,0,0">
-
-
-
                     <Button x:Name="btnGetNew" Content="Download the latest server files for me &gt;&gt;" Margin="10,152,20,0" VerticalAlignment="Top" Height="90" FontSize="18" HorizontalContentAlignment="Left" Padding="30,1,1,1"/>
                     <Button x:Name="btnSelectExisting" Content="I already have existing server files on my PC &gt;&gt;" Margin="10,57,20,0" VerticalAlignment="Top" Height="90" FontSize="18" HorizontalContentAlignment="Left" Padding="30,1,1,1" />
-                    <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" FontSize="25" FontWeight="Light" VerticalAlignment="Top" ><Run Text="Let's get your Minecraft Server started!"/></TextBlock>
+                    <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" FontSize="25" FontWeight="Light" VerticalAlignment="Top" ><Run Text="Let's get your Minecraft server started!"/></TextBlock>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabExisting" Header="Set up" Visibility="Collapsed">
                 <StackPanel Margin="10,10,10,0">
-                    <Border Background="#FFFFF7C2" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="2">
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16">
-                            <TextBlock TextWrapping="Wrap">Make sure you copy and launch Dashboard from the folder where your server files are located. The jarfile should be located in the same directory.</TextBlock>
-                        </Label>
-                    </Border>
-                    <TextBlock Margin="0,10,0,10" TextWrapping="Wrap" FontSize="14">The following jarfiles are available. Select which one to use:</TextBlock>
+                    <TextBlock FontSize="16" TextWrapping="Wrap">Make sure the Dashboard app is in the same folder as your server files. The jarfile should be in the same directory.</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,10,0,10" TextWrapping="Wrap">The following jarfiles were found, select one to use:</TextBlock>
                     <Border BorderThickness="2" BorderBrush="#FFF3F3F3">
-                        <ListBox x:Name="thisJar" Height="140" />
+                        <ListBox x:Name="thisJar" Height="190"/>
                     </Border>
                     <Button x:Name="_1btnNext" Content="Next &gt;&gt;" HorizontalAlignment="Right" Margin="0,10,0,10" VerticalAlignment="Bottom" Width="200" Height="50" FontSize="18" Click="Button_Click" IsDefault="True" />
                 </StackPanel>

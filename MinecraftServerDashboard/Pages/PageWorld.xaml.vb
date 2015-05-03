@@ -174,7 +174,7 @@ Class pageWorld
     ''' <summary>
     ''' Display new profile creation dialog
     ''' </summary>
-    Sub NewProfile()
+    Public Sub NewProfile()
         Using l As New NewWorldProfile
             Dim x As New OverlayDialog
             x.DisplayConfig(l)
@@ -245,6 +245,7 @@ Class pageWorld
         Dim s As Integer = ListBox_MyWorldProfiles.SelectedIndex
 
         Dim _m As New ConfirmWorldDeletion
+        _m.Owner = MyMainWindow
         If Not _m.ShowMessage(MyProfileDirs(s).DirName) Then Exit Sub
 
         Try

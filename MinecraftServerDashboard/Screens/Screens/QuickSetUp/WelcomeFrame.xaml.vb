@@ -15,7 +15,8 @@
             MyServer.ReloadStartupParameters()
             result = True
         Else
-            Dim n As New MessageWindow(MyMainWindow, "", "You havn't selected a jarfile yet! Dashboard can't start the server or make configuration changes until you've selected which jarfile to use." & vbNewLine & vbNewLine & "Return to this screen by clicking on the Configuration tab, and selecting 'Backend settings'", "Oops", "large")
+            Dim n As New MessageWindow(MyMainWindow, "", "You can set the jarfile later by clicking on the Configuration tab, then selecting 'Backend settings'" & vbNewLine & vbNewLine &
+                                       "Most things won't work until you do this.", "Set up not complete", "large")
         End If
         MyMainWindow.thisOverlayState = New MainWindow.MyOverlayState
         MyMainWindow.MyMainWindowProperties.MainWindowOverlay = MainWindowViewModel.OverlayShownType.None

@@ -86,11 +86,12 @@
                             </ComboBox>-->
                             <Button x:Name="btnCb" Margin="10,0,10,5"
                                     params:Design.AccentBrush="#FFBF5E5E"
-                                    HorizontalContentAlignment="Left" Click="btnCb_Click">
+                                    HorizontalContentAlignment="Left" Click="btnCb_Click" Visibility="Collapsed">
                                 <TextBlock>Download latest CraftBukkit <Run x:Name="txtCraftBukkitVer" Text="" />
                                 </TextBlock>
                             </Button>
                             <Button x:Name="btnVn" Margin="10,0,10,10"
+                                    IsEnabled="False"
                                     params:Design.AccentBrush="#FF784444"
                                     HorizontalContentAlignment="Left" Click="btnVn_Click">
                                 <TextBlock>Download latest Vanilla
@@ -108,8 +109,8 @@
                 </Border>
 
                 <TextBlock TextWrapping="Wrap" Margin="388,44,10,0">
-                    <Bold>Not found?</Bold>
-                    <LineBreak />• Make sure that the jarfile and Dashboard are in the same folder.
+                    <Bold>Don't see your server jar file?</Bold>
+                    <LineBreak />Make sure that Dashboard and the jarfile are in the same folder.
                 </TextBlock>
 
                 <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="10">

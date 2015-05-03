@@ -14,7 +14,7 @@
         <!-- Change control colour if this task is unchecked (disabled) -->
         <Grid Background="#FFFFFADD" Visibility="{Binding ElementName=chkboxIsTaskEnabled, Path=IsChecked, Converter={StaticResource BoolToVis}}"/>
         <Grid x:Name="DrawBackupOnlyBackground" Background="#FFC2DEF1" Visibility="Hidden" />
-        <Border BorderBrush="#FFDEAC00" BorderThickness="0,0,0,1" Margin="5,0,5,0">
+        <Border BorderBrush="#FFDEAC00" BorderThickness="0,0,0,1" Margin="0">
             <DockPanel>
                 <Grid>
                     <StackPanel Orientation="Horizontal" Height="30" Margin="0,9,0,0" VerticalAlignment="Top">
@@ -32,7 +32,7 @@
                             <ListBoxItem x:Name="doBackup" Content="do a backup"/>
                         </ComboBox>
                     </StackPanel>
-                    <TabControl x:Name="UImoreParameters" Margin="10,44,0,10" SelectedIndex="1" Background="Transparent" Visibility="Hidden">
+                    <TabControl x:Name="UImoreParameters" Margin="10,44,10,10" SelectedIndex="1" Background="Transparent" Visibility="Hidden">
                         <TabItem x:Name="sayThisParameters" Visibility="Collapsed" Background="Transparent">
                             <Border CornerRadius="5">
                                 <Border.Background>
@@ -62,8 +62,8 @@
                             Text="toggledownfall&#x0a;say Great weather today.&#x0a;" FontFamily="Consolas"/>
                         </TabItem>
                     </TabControl>
-                    <Button Content="Remove" HorizontalAlignment="Right" Margin="0,35,50,0" VerticalAlignment="Top" Width="64" Height="28" Click="btnRemoveTask_Click" />
-                    <CheckBox x:Name="chkboxIsTaskEnabled" HorizontalAlignment="Right" Margin="0,39,15,0" VerticalAlignment="Top" IsChecked="True" Click="chkboxIsTaskEnabled_Click" />
+                    <Button Content="Remove" HorizontalAlignment="Right" Margin="0,11,45,0" VerticalAlignment="Top" Width="68" Height="30" Click="btnRemoveTask_Click" />
+                    <CheckBox x:Name="chkboxIsTaskEnabled" HorizontalAlignment="Right" Margin="0,20,10,0" VerticalAlignment="Top" IsChecked="True" Click="chkboxIsTaskEnabled_Click" />
                 </Grid>
             </DockPanel>
         </Border>

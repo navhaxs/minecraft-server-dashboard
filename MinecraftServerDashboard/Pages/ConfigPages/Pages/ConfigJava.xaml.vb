@@ -23,7 +23,7 @@
 
         minmem.Text = MyUserSettings.settingsStore.Startup_MemoryMin.ToLower.Replace("m", "")
         jarpath.Text = MyUserSettings.settingsStore.Startup_JavaExec
-        parameters_right.Text = MyUserSettings.settingsStore.JarLaunchArguments
+        parameters.Text = MyUserSettings.settingsStore.JarLaunchArguments
 
         If MyUserSettings.settingsStore.Startup_JavaExec Is "" Then
             jreauto.IsChecked = True
@@ -72,28 +72,6 @@
         End If
     End Sub
 
-#Region "'Combined' startup parameters textbox"
-
-    'Allow the user to jump from the left side of the textbox to the right, and vice versa
-    'Must use PreviewKeyDown, NOT KeyDown!! since the Left/Right key DON'T trigger KeyDown
-    'Private Sub parameters_right_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_right.PreviewKeyDown
-    '    If e.Key = Key.Left Then
-    '        parameters_left.Focus()
-    '    'End If
-    'End Sub
-    'Private Sub parameters_left_KeyDown(sender As Object, e As KeyEventArgs) Handles parameters_left.PreviewKeyDown
-    '    If e.Key = Key.Right Then
-    '        parameters_right.Focus()
-    '    End If
-    'End Sub
-
-    Private Sub DockPanel_GotFocus(sender As Object, e As RoutedEventArgs)
-        parameters_right.Focus()
-    End Sub
-
-#End Region
-
-
 #Region "Java selection"
 
     Private Sub jremanual_Checked(sender As Object, e As RoutedEventArgs) Handles jremanual.Unchecked
@@ -131,7 +109,7 @@
     End Sub
 
     Private Sub maxmem_Validate()
-        Dim TotalMachineMemory As Integer = (ServerClass.GetTotalMemoryInBytes() / (1024 * 1024)) * 0.95 ' in MiB 
+        Dim TotalMachineMemory As Integer = (ServerManager.GetTotalMemoryInBytes() / (1024 * 1024)) * 0.95 ' in MiB 
         'Times by 0.95 to prevent allocating a ridiculous maximum memory value
 
         sliderMemory.Maximum = TotalMachineMemory

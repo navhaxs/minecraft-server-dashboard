@@ -26,7 +26,7 @@ Public Class OnlinePlayerList
     End Sub
 
     Public Sub RefreshOnlinePlayers() Handles Button2.Click
-        MyServer.isGettingPlayerListActivity = ServerClass.isGettingPlayerListActivity_STATE.LookingForMatch
+        MyServer.isGettingPlayerListActivity = ServerManager.isGettingPlayerListActivity_STATE.LookingForMatch
     End Sub
 
 End Class

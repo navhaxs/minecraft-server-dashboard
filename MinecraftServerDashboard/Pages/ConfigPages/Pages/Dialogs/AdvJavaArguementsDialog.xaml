@@ -7,12 +7,12 @@
     Title="Startup parameters for launching Java"
     MinHeight="231" MinWidth="323" Height="251" Width="522" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="CanResizeWithGrip" WindowStyle="ToolWindow" HasDropShadow="True">
     <Grid>
-        <TextBox x:Name="txtJAVASpecificStartupParameters" Margin="10,47,10,58" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Top"/>
         <Button Content="OK" HorizontalAlignment="Right" Margin="0,0,10,22" Width="75" Click="Button_Click" Height="31" VerticalAlignment="Bottom"/>
-        <Label Content="" Height="42" HorizontalAlignment="Left" Margin="5,0,0,0" FontWeight="Light" FontSize="18" VerticalAlignment="Top" Foreground="Black" />
-        <TextBlock Margin="10,10,10,0" VerticalAlignment="Top" TextWrapping="Wrap">
-            <Italic>These parameters are appended before the -Jar {MyJarfile} and any other parameters set by Dashboard</Italic>
-        </TextBlock>
+        <DockPanel Margin="10,10,10,58">
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap">This screen lets you set the optional command-line arguments for Java.<LineBreak />
+            (These parameters will be appended before <Italic>-Jar myjarfile.jar</Italic> and any other arguments set by Dashboard)</TextBlock>
+        <TextBox x:Name="txtJAVASpecificStartupParameters" Margin="0,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Top"/>
+        </DockPanel>
         <TextBlock HorizontalAlignment="Left" Margin="12,0,0,10" VerticalAlignment="Bottom">
             <Hyperlink x:Name="btnDefault">Set to default</Hyperlink> | <Hyperlink x:Name="btnSpigot">Set for Spigot</Hyperlink>
         </TextBlock>

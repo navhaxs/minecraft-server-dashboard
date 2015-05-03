@@ -61,14 +61,16 @@ Public Class ConfigJarfileBackend
         Dim Ver As String = myDownloaderEngine.GetLatestVanillaVersion
         Dim url As String = "https://s3.amazonaws.com/Minecraft.Download/versions/" + Ver + "/minecraft_server." + Ver + ".jar"
 
-        UpdaterProgressWindow.Show()
+        UpdaterProgressWindow.Owner = MyMainWindow
+        UpdaterProgressWindow.ShowDialog()
         myDownloaderEngine.StartJarDownload(System.Environment.CurrentDirectory, UpdaterProgressWindow.UIProgressBar, url)
     End Sub
 
     Private Sub btnCb_Click(sender As Object, e As RoutedEventArgs)
         UpdaterProgressWindow = New DownloadWindow(myDownloaderEngine)
 
-        UpdaterProgressWindow.Show()
+        UpdaterProgressWindow.Owner = MyMainWindow
+        UpdaterProgressWindow.ShowDialog()
         myDownloaderEngine.StartJarDownload(System.Environment.CurrentDirectory, UpdaterProgressWindow.UIProgressBar, "http://cbukk.it/craftbukkit.jar")
     End Sub
 
@@ -86,7 +88,7 @@ Public Class ConfigJarfileBackend
 
     Private Sub WebService_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles latestverfetchservice.DoWork
         Dim result As New resultData
-        result.cbVer = myDownloaderEngine.GetLatestCraftBukkitVersion(True)
+        'result.cbVer = myDownloaderEngine.GetLatestCraftBukkitVersion(True)
         result.vnVer = myDownloaderEngine.GetLatestVanillaVersion()
         e.Result = result
     End Sub
@@ -95,8 +97,9 @@ Public Class ConfigJarfileBackend
         Dispatcher.Invoke( _
                             New Action(Function()
                                            If Not e.Cancelled Then
-                                               txtCraftBukkitVer.Text = "(" & e.Result.cbVer & ")"
+                                               'txtCraftBukkitVer.Text = "(" & e.Result.cbVer & ")"
                                                txtVanillaVer.Text = "(" & e.Result.vnVer & ")"
+                                               btnVn.IsEnabled = True
                                            End If
                                            Return True
                                        End Function))
@@ -121,11 +124,14 @@ Public Class ConfigJarfileBackend
             MyMainWindow.Dispatcher.Invoke( _
                     New Action(Function()
 
-                                   ' TODO: Update UI
+                                   UpdaterProgressWindow.Close()
 
                                    _selectedJarfile = filename
 
                                    jarList.SelectedValue = filename
+
+                                   Dim n As New MessageWindow(MyMainWindow, "", "Dashboard has finished downloading the latest server release, and it has been selected." & vbNewLine & vbNewLine &
+                                                              "Return to the Overview tab to launch the server", "Download complete!", "large")
 
                                    UpdatePageContent()
 
@@ -137,8 +143,8 @@ Public Class ConfigJarfileBackend
     Private Sub myDownloaderEngine_DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String, filename As String) Handles myDownloaderEngine.DownloadProgressChanged
         MyMainWindow.Dispatcher.Invoke( _
             New Action(Function()
-                           UpdaterProgressWindow.Label1.Content = filename
-                           UpdaterProgressWindow.UIProgressText.Content = Decimal.Round(CInt(percentage), 0) & "% " & receiveddata & "/" & totaldata
+                           UpdaterProgressWindow.Label1.Text = filename
+                           UpdaterProgressWindow.UIProgressText.Text = Decimal.Round(CInt(percentage), 0) & "% " & receiveddata & "/" & totaldata
                            UpdaterProgressWindow.UIProgressBar.Value = percentage
                            Return True
                        End Function))

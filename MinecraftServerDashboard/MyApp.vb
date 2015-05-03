@@ -11,7 +11,7 @@ Module MyApp
     ''' <summary>
     '''  The current instance of the server process, set when ServerClass is initialized
     ''' </summary>
-    Public WithEvents MyServer As ServerClass
+    Public WithEvents MyServer As ServerManager
 
     ''' <summary>
     ''' This object holds the results of the IP Address retrieval
@@ -86,6 +86,21 @@ Module MyApp
         'Update the home tab (dashboard) labels and icons, etc. to reflect the changed state of the server
         MyMainWindow.Dispatcher.BeginInvoke(Sub() navpageDashboard.UpdateDashboardIndicators())
     End Sub
+
+    ''' <summary>
+    ''' Prompt the user to sign Mojang's EULA.txt file if required
+    ''' </summary>
+    Private Sub MyServer_PromptEULAUserAction() Handles MyServer.PromptEULAUserAction
+        MyMainWindow.Dispatcher.BeginInvoke(Sub()
+                                                Dim n As New MessageWindow(MyMainWindow, "", "Mojang requires you to agree to their End User Licence Agreement." & vbNewLine & vbNewLine & "Dashboard will now open a text editor where you can agree to the EULA.", "EULA", "large")
+                                                Try
+                                                    System.Diagnostics.Process.Start(MyUserSettings.UserSettings_DefaultTextEditor, MyServer.MyStartupParameters.ServerPath & "\eula.txt")
+                                                Catch ex As Exception
+                                                    System.Diagnostics.Process.Start("explorer.exe", MyServer.MyStartupParameters.ServerPath)
+                                                End Try
+                                            End Sub)
+    End Sub
+
 
     '''
     Public Const DEFAULT_CONFIG_FILENAME As String = "dashboard.jsn"

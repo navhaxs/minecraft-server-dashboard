@@ -53,7 +53,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid>
-                    <Border BorderThickness="1" Margin="20,45,10,0" VerticalAlignment="Stretch">
+                    <Border BorderThickness="1" Margin="20,45,10,0" VerticalAlignment="Stretch" BorderBrush="#FF747F85">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                 <GradientStop Color="#FFE8EFF3"/>
@@ -61,12 +61,6 @@
                                 <GradientStop Color="#9EE8EFF3" Offset="0.705"/>
                             </LinearGradientBrush>
                         </Border.Background>
-                        <Border.BorderBrush>
-                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                                <GradientStop Color="#FF747F85" Offset="0.932"/>
-                                <GradientStop Color="#7F747F85" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.BorderBrush>
                         <Grid>
                             <TextBlock FontWeight="Light" FontSize="18" Margin="115,6,146,0" VerticalAlignment="Top"><Run x:Name="txtCurrentWorld" /></TextBlock>
                             <Ellipse HorizontalAlignment="Left" Height="70" Margin="20,0,0,0" VerticalAlignment="Center" Width="70">
@@ -94,25 +88,24 @@
                 <Hyperlink x:Name="btnOpenBackups"><Run Text="View or restore backups"/></Hyperlink><LineBreak />
                 <Hyperlink x:Name="btnOpenProfiles"><Run Text="Add and remove worlds in Windows Explorer" /></Hyperlink>
                 </TextBlock>
-                <Grid Margin="20,72,10,63">
+                <Grid Margin="20,72,20,63">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="195"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="btnNewProfile" Click="NewProfile" HorizontalContentAlignment="Left" Grid.Row="0" Grid.Column="1" FontWeight="Normal"
+                    <Button x:Name="btnNewProfile" Click="NewProfile" HorizontalContentAlignment="Left" Grid.Row="0" FontWeight="Normal"
                         params:Manager.AccentBrush="#FF2D5B76" Content="New world"/>
-                    <Button x:Name="btnSwitchTo" Content="Make this the Current World" HorizontalContentAlignment="Left"  Click="SetAsActive" Grid.Row="2"  Grid.Column="1"
-                         params:Manager.AccentBrush="#224154"  params:Manager.ContrastBrush="White" FontWeight="Normal" />
-                    <Button x:Name="btnDeleteProfile" Content="Delete selected" HorizontalContentAlignment="Left"  Click="DeleteWorld_Click"  Grid.Row="1"  Grid.Column="1" FontWeight="Normal"
+                    <Button x:Name="btnSwitchTo" Content="Make this the Current World" HorizontalContentAlignment="Left"  Click="SetAsActive"  Grid.Column="2"
+                         params:Manager.AccentBrush="#224154" params:Manager.ContrastBrush="White" FontWeight="Normal" />
+                    <Button x:Name="btnDeleteProfile" Content="Delete selected" HorizontalContentAlignment="Left"  Click="DeleteWorld_Click"  Grid.Column="1" FontWeight="Normal"
                         params:Manager.AccentBrush="#FF2D5B76"/>
-                    <ListBox x:Name="ListBox_MyWorldProfiles" BorderThickness="1" Grid.Column="0" Grid.RowSpan="4"
-                         params:Manager.AccentBrush="#224154"/>
+                    <ListBox x:Name="ListBox_MyWorldProfiles" BorderThickness="1" Grid.Column="0"
+                         params:Manager.AccentBrush="#224154" Grid.Row="1" Grid.ColumnSpan="3"/>
                 </Grid>
                 <Label Content="My Worlds" FontWeight="Light" FontSize="26" Margin="14,11,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             </Grid>

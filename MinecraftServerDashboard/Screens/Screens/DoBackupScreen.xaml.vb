@@ -18,7 +18,7 @@ Public Class DoBackupScreen
 
     Private Sub Button_StartBackup_Click()
         If backupUtil.inWorldDirectory Is Nothing Then
-            MessageBox.Show("No world has been created yet! Nothing found to backup")
+            MessageBox.Show("Nothing was found to backup. Maybe the world data does not exist yet - go play some Minecraft first?")
             Exit Sub
         End If
 

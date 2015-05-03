@@ -45,5 +45,7 @@ Public Class JoinNewPlayers
         End If
 
         My.Computer.Clipboard.SetText(copyStr.ToString)
+
+        label_CopyToClipboard.Text = "Copied to clipboard."
     End Sub
 End Class

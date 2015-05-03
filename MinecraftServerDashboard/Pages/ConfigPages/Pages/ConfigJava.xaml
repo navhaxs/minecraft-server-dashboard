@@ -7,7 +7,7 @@
       xmlns:params="http://schemas.codeplex.com/elysium/params"
       params:Manager.Theme="Light"
       mc:Ignorable="d"
-      d:DesignHeight="1000" d:DesignWidth="575"
+      d:DesignHeight="489" d:DesignWidth="882"
       Title="Java, memory and startup">
     <Page.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -20,7 +20,7 @@
             <!--Memory-->
             <Border Background="#FFFFF7C2" Padding="10,0" HorizontalAlignment="Stretch" Height="100" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0">
                 <Grid>
-                    <Label Content="Memory" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
+                    <Label Content="Maximum server memory" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
 
                     <TextBlock x:Name="lblMaxMB" Text="MB" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,55,78,0" />
 
@@ -45,33 +45,31 @@
             <!--Startup paramters-->
             <Border Background="#FFFFFADD" Padding="10,0" HorizontalAlignment="Stretch" Height="160" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" >
                 <Grid>
-                    <Label Content="Startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18" VerticalAlignment="Top" />
-                    <Border BorderBrush="#777777" BorderThickness="1" Margin="0,79,120,37" Background="White" Cursor="IBeam" >
-                        <DockPanel GotFocus="DockPanel_GotFocus">
-                            <TextBox x:Name="parameters_right" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Stretch" TextChanged="TextBox_TextChanged_3" BorderThickness="0" HorizontalAlignment="Stretch" Width="350"></TextBox>
-                            <!--<TextBox x:Name="parameters_left" VerticalContentAlignment="Center" VerticalAlignment="Stretch"  TextWrapping="Wrap" TextChanged="TextBox_TextChanged_3" BorderThickness="0" >
-                            
-                        </TextBox>-->
-                            <TextBlock Cursor="Arrow" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="1,0,1,0">--nojline nogui</TextBlock>
+                    <Label Content="Server startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18" VerticalAlignment="Top" />
 
+                    <DockPanel Margin="5,47,0,28">
 
-                        </DockPanel>
-                    </Border>
-
-                    <TextBlock Height="32" HorizontalAlignment="Left" Margin="0,47,0,60" VerticalAlignment="Top" >
+                        <TextBlock TextWrapping="Wrap" DockPanel.Dock="Top">
+                        Set server launch parameters here (e.g. CraftBukkit command line arguments)
+                        <LineBreak />
                         <Image Height="16" Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Alert_32xLG_color.png" />
-                        The <Italic>--nojline nogui</Italic> parameters are always appended
-                    </TextBlock>
+                        Note: Dashboard automatically appends the <Italic>--nojline nogui</Italic> parameters, and the maximum memory from the above slider.
+                        </TextBlock>
 
-                    <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7"><Hyperlink x:Name="btnSetJavaSpecificArgs">Edit Java parameters (Advanced)</Hyperlink></TextBlock>
+                        <Border BorderBrush="#777777" BorderThickness="1" Margin="0,5,120,0" VerticalAlignment="Stretch">
+                            <TextBox x:Name="parameters" TextWrapping="Wrap" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" TextChanged="TextBox_TextChanged_3" BorderThickness="0" HorizontalAlignment="Stretch"></TextBox>
+                        </Border>
 
+                    </DockPanel>
+
+                    <TextBlock VerticalAlignment="Bottom" Margin="5,0,0,7"><Hyperlink x:Name="btnSetJavaSpecificArgs">Edit Java parameters (Expert)</Hyperlink></TextBlock>
                 </Grid>
             </Border>
 
             <!--Java Executable-->
             <Border Background="#FFFFFDF1" Padding="10,0" HorizontalAlignment="Stretch" Height="170" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" >
                 <Grid>
-                    <Label Content="Java" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
+                    <Label Content="Java runtime" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
                     <Label Content="Select the installation of Java on your machine to use:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,38,0,0" FontSize="13" Visibility="Collapsed"/>
 
                     <RadioButton Margin="10,70,365,0" VerticalAlignment="Top" IsChecked="True" x:Name="jreauto" >

@@ -14,7 +14,7 @@
     <metro:Window.TitleBar>
         <Grid IsHitTestVisible="False" Width="535" >
             <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" FontSize="20" TextWrapping="Wrap" />
-            <TextBlock Margin="0,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="Feb15 build 6/02/2015 " /><Run Text="© navhaxs and contributors 2013-2015" /></TextBlock>
+            <TextBlock Margin="0,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="May15 build 3/05/2015 " /><Run Text="© navhaxs and contributors 2013-2015" /></TextBlock>
         </Grid>
     </metro:Window.TitleBar>
     <Grid>
