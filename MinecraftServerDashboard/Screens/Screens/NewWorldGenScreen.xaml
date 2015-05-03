@@ -6,26 +6,26 @@
     params:Manager.Theme="Light"
     params:Manager.AccentBrush="#224154" IsMainWindow="True"
     Width="570" Height="393" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
-	<Grid>
-      <Border Margin="10,90,10,67" Background="#FFB6B6B6" Padding="10,0" CornerRadius="2">
-          <Grid>
-                    <TextBlock HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Level seed (optional, leave blank for none):" /></TextBlock>
-                    <TextBox x:Name="levelseed" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="276,9,0,7" />
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="254" Margin="276,45,0,0" Height="28" x:Name="leveltype">
-                        <ComboBoxItem Content="Default" x:Name="test" />
-                        <ComboBoxItem Content="Flat" />
-                        <ComboBoxItem Content="LargeBiomes" />
-                    </ComboBox>
-                    <TextBlock HorizontalAlignment="Left" Margin="0,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Level type:" /></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Margin="0,88,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Generator-settings (Advanced users only):" /></TextBlock>
-                    <TextBox x:Name="generatorsettings" TextWrapping="Wrap" Text="" Margin="0,111.62,0,10" VerticalContentAlignment="Top"/>
-                </Grid>
-            </Border>
-            
-			<Border Height="45" VerticalAlignment="Top" Background="#224154">
-				<TextBlock Text="New world generation settings" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" />
-			</Border>
-            <TextBlock HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="These settings are used whenever the server needs to generate Minecraft world data." /><Run x:Name="lbloptional" Text="" /><LineBreak /></TextBlock>
-            <Button Content="Done" Margin="0,0,10,10" Click="btn_OK" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsDefault="True" IsEnabled="{Binding IsChecked, ElementName=confirm}" />
+    <Grid>
+        <Border Margin="10,90,10,67" Background="#FFB6B6B6" Padding="10,0" CornerRadius="2">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Level seed (optional, leave blank for none):" /></TextBlock>
+                <TextBox x:Name="levelseed" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="276,9,0,7" />
+                <ComboBox VerticalAlignment="Top" Margin="276,45,0,0" Height="28" x:Name="leveltype" SelectedIndex="0">
+                    <ComboBoxItem Content="Default"/>
+                    <ComboBoxItem Content="Flat" />
+                    <ComboBoxItem Content="LargeBiomes" />
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="0,48,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Level type:" /></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="0,88,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14"><Run Text="Generator-settings (Advanced users only):" /></TextBlock>
+                <TextBox x:Name="generatorsettings" TextWrapping="Wrap" Text="" Margin="0,111.62,0,10" VerticalContentAlignment="Top"/>
+            </Grid>
+        </Border>
+
+        <Border Height="45" VerticalAlignment="Top" Background="#224154">
+            <TextBlock Text="New world generation settings" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" />
+        </Border>
+        <TextBlock HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="14" Width="550"><Run Text="These settings are used whenever the server needs to generate Minecraft world data." /><Run x:Name="lbloptional" Text="" /><LineBreak /></TextBlock>
+        <Button Content="Done" Margin="0,0,10,10" Click="btn_OK" FontSize="18" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" IsDefault="True" IsEnabled="{Binding IsChecked, ElementName=confirm}" />
     </Grid>
 </metro:Window>
