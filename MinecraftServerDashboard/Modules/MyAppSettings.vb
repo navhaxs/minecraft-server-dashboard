@@ -82,7 +82,8 @@ Namespace MyUserSettings
                                                                  "logs",
                                                                  "config",
                                                                  "libraries",
-                                                                 "mods"}
+                                                                 "mods",
+                                                                 "System Volume Information"}
         End Class
 
         ' tasks.jsn

@@ -168,7 +168,7 @@ Class pageWorld
     ''' </summary>
     Private Sub RestartButton_Click(sender As Object, e As RoutedEventArgs)
         sender.Visibility = Windows.Visibility.Collapsed
-        RestartServer(True)
+        MyServer.RestartServer(True)
     End Sub
 
     ''' <summary>

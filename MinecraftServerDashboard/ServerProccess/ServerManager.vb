@@ -8,7 +8,7 @@ Public Class ServerManager
     ''' <summary>
     ''' The Minecraft Java server process
     ''' </summary>
-    Public WithEvents ServerProc As New Process
+    Private WithEvents ServerProc As New Process
 
     ''' <summary>
     ''' The startup Minecraft server parameters
@@ -30,6 +30,18 @@ Public Class ServerManager
     ''' Fired when the server requires the EULA signed
     ''' </summary>
     Public Event PromptEULAUserAction()
+
+    ''' <summary>
+    ''' Is the ServerManager currently attempting to stop the server
+    ''' </summary>
+    ''' <remarks>Hopefully prevents deadlock</remarks>
+    Private isExiting As Boolean = False
+
+    Public ReadOnly Property getIsExiting As Boolean
+        Get
+            Return isExiting
+        End Get
+    End Property
 
 #Region "INotifyPropertyChanged - WPF UI Binding"
     'This code is used to bind between the server's console data and the frontend textbox UI
@@ -351,6 +363,7 @@ Public Class ServerManager
                     ' Begin reading from stdio (and stderr)
                     .BeginErrorReadLine()
                     .BeginOutputReadLine()
+                    isExiting = False
                 End With
 
                 ' Start RAM monitor thread
@@ -369,10 +382,85 @@ Public Class ServerManager
     Sub StopServer()
         On Error Resume Next
         If ServerIsOnline Then
+            isExiting = True
             CurrentServerState = ServerState.Stopping
             ConsoleStream += "[Dashboard] Asking server to stop... " & vbLf
             ServerProc.StandardInput.WriteLine("stop")
         End If
+    End Sub
+
+    ''' <summary>
+    ''' Kill any running instance of the Minecraft server
+    ''' </summary>
+    Public Sub KillServer()
+        On Error Resume Next ' crash handling done right in .net
+        If Not MyServer.ServerProc.HasExited Then
+            MyServer.ServerProc.Kill()
+        End If
+    End Sub
+
+#End Region
+
+#Region "Server restart helper"
+    ''' <summary>
+    ''' Restart the server. Waits for the server to stop, then start it again.
+    ''' </summary>
+    ''' <param name="background">Set True to restart in the background, i.e. non-blocking code.</param>
+    Public Function RestartServer(background As Boolean)
+        With MyServer
+            If Not background Then
+                Try
+                    .StopServer()
+                    .ServerProc.WaitForExit()
+                    .StartServer()
+                    Return True
+                Catch ex As Exception
+                    Return False
+                End Try
+            Else
+
+                ' Initialise the restart job to run in the background
+                Dim RestartSrvThread As New System.Threading.Thread( _
+                  New System.Threading.ParameterizedThreadStart( _
+                      AddressOf DoBackgroundRestartServer)) With { _
+                          .IsBackground = True _
+                              }
+                RestartSrvThread.Start()
+                Return True
+
+            End If
+        End With
+    End Function
+
+    Private Sub DoBackgroundRestartServer()
+        With MyServer
+            If .ServerIsOnline Then
+                ' Stop server
+                .CurrentServerState = ServerState.Stopping
+                Try
+                    .StopServer()
+
+                    ' Wait for server exit
+                    .ServerProc.WaitForExit()
+
+                    Dim i As Integer = 0
+                    While .ServerIsOnline
+                        System.Threading.Thread.Sleep(1500)
+                        i += 1
+
+                        ' Two minute timeout
+                        If i = 120 / 1.5 Then
+                            MessageBox.Show("An attempt to restart the server failed.")
+                            Exit Sub
+                        End If
+                    End While
+
+                    ' Start server again
+                    .StartServer()
+                Catch
+                End Try
+            End If
+        End With
     End Sub
 #End Region
 
@@ -484,7 +572,7 @@ Public Class ServerManager
                 serverprocess_CurrentCPUUsage = serverProcess_CPUCounter.NextSample()
                 serverprocess_ComputedCPUUsage = CounterSampleCalculator.ComputeCounterValue(serverprocess_PreviousCPUUsage, serverprocess_CurrentCPUUsage) / Environment.ProcessorCount
             End If
-        Loop While Not MyServer.ServerProc.WaitForExit(1000)
+        Loop While (isExiting = False) And (Not MyServer.ServerProc.WaitForExit(1000))
 
         'On process exit, clear info & update UI
         serverprocess_RAMusage = 0

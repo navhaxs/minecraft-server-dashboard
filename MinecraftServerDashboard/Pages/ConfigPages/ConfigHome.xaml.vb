@@ -43,7 +43,7 @@
 
     Private Sub RestartBanner_Click(sender As Object, e As RoutedEventArgs)
         sender.Visibility = Windows.Visibility.Collapsed
-        RestartServer(True)
+        MyServer.RestartServer(True)
     End Sub
 
     Private Sub StopSeverBanner_Click(sender As Object, e As RoutedEventArgs)

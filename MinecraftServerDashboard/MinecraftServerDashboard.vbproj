@@ -131,6 +131,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -239,7 +240,6 @@
       <DependentUpon>WelcomeFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerProccess\DataTypes\PlayerInfo.vb" />
-    <Compile Include="ServerProccess\ServerRestartHelper.vb" />
     <Compile Include="ServerProccess\TaskScheduler.vb">
       <SubType>Component</SubType>
     </Compile>
