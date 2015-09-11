@@ -14,7 +14,7 @@
             <GradientStop Color="#FF5387A5" Offset="1" />
         </LinearGradientBrush>
     </UserControl.Background>
-    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,0,0,0" x:Name="ContentFrame">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,0,0,0"  x:FieldModifier="private" x:Name="ContentFrame">
         <Grid Background="#FF00486A">
             <Frame x:Name="FrameConfigOverlay" TabIndex="0" NavigationUIVisibility="Hidden"  Margin="0,40,0,0">
                 <Frame.Background>

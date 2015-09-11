@@ -39,12 +39,11 @@ namespace DashboardApp
         {
             ConsoleTextBlock.DataContext = App.MyServer;
             App.MyServer.StartServer();
-            MahApps.Metro.ThemeManager.ChangeTheme(this, MahApps.Metro.ThemeManager.DefaultAccents.First(a => a.Name == "Orange"), MahApps.Metro.Theme.Dark);
+           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MahApps.Metro.ThemeManager.ChangeTheme(this, MahApps.Metro.ThemeManager.DefaultAccents.First(a => a.Name == "Blue"), MahApps.Metro.Theme.Light);
             // Server Running
             // Stop Server
         }

@@ -1,4 +1,5 @@
-﻿Public Class ConfigMyApp
+﻿Partial Public Class ConfigMyApp
+    Inherits ConfigPage
 
     Dim isUnsavedChanges As Boolean = False
     Sub New(m As SuperOverlay)

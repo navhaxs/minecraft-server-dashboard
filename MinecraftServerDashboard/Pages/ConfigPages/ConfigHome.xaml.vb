@@ -19,7 +19,6 @@
 
     Private Sub Go_JavaSettings(sender As Object, e As RoutedEventArgs) Handles Button4.Click
         viewSuperOverlay = New SuperOverlay
-        viewSuperOverlay.btnHelp.Visibility = Windows.Visibility.Visible
         ShowConfigPage(New ConfigJava(viewSuperOverlay), viewSuperOverlay)
     End Sub
 
@@ -27,7 +26,6 @@
         viewSuperOverlay = New SuperOverlay
         Dim m As New ConfigServerProp(viewSuperOverlay)
         m.Load()
-        viewSuperOverlay.btnHelp.Visibility = Windows.Visibility.Visible
         ShowConfigPage(m, viewSuperOverlay)
     End Sub
 

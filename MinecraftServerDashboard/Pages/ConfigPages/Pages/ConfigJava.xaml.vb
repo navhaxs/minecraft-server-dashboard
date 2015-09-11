@@ -1,4 +1,5 @@
-﻿Public Class ConfigJava
+﻿Partial Public Class ConfigJava
+    Inherits ConfigPage
 
     Dim isInit As Boolean = True
 
@@ -37,10 +38,6 @@
     Dim superoverlay As SuperOverlay
     Public Sub isClosing()
         superoverlay.Confirm_DoClose(Me)
-    End Sub
-
-    Public Sub HelpClicked()
-        System.Diagnostics.Process.Start("http://www.minecraftwiki.net/wiki/Server/Requirements")
     End Sub
 
     ' Save settings on change
@@ -134,4 +131,16 @@
         m.Owner = MyMainWindow
         m.ShowDialog()
     End Sub
+
+#Region "ConfigPage"
+
+    Public Overrides Function isHelpAvailable()
+        Return True
+    End Function
+
+    Public Overrides Sub HelpClicked()
+        System.Diagnostics.Process.Start("http://www.minecraftwiki.net/wiki/Server/Requirements")
+    End Sub
+
+#End Region
 End Class

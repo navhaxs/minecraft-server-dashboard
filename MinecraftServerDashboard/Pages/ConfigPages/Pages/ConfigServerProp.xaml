@@ -1,8 +1,9 @@
-﻿<Page
+﻿<my:ConfigPage
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:my="clr-namespace:MinecraftServerDashboard"
       xmlns:metro="http://schemas.codeplex.com/elysium"
       xmlns:params="http://schemas.codeplex.com/elysium/params"
       params:Manager.Theme="Light"
@@ -13,9 +14,9 @@
 
       xmlns:i="clr-namespace:Logitech.Windows.Input;assembly=WpfMouseWheelLib"
       i:MouseWheel.Enhanced="True">
-    <Page.Resources>
+    <my:ConfigPage.Resources>
         <Style TargetType="ScrollBar" />
-    </Page.Resources>
+    </my:ConfigPage.Resources>
     <Grid>
         <ScrollViewer x:Name="ScrollViewer1" Foreground="Black">
             <Grid x:Name="ContentGrid">
@@ -69,7 +70,7 @@
                     <Border Margin="0,3" Background="#FFFFF7C2" Height="30" HorizontalAlignment="Left" Padding="10,0" CornerRadius="2">
                         <TextBlock VerticalAlignment="Center" Padding="0,0,6,0" HorizontalAlignment="Left"><Run Text="See the " /><Hyperlink Click="Hyperlink_Click_3"><Run Text="World" /></Hyperlink><Run Text=" tab to create, restore/backup and manage worlds" /></TextBlock>
                     </Border>
-                    <CheckBox Content="Spawn animals" HorizontalAlignment="Left" x:Name="CheckBox8" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
+                    <CheckBox Content="Spawn animals" HorizontalAlignment="Left" x:Name="CheckBox8" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" IsChecked="True" />
                     <CheckBox Content="Spawn monsters" HorizontalAlignment="Left"  x:Name="CheckBox9" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
                     <CheckBox Content="Spawn non-playable characters" HorizontalAlignment="Left"  x:Name="CheckBox10" VerticalAlignment="Top" IsThreeState="True" Margin="0,3" />
 
@@ -114,4 +115,4 @@
             </Grid>
         </ScrollViewer>
     </Grid>
-</Page>
+</my:ConfigPage>

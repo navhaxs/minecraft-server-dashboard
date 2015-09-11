@@ -158,6 +158,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Pages\ConfigPages\ConfigHomeViewModel.vb" />
+    <Compile Include="Pages\ConfigPages\ConfigPage.vb" />
     <Compile Include="Pages\ConfigPages\Pages\ConfigMyApp.xaml.vb">
       <DependentUpon>ConfigMyApp.xaml</DependentUpon>
     </Compile>
@@ -198,9 +199,7 @@
     <Compile Include="Modules\PlayerListEditor.vb" />
     <Compile Include="Modules\ProcessPlayerList.vb" />
     <Compile Include="Modules\ServerPropertiesEditorHelper.vb" />
-    <Compile Include="Modules\UpdateEngine.vb">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Modules\UpdateEngine.vb" />
     <Compile Include="Modules\WorldDataBackup.vb" />
     <Compile Include="Modules\ZipLib.vb" />
     <Compile Include="Modules\ZipProgress.Designer.vb">
@@ -240,9 +239,7 @@
       <DependentUpon>WelcomeFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerProccess\DataTypes\PlayerInfo.vb" />
-    <Compile Include="ServerProccess\TaskScheduler.vb">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ServerProccess\TaskScheduler.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="Windows\AboutWindow.xaml.vb">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
@@ -285,7 +282,7 @@
     <Compile Include="ServerProccess\DataTypes\ServerInfo.vb" />
     <Compile Include="ServerProccess\ServerManager.vb" />
     <Compile Include="ServerProccess\DataTypes\StartupParameters.vb" />
-    <Compile Include="SuperOverlay.xaml.vb">
+    <Compile Include="Pages\ConfigPages\SuperOverlay.xaml.vb">
       <DependentUpon>SuperOverlay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Screens\JoinNewPlayers.xaml.vb">
@@ -431,7 +428,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SuperOverlay.xaml">
+    <Page Include="Pages\ConfigPages\SuperOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -496,6 +493,7 @@
     </None>
     <AppDesigner Include="My Project\" />
     <None Include="packages.config" />
+    <None Include="TODO.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

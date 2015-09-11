@@ -1,4 +1,5 @@
-﻿Public Class ConfigMyWorldBackups
+﻿Partial Public Class ConfigMyWorldBackups
+    Inherits ConfigPage
 
     Dim MyBackupFiles As New List(Of BackupFileArchive)
     Class BackupFileArchive

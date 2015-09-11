@@ -10,7 +10,6 @@ Class MainWindow
     Sub New()
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add basic navigation keyboard shortcuts (Alt+Left, Alt+Right)
         AppNav_GoBack.InputGestures.Add(New KeyGesture(Key.Left, ModifierKeys.Alt))
         AppNav_GoForward.InputGestures.Add(New KeyGesture(Key.Right, ModifierKeys.Alt))
@@ -61,6 +60,11 @@ Class MainWindow
                                           UpdateIP()
                                           Return True
                                       End Function))
+
+
+        'CType(PresentationSource.FromVisual(Me), HwndSource).CompositionTarget.RenderMode = RenderMode.SoftwareOnly
+
+
 
         ' Check for first-time app start
         If Not My.Computer.FileSystem.FileExists(MyUserSettings.settingsStore.Jarfile) Then

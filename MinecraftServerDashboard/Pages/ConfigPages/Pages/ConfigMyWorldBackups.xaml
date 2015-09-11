@@ -1,9 +1,10 @@
-﻿<Page x:Class="ConfigMyWorldBackups"
+﻿<my:ConfigPage x:Class="ConfigMyWorldBackups"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:my="clr-namespace:MinecraftServerDashboard"
       xmlns:metro="http://schemas.codeplex.com/elysium"
       xmlns:params="http://schemas.codeplex.com/elysium/params"
       params:Manager.Theme="Light"
@@ -11,12 +12,12 @@
       d:DesignHeight="374.597" d:DesignWidth="700.164"
       Title="Backups">
     <!--http://stackoverflow.com/questions/12012721/how-to-add-listviewitem-to-wpf-multicolumn-listview-by-hand-no-binding-in-xaml-->
-    <Page.Background>
+    <my:ConfigPage.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="White" Offset="0" />
             <GradientStop Color="#FFEDEDED" Offset="1" />
         </LinearGradientBrush>
-    </Page.Background>
+    </my:ConfigPage.Background>
     <Grid>
         <Label Content="My World Backups" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" />
         <!--<Button Content="New backup" Margin="10,47,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="125" Click="Button_Click_2" />-->
@@ -51,4 +52,4 @@
             </ListViewItem>
         </ListView>
     </Grid>
-</Page>
+</my:ConfigPage>

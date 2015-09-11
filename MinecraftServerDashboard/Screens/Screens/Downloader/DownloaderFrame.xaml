@@ -43,7 +43,7 @@
                         </Grid>
                     </RadioButton>
                     <TextBlock Text="Dashboard can download the Vanilla server for you." TextWrapping="Wrap" Margin="20,56,10,0" Padding="5,0" FontSize="16" VerticalAlignment="Top"/>
-                    <TextBlock Text="Looking for CraftBukkit? Visit www.spigotmc.org for how to download the CraftBukkit and Spigot servers, then return to the previous screen." TextWrapping="Wrap" Margin="20,90,10,0" Padding="5,0" FontSize="16" VerticalAlignment="Top"/>
+                    <TextBlock Text="Looking for CraftBukkit? Visit www.spigotmc.org for how to download the CraftBukkit or Spigot server, then return to the previous screen." TextWrapping="Wrap" Margin="20,90,10,0" Padding="5,0" FontSize="16" VerticalAlignment="Top"/>
                     <RadioButton x:Name="btnVanilla" Margin="10,171,20,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Stretch" Padding="30,1,1,1" IsChecked="True"  Visibility="Hidden">
                         <Grid Background="#FF4A6697">
                             <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" FontSize="18" FontWeight="Normal">Official 'Vanilla' server</TextBlock>

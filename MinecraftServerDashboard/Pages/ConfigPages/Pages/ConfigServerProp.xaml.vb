@@ -1,4 +1,5 @@
-﻿Public Class ConfigServerProp
+﻿Partial Public Class ConfigServerProp
+    Inherits ConfigPage
 
     Dim isUnsavedChanges As Boolean = False
 
@@ -43,10 +44,6 @@
 
     Sub Load()
         RefreshData()
-    End Sub
-
-    Public Sub HelpClicked()
-        System.Diagnostics.Process.Start("http://www.minecraftwiki.net/wiki/Server.properties")
     End Sub
 
     Public Sub isClosing()
@@ -200,4 +197,17 @@
             MyMainWindow.navDashboard.SelectedIndex = 2
         End If
     End Sub
+
+
+#Region "ConfigPage"
+
+    Public Overrides Function isHelpAvailable()
+        Return True
+    End Function
+
+    Public Overrides Sub HelpClicked()
+        System.Diagnostics.Process.Start("http://www.minecraftwiki.net/wiki/Server.properties")
+    End Sub
+#End Region
+
 End Class

@@ -1,27 +1,29 @@
 ﻿Imports System.Net.NetworkInformation
-Imports System.Windows.Forms
 
-Public Class ConfigJarfileBackend
+Partial Public Class ConfigJarfileBackend
+    Inherits ConfigPage
+
+    Dim superoverlay As SuperOverlay
 
     Sub New(m As SuperOverlay)
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
+        InitializeComponent() ' This call is required by the designer.
         ' Add any initialization after the InitializeComponent() call.
-        AddHandler NetworkChange.NetworkAvailabilityChanged, New NetworkAvailabilityChangedEventHandler(AddressOf NetworkChange_NetworkAvailabilityChanged)
 
         superoverlay = m
-        'latestverfetchservice.WorkerSupportsCancellation = True
-        UpdatePageContent()
+
+        ' 
+        AddHandler NetworkChange.NetworkAvailabilityChanged, New NetworkAvailabilityChangedEventHandler(AddressOf NetworkChange_NetworkAvailabilityChanged)
+
         If My.Computer.Network.IsAvailable Then
-            latestverfetchservice.RunWorkerAsync()
+            FetchLatestVersionMeta_Runnable.RunWorkerAsync()
         End If
+
+        UpdatePageContent()
+
     End Sub
 
     Dim _selectedJarfile As String
 
-    Dim superoverlay As SuperOverlay
     Public Sub isClosing()
         If isSelectedJarfileValid() Then
             MyUserSettings.settingsStore.Jarfile = _selectedJarfile
@@ -79,22 +81,22 @@ Public Class ConfigJarfileBackend
 
 #Region "Fetch latest version in background"
 
-    Dim WithEvents latestverfetchservice As New System.ComponentModel.BackgroundWorker
+    Dim WithEvents FetchLatestVersionMeta_Runnable As New System.ComponentModel.BackgroundWorker
 
     Class resultData
         Public cbVer As String
         Public vnVer As String
     End Class
 
-    Private Sub WebService_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles latestverfetchservice.DoWork
+    Private Sub WebService_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles FetchLatestVersionMeta_Runnable.DoWork
         Dim result As New resultData
         'result.cbVer = myDownloaderEngine.GetLatestCraftBukkitVersion(True)
         result.vnVer = myDownloaderEngine.GetLatestVanillaVersion()
         e.Result = result
     End Sub
 
-    Private Sub WebService_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles latestverfetchservice.RunWorkerCompleted
-        Dispatcher.Invoke( _
+    Private Sub WebService_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles FetchLatestVersionMeta_Runnable.RunWorkerCompleted
+        Dispatcher.Invoke(
                             New Action(Function()
                                            If Not e.Cancelled Then
                                                'txtCraftBukkitVer.Text = "(" & e.Result.cbVer & ")"
@@ -109,7 +111,7 @@ Public Class ConfigJarfileBackend
         If e.IsAvailable Then
             ' Try fetch version info again if the network state has changed to 'internet'
             On Error Resume Next
-            latestverfetchservice.RunWorkerAsync()
+            FetchLatestVersionMeta_Runnable.RunWorkerAsync()
         End If
     End Sub
 
@@ -121,7 +123,7 @@ Public Class ConfigJarfileBackend
 
     Private Sub myDownloaderEngine_DownloadCompleted(e As System.ComponentModel.AsyncCompletedEventArgs, rootDir As String, filename As String) Handles myDownloaderEngine.DownloadCompleted
         If Not e.Cancelled Then
-            MyMainWindow.Dispatcher.Invoke( _
+            MyMainWindow.Dispatcher.Invoke(
                     New Action(Function()
 
                                    UpdaterProgressWindow.Close()
@@ -141,7 +143,7 @@ Public Class ConfigJarfileBackend
     End Sub
 
     Private Sub myDownloaderEngine_DownloadProgressChanged(percentage As String, receiveddata As String, totaldata As String, filename As String) Handles myDownloaderEngine.DownloadProgressChanged
-        MyMainWindow.Dispatcher.Invoke( _
+        MyMainWindow.Dispatcher.Invoke(
             New Action(Function()
                            UpdaterProgressWindow.Label1.Text = filename
                            UpdaterProgressWindow.UIProgressText.Text = Decimal.Round(CInt(percentage), 0) & "% " & receiveddata & "/" & totaldata

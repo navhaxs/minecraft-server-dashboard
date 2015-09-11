@@ -7,6 +7,19 @@ Public Class SuperOverlay
     Public Event isClosingTrigger()
     Property isClosed As Boolean = False
 
+    Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        On Error Resume Next
+        If FrameConfigOverlay.Content.isHelpAvailable() Then
+            btnHelp.Visibility = Visibility.Visible
+        End If
+    End Sub
+
+
     ' Call the isClosingTrigger to prevent unsaved changes, if any.
     Private Sub BackButton_Click(sender As Object, e As RoutedEventArgs) Handles BackButton1.Click
         tryClose()

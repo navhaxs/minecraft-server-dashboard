@@ -3,7 +3,7 @@
     Dim result As Boolean = False
 
     Private Sub Welcome_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        If result Then
+        If (result = True) Then
             Dim n As New MessageWindow(MyMainWindow, "", "Click 'Start server' to launch the server", "Ready Set Go!", "large")
         End If
     End Sub
@@ -73,7 +73,10 @@
         Dim m As New DownloaderFrame
         m.Owner = Me
         If m.isSuccessful() Then
+            result = True
             Me.Close()
+        Else
+            result = True
         End If
     End Sub
 End Class
