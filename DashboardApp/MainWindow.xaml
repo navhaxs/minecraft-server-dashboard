@@ -1,121 +1,149 @@
-﻿<Controls:MetroWindow x:Class="DashboardApp.MainWindow"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-		Title="Dashboard" Height="415" Width="745" Icon="appicon.ico">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />-->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
-                <ResourceDictionary Source="/Resources/Icons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-    <Grid>
-        <Rectangle Height="50" VerticalAlignment="Top">
-            <Rectangle.Fill>
-                <SolidColorBrush Color="{DynamicResource WhiteColor}" />
-            </Rectangle.Fill>
-        </Rectangle>
-        <TabControl Margin="0,10,0,0" TabStripPlacement="Left">
-            <TabItem Header="Overview">
-                <Grid Margin="0">
+﻿<Window x:Class="DashboardApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en"
+        lex:ResxLocalizationProvider.DefaultAssembly="AssemblyTestResourceLib"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+        mc:Ignorable="d ignore"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        Title="Dashboard" 		Height="550" Width="915"
+ Icon="appicon.ico">
+    <DockPanel Background="#FF5387A5">
+        <Grid x:Name="header" DockPanel.Dock="Top" Height="36">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#004D8B9F" Offset="0.819" />
+                    <GradientStop Color="#FF2D5B76" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Button x:Name="BackButton1"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Stretch"
+						Width="34" Margin="5,1,0,1"
+						Background="{x:Null}"
+						Style="{StaticResource arrowBack}"
+						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White" />
+            <Button x:Name="BackButton1_Copy"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Stretch"
+						Width="29" Margin="39,5,0,5"
+						Background="{x:Null}"
+						Style="{StaticResource arrowBack}"
+						RenderTransformOrigin="0.5,0.5"
+						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                <Button.RenderTransform>
+                    <!--Flip a 'back button' to make it a 'forward button'-->
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1" />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <!--Menu bar-->
+                <Menu x:Name="MyAppMenu" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <MenuItem Header="Quick Actions">
+
+                        <MenuItem x:Name="mnuStart" Foreground="Black" Header="Start server" Command="{Binding CommandStartServer}" />
+                        <MenuItem x:Name="mnuStop" Foreground="Black" Header="Stop server" Command="{Binding CommandStopServer}" />
+                        <MenuItem x:Name="mnuReload" Foreground="Black" Header="Reload server" Command="{Binding CommandReloadServer}" />
+                        <MenuItem x:Name="mnuKill" Foreground="Black" Header="Force stop server" Command="{Binding CommandForceStopServer}" />
+                        <Separator />
+                        <MenuItem x:Name="mnuDoBackupNow" Foreground="Black" Header="Backup world now" />
+                    </MenuItem>
+                    <MenuItem Header="Tools">
+                        <MenuItem Foreground="Black" Header="Invite new players" Command="{Binding doJoinNewPlayers}" />
+                        <Separator />
+                        <MenuItem Foreground="Black" Header="My Game Server Settings" Command="{Binding doMyServerProperties}" />
+                        <MenuItem Foreground="Black" Header="Backend Set-Up" Command="{Binding  doBackendSetup}" />
+                        <MenuItem Foreground="Black" Header="Open server directory in explorer" Command="{Binding doExploreServerDir}" />
+                        <MenuItem Foreground="Black" Header="Edit server.properties" Command="{Binding doNotepadServerProp}" />
+                        <Separator />
+                        <MenuItem Foreground="Black" Header="Hide dashboard tabs" IsCheckable="True" />
+                        <!--<MenuItem Name="headertoggler" Header="Show header" Click="headertoggler_Click" IsCheckable="True" IsChecked="True" />-->
+                        <!--<MenuItem Name="sidebartoggler" Header="Sidebar" Click="sidebartoggler_Click" IsCheckable="True" IsChecked="True" />-->
+                        <!--<MenuItem x:Name="consolewraptoggler" Header="Wrap console text" IsCheckable="True" IsChecked="True" />-->
+                    </MenuItem>
+                    <MenuItem Header="Help">
+                        <!--<MenuItem Foreground="Black" Header="Getting Started" />
+						<MenuItem Foreground="Black" Header="Help manual" />-->
+                        <MenuItem Foreground="Black" Header="Online References">
+                            <MenuItem Foreground="Black" Header="MinecraftForum.net" Command="{Binding wwwMincraftForum}" />
+                            <MenuItem Foreground="Black" Header="MinecraftWiki.net" Command="{Binding wwwMincraftWiki}" />
+                        </MenuItem>
+                        <MenuItem Foreground="Black" Header="About MCDashboard" Command="{Binding doAboutScreen}"  />
+                        <!--<Separator />
+						<MenuItem Foreground="Black" Header="My Game server info" />-->
+                    </MenuItem>
+                </Menu>
+
+
+                <!--Top Right corner indicator panel-->
+                <Grid Width="140">
                     <Grid.Background>
-                        <SolidColorBrush Color="{DynamicResource WhiteColor}" />
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#00000000" Offset="0" />
+                            <GradientStop Color="#53000000" Offset="0.762" />
+                        </LinearGradientBrush>
                     </Grid.Background>
-                    <Border Height="63" Margin="0,105,0,0" VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                        <Grid>
-                            <Button Content="Start Server" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="174" Height="53" IsDefault="True" Click="Button_Click"/>
-                            <Button Content="Backup world now" HorizontalAlignment="Left" Margin="189,5,0,0" VerticalAlignment="Top" Width="174" Height="53"/>
-                        </Grid>
-                    </Border>
-                    <Border BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="349" >
-                        <Grid>
-                            <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="4,6,0,0" VerticalAlignment="Top" Width="75" Source="MC2.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
-                            <Image x:Name="imgServerState" HorizontalAlignment="Left" Height="32" Margin="47,48,0,0" VerticalAlignment="Top" Width="32" Source="StatusAnnotations_Critical_32xLG_color.png" Stretch="None" RenderTransformOrigin="0.406,0.938" />
-                            <Label Content="Server Offline" HorizontalAlignment="Left" Margin="84,36,0,0" VerticalAlignment="Top" FontSize="20"/>
-                        </Grid>
-                    </Border>
-                    <Border BorderThickness="1" HorizontalAlignment="Left" Height="43" Margin="10,191,0,0" VerticalAlignment="Top" Width="237" Background="#FFFFE67C" Padding="5">
-                        <TextBlock Foreground="Black">
-						<Bold>Ready to go!</Bold> Click Start Server to start
-                        </TextBlock>
-                    </Border>
-                    <ProgressBar HorizontalAlignment="Left" Height="10" Margin="11,233,0,0" VerticalAlignment="Top" Width="235" IsIndeterminate="True"/>
-                    <Border BorderThickness="1" HorizontalAlignment="Right" Margin="0,105,10,10" Width="237" Background="#FFFFE67C" Padding="5">
-                        <TextBlock Foreground="Black"><Bold><Run Text="TODO: port over player list WPF control."/></Bold></TextBlock>
-                    </Border>
+                    <Label Content="offline" FontFamily="Segoe UI" FontSize="18" FontWeight="Light" Foreground="#FFEFEFEF" x:Name="lblserverstatus" HorizontalAlignment="Right" Width="117" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" />
+                    <Grid Margin="0,10,119,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="15" Width="15">
+                        <Ellipse x:Name="EllipseOnline" Stroke="#FF00C50C">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#FF46FF00" Offset="0" />
+                                    <GradientStop Color="#FF16D803" Offset="0.996" />
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse x:Name="EllipseOffline" Stroke="#FF600000" Fill="#FFC75050" />
+                    </Grid>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Players">
-                <Grid>
-                    <Grid.Background>
-                        <SolidColorBrush Color="{DynamicResource WhiteColor}" />
-                    </Grid.Background>
-                </Grid>
-            </TabItem>
-            <TabItem Header="World">
-                <Grid>
-                    <Grid.Background>
-                        <SolidColorBrush Color="{DynamicResource WhiteColor}" />
-                    </Grid.Background>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Console">
-                <Grid>
-                    <DockPanel LastChildFill="True">
-                        <TextBox
-					DockPanel.Dock="Bottom"
-					x:Name="CommandTextBox"
-					Height="24"
-					KeyDown="CommandTextBox_KeyDown"
-					VerticalAlignment="Bottom"
-					IsManipulationEnabled="True"
-					TabIndex="0" Margin="0,0,0,0" BorderBrush="{x:Null}" Foreground="Black">
-                            <TextBox.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFDBDBDB" Offset="0" />
-                                    <GradientStop Color="White" Offset="1" />
-                                </LinearGradientBrush>
-                            </TextBox.Background>
-                        </TextBox>
-                        <UniformGrid HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="UniformGrid1">
-                            <TextBox
-						RenderOptions.ClearTypeHint="Enabled"
-						x:Name="ConsoleTextBlock" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-						TextWrapping="Wrap" TabIndex="1" BorderThickness="0" AllowDrop="False"
-						VerticalScrollBarVisibility="Visible" Panel.ZIndex="1" SelectionBrush="#FF3367FF"
-						SelectionOpacity="0.5" IsUndoEnabled="False"
-						IsReadOnlyCaretVisible="True" IsReadOnly="True" AcceptsTab="True" AcceptsReturn="True"
-						AutoWordSelection="True" CaretBrush="White" IsManipulationEnabled="True" VerticalContentAlignment="Top" BorderBrush="{x:Null}" UndoLimit="0" Text="{Binding ConsoleStream, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConsoleTextBlock_TextChanged">
-                                <TextBox.ContextMenu>
-                                    <ContextMenu ItemsSource="{Binding}">
-                                        <MenuItem Command="ApplicationCommands.Copy" Header="Copy" />
-                                    </ContextMenu>
-                                </TextBox.ContextMenu>
-                            </TextBox>
-                        </UniformGrid>
-                    </DockPanel>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Configuration">
-                <Grid>
-                    <Grid.Background>
-                        <SolidColorBrush Color="{DynamicResource WhiteColor}" />
-                    </Grid.Background>
-                    <Label Content="Dashboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="36"/>
-                    <Controls:ToggleSwitch Header="Awesome mode" Margin="10,69,352,152" />
-                    <TextBox Margin="10,142,127,0" Height="84" VerticalAlignment="Top" />
-                    <TextBox Margin="10,237,232,0" Height="30" VerticalAlignment="Top" />
-                </Grid>
-            </TabItem>
-        </TabControl>
-        <!--<Controls:ProgressRing IsActive="True" />-->
-    </Grid>
-</Controls:MetroWindow>
+                
+            </StackPanel>
+            
+           
+            <Label FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light" HorizontalAlignment="Left" Padding="10,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Bottom"
+					Margin="70,0,0,0">
+                <Binding Path="navTitle" FallbackValue="Overview"  Mode="OneWay" UpdateSourceTrigger="PropertyChanged" />
+            </Label>
+
+            </Grid>
+
+        <Grid >
+            <TabControl TabStripPlacement="Left">
+                <TabItem Header="Overview">
+                    <Frame Source="Views\OverviewPage.xaml" />
+                </TabItem>
+                <TabItem Header="Players">
+                    
+                </TabItem>
+                <TabItem Header="World">
+                    <Grid>
+                        <Image Source="Resources\minecraftworld-big.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="600" Height="693" Margin="0,0,10,10"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Console">
+                    <Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Configuration">
+                    <Grid>
+
+                        <Label Content="Dashboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="36"/>
+                        <TextBox Margin="10,142,127,0" Height="84" VerticalAlignment="Top" />
+                        <TextBox Margin="10,237,232,0" Height="30" VerticalAlignment="Top" />
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <!--<Controls:ProgressRing IsActive="True" />-->
+        </Grid>
+    </DockPanel>
+</Window>

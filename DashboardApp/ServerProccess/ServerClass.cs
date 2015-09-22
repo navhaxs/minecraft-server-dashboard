@@ -14,7 +14,8 @@ public class ServerClass : System.IDisposable, System.ComponentModel.INotifyProp
             {
                 FileName = "Java", 
                 WorkingDirectory = "C:\\Users\\Jeremy\\Desktop\\MSD\\DashboardApp\\DemoServer",
-                Arguments = "-jar C:\\Users\\Jeremy\\Desktop\\MSD\\DashboardApp\\DemoServer\\minecraft_server.jar nogui", 
+                
+                Arguments = "-jar " + "" + " nogui", 
                 RedirectStandardInput = true, 
                 RedirectStandardError = true, 
                 RedirectStandardOutput = true, 

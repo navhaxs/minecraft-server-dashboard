@@ -14,11 +14,5 @@ namespace DashboardApp
     public partial class App : Application
     {
 
-        public static ServerClass MyServer = new ServerClass();
-
-        private void Application_Exit(object sender, ExitEventArgs e)
-        {
-            MyServer.Dispose();
-        }
     }
 }
