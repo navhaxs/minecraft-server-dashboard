@@ -131,15 +131,21 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Console">
-                    <Grid>
-                    </Grid>
+                    <Frame Source="Views\ConsolePage.xaml" />
                 </TabItem>
                 <TabItem Header="Configuration">
                     <Grid>
 
                         <Label Content="Dashboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="36"/>
-                        <TextBox Margin="10,142,127,0" Height="84" VerticalAlignment="Top" />
-                        <TextBox Margin="10,237,232,0" Height="30" VerticalAlignment="Top" />
+                        <TextBox Margin="48,111,88.8,0" Height="84" VerticalAlignment="Top"
+                                 Text="{Binding UserSettings.WorkingDirectory}"/>
+                        <TextBox Margin="48,223,193.8,0" Height="30" VerticalAlignment="Top"
+                                 Text="{Binding UserSettings.JarFile}"/>
+                        <Label x:Name="label" Content="Path" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,-0.228"/>
+                        <Label x:Name="label_Copy" Content="jarfile" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,-0.228"/>
+                        <Label x:Name="label_Copy1" Content="JRE exe:" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,-0.228"/>
+                        <TextBox Margin="66,73,192.8,0" Height="30" VerticalAlignment="Top"
+                                 Text="{Binding UserSettings.JarExe}"/>
                     </Grid>
                 </TabItem>
             </TabControl>

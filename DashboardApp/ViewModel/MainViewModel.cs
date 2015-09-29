@@ -36,9 +36,9 @@ namespace DashboardApp.ViewModel
             }
             else
             {
-                // Code runs "for real"
-                CommandStartServer = new RelayCommand(() => ShowPopUpExecute(), () => true);
-                doAboutScreen = new RelayCommand(() => ShowAboutScreen(), () => true);
+                CommandStartServer = new RelayCommand(() => Server.StartServer());
+                CommandStopServer = new RelayCommand(() => Server.StopServer());
+                doAboutScreen = new RelayCommand(() => ShowAboutScreen());
 
                 // Version data              
                 Assembly assembly = Assembly.GetExecutingAssembly();
@@ -46,18 +46,29 @@ namespace DashboardApp.ViewModel
                 version = fileVersionInfo.FileVersion;
                 githash = fileVersionInfo.ProductVersion;
 
+                // References
+                App MyApplication = ((App)Application.Current);
+                Server = MyApplication.minecraftServer;
+                UserSettings = MyApplication.userSettings;
             }
 
         }
 
-        //TODO: isBusy ==> ProgressRing
+        public string Java;
+        public string Jarfile;
+        public string WorkingDirectory;
 
-        // public const string version = "Alpha";
+        public MinecraftServer Server { get; set; }
+        public Config.MyUserSettings UserSettings { get; set; }
+
         public string version { get; set; }
         public string githash { get; set; }
 
         public ICommand doAboutScreen { get; private set; }
         public ICommand CommandStartServer { get; private set; }
+        public ICommand CommandStopServer { get; private set; }
+        public ICommand CommandReloadServer { get; private set; }
+        public ICommand CommandForceStopServer { get; private set; }
 
         private void ShowAboutScreen()
         {

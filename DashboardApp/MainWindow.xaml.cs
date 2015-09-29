@@ -18,6 +18,9 @@ namespace DashboardApp
         {
             InitializeComponent();
             Messenger.Default.Register<string>(this, ShowWindow);
+
+            //App MyApplication = ((App)Application.Current);
+            //BindMeToServerClass.DataContext = MyApplication.Server;
         }
 
         private void ShowWindow(string obj)
