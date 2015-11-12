@@ -9,7 +9,7 @@ namespace DashboardApp
     /// <summary>
     /// Description for MainWindow.
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
     {
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
