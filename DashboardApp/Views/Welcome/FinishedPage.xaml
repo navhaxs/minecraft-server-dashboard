@@ -1,0 +1,16 @@
+﻿<Page x:Class="DashboardApp.Views.Welcome.FinishedPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DashboardApp.Views.Welcome"
+      mc:Ignorable="d" 
+      d:DesignHeight="420" d:DesignWidth="380"
+      Title="FinishedPage">
+
+    <Grid>
+        <TextBlock x:Name="textBlock" Margin="10,118.265,10,0" TextWrapping="Wrap" Height="37.559" VerticalAlignment="Top"><Run Text="Hit &quot;Start server&quot;, baby."/></TextBlock>
+        <Button x:Name="button" Content="OK" Width="75" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Page>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DashboardApp.Modules
+namespace DashboardApp.Utils
 {
     class DetectJava
     {
@@ -44,7 +44,7 @@ namespace DashboardApp.Modules
         /// Find the path to the Java installation, if available.
         /// </summary>
         /// <returns>File path for Java if installed, else null.</returns>
-        static string FindJavaPath()
+        public static string FindJavaPath()
         {
             // http://stackoverflow.com/questions/17821960/best-way-to-find-java-path-in-c-sharp
             string javaKey = "SOFTWARE\\JavaSoft\\Java Runtime Environment";

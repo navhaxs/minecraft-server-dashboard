@@ -279,7 +279,7 @@
     </Style>
 
     <!-- BACK BUTTON -->
-    <Style x:Key="arrowBack" TargetType="{x:Type Button}">
+    <Style x:Key="BackArrow" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">

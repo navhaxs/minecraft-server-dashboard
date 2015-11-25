@@ -1,0 +1,42 @@
+﻿<Page x:Class="DashboardApp.Views.Welcome.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DashboardApp.Views.Welcome"
+      mc:Ignorable="d" 
+      d:DesignHeight="420" d:DesignWidth="380"
+      Title="StartPage">
+
+    <Grid>
+        <Image Source="../Assets/MyCB_bgonly.png" VerticalAlignment="Top" Height="199" Stretch="UniformToFill"/>
+        <Image Source="../Assets/cbclouds.png" VerticalAlignment="Top" Height="100" HorizontalAlignment="Left"></Image>
+
+        <StackPanel Margin="0,40,0,0">
+            <Image Source="/DashboardApp;component\appicon.ico" Height="48"/>
+            <Label Content="Hi there!" FontSize="19" HorizontalAlignment="Center"/>
+            <Label Content="Select how you want to get started:" HorizontalAlignment="Center"/>
+            <Grid Height="20" />
+            <Button Height="100" HorizontalContentAlignment="Stretch" Padding="20,0,0,0" Click="Button_Click">
+                <DockPanel>
+                    <Image DockPanel.Dock="Right" Width="50" 
+                           Source="..\Assets\appbar.arrow.right.png" />
+                    <StackPanel>
+                        <TextBlock FontSize="14">Download server files</TextBlock>
+                        <TextBlock FontSize="12" FontWeight="Normal" TextWrapping="Wrap">Download a fresh copy of the latest vanilla Minecraft server.</TextBlock>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+            <Button Height="100" HorizontalContentAlignment="Stretch" Padding="20,6,0,6" Click="Button_Click_1">
+                <DockPanel>
+                    <Image DockPanel.Dock="Right" Width="50" Source="..\Assets\appbar.arrow.right.png" />
+                    <StackPanel>
+                        <TextBlock FontSize="14">I already have existing server files</TextBlock>
+                        <TextBlock FontSize="12" FontWeight="Normal" TextWrapping="Wrap">Choose this if you want to use your own server jar files.</TextBlock>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

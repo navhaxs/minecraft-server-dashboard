@@ -19,7 +19,7 @@
     <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>DashboardApp\Views\Assets\appicon.ico</ApplicationIcon>
+    <ApplicationIcon>appicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
   <Target Name="UpdateVersionAssemblyInfo" BeforeTargets="BeforeBuild">
@@ -127,54 +127,104 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DashboardApp\Config\ServerBackend.cs" />
-    <Compile Include="DashboardApp\MainWindow.xaml.cs">
+    <Compile Include="Config\ServerBackend.cs" />
+    <Compile Include="Controls\DisableNavigation.cs" />
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DashboardApp\Modules\DetectJava.cs" />
-    <Compile Include="DashboardApp\MinecraftServer.cs" />
-    <Compile Include="DashboardApp\ServerStateEnum.cs" />
-    <Compile Include="DashboardApp\ViewModel\MainViewModel.cs" />
-    <Compile Include="DashboardApp\ViewModel\ViewModelLocator.cs" />
-    <Compile Include="DashboardApp\Views\AboutScreenView.xaml.cs">
+    <Compile Include="Utils\DetectJava.cs" />
+    <Compile Include="MinecraftServer.cs" />
+    <Compile Include="ServerStateEnum.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\AboutScreenView.xaml.cs">
       <DependentUpon>AboutScreenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DashboardApp\Views\ConsolePage.xaml.cs">
+    <Compile Include="Views\ConsolePage.xaml.cs">
       <DependentUpon>ConsolePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DashboardApp\Views\OverviewPage.xaml.cs">
+    <Compile Include="Views\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="DashboardApp\MainWindow.xaml">
+    <Compile Include="Views\Welcome\ExistingServerSelectionPage.xaml.cs">
+      <DependentUpon>ExistingServerSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Welcome\ExistingServerHelpPage.xaml.cs">
+      <DependentUpon>ExistingServerHelpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Welcome\FinishedPage.xaml.cs">
+      <DependentUpon>FinishedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Welcome\NewServerPage.xaml.cs">
+      <DependentUpon>NewServerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Welcome\NewServerProgressPage.xaml.cs">
+      <DependentUpon>NewServerProgressPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Welcome\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DashboardApp\Views\Assets\AppTheme.xaml">
+    <Page Include="Views\Assets\AppTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DashboardApp\Views\Assets\CustomAccents.xaml">
+    <Page Include="Views\Assets\CustomAccents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DashboardApp\Views\AboutScreenView.xaml">
+    <Page Include="Views\AboutScreenView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DashboardApp\Views\ConsolePage.xaml">
+    <Page Include="Views\ConsolePage.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DashboardApp\Views\OverviewPage.xaml">
+    <Page Include="Views\OverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Welcome\ExistingServerSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Welcome\ExistingServerHelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Welcome\FinishedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Welcome\NewServerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Welcome\NewServerProgressPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Welcome\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\WelcomeWindow.xaml.cs">
+      <DependentUpon>WelcomeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -203,25 +253,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DashboardApp\Views\Assets\appicon.ico" />
+    <Resource Include="appicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DashboardApp\Views\Assets\cbclouds.png" />
-    <Resource Include="DashboardApp\Views\Assets\MyCB_bgonly.png" />
+    <Resource Include="Views\Assets\cbclouds.png" />
+    <Resource Include="Views\Assets\MyCB_bgonly.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DashboardApp\Views\Assets\MC2.ico" />
+    <Resource Include="Views\Assets\MC2.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DashboardApp\Views\Assets\StatusAnnotations_Critical_32xLG_color.png" />
+    <Resource Include="Views\Assets\StatusAnnotations_Critical_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Assets\appbar.arrow.right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Assets\minecraftworld-big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Assets\minecraftworld-big-cut.png" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Resource Include="DashboardApp\Views\Assets\minecraftworld-big.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="DashboardApp\Views\Assets\minecraftworld-big-cut.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,11 +1,13 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<!--Custom colour scheme for MahApp Metro components-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--ACCENT COLORS-->
     <Color x:Key="HighlightColor">#FF9F0055</Color>
 
     <!--80%-->
-    <Color x:Key="AccentColor">#CC5387A5</Color>
+    <Color x:Key="AccentColor">#EE5387A5</Color>
+    <!--<Color x:Key="AccentColor">#CC5387A5</Color>-->
     <!--60%-->
     <Color x:Key="AccentColor2">#99D80073</Color>
     <!--40%-->

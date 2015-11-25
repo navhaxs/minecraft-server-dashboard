@@ -1,0 +1,14 @@
+﻿<Page x:Class="DashboardApp.Views.Welcome.ExistingServerHelpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DashboardApp.Views.Welcome"
+      mc:Ignorable="d" 
+      d:DesignHeight="420" d:DesignWidth="380"
+      Title="ExistingServerHelpPage">
+
+    <Grid>
+        <TextBlock x:Name="textBlock" Margin="49.564,90.689,34.502,62.811" TextWrapping="Wrap"><Run Text="No files f"/><Run Text="o"/><Run Text="und?"/><LineBreak/><Run/><LineBreak/><Run Text="* Check same directory as ja"/><LineBreak/><Run Text="* DL new?"/><LineBreak/><Run Text="* Go back and #1"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Try again hyperlink"/></TextBlock>
+    </Grid>
+</Page>

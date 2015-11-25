@@ -20,7 +20,7 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Minecraft Sever Dashboard"
         Height="550" Width="915"
-        Icon="Views/Assets/appicon.ico" ResizeMode="CanResizeWithGrip">
+        Icon="/DashboardApp;component\appicon.ico" ResizeMode="CanResizeWithGrip">
     <DockPanel Background="#FF5387A5">
         <Grid x:Name="header" DockPanel.Dock="Top" Height="36">
             <Grid.Background>
@@ -34,14 +34,14 @@
 						VerticalAlignment="Stretch"
 						Width="34" Margin="5,1,0,1"
 						Background="{x:Null}"
-						Style="{StaticResource arrowBack}"
+						Style="{StaticResource BackArrow}"
 						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White" />
             <Button x:Name="BackButton1_Copy"
 						HorizontalAlignment="Left"
 						VerticalAlignment="Stretch"
 						Width="29" Margin="39,5,0,5"
 						Background="{x:Null}"
-						Style="{StaticResource arrowBack}"
+						Style="{StaticResource BackArrow}"
 						RenderTransformOrigin="0.5,0.5"
 						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                 <Button.RenderTransform>
