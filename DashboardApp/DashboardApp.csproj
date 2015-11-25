@@ -19,7 +19,7 @@
     <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>appicon.ico</ApplicationIcon>
+    <ApplicationIcon>DashboardApp\Views\Assets\appicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
   <Target Name="UpdateVersionAssemblyInfo" BeforeTargets="BeforeBuild">
@@ -65,15 +65,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37223, Culture=neutral, PublicKeyToken=0e453835af4ee6ce, processorArchitecture=MSIL">
-      <HintPath>..\MinecraftServerDashboard\packages\MvvmLightLibs.5.2.0.0\lib\net40\GalaSoft.MvvmLight.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net40\GalaSoft.MvvmLight.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.2.0.37224, Culture=neutral, PublicKeyToken=f46ff315b1088208, processorArchitecture=MSIL">
-      <HintPath>..\MinecraftServerDashboard\packages\MvvmLightLibs.5.2.0.0\lib\net40\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net40\GalaSoft.MvvmLight.Extras.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ionic.Zip, Version=1.9.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
-      <HintPath>..\MinecraftServerDashboard\packages\DotNetZip.1.9.6\lib\net20\Ionic.Zip.dll</HintPath>
+    <Reference Include="Ionic.Zip, Version=1.9.7.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.9.7\lib\net20\Ionic.Zip.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
@@ -81,11 +81,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\MinecraftServerDashboard\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\MinecraftServerDashboard\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
@@ -97,7 +97,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -127,49 +127,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Config\ServerBackend.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="DashboardApp\Config\ServerBackend.cs" />
+    <Compile Include="DashboardApp\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DetectJava.cs" />
-    <Compile Include="ServerProccess\ServerClass.cs" />
-    <Compile Include="ServerProccess\ServerStateEnum.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\AboutScreenView.xaml.cs">
+    <Compile Include="DashboardApp\Modules\DetectJava.cs" />
+    <Compile Include="DashboardApp\MinecraftServer.cs" />
+    <Compile Include="DashboardApp\ServerStateEnum.cs" />
+    <Compile Include="DashboardApp\ViewModel\MainViewModel.cs" />
+    <Compile Include="DashboardApp\ViewModel\ViewModelLocator.cs" />
+    <Compile Include="DashboardApp\Views\AboutScreenView.xaml.cs">
       <DependentUpon>AboutScreenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConsolePage.xaml.cs">
+    <Compile Include="DashboardApp\Views\ConsolePage.xaml.cs">
       <DependentUpon>ConsolePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OverviewPage.xaml.cs">
+    <Compile Include="DashboardApp\Views\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="DashboardApp\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\AppTheme.xaml">
+    <Page Include="DashboardApp\Views\Assets\AppTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\CustomAccents.xaml">
+    <Page Include="DashboardApp\Views\Assets\CustomAccents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AboutScreenView.xaml">
+    <Page Include="DashboardApp\Views\AboutScreenView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConsolePage.xaml">
+    <Page Include="DashboardApp\Views\ConsolePage.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OverviewPage.xaml">
+    <Page Include="DashboardApp\Views\OverviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,30 +203,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="appicon.ico" />
+    <Resource Include="DashboardApp\Views\Assets\appicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\cbclouds.png" />
-    <Resource Include="Resources\MyCB_bgonly.png" />
+    <Resource Include="DashboardApp\Views\Assets\cbclouds.png" />
+    <Resource Include="DashboardApp\Views\Assets\MyCB_bgonly.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="MC2.ico" />
+    <Resource Include="DashboardApp\Views\Assets\MC2.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="StatusAnnotations_Critical_32xLG_color.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="cbclouds.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MyCB_bgonly.png" />
+    <Resource Include="DashboardApp\Views\Assets\StatusAnnotations_Critical_32xLG_color.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\minecraftworld-big.png" />
+    <Resource Include="DashboardApp\Views\Assets\minecraftworld-big.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minecraftworld-big-cut.png" />
+    <Resource Include="DashboardApp\Views\Assets\minecraftworld-big-cut.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

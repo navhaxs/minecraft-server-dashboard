@@ -1,7 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using System.Windows;
-using System.Windows.Input;
-using System;
 using DashboardApp.Views;
 
 namespace DashboardApp
@@ -25,8 +22,7 @@ namespace DashboardApp
 
         private void ShowWindow(string obj)
         {
-            AboutScreenView x = new AboutScreenView();
-            x.Owner = this;
+            AboutScreenView x = new AboutScreenView {Owner = this};
             x.ShowDialog();
         }
     }

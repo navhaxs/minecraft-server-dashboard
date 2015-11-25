@@ -20,13 +20,13 @@
                 <GradientStop Color="#FFEDEDED" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Image Height="144" VerticalAlignment="Top" Source="../Resources/MyCB_bgonly.png" Stretch="Fill" Grid.ColumnSpan="2" />
+        <Image Height="144" VerticalAlignment="Top" Source="Assets\MyCB_bgonly.png" Stretch="Fill" Grid.ColumnSpan="2" />
 
         <Rectangle x:Name="barRAMusage" Fill="#FF363636" Height="28" Margin="115,357,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" />
 
-        <Image Height="144" VerticalAlignment="Top" Source="/DashboardApp;component/Resources/cbclouds.png" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="850" />
+        <Image Height="144" VerticalAlignment="Top" Source="Assets\cbclouds.png" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="850" />
 
-        <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="33,49,0,0" VerticalAlignment="Top" Width="75" Source="/DashboardApp;component/MC2.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
+        <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="33,49,0,0" VerticalAlignment="Top" Width="75" Source="Assets\MC2.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
 
         <Grid Height="83" x:Name="Grid1" VerticalAlignment="Top" Background="#CC000000" Margin="0,144,0,0" Grid.ColumnSpan="2">
             <Button x:Name="btnStartStop" Content="Start server" Width="154" Margin="21,9,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16"
