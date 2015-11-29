@@ -22,6 +22,7 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Get started with Dashboard."
         Height="420" Width="380"
-        Icon="/DashboardApp;component\appicon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False">
+        Icon="/DashboardApp;component\appicon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False" Closing="MetroWindow_Closing">
     <Frame Source="Welcome\StartPage.xaml" NavigationUIVisibility="Hidden"  app:DisableNavigation.Disable="True"/>
 </controls:MetroWindow>

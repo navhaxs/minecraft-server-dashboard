@@ -20,5 +20,10 @@ namespace DashboardApp.Views
         {
             InitializeComponent();
         }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // user exit: quit the app
+        }
     }
 }

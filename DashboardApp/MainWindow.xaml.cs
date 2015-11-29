@@ -37,5 +37,7 @@ namespace DashboardApp
             AboutScreenView x = new AboutScreenView {Owner = this};
             x.ShowDialog();
         }
+
+
     }
 }

@@ -35,7 +35,7 @@
 						Width="34" Margin="5,1,0,1"
 						Background="{x:Null}"
 						Style="{StaticResource BackArrow}"
-						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White" />
+Foreground="White" />
             <Button x:Name="BackButton1_Copy"
 						HorizontalAlignment="Left"
 						VerticalAlignment="Stretch"
@@ -43,7 +43,7 @@
 						Background="{x:Null}"
 						Style="{StaticResource BackArrow}"
 						RenderTransformOrigin="0.5,0.5"
-						IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+Foreground="White">
                 <Button.RenderTransform>
                     <!--Flip a 'back button' to make it a 'forward button'-->
                     <TransformGroup>
