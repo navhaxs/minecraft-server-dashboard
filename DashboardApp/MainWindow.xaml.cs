@@ -16,12 +16,11 @@ namespace DashboardApp
         public MainWindow()
         {
             InitializeComponent();
-            Messenger.Default.Register<string>(this, ShowWindow);
 
             // Main app startup events
 
             // Check for first run
-            var welcomeWnd = new WelcomeWindow();
+            var welcomeWnd = new WelcomeView();
             welcomeWnd.ShowDialog();
 
             if (DetectJava.FindJavaPath() == null)
@@ -38,6 +37,9 @@ namespace DashboardApp
             x.ShowDialog();
         }
 
-
+        private void header_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }

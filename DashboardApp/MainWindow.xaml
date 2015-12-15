@@ -22,7 +22,7 @@
         Height="550" Width="915"
         Icon="/DashboardApp;component\appicon.ico" ResizeMode="CanResizeWithGrip">
     <DockPanel Background="#FF5387A5">
-        <Grid x:Name="header" DockPanel.Dock="Top" Height="36">
+        <Grid x:Name="header" DockPanel.Dock="Top" Height="36" MouseLeftButtonDown="header_MouseLeftButtonDown">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#004D8B9F" Offset="0.819" />
@@ -128,7 +128,7 @@ Foreground="White">
         </Grid>
 
         <Grid >
-            <TabControl TabStripPlacement="Left">
+            <TabControl TabStripPlacement="Left" Style="{DynamicResource DashboardTabControl}">
                 <TabItem Header="Overview">
                     <Frame Source="Views\OverviewPage.xaml" />
                 </TabItem>

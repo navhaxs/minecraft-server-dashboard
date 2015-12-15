@@ -157,12 +157,15 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DownloadTask.cs" />
+    <Compile Include="Models\SimpleCommand.cs" />
     <Compile Include="Utils\DetectJava.cs" />
     <Compile Include="MinecraftServer.cs" />
     <Compile Include="ServerStateEnum.cs" />
     <Compile Include="Utils\ServerJarfile.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\WelcomeScreenViewModel.cs" />
     <Compile Include="Views\AboutScreenView.xaml.cs">
       <DependentUpon>AboutScreenView.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\WelcomeView.xaml.cs">
+      <DependentUpon>WelcomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Welcome\ExistingServerSelectionPage.xaml.cs">
       <DependentUpon>ExistingServerSelectionPage.xaml</DependentUpon>
     </Compile>
@@ -185,14 +191,8 @@
     <Compile Include="Views\Welcome\FinishedPage.xaml.cs">
       <DependentUpon>FinishedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Welcome\NewServerPage.xaml.cs">
-      <DependentUpon>NewServerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Welcome\NewServerProgressPage.xaml.cs">
       <DependentUpon>NewServerProgressPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Welcome\StartPage.xaml.cs">
-      <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
@@ -210,6 +210,10 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Assets\CustomAccentsOrange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ConsolePage.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,8 +222,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WelcomeWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\WelcomeView.xaml">
+      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Welcome\ExistingServerSelectionPage.xaml">
@@ -234,23 +238,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Welcome\NewServerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Welcome\NewServerProgressPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Welcome\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\WelcomeWindow.xaml.cs">
-      <DependentUpon>WelcomeWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

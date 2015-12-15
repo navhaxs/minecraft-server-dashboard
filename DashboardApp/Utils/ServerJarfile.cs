@@ -10,13 +10,16 @@ namespace DashboardApp.Utils
 {
     class ServerJarfile
     {
+        const string JSON_URL = "https://s3.amazonaws.com/Minecraft.Download/versions/versions.json";
+        
+        /// <summary>
+        /// Get the latest Minecraft version from official sources online
+        /// </summary>
+        /// <returns></returns>
         public static string GetLatesturl()
         {
             var wc = new WebClient();
-            const string url = "https://s3.amazonaws.com/Minecraft.Download/versions/versions.json";
-            var json = wc.DownloadString(new Uri(url));
-
-            //
+            var json = wc.DownloadString(new Uri(JSON_URL));
             var response = JsonConvert.DeserializeObject<dynamic>(json);
             return response.latest.release;
         }

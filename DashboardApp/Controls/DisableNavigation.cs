@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
+// DELETE ME
+
 /* Don't allow keyboard shortcuts etc. to disrupt Frame navigation
     Attribution: http://stackoverflow.com/questions/6367876 */
 namespace DashboardApp.Controls
@@ -32,7 +34,7 @@ namespace DashboardApp.Controls
 
         public static void DontNavigate(object sender, NavigationEventArgs e)
         {
-            ((Frame)sender).NavigationService.RemoveBackEntry();
+            //((Frame)sender).NavigationService.RemoveBackEntry();
         }
     }
 }

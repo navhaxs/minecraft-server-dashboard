@@ -11,7 +11,9 @@
 
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
 
-    <Style x:Key="StandardTabControl"
+    <!--<Style x:Key="StandardTabControl" -->
+    <!--<Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource StandardTabControl}" />-->
+    <Style x:Key="DashboardTabControl"
 		TargetType="{x:Type TabControl}">
         <Style.Resources>
             <Style TargetType="{x:Type TabItem}">
@@ -440,7 +442,6 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource StandardTabControl}" />
 
     <!-- Reset ScrollBar Styles -->
     <!-- Actually, don't this time. <Style TargetType="{x:Type ScrollBar}"/>-->

@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <!--Enable animations between mahapp metro styled tabs (NOT my custom Dashboard tab style)-->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
                 <!--My own custom styles-->
                 <ResourceDictionary Source="/DashboardApp;component/Views/Assets/CustomAccents.xaml" />
                 <ResourceDictionary Source="/DashboardApp;component/Views/Assets/AppTheme.xaml" />

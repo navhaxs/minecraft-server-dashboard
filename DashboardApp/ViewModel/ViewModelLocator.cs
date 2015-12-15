@@ -43,7 +43,9 @@ namespace DashboardApp.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<WelcomeScreenViewModel>();
         }
+
 
         public MainViewModel Main
         {
@@ -52,7 +54,16 @@ namespace DashboardApp.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+
+        public WelcomeScreenViewModel Welcome
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<WelcomeScreenViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

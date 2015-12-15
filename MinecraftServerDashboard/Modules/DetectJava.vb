@@ -12,18 +12,13 @@ Namespace DetectJava
             Dim e As String = FindPath()
             Dim r As String = ""
 
-            Dim match As Boolean = False
             If e.Contains("\Java\jre1.8") Then
                 r = "JRE 8"
-                match = True
             ElseIf e.Contains("\Java\jre7") Then
                 r = "JRE 7"
-                match = True
             ElseIf e.Contains("\Java\jre6") Then
                 r = "JRE 6"
-                match = True
-            End If
-            If Not match Then
+            Else
                 Return "Java not found or installed"
             End If
 
@@ -50,10 +45,10 @@ Namespace DetectJava
             ' Check for a 64 bit installation if Windows is 64 bit
             If System.Environment.Is64BitOperatingSystem Then
                 baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(javaKey)
-                    result = ScanForJre(baseKey)
-                    If Not result Is "" Then
-                        Return result
-                    End If
+                result = ScanForJre(baseKey)
+                If Not result Is "" Then
+                    Return result
+                End If
             End If
 
             ' Otherwise, continue to check for a 32 bit installation
