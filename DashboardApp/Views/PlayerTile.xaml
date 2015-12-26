@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="DashboardApp.Views.PlayerTile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="48" d:DesignWidth="290" Foreground="White" Height="48" Margin="2,1,0,1">
+    <UserControl.ContextMenu>
+        <ContextMenu Name="PlayerItemContextmenu">
+            <!--<ContextMenu.Style>
+                <Style TargetType="ContextMenu" />
+                </ContextMenu.Style>-->
+            <MenuItem Header="Kick" Name="btnKick" />
+            <MenuItem Header="Ban" Name="btnBan" />
+            <MenuItem Header="Op" Name="btnOp" />
+            <MenuItem Header="De-op" Name="btnDeOp" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <Grid>
+        <Label Margin="0" BorderThickness="2,0,0,0" />
+        <Image Name="Image1" Stretch="Uniform" HorizontalAlignment="Left" Width="48" Height="48" Margin="2,0,0,0" Source="/MinecraftServerDashboard;component/Images/Blank.png" />
+        <Label Content="Username" Margin="50,0,0,0" Name="Label1" VerticalContentAlignment="Center" FontSize="15" Foreground="White" Background="#B21A6D93" />
+    </Grid>
+</UserControl>

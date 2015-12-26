@@ -36,7 +36,10 @@ namespace DashboardApp.Views
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            // Cancel any download on window close
+            var viewModel = (DashboardApp.ViewModel.WelcomeScreenViewModel)DataContext;
+            if (viewModel.CancelDownloadButtonCommand.CanExecute(null))
+                viewModel.CancelDownloadButtonCommand.Execute(null);
         }
 
         public async void EnterDownloadScreen()
@@ -101,6 +104,11 @@ namespace DashboardApp.Views
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 2;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 

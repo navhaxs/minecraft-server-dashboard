@@ -24,7 +24,7 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         
         Title="Get started with Dashboard."
-        Height="420" Width="380"
+        Height="428.8" Width="380"
         Icon="/DashboardApp;component\appicon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False" Closing="MetroWindow_Closing" Loaded="MetroWindow_Loaded">
     <Window.Resources>
@@ -94,6 +94,16 @@
 Foreground="White" Margin="10,10,0,0" Click="Button_Click" Command="{Binding CancelDownloadButtonCommand, Mode=OneWay}" />
                 </Grid>
 
+            </TabItem>
+            <TabItem Visibility="Collapsed">
+                <Grid>
+                    <StackPanel Margin="14,99,20,0" >
+                        <Label Content="Ready, set, go!" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" />
+                        <TextBlock Padding="5,15,0,0" Text="Dashboard is now ready to host your server." FontSize="13.333"  TextWrapping="Wrap"/>
+                        <TextBlock Padding="5,10,0,0" Text="Click &quot;Start server&quot; on the Overview screen to launch the server." FontSize="13.333"  TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <Button Height="35" Width="100" Content="Done" Click="Button_Click_3" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold" Margin="136,32,135.2,50" VerticalAlignment="Bottom" />
+                </Grid>
             </TabItem>
         </TabControl>
 

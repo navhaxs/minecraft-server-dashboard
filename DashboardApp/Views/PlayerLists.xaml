@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="DashboardApp.Views.PlayerLists"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300" Background="White" Padding="5,5,5,10">
+    <DockPanel>
+        <ComboBox HorizontalAlignment="Stretch" Margin="0" x:Name="ComboBox1" VerticalAlignment="Top" DockPanel.Dock="Top">
+            <ComboBoxItem Content="Online Players" />
+            <ComboBoxItem Content="Banned IP's" />
+            <ComboBoxItem Content="Ops" />
+            <ComboBoxItem Content="Banned Players" />
+            <ComboBoxItem Content="Whitelist" />
+            <!--<ListBoxItem Content="custom.." />-->
+        </ComboBox>
+        <Grid Height="47" VerticalAlignment="Top" Background="#FFFFFFC8" DockPanel.Dock="Top" x:Name="bannerRemindWhitelistIsDisabled" Visibility="Collapsed">
+            <TextBlock Margin="5" TextWrapping="Wrap">
+                The whitelist is currently <Bold>not</Bold> enabled in the server properties. Click <Hyperlink>here</Hyperlink> to enable it now.
+            </TextBlock>
+        </Grid>
+        <!--<ScrollViewer>-->
+        <TextBlock x:Name="Grid_canModify" IsEnabled="False" Height="18" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+            <Hyperlink >
+                <Hyperlink.IsEnabled>
+                     <Binding ElementName="Grid_canModify" Path="IsEnabled" />
+                </Hyperlink.IsEnabled>Add entry</Hyperlink> | <Hyperlink x:Name="btnRemovePlayer" >
+                <Hyperlink.IsEnabled>
+                    <Binding ElementName="Grid_canModify" Path="IsEnabled" />
+                </Hyperlink.IsEnabled>Remove selected</Hyperlink>
+        </TextBlock>
+        <Grid VerticalAlignment="Stretch">
+            <ListBox x:Name="PlayerListBox" SelectionMode="Extended">
+            </ListBox>
+            <TextBlock x:Name="isNoSelectionMessage" Foreground="#6D6D6D" HorizontalAlignment="Center" Margin="0,30,0,0" >Select a list to manage.</TextBlock>
+            <TextBlock Visibility="Collapsed" x:Name="EmptyMessage" Margin="0,30,0,0" Foreground="#6D6D6D" HorizontalAlignment="Center">This list is empty.</TextBlock>
+        </Grid>
+        <!--</ScrollViewer>-->
+        <!--HorizontalAlignment="Stretch" BorderBrush="#DADBDC" BorderThickness="1" Margin="0" -->
+    </DockPanel>
+</UserControl>

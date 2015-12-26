@@ -18,10 +18,19 @@ namespace DashboardApp.Utils
         /// <returns></returns>
         public static string GetLatesturl()
         {
-            var wc = new WebClient();
-            var json = wc.DownloadString(new Uri(JSON_URL));
-            var response = JsonConvert.DeserializeObject<dynamic>(json);
-            return response.latest.release;
+            try
+            {
+                var wc = new WebClient();
+                var json = wc.DownloadString(new Uri(JSON_URL));
+                wc.Dispose();
+                var response = JsonConvert.DeserializeObject<dynamic>(json);
+                return response.latest.release;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
         }
 
     }

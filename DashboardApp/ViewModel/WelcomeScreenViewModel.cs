@@ -42,6 +42,12 @@ namespace DashboardApp.ViewModel
 
             _downloadTask.VersionFetchCompleted += _downloadTask_VersionFetchCompleted;
             _downloadTask.ProgressChanged += _downloadTask_ProgressChanged;
+            _downloadTask.Completed += _downloadTask_Completed;
+        }
+
+        private void _downloadTask_Completed(DownloadTask t, EventArgs e)
+        {
+            SelectedIndex += 1; // finished downloading - next ui page!
         }
 
         private void _downloadTask_ProgressChanged(DownloadTask t, DownloadProgressChangedEventArgs e)
@@ -150,7 +156,6 @@ namespace DashboardApp.ViewModel
                 }
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

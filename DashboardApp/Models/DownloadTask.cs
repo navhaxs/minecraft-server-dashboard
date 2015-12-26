@@ -57,10 +57,12 @@ namespace DashboardApp.Models
             // Dashboard uses the current directory as the working directory
             // for simplicity.
             var rootDir = System.Environment.CurrentDirectory;
-            var url = "https://s3.amazonaws.com/Minecraft.Download/versions/" + ver + "/minecraft_server." + ver + ".jar";
+            //var url = "https://s3.amazonaws.com/Minecraft.Download/versions/" + ver + "/minecraft_server." + ver + ".jar";
+            var url = "http://navhaxs.au.eu.org/foobar.txt";
 
             wc.DownloadFileAsync(new Uri(url), rootDir + "/minecraft_server." + ver + ".jar");
 
+            System.Diagnostics.Debug.Print("Starting download of " + "/minecraft_server." + ver + ".jar");
             if (DownloadStarted != null) DownloadStarted(this, e); // Raise event
         }
 
@@ -91,6 +93,7 @@ namespace DashboardApp.Models
         {
             try
             {
+                System.Diagnostics.Debug.Print("Cancelled download!");
                 wc.CancelAsync();
             }
             catch (Exception e)
@@ -107,6 +110,7 @@ namespace DashboardApp.Models
         /// <param name="asyncCompletedEventArgs"></param>
         private void WcOnDownloadFileCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
         {
+            System.Diagnostics.Debug.Print("Download finished.");
             IsBusy = false;
             if (Completed != null)
             {
@@ -121,6 +125,7 @@ namespace DashboardApp.Models
         /// <param name="downloadProgressChangedEventArgs"></param>
         private void WcOnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs downloadProgressChangedEventArgs)
         {
+            System.Diagnostics.Debug.Print(downloadProgressChangedEventArgs.ProgressPercentage.ToString());
             if (ProgressChanged != null) ProgressChanged(this, downloadProgressChangedEventArgs); // Raise event
         }
     }

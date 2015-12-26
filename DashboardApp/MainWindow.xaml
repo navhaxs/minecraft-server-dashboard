@@ -133,12 +133,10 @@ Foreground="White">
                     <Frame Source="Views\OverviewPage.xaml" />
                 </TabItem>
                 <TabItem Header="Players">
-
+                    <Frame Source="Views\PagePlayers.xaml" />
                 </TabItem>
                 <TabItem Header="World">
-                    <Grid>
-                        <Image Source="Views/Assets/minecraftworld-big.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="600" Height="693" Margin="0,0,10,10"/>
-                    </Grid>
+                    <Frame Source="Views\PageWorld.xaml" />
                 </TabItem>
                 <TabItem Header="Console">
                     <Frame Source="Views\ConsolePage.xaml" />

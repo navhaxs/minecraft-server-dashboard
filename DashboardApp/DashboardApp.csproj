@@ -179,6 +179,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\PagePlayers.xaml.cs">
+      <DependentUpon>PagePlayers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PageScheduler.xaml.cs">
+      <DependentUpon>PageScheduler.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PageWorld.xaml.cs">
+      <DependentUpon>PageWorld.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayerLists.xaml.cs">
+      <DependentUpon>PlayerLists.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayerTile.xaml.cs">
+      <DependentUpon>PlayerTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
     </Compile>
@@ -219,6 +237,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PagePlayers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PageScheduler.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PageWorld.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlayerLists.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlayerTile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
