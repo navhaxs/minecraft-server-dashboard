@@ -22,5 +22,10 @@ namespace DashboardApp
             userSettings = new Config.MyUserSettings(); // The server class requires the user settings store to be initialized first.
             minecraftServer = new MinecraftServer();
         }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            Config.ConfigStore.Save();
+        }
     }
 }

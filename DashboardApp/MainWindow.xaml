@@ -21,6 +21,9 @@
         Title="Minecraft Sever Dashboard"
         Height="550" Width="915"
         Icon="/DashboardApp;component\appicon.ico" ResizeMode="CanResizeWithGrip">
+    <Controls:MetroWindow.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Controls:MetroWindow.Resources>
     <DockPanel Background="#FF5387A5">
         <Grid x:Name="header" DockPanel.Dock="Top" Height="36" MouseLeftButtonDown="header_MouseLeftButtonDown">
             <Grid.Background>
@@ -55,6 +58,8 @@ Foreground="White">
                 </Button.RenderTransform>
             </Button>
 
+
+
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <!--Menu bar-->
                 <Menu x:Name="MyAppMenu" IsEnabled="{Binding MainWindowOverlay_MainWindowIsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"
@@ -69,12 +74,12 @@ Foreground="White">
                         <MenuItem x:Name="mnuDoBackupNow" Foreground="Black" Header="Backup world now" />
                     </MenuItem>
                     <MenuItem Header="Tools">
-                        <MenuItem Foreground="Black" Header="Invite new players" Command="{Binding doJoinNewPlayers}" />
+                        <MenuItem Foreground="Black" Header="Invite new players" Command="{Binding CommandJoinNewPlayers}" />
                         <Separator />
-                        <MenuItem Foreground="Black" Header="My Game Server Settings" Command="{Binding doMyServerProperties}" />
-                        <MenuItem Foreground="Black" Header="Backend Set-Up" Command="{Binding  doBackendSetup}" />
-                        <MenuItem Foreground="Black" Header="Open server directory in explorer" Command="{Binding doExploreServerDir}" />
-                        <MenuItem Foreground="Black" Header="Edit server.properties" Command="{Binding doNotepadServerProp}" />
+                        <MenuItem Foreground="Black" Header="My Game Server Settings" Command="{Binding CommandMyServerProperties}" />
+                        <MenuItem Foreground="Black" Header="Backend Set-Up" Command="{Binding  CommandBackendSetup}" />
+                        <MenuItem Foreground="Black" Header="Open server directory in explorer" Command="{Binding CommandExploreServerDir}" />
+                        <MenuItem Foreground="Black" Header="Edit server.properties" Command="{Binding CommandNotepadServerProp}" />
                         <Separator />
                         <MenuItem Foreground="Black" Header="Hide dashboard tabs" IsCheckable="True" />
                         <!--<MenuItem Name="headertoggler" Header="Show header" Click="headertoggler_Click" IsCheckable="True" IsChecked="True" />-->
@@ -85,10 +90,10 @@ Foreground="White">
                         <!--<MenuItem Foreground="Black" Header="Getting Started" />
 						<MenuItem Foreground="Black" Header="Help manual" />-->
                         <MenuItem Foreground="Black" Header="Online References">
-                            <MenuItem Foreground="Black" Header="MinecraftForum.net" Command="{Binding wwwMincraftForum}" />
-                            <MenuItem Foreground="Black" Header="MinecraftWiki.net" Command="{Binding wwwMincraftWiki}" />
+                            <MenuItem Foreground="Black" Header="MinecraftForum.net" Command="{Binding CommandwwwMincraftForum}" />
+                            <MenuItem Foreground="Black" Header="MinecraftWiki.net" Command="{Binding CommandwwwMincraftWiki}" />
                         </MenuItem>
-                        <MenuItem Foreground="Black" Header="About MCDashboard" Command="{Binding doAboutScreen}"  />
+                        <MenuItem Foreground="Black" Header="About MCDashboard" Command="{Binding CommandAboutScreen}"  />
                         <!--<Separator />
 						<MenuItem Foreground="Black" Header="My Game server info" />-->
                     </MenuItem>
@@ -113,15 +118,17 @@ Foreground="White">
                                 </RadialGradientBrush>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <Ellipse x:Name="EllipseOffline" Stroke="#FF600000" Fill="#FFC75050" />
+                        <Ellipse x:Name="EllipseOffline" Visibility="{Binding IsOffline, Converter={StaticResource BoolToVisibility}, FallbackValue=Visible}" Stroke="#FF600000" Fill="#FFC75050">
+                        </Ellipse>
                     </Grid>
                 </Grid>
 
             </StackPanel>
 
 
-            <Label FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light" HorizontalAlignment="Left" Padding="10,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Bottom"
-					Margin="70,0,0,0">
+
+            <Label FontSize="24" FontFamily="Segoe UI" Foreground="White" FontWeight="Light" Padding="10,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left" Margin="70,0,0,0">
                 <Binding Path="navTitle" FallbackValue="Overview"  Mode="OneWay" UpdateSourceTrigger="PropertyChanged" />
             </Label>
 

@@ -2,6 +2,7 @@
 using DashboardApp.Utils;
 using GalaSoft.MvvmLight.Messaging;
 using DashboardApp.Views;
+using System.Windows;
 
 namespace DashboardApp
 {
@@ -20,8 +21,15 @@ namespace DashboardApp
             // Main app startup events
 
             // Check for first run
-            var welcomeWnd = new WelcomeView();
-            welcomeWnd.ShowDialog();
+            App MyApplication = ((App)Application.Current);
+            var UserSettings = MyApplication.userSettings;
+            if (!UserSettings.JarFileExists())
+            {
+                var welcomeWnd = new WelcomeView();
+                welcomeWnd.ShowDialog();
+
+            }
+
 
             if (DetectJava.FindJavaPath() == null)
             {
@@ -29,12 +37,6 @@ namespace DashboardApp
                 Debug.Print("Java detection failed. Either no java, unexpected java installation, or detection didn't work");
             }
 
-    }
-
-        private void ShowWindow(string obj)
-        {
-            AboutScreenView x = new AboutScreenView {Owner = this};
-            x.ShowDialog();
         }
 
         private void header_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

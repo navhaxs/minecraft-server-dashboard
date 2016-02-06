@@ -6,14 +6,21 @@ namespace DashboardApp.Config
     {
         public MyUserSettings()
         {
-            _jarFile = "minecraft_server.jar";
+            // TODO refractor
+            ConfigStore.LoadAll();
+
         }
 
-        private string _jarFile;
         public string JarFile
         {
-            get { return _jarFile; }
-            set { _jarFile = value; OnPropertyChanged("JarFile"); }
+            get { return ConfigStore.settingsStore.Jarfile; }
+            set { ConfigStore.settingsStore.Jarfile = value; System.Diagnostics.Debug.Print("JarFile [set]: " + value); OnPropertyChanged("JarFile"); }
+        }
+
+        public bool JarFileExists()
+        {
+            System.Diagnostics.Debug.Print("JarFile: " + JarFile);
+            return System.IO.File.Exists(WorkingDirectory + @"\" + JarFile);
         }
 
         private string _workingDirectory = System.Environment.CurrentDirectory;

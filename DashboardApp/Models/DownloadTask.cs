@@ -93,8 +93,11 @@ namespace DashboardApp.Models
         {
             try
             {
-                System.Diagnostics.Debug.Print("Cancelled download!");
-                wc.CancelAsync();
+                if (IsBusy) // cancel if download task is running
+                {
+                    System.Diagnostics.Debug.Print("Cancelled download!");
+                    wc.CancelAsync();
+                }
             }
             catch (Exception e)
             {

@@ -28,10 +28,12 @@
         Icon="/DashboardApp;component\appicon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False" Closing="MetroWindow_Closing" Loaded="MetroWindow_Loaded">
     <Window.Resources>
-        <ResourceDictionary>
+
+            <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Assets/CustomAccentsOrange.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
             <Dialog:CustomDialog x:Key="CustomDialogTest"
                                     Title="This dialog allows arbitrary content."
                                     x:Name="CustomTestDialog">
@@ -56,7 +58,8 @@
                         <Label Content="Select how you want to get started:" HorizontalAlignment="Center" FontSize="14.667"/>
                         <Grid Height="20" />
                         <Button Height="100" HorizontalContentAlignment="Stretch" Padding="20,0,0,0"
-                Command="{Binding DownloadButtonCommand, Mode=OneWay}" Click="Button_Click_2">
+                                Style="{StaticResource LightButtonStyle}"
+                Command="{Binding NavDownloadButtonCommand, Mode=OneWay}" Click="Button_Click_2">
                             <DockPanel>
                                 <Image DockPanel.Dock="Right" Width="50" 
                            Source="Assets\appbar.arrow.right.png" />
@@ -66,7 +69,8 @@
                                 </StackPanel>
                             </DockPanel>
                         </Button>
-                        <Button Height="100" HorizontalContentAlignment="Stretch" Padding="20,6,0,6" Click="Button_Click_1">
+                        <Button Height="100" HorizontalContentAlignment="Stretch" Padding="20,6,0,6" Style="{StaticResource LightButtonStyle}"
+                                Command="{Binding NavExistingButtonCommand, Mode=OneWay}" >
                             <DockPanel>
                                 <Image DockPanel.Dock="Right" Width="50" Source="Assets\appbar.arrow.right.png" />
                                 <StackPanel>
@@ -103,6 +107,39 @@ Foreground="White" Margin="10,10,0,0" Click="Button_Click" Command="{Binding Can
                         <TextBlock Padding="5,10,0,0" Text="Click &quot;Start server&quot; on the Overview screen to launch the server." FontSize="13.333"  TextWrapping="Wrap"/>
                     </StackPanel>
                     <Button Height="35" Width="100" Content="Done" Click="Button_Click_3" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold" Margin="136,32,135.2,50" VerticalAlignment="Bottom" />
+                </Grid>
+            </TabItem>
+            <TabItem Visibility="Collapsed">
+                <Grid>
+                    <StackPanel Margin="14,99,20,0" >
+                        <Label Content="Existing server files not found." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" />
+                        <TextBlock Padding="5,15,0,0" Text="Move the Dashboard app to the same folder as your existing server files, then try again." FontSize="13.333"  TextWrapping="Wrap"/>
+                        <TextBlock Padding="5,10,0,0" FontSize="13.333"  TextWrapping="Wrap">
+                            <Run Text="(The server jar file was not found in " /><Hyperlink Command="{Binding CommandExploreServerDir}"><Run Text="this folder"/></Hyperlink><Run Text=".)" />
+                        </TextBlock>
+                    </StackPanel>
+                    <Button Height="35" Width="100" Content="Exit" Click="Button_Click_3" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold" Margin="136,32,135.2,50" VerticalAlignment="Bottom" />
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Style="{StaticResource BackArrow}"
+Foreground="White" Margin="10,10,0,0" Click="Button_Click" Command="{Binding CancelDownloadButtonCommand, Mode=OneWay}" />
+                </Grid>
+            </TabItem>
+            <TabItem Visibility="Collapsed">
+                <Grid>
+                    <StackPanel Margin="14,99,20,0" >
+                        <Label Content="Existing server files" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" />
+
+                        <TextBlock Margin="5,5,0,0" Text="Dashboard will use the following jar file as the server:" />
+                        <ComboBox Margin="5,10,0,0" Visibility="{Binding IsNotSingleJarfile, Converter={StaticResource BoolToVisibility}, FallbackValue=Visible}" HorizontalAlignment="Left" Width="300" ItemsSource="{Binding JarfileList}" SelectedIndex="{Binding SelectedIndex, FallbackValue=1}"
+                                  SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}">
+                        </ComboBox>
+                        <TextBlock Margin="5,5,0,0" Visibility="{Binding IsSingleJarfile, Converter={StaticResource BoolToVisibility}, FallbackValue=Visible}">
+                            <Hyperlink><Run Text="{Binding SingleJarFilename, FallbackValue=minecraft_server.jar}" /></Hyperlink>
+                        </TextBlock>
+
+                    </StackPanel>
+                    <Button Height="35" Width="100" Content="NEXT" Click="Button_Click_3" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold" Margin="136,32,135.2,50" VerticalAlignment="Bottom" Command="{Binding ConfirmJarfileCommand, Mode=OneWay}"  />
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Style="{StaticResource BackArrow}"
+Foreground="White" Margin="10,10,0,0" Click="Button_Click" Command="{Binding CancelDownloadButtonCommand, Mode=OneWay}" />
                 </Grid>
             </TabItem>
         </TabControl>

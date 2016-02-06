@@ -9,7 +9,7 @@ namespace DashboardApp
     
     public class MinecraftServer : System.IDisposable, System.ComponentModel.INotifyPropertyChanged
     {
-        private Process _serverProcess;
+        private Process _process;
 
         private DashboardApp.Config.MyUserSettings UserSettings;
 
@@ -25,7 +25,7 @@ namespace DashboardApp
         //Quote: To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
         public bool ReloadStartupParameters()
         {
-            _serverProcess = new Process
+            _process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -41,7 +41,7 @@ namespace DashboardApp
                 }
             };
 
-            _serverProcess.EnableRaisingEvents = true;
+            _process.EnableRaisingEvents = true;
             return true;
         }
 
@@ -58,17 +58,17 @@ namespace DashboardApp
 
             try
             {
-                _serverProcess.Start();
-                _serverProcess.BeginOutputReadLine(); //Catch console 'log' output
-                _serverProcess.BeginErrorReadLine();  //CraftBukkit only outputs in the STDERR stream for some reason.
+                _process.Start();
+                _process.BeginOutputReadLine(); //Catch console 'log' output
+                _process.BeginErrorReadLine();  //CraftBukkit only outputs in the STDERR stream for some reason.
 
                 CurrentServerState = ServerState.WarmUp;
 
                 ConsoleStream += "[Dashboard] Hello! Starting server\r";
 
-                _serverProcess.OutputDataReceived += new DataReceivedEventHandler(ServerProc_DataReceived);
-                _serverProcess.ErrorDataReceived += new DataReceivedEventHandler(ServerProc_DataReceived);
-                _serverProcess.Exited += new System.EventHandler(ServerProc_Exited);
+                _process.OutputDataReceived += new DataReceivedEventHandler(ServerProc_DataReceived);
+                _process.ErrorDataReceived += new DataReceivedEventHandler(ServerProc_DataReceived);
+                _process.Exited += new System.EventHandler(ServerProc_Exited);
 
                 // * thing * //
                 //var reader = _serverProcess.StandardOutput;
@@ -93,7 +93,18 @@ namespace DashboardApp
             if (ServerIsOnline)
             {
                 CurrentServerState = ServerState.Stopping;
-                _serverProcess.StandardInput.WriteLine("stop");
+                _process.StandardInput.WriteLine("stop");
+            }
+        }
+
+        public void KillServer()
+        {
+            if (ServerIsOnline)
+            {
+                if (MessageBox.Show("This will force stop the server.", "Warning", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    _process.Kill();
+                }
             }
         }
 
@@ -104,7 +115,7 @@ namespace DashboardApp
             if (ServerIsOnline)
             {
                 //Only send commands if the server process is running
-                _serverProcess.StandardInput.Write(command + "\r"); // Write the command into the process, then press 'enter'
+                _process.StandardInput.Write(command + "\r"); // Write the command into the process, then press 'enter'
                 return true;
             }
             else
@@ -133,18 +144,18 @@ namespace DashboardApp
         {
             // Occasionally the .NET framework incorrectly triggers the Exited event
 
-            if (_serverProcess.HasExited)
+            if (_process.HasExited)
             {
                 CurrentServerState = ServerState.NotRunning;
 
                 string exitmssg = null;
-                if (_serverProcess.ExitCode == 0)
+                if (_process.ExitCode == 0)
                 {
                     exitmssg = "The server stopped successfully.";
                 }
                 else
                 {
-                    exitmssg = "The server stopped with an error code of " + _serverProcess.ExitCode;
+                    exitmssg = "The server stopped with an error code of " + _process.ExitCode;
                 }
                 ConsoleStream += "[Dashboard] " + exitmssg + "\r";
             }
@@ -192,7 +203,17 @@ namespace DashboardApp
                 }
                 else
                 {
-                    return true;
+                    //
+                    if (_process == null)
+                    {
+                        MessageBox.Show("FAIL");
+                        CurrentServerState = ServerState.NotRunning;
+                        return false;
+                    }
+                    else {
+                        //
+                        return true;
+                    }
                 }
             }
         }
@@ -225,11 +246,11 @@ namespace DashboardApp
         {
             if (disposing)
             {
-                if (_serverProcess != null)
+                if (_process != null)
                 {
                     try
                     {
-                        if (_serverProcess.HasExited != true) _serverProcess.Kill();
+                        if (_process.HasExited != true) _process.Kill();
                     }
                     catch
                     {

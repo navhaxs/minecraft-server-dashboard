@@ -15,6 +15,8 @@ using System.ComponentModel;
 using System.Windows.Navigation;
 using System.Runtime.CompilerServices;
 using System.Net;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace DashboardApp.ViewModel
 {
@@ -26,8 +28,8 @@ namespace DashboardApp.ViewModel
     /// </summary>
     public class WelcomeScreenViewModel : ViewModelBase, INotifyPropertyChanged
     {
-
-        private DownloadTask _downloadTask = new DownloadTask();
+        private JarSelector _jarSelector;
+        private DownloadTask _downloadTask;
         private string versionValue = String.Empty;
         private int SelectedIndexValue;
         private int _DownloadProgressValue;
@@ -37,12 +39,18 @@ namespace DashboardApp.ViewModel
         /// </summary>
         public WelcomeScreenViewModel()
         {
-            DownloadButtonCommand = new RelayCommand(BeginDownload);
+            CommandExploreServerDir = new RelayCommand(showInWindowsExplorer);
+            NavDownloadButtonCommand = new RelayCommand(BeginDownload);
+            NavExistingButtonCommand = new RelayCommand(GotoExisting);
             CancelDownloadButtonCommand = new RelayCommand(CancelDownload);
+            ConfirmJarfileCommand = new RelayCommand(ConfirmJarfile);
 
+            _downloadTask = new DownloadTask();
             _downloadTask.VersionFetchCompleted += _downloadTask_VersionFetchCompleted;
             _downloadTask.ProgressChanged += _downloadTask_ProgressChanged;
             _downloadTask.Completed += _downloadTask_Completed;
+
+            _jarSelector = new JarSelector();
         }
 
         private void _downloadTask_Completed(DownloadTask t, EventArgs e)
@@ -62,8 +70,50 @@ namespace DashboardApp.ViewModel
             _downloadTask.BeginDownload();
         }
 
+        public string SelectedValue { get; set; }
+
+        private string _SingleJarFilename;
+        public string SingleJarFilename
+        {
+            get
+            {
+                return this._SingleJarFilename;
+            }
+
+            set
+            {
+                if (value != this._SingleJarFilename)
+                {
+                    this._SingleJarFilename = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
+        public ICommand ConfirmJarfileCommand { get; set; }
+
+        public ICommand CommandExploreServerDir { get; set; }
+
+        public bool IsNotSingleJarfile { get; set; }
+        public bool IsSingleJarfile { get; set; }
+
+        private ICommand _navExistingButtonCommand;
+        public ICommand NavExistingButtonCommand
+        {
+            get
+            {
+                return _navExistingButtonCommand;
+            }
+            set
+            {
+                _navExistingButtonCommand = value;
+            }
+        }
+
+
         private ICommand _downloadButtonCommand;
-        public ICommand DownloadButtonCommand
+        public ICommand NavDownloadButtonCommand
         {
             get
             {
@@ -89,6 +139,23 @@ namespace DashboardApp.ViewModel
             }
         }
 
+        private void GotoExisting()
+        {
+            // Scan the directory for Jar files.
+            _jarSelector.Search();
+
+            // If no jar files exist
+            if (_jarSelector.IsJarAvailable() != true)
+            {
+                // Ask the user to move the Dashboard exe to the same folder as the jar files
+                SelectedIndex = 5;
+            } else
+            {
+                // Else show the jar file selection screen.
+                SelectedIndex = 6;
+            }
+        }
+
         private void BeginDownload()
         {
             _downloadTask.BeginVersionFetch();   
@@ -98,6 +165,37 @@ namespace DashboardApp.ViewModel
         {
             _downloadTask.CancelDownload();
         }
+
+        //BooleanToVisibilityConverter
+        //IsSingleJarfile
+
+        private List<string> _jarfileList;
+        public List<string> JarfileList
+        {
+            get
+            {
+                _jarfileList = new List<string>();
+                
+                // TODO: move to function (ICommand)
+                _jarSelector.Search();
+                _jarfileList = _jarSelector.GetList();
+                if (_jarfileList.Count == 1)
+                {
+                    IsSingleJarfile = true;
+                    IsNotSingleJarfile = false;
+                } else {
+                    IsSingleJarfile = false;
+                    IsNotSingleJarfile = true;
+                }
+
+                PropertyChanged(this, new PropertyChangedEventArgs("IsSingleJarfile"));
+                PropertyChanged(this, new PropertyChangedEventArgs("IsNotSingleJarfile"));
+
+                return _jarfileList;
+            }
+        }
+
+        
 
         public string Version
         {
@@ -168,6 +266,24 @@ namespace DashboardApp.ViewModel
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        // TODO redundancy
+        public void showInWindowsExplorer()
+        {
+            // References
+            App MyApplication = ((App)Application.Current);
+            var UserSettings = MyApplication.userSettings;
+
+            System.Diagnostics.Process.Start("explorer.exe", UserSettings.WorkingDirectory);
+        }
+
+        public void ConfirmJarfile()
+        {
+            App MyApplication = ((App)Application.Current);
+            var UserSettings = MyApplication.userSettings;
+
+            UserSettings.JarFile = SelectedValue;
         }
     }
 }
