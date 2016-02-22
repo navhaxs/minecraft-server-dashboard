@@ -153,24 +153,55 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\FieldUserControl.xaml.cs">
+      <DependentUpon>FieldUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Config\ServerBackend.cs" />
+    <Compile Include="Controls\btnHelp.xaml.cs">
+      <DependentUpon>btnHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DisableNavigation.cs" />
+    <Compile Include="Lang\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DownloadTask.cs" />
     <Compile Include="Models\JarSelector.cs" />
     <Compile Include="Config\ConfigStore.cs" />
+    <Compile Include="Models\ServerStateChangeMessage.cs" />
     <Compile Include="Models\SimpleCommand.cs" />
     <Compile Include="Utils\DetectJava.cs" />
     <Compile Include="MinecraftServer.cs" />
     <Compile Include="ServerStateEnum.cs" />
     <Compile Include="Utils\ServerJarfile.cs" />
+    <Compile Include="ViewModel\JarSelection.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\WelcomeScreenViewModel.cs" />
     <Compile Include="Views\AboutScreenView.xaml.cs">
       <DependentUpon>AboutScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\ConfigApp.xaml.cs">
+      <DependentUpon>ConfigApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\ConfigHome.xaml.cs">
+      <DependentUpon>ConfigHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\ConfigJarConf.xaml.cs">
+      <DependentUpon>ConfigJarConf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\ConfigPropEditor.xaml.cs">
+      <DependentUpon>ConfigPropEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\ConfigSuper.xaml.cs">
+      <DependentUpon>ConfigSuper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\MainWindowOverlay.xaml.cs">
+      <DependentUpon>MainWindowOverlay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ConsolePage.xaml.cs">
       <DependentUpon>ConsolePage.xaml</DependentUpon>
@@ -197,9 +228,6 @@
     <Compile Include="Views\PlayerTile.xaml.cs">
       <DependentUpon>PlayerTile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
     </Compile>
@@ -215,15 +243,23 @@
     <Compile Include="Views\Welcome\NewServerProgressPage.xaml.cs">
       <DependentUpon>NewServerProgressPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\FieldUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\btnHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Assets\AppTheme.xaml">
+    <Page Include="Assets\AppTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Assets\CustomAccents.xaml">
+    <Page Include="Assets\CustomAccents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,7 +267,31 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Assets\CustomAccentsOrange.xaml">
+    <Page Include="Assets\CustomAccentsOrange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Config\ConfigApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Config\ConfigHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Config\ConfigJarConf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Config\ConfigPropEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Config\ConfigSuper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Config\MainWindowOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -262,10 +322,6 @@
     <Page Include="Views\PlayerTile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WelcomeView.xaml">
       <SubType>Form</SubType>
@@ -302,6 +358,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Lang\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -320,25 +380,51 @@
     <Resource Include="appicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Assets\cbclouds.png" />
-    <Resource Include="Views\Assets\MyCB_bgonly.png" />
+    <Resource Include="Assets\cbclouds.png" />
+    <Resource Include="Assets\MyCB_bgonly.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Assets\MC2.ico" />
+    <Resource Include="Assets\MC2.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Assets\StatusAnnotations_Critical_32xLG_color.png" />
+    <Resource Include="Assets\StatusAnnotations_Critical_32xLG_color.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Assets\appbar.arrow.right.png" />
+    <Resource Include="Assets\appbar.arrow.right.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Assets\minecraftworld-big.png" />
+    <Resource Include="Assets\minecraftworld-big.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Assets\minecraftworld-big-cut.png" />
+    <Resource Include="Assets\minecraftworld-big-cut.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\tilebg_MCsky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\State\StatusAnnotations_Alert_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\State\StatusAnnotations_Critical_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\State\StatusAnnotations_Play_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\State\StatusAnnotations_Warning_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\stripeyellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\stripered.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\StatusAnnotations_Help_and_inconclusive_32xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\StatusAnnotations_Help_and_inconclusive_32xLG_color.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

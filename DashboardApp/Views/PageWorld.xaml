@@ -24,12 +24,12 @@
               Background="#FFFF6666"
               Margin="0"
               Height="50">
-                <Image Source="..\Pages\ConfigPages\stripered.png" Stretch="Fill" />
+                <!--<Image Source="..\Pages\ConfigPages\stripered.png" Stretch="Fill" />
                 <Image
                     HorizontalAlignment="Left"
                     Source="/MinecraftServerDashboard;component/Images/State/StatusAnnotations_Warning_32xLG_color.png"
                     Margin="10,0,0,0"
-                    Stretch="None" />
+                    Stretch="None" />-->
                 <TextBlock
                     FontSize="13"
                     VerticalAlignment="Center"
@@ -48,7 +48,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid>
-                    <Border BorderThickness="1" Margin="20,45,10,0" VerticalAlignment="Stretch" BorderBrush="#FF747F85">
+                    <Border BorderThickness="1" Margin="20,45,20,0" VerticalAlignment="Stretch" BorderBrush="#FF747F85">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                 <GradientStop Color="#FFE8EFF3"/>

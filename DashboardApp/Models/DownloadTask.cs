@@ -57,8 +57,8 @@ namespace DashboardApp.Models
             // Dashboard uses the current directory as the working directory
             // for simplicity.
             var rootDir = System.Environment.CurrentDirectory;
-            //var url = "https://s3.amazonaws.com/Minecraft.Download/versions/" + ver + "/minecraft_server." + ver + ".jar";
-            var url = "http://navhaxs.au.eu.org/foobar.txt";
+            var url = "https://s3.amazonaws.com/Minecraft.Download/versions/" + ver + "/minecraft_server." + ver + ".jar";
+            //var url = "http://navhaxs.au.eu.org/foobar.txt";
 
             wc.DownloadFileAsync(new Uri(url), rootDir + "/minecraft_server." + ver + ".jar");
 

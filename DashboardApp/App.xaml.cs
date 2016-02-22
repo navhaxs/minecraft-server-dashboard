@@ -13,19 +13,19 @@ namespace DashboardApp
     /// </summary>
     public partial class App : Application
     {
-        public MinecraftServer minecraftServer;
+        public MinecraftServer MinecraftServer;
 
-        public Config.MyUserSettings userSettings;
+        public Config.ConfigStore UserSettings;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            userSettings = new Config.MyUserSettings(); // The server class requires the user settings store to be initialized first.
-            minecraftServer = new MinecraftServer();
+            UserSettings = new Config.ConfigStore();
+            MinecraftServer = new MinecraftServer();
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            Config.ConfigStore.Save();
+            UserSettings.Save();
         }
     }
 }

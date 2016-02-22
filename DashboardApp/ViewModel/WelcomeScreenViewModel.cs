@@ -29,6 +29,58 @@ namespace DashboardApp.ViewModel
     public class WelcomeScreenViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private JarSelector _jarSelector;
+
+        public bool IsNotSingleJarfile { get; set; }
+        public bool IsSingleJarfile { get; set; }
+
+       
+        private List<string> _jarfileList;
+        public List<string> JarfileList
+        {
+            get
+            {
+                _jarfileList = new List<string>();
+
+                // TODO: move to function (ICommand)
+                _jarSelector.Search();
+                _jarfileList = _jarSelector.GetList();
+                if (_jarfileList.Count == 1)
+                {
+                    IsSingleJarfile = true;
+                    IsNotSingleJarfile = false;
+                }
+                else {
+                    IsSingleJarfile = false;
+                    IsNotSingleJarfile = true;
+                }
+
+                PropertyChanged(this, new PropertyChangedEventArgs("IsSingleJarfile"));
+                PropertyChanged(this, new PropertyChangedEventArgs("IsNotSingleJarfile"));
+
+                return _jarfileList;
+            }
+        }
+
+        private void GotoExisting()
+        {
+            // Scan the directory for Jar files.
+            _jarSelector.Search();
+
+            // If no jar files exist
+            if (_jarSelector.IsJarAvailable() != true)
+            {
+                // Ask the user to move the Dashboard exe to the same folder as the jar files
+                SelectedIndex = 5;
+            }
+            else
+            {
+                // Else show the jar file selection screen.
+                SelectedIndex = 6;
+            }
+        }
+
+
+
         private DownloadTask _downloadTask;
         private string versionValue = String.Empty;
         private int SelectedIndexValue;
@@ -51,6 +103,7 @@ namespace DashboardApp.ViewModel
             _downloadTask.Completed += _downloadTask_Completed;
 
             _jarSelector = new JarSelector();
+
         }
 
         private void _downloadTask_Completed(DownloadTask t, EventArgs e)
@@ -95,8 +148,6 @@ namespace DashboardApp.ViewModel
 
         public ICommand CommandExploreServerDir { get; set; }
 
-        public bool IsNotSingleJarfile { get; set; }
-        public bool IsSingleJarfile { get; set; }
 
         private ICommand _navExistingButtonCommand;
         public ICommand NavExistingButtonCommand
@@ -139,23 +190,7 @@ namespace DashboardApp.ViewModel
             }
         }
 
-        private void GotoExisting()
-        {
-            // Scan the directory for Jar files.
-            _jarSelector.Search();
-
-            // If no jar files exist
-            if (_jarSelector.IsJarAvailable() != true)
-            {
-                // Ask the user to move the Dashboard exe to the same folder as the jar files
-                SelectedIndex = 5;
-            } else
-            {
-                // Else show the jar file selection screen.
-                SelectedIndex = 6;
-            }
-        }
-
+      
         private void BeginDownload()
         {
             _downloadTask.BeginVersionFetch();   
@@ -169,32 +204,7 @@ namespace DashboardApp.ViewModel
         //BooleanToVisibilityConverter
         //IsSingleJarfile
 
-        private List<string> _jarfileList;
-        public List<string> JarfileList
-        {
-            get
-            {
-                _jarfileList = new List<string>();
-                
-                // TODO: move to function (ICommand)
-                _jarSelector.Search();
-                _jarfileList = _jarSelector.GetList();
-                if (_jarfileList.Count == 1)
-                {
-                    IsSingleJarfile = true;
-                    IsNotSingleJarfile = false;
-                } else {
-                    IsSingleJarfile = false;
-                    IsNotSingleJarfile = true;
-                }
-
-                PropertyChanged(this, new PropertyChangedEventArgs("IsSingleJarfile"));
-                PropertyChanged(this, new PropertyChangedEventArgs("IsNotSingleJarfile"));
-
-                return _jarfileList;
-            }
-        }
-
+    
         
 
         public string Version
@@ -273,7 +283,7 @@ namespace DashboardApp.ViewModel
         {
             // References
             App MyApplication = ((App)Application.Current);
-            var UserSettings = MyApplication.userSettings;
+            var UserSettings = MyApplication.UserSettings;
 
             System.Diagnostics.Process.Start("explorer.exe", UserSettings.WorkingDirectory);
         }
@@ -281,9 +291,9 @@ namespace DashboardApp.ViewModel
         public void ConfirmJarfile()
         {
             App MyApplication = ((App)Application.Current);
-            var UserSettings = MyApplication.userSettings;
+            var UserSettings = MyApplication.UserSettings;
 
-            UserSettings.JarFile = SelectedValue;
+            UserSettings.SettingsJson.Jarfile = SelectedValue;
         }
     }
 }

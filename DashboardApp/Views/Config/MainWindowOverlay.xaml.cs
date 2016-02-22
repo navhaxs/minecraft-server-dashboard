@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DashboardApp.Views
+namespace DashboardApp.Views.Config
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for MainWindowOverlay.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class MainWindowOverlay : UserControl
     {
-        public UserControl1()
+        public MainWindowOverlay()
         {
             InitializeComponent();
         }

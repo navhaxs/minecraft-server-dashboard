@@ -445,11 +445,8 @@
         </Setter>
     </Style>
 
-
-    <!-- Reset ScrollBar Styles -->
-    <!-- Actually, don't this time. <Style TargetType="{x:Type ScrollBar}"/>-->
-
     <!-- TODO: Add a drop shadow-->
+    <!-- TODO: TopLevel Selected Background-->
     <Style TargetType="{x:Type MenuItem}">
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}"/>
@@ -457,7 +454,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}"/>
-        <Setter Property="Foreground" Value="White"/>
+        <!--<Setter Property="Foreground" Value="White"/>-->
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Padding" Value="7,2,8,3"/>
@@ -480,13 +477,24 @@
     <Style BasedOn="{StaticResource SquareButtonStyle}"
            TargetType="{x:Type Button}">
         <Setter Property="Background"
+                Value="#004A7F" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+    </Style>
+
+    <Style x:Key="OverviewButtonStyle"
+        BasedOn="{StaticResource SquareButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background"
                 Value="#217BCB" />
         <Setter Property="Foreground"
                 Value="White" />
         <Setter Property="BorderThickness"
                 Value="0" />
-
     </Style>
+    
 
     <Style x:Key="LightButtonStyle"
            BasedOn="{StaticResource SquareButtonStyle}"

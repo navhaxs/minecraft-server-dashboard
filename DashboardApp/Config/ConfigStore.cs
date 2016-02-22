@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -9,19 +10,22 @@ using System.Web.Script.Serialization;
 
 namespace DashboardApp.Config
 {
-    static class ConfigStore
+    public class ConfigStore : INotifyPropertyChanged
     {
-
-        public static MySettingsConfig settingsStore;
-
-        //public static MyTasksConfig tasksStore;
-        public static void LoadAll()
+        public ConfigStore()
         {
-            settingsStore = MySettingsConfig.Load();
+            SettingsJson = MySettingsConfig.Load();
             //tasksStore = MyTasksConfig.Load("tasks.jsn");
         }
 
-        public static void Save()
+        // TODO
+        public string WorkingDirectory { get { return System.Environment.CurrentDirectory; } }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        //public static MyTasksConfig tasksStore;
+
+        public void Save()
         {
             // Save the current list of scheduled tasks
             //tasksStore.TaskList.Clear();
@@ -32,7 +36,7 @@ namespace DashboardApp.Config
             //}
             try
             {
-                settingsStore.Save();
+                SettingsJson.Save();
                 //tasksStore.Save("tasks.jsn");
             }
             catch (Exception ex)
@@ -51,11 +55,11 @@ namespace DashboardApp.Config
         {
             get
             {
-                string s = ConfigStore.settingsStore.UserSettings_DefaultTextEditor;
+                string s = ConfigStore.UserSettings_DefaultTextEditor;
                 if (s.Length == 0)
                 {
                     //Set the default if blank
-                    ConfigStore.settingsStore.UserSettings_DefaultTextEditor = "notepad";
+                    ConfigStore.UserSettings_DefaultTextEditor = "notepad";
                     return "notepad";
                 }
                 else {
@@ -63,26 +67,46 @@ namespace DashboardApp.Config
                 }
 
             }
-            set { ConfigStore.settingsStore.UserSettings_DefaultTextEditor = value; }
+            set { ConfigStore.UserSettings_DefaultTextEditor = value; }
         }
 
         #endregion
 
+        // dashboard.jsn instance object
+        public MySettingsConfig SettingsJson;
+        
         // dashboard.jsn
-        public class MySettingsConfig : AppSettings<MySettingsConfig>
+        public class MySettingsConfig : AppSettings<MySettingsConfig>, INotifyPropertyChanged
         {
+            
+            // TODO
             public string App_SuppressMinimiseMessage = "";
-            // TODO: Change to MB (integer)
-            public string Startup_Memory = "1G";
-            // TODO: Change to MB (integer)
-            public string Startup_MemoryMin = "512M";
-            public string Startup_JavaExec = "";
-            public string UserSettings_DefaultTextEditor = "";
+
+            // Xmx parameter, in MB
+            public string Startup_Memory { get; set; } = "1G";
+
+            // Xms parameter, in MB
+            public string Startup_MemoryMin { get; set; } = "512M";
+
+            // Custom path to Java.exe
+            public string JavaJRE = "";
+
+            // Custom path to Notepad.exe
+            public string DefaultTextEditor = "";
+
+            // Filename of minecraft_server.xx.jar
             public string Jarfile = "";
-            public string LaunchArgu_JAVA = "";
-            public string JarLaunchArguments = "";
-            public string Startup_JavaSpecificArgs = "";
-            public List<string> ProfileDir_ExcludedDirectories = new List<string> {
+
+            // Optional Java arguments, e.g. GC parameters
+            //public string LaunchArgu_JAVA = "";
+            //public string Startup_JavaSpecificArgs = "";
+            public string JavaArguments { get; set; } = "";
+
+            // Optional Minecraft server arguments (e.g. CraftBukkit specific parameters)
+            public string JarfileArguments { get; set; } = "";
+
+            // Folders to ignore when scanning for "worlds" to backup
+            public List<string> ExcludedDirectories = new List<string> {
                 "world-backups",
                 "plugins",
                 "crash-reports",
@@ -92,18 +116,24 @@ namespace DashboardApp.Config
                 "mods",
                 "System Volume Information"
             };
+
+            public event PropertyChangedEventHandler PropertyChanged;
         }
 
         // tasks.jsn
+        // TODO
         public class MyTasksConfig : AppSettings<MyTasksConfig>
         {
-
-
-            public int schemaVersion = 1;
+            public int SchemaVersion = 1;
 
             //public List<TaskScheduler.Task> TaskList = new List<TaskScheduler.Task>();
         }
 
+        public bool JarFileExists()
+        {
+            System.Diagnostics.Debug.Print("JarFile: " + SettingsJson.Jarfile);
+            return System.IO.File.Exists(System.Environment.CurrentDirectory + @"\" + SettingsJson.Jarfile);
+        }
     }
 
 }

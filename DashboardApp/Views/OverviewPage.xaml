@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DashboardApp.Views"
+      xmlns:l="clr-namespace:DashboardApp.Lang"
       mc:Ignorable="d" 
       d:DesignHeight="495.943" d:DesignWidth="979.7"
       DataContext="{Binding Main, Source={StaticResource Locator}}"
@@ -20,18 +21,21 @@
                 <GradientStop Color="#FFEDEDED" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Image Height="144" VerticalAlignment="Top" Source="Assets\MyCB_bgonly.png" Stretch="Fill" Grid.ColumnSpan="2" />
+        <Image Height="144" VerticalAlignment="Top" Source="/DashboardApp;component/Assets/MyCB_bgonly.png" Stretch="Fill" Grid.ColumnSpan="2" />
 
         <Rectangle x:Name="barRAMusage" Fill="#FF363636" Height="28" Margin="115,357,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" />
 
-        <Image Height="144" VerticalAlignment="Top" Source="Assets\cbclouds.png" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="850" />
+        <Image Height="144" VerticalAlignment="Top" Source="/DashboardApp;component/Assets/cbclouds.png" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="850" />
 
-        <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="33,49,0,0" VerticalAlignment="Top" Width="75" Source="Assets\MC2.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
+        <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="33,49,0,0" VerticalAlignment="Top" Width="75" Source="/DashboardApp;component/Assets/MC2.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
 
         <Grid Height="83" x:Name="Grid1" VerticalAlignment="Top" Background="#CC000000" Margin="0,144,0,0" Grid.ColumnSpan="2">
-            <Button x:Name="btnStartStop" Content="Start server" Width="154" Margin="21,9,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16"
+            <Button Style="{StaticResource OverviewButtonStyle}"
+                Content="{x:Static l:Strings.Overview_Button_StartServer}" Width="154" Margin="21,9,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16" Visibility="{Binding OfflineState_Visibility, FallbackValue=Visible}"
                      Command='{Binding CommandStartServer}'/>
-            <Button Content="Backup world now" x:Name="btnDoBackupNow" Width="154" Margin="185,9,-22,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16" />
+            <Button Style="{StaticResource OverviewButtonStyle}" Content="Stop server" Width="154" Margin="21,9,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16" Visibility="{Binding OnlineState_Visibility, FallbackValue=Collapsed}"
+                     Command='{Binding CommandStopServer}'/>
+            <Button Style="{StaticResource OverviewButtonStyle}" Content="Backup world now" x:Name="btnDoBackupNow" Width="154" Margin="185,9,-22,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16" Command="{Binding CommandDoBackup}"/>
         </Grid>
         <Rectangle HorizontalAlignment="Left" Width="18" Margin="0" Visibility="Hidden">
             <Rectangle.Fill>
@@ -56,7 +60,7 @@
             </ScrollViewer>
             <Label Background="#FF2D5B76" Content="Common tasks" Foreground="White" Height="28" x:Name="Label3" VerticalAlignment="Top" Margin="2,0,0,0" />
         </Grid>
-        <Label x:Name="lblServerStatus" Content="Server offline" Margin="115,85,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Light" Height="43" Grid.ColumnSpan="2" />
+        <Label Content="{Binding OverviewServerStatusText, FallbackValue='Server Offline'}" Margin="115,85,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Light" Height="43" Grid.ColumnSpan="2" />
         <DockPanel LastChildFill="True" Margin="23,246,10,0">
             <Border x:Name="lblALLTips" VerticalAlignment="Top" Background="#4C48595F" CornerRadius="5" Padding="5" MinHeight="67" DockPanel.Dock="Top">
                 <Grid>
@@ -68,7 +72,8 @@
                     </Grid>
                 </Grid>
             </Border>
-            <Grid Margin="0,10,0,0">
+            <!--TODO: Not implemented-->
+            <Grid Margin="0,10,0,0" Visibility="Collapsed">
                 <Label Background="{x:Null}" Content="Stats" Height="28" VerticalAlignment="Top" BorderBrush="#FF335D99" BorderThickness="0,0,0,1" />
                 <Label Background="{x:Null}" Content="Memory usage:" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,30,0,0" />
                 <Grid Margin="118,33,0,0" Height="25" VerticalAlignment="Top">

@@ -45,7 +45,7 @@ namespace DashboardApp.Views
 
                     //Only send commands if the server is running...
                     App MyApplication = ((App)Application.Current);
-                    MinecraftServer Server = MyApplication.minecraftServer;
+                    MinecraftServer Server = MyApplication.MinecraftServer;
                     if (Server.ServerIsOnline == true)
                     {
                         Server.SendCommand(CommandTextBox.Text);
@@ -61,10 +61,6 @@ namespace DashboardApp.Views
             }
         }
 
-        private void ConsoleTextBlock_TextChanged(System.Object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            ConsoleTextBlock.ScrollToEnd();
-        }
 
         #region "Command history"
         private List<string> commandHistory = new List<string>();
@@ -153,5 +149,13 @@ namespace DashboardApp.Views
             }
         }
         #endregion
+
+        private void ConsoleTextBlock_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            //var textBox = (TextBox)sender;
+            //if (scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+            //??if (textBox.VerticalOffset >= textBox.ExtentHeight ) //textBox.ExtentHeight)
+                ConsoleTextBlock.ScrollToEnd();
+        }
     }
 }

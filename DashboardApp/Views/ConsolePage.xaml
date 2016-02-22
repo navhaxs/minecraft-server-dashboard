@@ -6,11 +6,6 @@
         xmlns:ignore="http://www.galasoft.ch/ignore"
         mc:Ignorable="d ignore"
         DataContext="{Binding Main, Source={StaticResource Locator}}" d:DesignWidth="741.125" d:DesignHeight="395.973">
-
-    <Page.Resources>
-        <!-- Force windows native theming on scrollbars -->
-        <Style TargetType="ScrollBar" />
-    </Page.Resources>
     <Page.Background>
         <LinearGradientBrush
 			EndPoint="0.5,1"
@@ -75,7 +70,10 @@
                         AcceptsReturn="True"
 						AutoWordSelection="True" CaretBrush="White" IsManipulationEnabled="True"
                         VerticalContentAlignment="Top" BorderBrush="{x:Null}" UndoLimit="0"
-                        Text="{Binding Server.ConsoleStream, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        Text="{Binding Server.ConsoleStream, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="ConsoleTextBlock_TextChanged_1">
+                        <TextBox.Resources>
+                            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                        </TextBox.Resources>
                         <TextBox.ContextMenu>
                             <ContextMenu ItemsSource="{Binding}">
                                 <MenuItem Command="ApplicationCommands.Copy" Header="Copy" />

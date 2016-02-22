@@ -21,9 +21,9 @@ namespace DashboardApp
             // Main app startup events
 
             // Check for first run
-            App MyApplication = ((App)Application.Current);
-            var UserSettings = MyApplication.userSettings;
-            if (!UserSettings.JarFileExists())
+            App myApplication = ((App)Application.Current);
+            var userSettings = myApplication.UserSettings;
+            if (!userSettings.JarFileExists())
             {
                 var welcomeWnd = new WelcomeView();
                 welcomeWnd.ShowDialog();
@@ -42,6 +42,16 @@ namespace DashboardApp
         private void header_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // HACK ?
+            if (((ViewModel.MainViewModel) (this.DataContext)).OverlayPageIndex != (int)ViewModel.MainViewModel.OverlayPage.None)
+            {
+                e.Cancel = true;
+                ((ViewModel.MainViewModel)(this.DataContext)).CommandCloseOverlay.Execute(this);
+            }
         }
     }
 }

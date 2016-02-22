@@ -36,7 +36,7 @@ namespace DashboardApp
         /// Server has deteced a critical error
         /// </summary>
         [Description("Critical Error")]
-        BindCritical = -9
+        NotRunningBindCritical = -9
     }
 
 }
