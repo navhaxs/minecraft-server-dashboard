@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="DashboardApp.Controls.FieldUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DashboardApp.Config"
+             mc:Ignorable="d" 
+             x:Name="parent"
+             d:DesignHeight="50" d:DesignWidth="400">
+    <Grid DataContext="{Binding ElementName=parent}">
+        <StackPanel Orientation="Horizontal"
+                Background="#EEE"
+                Margin="0,5,0,0">
+            <TextBlock Text="{Binding Path=Label}"
+                 Width="100"
+                 Margin="3"
+                 VerticalAlignment="Center"/>
+            <TextBox Text="{Binding Path=Value}"
+               Width="100"
+               Margin="3"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

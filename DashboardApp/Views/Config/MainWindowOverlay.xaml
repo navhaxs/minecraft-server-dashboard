@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="DashboardApp.Views.Config.MainWindowOverlay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DashboardApp.Controls"
+             mc:Ignorable="d" 
+             ClipToBounds="True" 
+             DataContext="{Binding Main, Source={StaticResource Locator}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <!--SizeChanged="UserControl_SizeChanged"-->
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF5387A5" Offset="0.773" />
+            <GradientStop Color="#7F000000" />
+            <GradientStop Color="#FF5387A5" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,0,0,0"  x:FieldModifier="private" x:Name="ContentFrame">
+        <Grid>
+            <TabControl TabIndex="0" SelectedIndex="{Binding OverlayPageIndex, FallbackValue=0}" Margin="0" Padding="0">
+                <TabItem Visibility="Collapsed">
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <Frame NavigationUIVisibility="Hidden" Source="/DashboardApp;component/Views/Config/ConfigPropEditor.xaml" />
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <Frame NavigationUIVisibility="Hidden" Source="/DashboardApp;component/Views/Config/ConfigJarConf.xaml" />
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <Frame NavigationUIVisibility="Hidden" Source="/DashboardApp;component/Views/Config/ConfigSuper.xaml" />
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <Frame NavigationUIVisibility="Hidden" Source="/DashboardApp;component/Views/Config/ConfigApp.xaml" />
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

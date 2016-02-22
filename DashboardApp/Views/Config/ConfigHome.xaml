@@ -1,0 +1,117 @@
+﻿<Page x:Class="DashboardApp.Views.Config.ConfigHome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DashboardApp.Views.Config"
+      mc:Ignorable="d" 
+      d:DesignHeight="802.703" d:DesignWidth="848.56"
+      DataContext="{Binding Main, Source={StaticResource Locator}}"
+      Title="ConfigHome">
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="#FFEDEDED" Offset="1" />
+        </LinearGradientBrush>
+    </Page.Background>
+    <DockPanel>
+        <Button DockPanel.Dock="Top"   Visibility="{Binding Is_infotip_RestartRequired}">
+            <Grid
+              VerticalAlignment="Top"
+
+              Background="#FFFF6666"
+              Margin="0"
+              Height="50">
+                <Image Source="/DashboardApp;component/Assets/stripered.png" Stretch="Fill" />
+                <Image
+                    HorizontalAlignment="Left"
+                    Source="/DashboardApp;component/Assets/State/StatusAnnotations_Warning_32xLG_color.png"
+                    Margin="10,0,0,0"
+                    Stretch="None" />
+                <TextBlock
+                    FontSize="13"
+                    VerticalAlignment="Center"
+                    Margin="50,0,0,0"
+                    TextWrapping="Wrap">
+                    A server restart is required for some changes to take effect. Click here to restart now
+                </TextBlock>
+            </Grid>
+        </Button>
+        <Button DockPanel.Dock="Top" Visibility="{Binding OnlineState_Visibility}" Command="{Binding CommandStopServer}">
+            <Grid
+              VerticalAlignment="Top"
+
+              Background="#FFFF6666"
+              Margin="0"
+              Height="50">
+                <Image Source="/DashboardApp;component/Assets/stripeyellow.png" Stretch="Fill" />
+                <Image
+                    HorizontalAlignment="Left"
+                    Source="/DashboardApp;component/Assets/State/StatusAnnotations_Alert_32xLG_color.png"
+                    Margin="10,0,0,0"
+                    Stretch="None" />
+                <TextBlock
+                    FontSize="13"
+                    VerticalAlignment="Center"
+                    Margin="50,0,0,0"
+                    TextWrapping="Wrap">
+                    Some settings may be unavailable whilst the server is running. Click here to stop the server
+                </TextBlock>
+            </Grid>
+        </Button>
+
+        <Grid>
+            <Image Margin="0" Source="/DashboardApp;component/Assets/tilebg_MCsky.png" Stretch="Fill" VerticalAlignment="Top" Height="200" />
+            <Label Content="Select a configuration task" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" FontSize="18" />
+            <ScrollViewer Margin="18,45,0,5" Background="{x:Null}">
+                <StackPanel Orientation="Vertical">
+                    <Button FontSize="16" Height="95" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"   VerticalAlignment="Top" HorizontalAlignment="Left" Width="600" Margin="0,0,0,4" Command="{Binding CommandGotoPropEditor}">
+                        <Grid>
+                            <TextBlock FontWeight="Light" FontSize="24">Server properties</TextBlock>
+                            <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Configure your Game Server with settings such as the maximum amount of players, mob difficulty level, etc.</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button FontSize="16" Height="95" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"   VerticalAlignment="Top" HorizontalAlignment="Left" Width="600" Margin="0,0,0,4"
+                            Command="{Binding CommandGotoJarConf}">
+                        <Grid>
+                            <TextBlock FontWeight="Light" FontSize="24">Backend</TextBlock>
+                            <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Switch between different Minecraft server engines, or download the latest version</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button FontSize="16" Height="95" x:Name="Button4" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"   VerticalAlignment="Top" HorizontalAlignment="Left" Width="600" Margin="0,0,0,4" Command="{Binding CommandGotoBackendConf}">
+                        <Grid>
+                            <TextBlock FontWeight="Light" FontSize="24"><Run Text="Java, memory &amp; startup" /></TextBlock>
+                            <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Adjust the amount of RAM allocated to the server</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button FontSize="16" Height="95" x:Name="Button2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"   VerticalAlignment="Top" HorizontalAlignment="Left" Width="600" Margin="0,0,0,4"
+                            Command="{Binding CommandGotoDashOptions}">
+                        <Grid>
+                            <TextBlock FontWeight="Light" FontSize="24"><Run Text="Dashboard Options" /></TextBlock>
+                            <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Customise your server management software</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="600" Margin="0,50,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="240" />
+                        </Grid.ColumnDefinitions>
+                        <Button HorizontalContentAlignment="Stretch" FontSize="16" Height="95" Command="{Binding CommandExploreServerDir}" VerticalContentAlignment="Stretch" Margin="0,0,0,4">
+                            <Grid>
+                                <TextBlock FontWeight="Light" FontSize="24"><Run Text="Server directory" /></TextBlock>
+                                <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Launches the file explorer at the server's root</TextBlock>
+                            </Grid>
+                        </Button>
+                        <Button HorizontalContentAlignment="Stretch" FontSize="16" Height="95" Command="{Binding CommandExploreBackupDir}" VerticalContentAlignment="Stretch" Margin="0,0,0,4" Grid.Column="2">
+                            <Grid>
+                                <TextBlock FontWeight="Light" FontSize="24">Open Backups</TextBlock>
+                                <TextBlock FontWeight="Light" VerticalAlignment="Bottom" TextWrapping="Wrap">Show the world backup folder in file explorer.</TextBlock>
+                            </Grid>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Page>
