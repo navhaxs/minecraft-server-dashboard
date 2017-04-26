@@ -18,6 +18,7 @@ Public Class TaskScheduler
         sendCommand = 0
         doBackup = 1
         sayThis = 2
+        restartServer = 3
     End Enum
 
     ''' <summary>
@@ -139,6 +140,8 @@ Public Class TaskScheduler
                     backupUtil.startBackup()
 
                     ' Don't wait for backup completion
+                Case TaskActionType.restartServer
+                    MyServer.RestartServer(True)
             End Select
 
 #If DEBUG Then
