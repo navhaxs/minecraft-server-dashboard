@@ -96,6 +96,7 @@
 							<MenuItem x:Name="mnuStart" Foreground="Black" Header="Start server" Click="StartServer_Click" Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOffline}}" />
 							<MenuItem x:Name="mnuStop" Foreground="Black" Header="Stop server" Click="StopServer_Click" Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOnline}}" />
 							<MenuItem x:Name="mnuReload" Foreground="Black" Header="Reload server" Click="ReloadServer_Click"  Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOnline}}" />
+                            <MenuItem x:Name="mnuRestart" Foreground="Black" Header="Restart server" Click="RestartServer_Click"  Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOnline}}" />
 							<MenuItem x:Name="mnuKill" Foreground="Black" Header="Force stop server" Click="ForceStopServer_Click"  Visibility="{Binding ServerIsOnline, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ShowWhenOnline}}" />
 							<Separator />
 							<MenuItem x:Name="mnuDoBackupNow" Foreground="Black" Header="Backup world now" />

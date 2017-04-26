@@ -18,6 +18,7 @@ Public Class TaskScheduler
         sendCommand = 0
         doBackup = 1
         sayThis = 2
+        restartServer = 3
     End Enum
 
     ''' <summary>
@@ -55,9 +56,8 @@ Public Class TaskScheduler
     End Function
 
     Public Sub startScheduler()
-        Debug.Print("Starting scheduler engine")
+        Debug.Print("Starting scheduler loop")
         If (Not _schedulerRunning) Then
-            Debug.Print("...ok (not already running)")
             ListOfTaskStartTimer = New List(Of TaskStartTimer)
             For Each task In TaskList
 #If DEBUG Then
@@ -70,7 +70,7 @@ Public Class TaskScheduler
 
             _schedulerRunning = True
         Else
-            Debug.Print("...fail (already running)")
+            Debug.Print("XXX Scheduler loop already running")
         End If
     End Sub
 
@@ -139,6 +139,8 @@ Public Class TaskScheduler
                     backupUtil.startBackup()
 
                     ' Don't wait for backup completion
+                Case TaskActionType.restartServer
+                    MyServer.RestartServer(True)
             End Select
 
 #If DEBUG Then

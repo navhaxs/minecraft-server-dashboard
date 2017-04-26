@@ -29,6 +29,9 @@
             ElseIf thisActionMode_ComboBox.SelectedItem Is doBackup Then
                 _Task.Action = TaskScheduler.TaskActionType.doBackup
                 Debug.Print("doBackup")
+            ElseIf thisActionMode_ComboBox.SelectedItem Is restartServer Then
+                _Task.Action = TaskScheduler.TaskActionType.restartServer
+                Debug.Print("restartServer")
             End If
 
             _Task.Enabled = chkboxIsTaskEnabled.IsChecked
@@ -49,6 +52,8 @@
         UITimeInterval.Text = taskToLoad.Interval / SECOND_TO_MS
         chkboxIsTaskEnabled.IsChecked = taskToLoad.Enabled
         Select Case taskToLoad.Action
+            Case TaskScheduler.TaskActionType.restartServer
+                thisActionMode_ComboBox.SelectedItem = restartServer
             Case TaskScheduler.TaskActionType.doBackup
                 thisActionMode_ComboBox.SelectedItem = doBackup
             Case TaskScheduler.TaskActionType.sendCommand
@@ -67,6 +72,8 @@
                 For Each line In taskToLoad.Commands
                     sayThisParamtersText.Text = sayThisParamtersText.Text & line & vbNewLine
                 Next
+            Case TaskScheduler.TaskActionType.restartServer
+                thisActionMode_ComboBox.SelectedItem = restartServer
         End Select
         ComboBox_SelectionChanged()
     End Sub

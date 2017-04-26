@@ -30,6 +30,7 @@
                             <ListBoxItem x:Name="doCommand" Content="send this command"/>
                             <ListBoxItem x:Name="sayThis" Content="say (announce) this"/>
                             <ListBoxItem x:Name="doBackup" Content="do a backup"/>
+                            <ListBoxItem x:Name="restartServer" Content="restart the server"/>
                         </ComboBox>
                     </StackPanel>
                     <TabControl x:Name="UImoreParameters" Margin="10,44,10,10" SelectedIndex="1" Background="Transparent" Visibility="Hidden">
