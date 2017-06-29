@@ -254,6 +254,10 @@ Class MainWindow
         MyServer.SendCommand("reload")
     End Sub
 
+    Private Sub RestartServer_Click(sender As Object, e As RoutedEventArgs)
+        MyServer.RestartServer(True)
+    End Sub
+
     Private Sub ForceStopServer_Click(sender As Object, e As RoutedEventArgs)
         If MessageBox.Show("Are you sure you want to force quit the server? This will disconnect all players, and all unsaved data will be lost.", "Force stop server", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
             MyServer.KillServer()
