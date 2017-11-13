@@ -1,6 +1,7 @@
 ﻿Imports System.Diagnostics
 Imports System.Text.RegularExpressions
 Imports System.ComponentModel
+Imports System.Threading
 
 Public Class ServerManager
     Implements INotifyPropertyChanged
@@ -72,17 +73,17 @@ Public Class ServerManager
 
         'DEBUGGING javaexe = System.Environment.CurrentDirectory & "\java.exe"
 
-        ServerProc = New Process With { _
-            .StartInfo = New ProcessStartInfo() With { _
-                .FileName = javaexe, _
-                .WorkingDirectory = MyStartupParameters.ServerPath, _
-                .Arguments = MyStartupParameters.FullParameters, _
-                .RedirectStandardInput = True, _
-                .RedirectStandardError = True, _
-                .RedirectStandardOutput = True, _
-                .UseShellExecute = False, _
+        ServerProc = New Process With {
+            .StartInfo = New ProcessStartInfo() With {
+                .FileName = javaexe,
+                .WorkingDirectory = MyStartupParameters.ServerPath,
+                .Arguments = MyStartupParameters.FullParameters,
+                .RedirectStandardInput = True,
+                .RedirectStandardError = True,
+                .RedirectStandardOutput = True,
+                .UseShellExecute = False,
                 .CreateNoWindow = True
-            } _
+            }
         }
 
         ' Redirect Java's stdio to Dashboard
@@ -268,7 +269,7 @@ Public Class ServerManager
                 Dim PlayerList As List(Of Player) = ProcessPlayerList(e.Data)
 
                 'Update UI
-                navpageDashboard.Dispatcher.BeginInvoke( _
+                navpageDashboard.Dispatcher.BeginInvoke(
                                     New Action(Sub()
 
                                                    navpageDashboard.MyOnlinePlayerList.StackPanel.Children.Clear()
@@ -290,7 +291,7 @@ Public Class ServerManager
 
                     If e.Data.Contains("INFO] There are 0/") Or e.Data.Contains("INFO]: There are 0/") Then
                         'If there are no players, simply clear player list UI now
-                        navpageDashboard.Dispatcher.BeginInvoke( _
+                        navpageDashboard.Dispatcher.BeginInvoke(
                                     New Action(Sub()
 
                                                    navpageDashboard.MyOnlinePlayerList.StackPanel.Children.Clear()
@@ -347,10 +348,10 @@ Public Class ServerManager
                 End If
 
                 ' Prepare the RAM monitor background thread
-                Dim RAMmonitorThread As New System.Threading.Thread( _
-                    New System.Threading.ParameterizedThreadStart( _
-                        AddressOf ProcessStatMonitor)) With { _
-                            .IsBackground = True _
+                Dim RAMmonitorThread As New System.Threading.Thread(
+                    New System.Threading.ParameterizedThreadStart(
+                        AddressOf ProcessStatMonitor)) With {
+                            .IsBackground = True
                                 }
 
                 ' Start the server process
@@ -403,6 +404,17 @@ Public Class ServerManager
 
 #Region "Server restart helper"
     ''' <summary>
+    ''' Used for background restarts:
+    ''' If the server is being restarted, ignore any subsequent requests to restart the server.
+    ''' </summary>
+    Dim RestartSrvThread As New System.Threading.Thread(
+                  New System.Threading.ParameterizedThreadStart(
+                      AddressOf DoBackgroundRestartServer)) With {
+                          .IsBackground = True
+                              }
+
+
+    ''' <summary>
     ''' Restart the server. Waits for the server to stop, then start it again.
     ''' </summary>
     ''' <param name="background">Set True to restart in the background, i.e. non-blocking code.</param>
@@ -419,13 +431,17 @@ Public Class ServerManager
                 End Try
             Else
 
-                ' Initialise the restart job to run in the background
-                Dim RestartSrvThread As New System.Threading.Thread( _
-                  New System.Threading.ParameterizedThreadStart( _
-                      AddressOf DoBackgroundRestartServer)) With { _
-                          .IsBackground = True _
-                              }
-                RestartSrvThread.Start()
+                ' Only start a new restart job if there isn't an existing job
+                If Not RestartSrvThread.IsAlive Then
+                    ' Create a new thread to run the restart job in (i.e. a background thread)
+                    RestartSrvThread = New System.Threading.Thread(
+                      New System.Threading.ParameterizedThreadStart(
+                          AddressOf DoBackgroundRestartServer)) With {
+                              .IsBackground = True
+                                  }
+                    RestartSrvThread.Start()
+                End If
+
                 Return True
 
             End If
@@ -433,34 +449,40 @@ Public Class ServerManager
     End Function
 
     Private Sub DoBackgroundRestartServer()
-        With MyServer
-            If .ServerIsOnline Then
-                ' Stop server
-                .CurrentServerState = ServerState.Stopping
-                Try
-                    .StopServer()
+        Dim workFunc = Function()
+                           With MyServer
+                               If .ServerIsOnline Then
+                                   ' Stop server
+                                   .CurrentServerState = ServerState.Stopping
+                                   Try
+                                       .StopServer()
 
-                    ' Wait for server exit
-                    .ServerProc.WaitForExit()
+                                       ' Wait for server exit
+                                       .ServerProc.WaitForExit()
 
-                    Dim i As Integer = 0
-                    While .ServerIsOnline
-                        System.Threading.Thread.Sleep(1500)
-                        i += 1
+                                       Dim i As Integer = 0
+                                       While .ServerIsOnline
+                                           System.Threading.Thread.Sleep(1500)
+                                           i += 1
 
-                        ' Two minute timeout
-                        If i = 120 / 1.5 Then
-                            MessageBox.Show("An attempt to restart the server failed.")
-                            Exit Sub
-                        End If
-                    End While
+                                           ' Two minute timeout
+                                           ' XXX Causes problems if timeout is shorter than intervals between the "restart" scheduled task
+                                           If i = 120 / 1.5 Then
+                                               MessageBox.Show("An attempt to restart the server failed.")
+                                               Return False
+                                           End If
+                                       End While
 
-                    ' Start server again
-                    .StartServer()
-                Catch
-                End Try
-            End If
-        End With
+                                       ' Start server again
+                                       .StartServer()
+                                   Catch
+                                   End Try
+                               End If
+                           End With
+                           Return True
+                       End Function
+
+        workFunc()
     End Sub
 #End Region
 
@@ -601,7 +623,7 @@ Public Class ServerManager
         Dim cat As PerformanceCounterCategory
         Dim instances As String()
 
-        process = process.GetProcessById(processId)
+        process = Process.GetProcessById(processId)
         processName = IO.Path.GetFileNameWithoutExtension(process.ProcessName)
         cat = New PerformanceCounterCategory("Process")
 
