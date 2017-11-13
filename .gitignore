@@ -231,3 +231,4 @@ pip-log.txt
 .mr.developer.cfg
 
 testing/
+/.vs
