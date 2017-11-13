@@ -1,0 +1,33 @@
+﻿<Window x:Class="DashboardApp.Views.JoinNewPlayers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DashboardApp.Views"
+        mc:Ignorable="d"
+        Title="JoinNewPlayers"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        DataContext="{Binding BackendConfig, Source={StaticResource Locator}}"
+        Height="350" Width="600">
+    <Window.InputBindings>
+        <KeyBinding Key="C"
+                Modifiers="Ctrl"
+                Command="Copy"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="Copy"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Border Background="#FFFFF7C2" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="2" Padding="30">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
+                <TextBlock ><Run Text="Your IP address is: " /><Run Text="{Binding ExternalIP, FallbackValue=127.0.0.1, Mode=OneWay}" /><Run Text="{Binding Dashboard.ServerProps.serverport, FallbackValue=:25565, Mode=OneWay}" />
+                </TextBlock>
+            </Label>
+        </Border>
+        <TextBlock Text="Invite your friends to join your server" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" />
+        <!--<local:btnHelp HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="32" Width="32" Click="btnHelp_Click" ToolTip="What do I do with my &quot;IP address&quot;?" />-->
+        <TextBlock HorizontalAlignment="Center" Margin="0,160,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Hyperlink><Run x:Name="label_CopyToClipboard">Copy to clipboard (Ctrl+C)</Run></Hyperlink></TextBlock>
+        <Image Source="/DashboardApp;component/Resources/JoinNewPlayers/MyCBBK3.png" Stretch="Fill" Height="8" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>

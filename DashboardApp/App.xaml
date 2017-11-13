@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Startup="Application_Startup"
+             Exit="Application_Exit"
              StartupUri="MainWindow.xaml"
              mc:Ignorable="d">
 

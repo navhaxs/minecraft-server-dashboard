@@ -65,6 +65,9 @@
     <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=f46ff315b1088208, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net40\GalaSoft.MvvmLight.Extras.dll</HintPath>
     </Reference>
+    <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\MinecraftServerDashboard\packages\DotNetZip.1.9.6\lib\net20\Ionic.Zip.dll</HintPath>
       <Private>True</Private>
@@ -115,22 +118,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Config\ServerBackend.cs" />
-    <Compile Include="Config\UserSettings.cs" />
-    <Compile Include="Config\MyUserSettings.cs" />
+    <Compile Include="Models\Backend.cs" />
+    <Compile Include="Controls\PlayerListbox.xaml.cs">
+      <DependentUpon>PlayerListbox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DetectJava.cs" />
-    <Compile Include="ServerProccess\ServerClass.cs" />
+    <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\ServerProperties.cs" />
+    <Compile Include="Utils\BackendConfig.cs" />
+    <Compile Include="Utils\DetectJava.cs" />
+    <Compile Include="Utils\GetIP.cs" />
+    <Compile Include="Models\Server.cs" />
     <Compile Include="ServerProccess\ServerStateEnum.cs" />
+    <Compile Include="ViewModel\BackendConfigViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\AboutScreenView.xaml.cs">
       <DependentUpon>AboutScreenView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ConfigPage.xaml.cs">
+      <DependentUpon>ConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\ConfigJarfileBackend.xaml.cs" />
+    <Compile Include="Views\Config\ConfigJava.xaml.cs" />
+    <Compile Include="Views\Config\ConfigMyApp.xaml.cs" />
+    <Compile Include="Views\Config\ConfigMyWorldBackups.xaml.cs" />
+    <Compile Include="Views\Config\ConfigPage_Backend.xaml.cs">
+      <DependentUpon>ConfigPage_Backend.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConsolePage.xaml.cs">
       <DependentUpon>ConsolePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JoinNewPlayers.xaml.cs">
+      <DependentUpon>JoinNewPlayers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
@@ -139,6 +164,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\PlayersPage.xaml.cs">
+      <DependentUpon>PlayersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SchedulerPage.xaml.cs">
+      <DependentUpon>SchedulerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorldPage.xaml.cs">
+      <DependentUpon>WorldPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\PlayerListbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,11 +189,55 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Config\ConfigJarfileBackend.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Config\ConfigJava.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Config\ConfigMyApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Config\ConfigMyWorldBackups.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Config\ConfigPage_Backend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ConsolePage.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JoinNewPlayers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SchedulerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorldPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,19 +278,10 @@
     <Resource Include="Resources\MyCB_bgonly.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="MC2.ico" />
+    <Resource Include="Resources\rocket.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="StatusAnnotations_Critical_32xLG_color.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="cbclouds.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MyCB_bgonly.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
+    <Resource Include="Resources\JoinNewPlayers\MyCBBK3.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\minecraftworld-big.png" />
@@ -216,6 +289,28 @@
   <ItemGroup>
     <Resource Include="Resources\minecraftworld-big-cut.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Config\stripeyellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Config\stripered.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\StatusAnnotations_Alert_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Config\tilebg_MCsky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\StatusAnnotations_Play_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\StatusAnnotations_Warning_32xLG_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\plus.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

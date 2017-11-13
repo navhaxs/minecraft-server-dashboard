@@ -1,0 +1,51 @@
+﻿<Page x:Class="DashboardApp.Views.Config.ConfigMyWorldBackups"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"
+      d:DesignHeight="374.597" d:DesignWidth="700.164"
+      Title="Backups">
+    <!--http://stackoverflow.com/questions/12012721/how-to-add-listviewitem-to-wpf-multicolumn-listview-by-hand-no-binding-in-xaml-->
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="#FFEDEDED" Offset="1" />
+        </LinearGradientBrush>
+    </Page.Background>
+    <Grid>
+        <Label Content="My World Backups" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" />
+        <!--<Button Content="New backup" Margin="10,47,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="125" />-->
+        <StackPanel x:Name="gridSelectedButtons" HorizontalAlignment="Right" Margin="0,0,100,15" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button Content="Send to Recycling Bin" HorizontalAlignment="Right" Width="166" Margin="0,0,5,0" />
+            <Button Content="Restore" HorizontalAlignment="Right" Width="75" />
+        </StackPanel>
+        <TextBlock VerticalAlignment="Bottom" Margin="10,0,0,9" HorizontalAlignment="Left" Width="186">
+            <Hyperlink x:Name="btnOpenBackups">Show backups in Windows Explorer</Hyperlink></TextBlock>
+        <TextBlock VerticalAlignment="Top" Margin="10,10,10,9" HorizontalAlignment="Right">
+            <Hyperlink>Refresh</Hyperlink></TextBlock>
+        <ListView x:Name="ListBox_MyWorldBackups" Margin="10,47,100,50">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Backup Name" Width="380"
+                            DisplayMemberBinding="{Binding [0]}" />
+                    <GridViewColumn Header="Creation time" Width="150"
+                            DisplayMemberBinding="{Binding [1]}" />
+                </GridView>
+            </ListView.View>
+            <ListViewItem>
+                <x:Array Type="{x:Type sys:String}">
+                    <sys:String>Name</sys:String>
+                    <sys:String>20-7-13</sys:String>
+                </x:Array>
+            </ListViewItem>
+            <ListViewItem>
+                <x:Array Type="{x:Type sys:String}">
+                    <sys:String>Name</sys:String>
+                    <sys:String>20-7-13</sys:String>
+                </x:Array>
+            </ListViewItem>
+        </ListView>
+    </Grid>
+</Page>

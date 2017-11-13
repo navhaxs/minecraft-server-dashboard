@@ -1,0 +1,90 @@
+﻿<Page x:Class="DashboardApp.Views.PlayersPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:local="clr-namespace:DashboardApp.Controls"
+	  mc:Ignorable="d" 
+	  d:DesignHeight="300" d:DesignWidth="300"
+	  Title="PlayersPage">
+
+	<Grid>
+		<Border Height="110" VerticalAlignment="Top">
+			<!--<Border.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#00616161" Offset="0.338"/>
+					<GradientStop Color="#192D5062"/>
+				</LinearGradientBrush>
+			</Border.Background>-->
+			<Grid>
+				<Grid.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#00616161" Offset="0.338"/>
+						<GradientStop Color="#192D5062"/>
+					</LinearGradientBrush>
+				</Grid.Background>
+				<Label Content="Manage your Player lists" FontWeight="Light" FontSize="26" Margin="12,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" />
+				<Border
+				Margin="5,45,5,0"
+				VerticalAlignment="Top"
+				Background="#4CC9D9DE" Height="43" Padding="10,0" CornerRadius="0">
+					<TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
+					See who's online. Promote players to Op. Ban certain players from joining.
+					<LineBreak />
+					Hold shift down to copy instead of moving when using the transfer right/left arrows. To select multiple items, also hold down shift.
+					</TextBlock>
+				</Border>
+				<TextBlock
+				VerticalAlignment="Top"
+				Margin="0,10,10,0"
+				HorizontalAlignment="Right"><Hyperlink>Refresh</Hyperlink></TextBlock>
+			</Grid>
+		</Border>
+
+		<Grid x:Name="ContentFrame"
+				Margin="0,93,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="*" />
+				<ColumnDefinition
+					Width="45" />
+				<ColumnDefinition
+					Width="*" />
+			</Grid.ColumnDefinitions>
+			<Button
+				x:Name="btnMoveLeft"
+				Height="40"
+				HorizontalAlignment="Center"
+				Margin="0,60,0,0"
+				Style="{StaticResource arrowBackwithGrayOut}"    
+				VerticalAlignment="Top" Width="58" Grid.ColumnSpan="1" Grid.Column="1" IsEnabled="False" Foreground="#FF224154" />
+			<Button
+				x:Name="btnMoveRight"
+				Height="40"
+				HorizontalAlignment="Center"
+				Margin="0,110,0,0"
+				Style="{StaticResource arrowBackwithGrayOut}"
+				VerticalAlignment="Top" Width="58" Grid.ColumnSpan="1" Grid.Column="1" IsEnabled="False" RenderTransformOrigin="0.5,0.5" Foreground="#FF224154" >
+				<Button.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleY="1" ScaleX="-1"/>
+						<SkewTransform AngleY="0" AngleX="0"/>
+						<RotateTransform Angle="0"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Button.RenderTransform>
+			</Button>
+			<local:PlayerListbox
+					x:Name="LeftPlayerList"
+					Margin="5,0,0,5"
+					BorderBrush="{DynamicResource LightBorderBrush}" BorderThickness="0,0,1,0" />
+			<local:PlayerListbox
+					Grid.Column="2" 
+					x:Name="RightPlayerList"
+					Margin="0,0,5,5"
+					BorderBrush="{StaticResource LightBorderBrush}"  BorderThickness="1,0,0,0" />
+
+		</Grid>
+
+	</Grid>
+</Page>

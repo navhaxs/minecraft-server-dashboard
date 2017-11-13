@@ -1,0 +1,112 @@
+﻿<Page x:Class="DashboardApp.Views.WorldPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DashboardApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="WorldPage">
+
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="#FFEDEDED" Offset="1" />
+        </LinearGradientBrush>
+    </Page.Background>
+    <Page.Resources>
+        <!--<local:InverseBooleanConverter x:Key="myInverseBooleanConverter" />-->
+    </Page.Resources>
+    <DockPanel>
+        <Button x:Name="BannerRequireRestart" DockPanel.Dock="Top"  Visibility="Collapsed">
+            <Grid
+              VerticalAlignment="Top"
+
+              Background="#FFFF6666"
+              Margin="0"
+              Height="50">
+                <Image Source="/DashboardApp;component/Resources/Config/stripered.png" Stretch="Fill" />
+                <Image
+                    HorizontalAlignment="Left"
+                    Source="/DashboardApp;component/Resources/Icons/StatusAnnotations_Warning_32xLG_color.png"
+                    Margin="10,0,0,0"
+                    Stretch="None" />
+                <TextBlock
+                    FontSize="13"
+                    VerticalAlignment="Center"
+                    Margin="50,0,0,0"
+                    TextWrapping="Wrap">
+                    You've made changes that require a server restart to take effect. Click here to restart the server now
+                </TextBlock>
+            </Grid>
+        </Button>
+        <DockPanel>
+            <Border MinHeight="130" VerticalAlignment="Top" DockPanel.Dock="Top">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00616161" Offset="0.338"/>
+                        <GradientStop Color="#192D5062"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Border BorderThickness="1" Margin="20,45,10,0" VerticalAlignment="Stretch" BorderBrush="#FF747F85">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                <GradientStop Color="#FFE8EFF3"/>
+                                <GradientStop Color="#00E8EFF3" Offset="1"/>
+                                <GradientStop Color="#9EE8EFF3" Offset="0.705"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <TextBlock FontWeight="Light" FontSize="18" Margin="115,6,146,0" VerticalAlignment="Top"><Run x:Name="txtCurrentWorld" /></TextBlock>
+                            <Ellipse HorizontalAlignment="Left" Height="70" Margin="20,0,0,0" VerticalAlignment="Center" Width="70">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/DashboardApp;component/appicon.ico"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <TextBlock FontWeight="Light" Margin="115,32,146,0" VerticalAlignment="Top" FontSize="14"><Run x:Name="txtCurrentWorldSize"/></TextBlock>
+                            <TextBlock x:Name="txtCurrentWorldLocation" Margin="115,54,146,10" LineHeight="15" LineStackingStrategy="BlockLineHeight" TextWrapping="WrapWithOverflow" />
+                            <Button x:Name="btnBackup" Content="Backup" HorizontalAlignment="Right" Margin="0,6,10,0" VerticalAlignment="Top" Width="131" Height="53" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
+                            	Background="#224154" Foreground="White"
+                                    FontWeight="Normal" />
+
+                        </Grid>
+                    </Border>
+                    <Label Content="Current World" FontWeight="Light" FontSize="26" Margin="15,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,10,0"><Hyperlink ><Run Text="Refresh"/></Hyperlink></TextBlock>
+                </Grid>
+            </Border>
+            <Grid VerticalAlignment="Stretch">
+                <TextBlock Margin="21,50,-1,0" VerticalAlignment="Top">Change which world the server is currently hosting.</TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Margin="20,0,0,10" HorizontalAlignment="Left">
+                <Hyperlink ><Run Text="New world generation settings"/></Hyperlink><LineBreak />
+                <Hyperlink x:Name="btnOpenBackups"><Run Text="View or restore backups"/></Hyperlink><LineBreak />
+                <Hyperlink x:Name="btnOpenProfiles"><Run Text="Add and remove worlds in Windows Explorer" /></Hyperlink>
+                </TextBlock>
+                <Grid Margin="20,72,20,63">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnNewProfile" HorizontalContentAlignment="Left" Grid.Row="0" FontWeight="Normal"
+                        Background="#FF2D5B76" Content="New world"/>
+                    <Button x:Name="btnSwitchTo" Content="Make this the Current World" HorizontalContentAlignment="Left"  Grid.Column="2"
+                        Background="#224154" Foreground="White" FontWeight="Normal" />
+                    <Button x:Name="btnDeleteProfile" Content="Delete selected" HorizontalContentAlignment="Left"  Grid.Column="1" FontWeight="Normal"
+                        Background="#FF2D5B76"/>
+                    <ListBox x:Name="ListBox_MyWorldProfiles" BorderThickness="1" Grid.Column="0"
+                         Background="#224154" Grid.Row="1" Grid.ColumnSpan="3"/>
+                </Grid>
+                <Label Content="My Worlds" FontWeight="Light" FontSize="26" Margin="14,11,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            </Grid>
+
+        </DockPanel>
+    </DockPanel>
+</Page>

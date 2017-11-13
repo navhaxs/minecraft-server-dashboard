@@ -13,14 +13,25 @@ namespace DashboardApp
     /// </summary>
     public partial class App : Application
     {
-        public MinecraftServer minecraftServer;
 
-        public Config.MyUserSettings userSettings;
+        // Models
+        public Models.Server minecraftServer;
+        public Models.Backend app;
 
+
+        /// <summary>
+        /// Initialize all models at App startup
+        /// </summary>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            userSettings = new Config.MyUserSettings(); // The server class requires the user settings store to be initialized first.
-            minecraftServer = new MinecraftServer();
+            app = new Models.Backend(); 
+
+            minecraftServer = new Models.Server();
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            app.AppShutdown();
         }
     }
 }

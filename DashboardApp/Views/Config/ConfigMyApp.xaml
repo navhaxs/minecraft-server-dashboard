@@ -1,0 +1,78 @@
+﻿<Page x:Class="DashboardApp.Views.Config.ConfigMyApp"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="855" d:DesignWidth="690"
+      Title="My Dashboard Preferences"
+>
+    <Page.Resources>
+        <!-- Reset ScrollBar Styles -->
+        <Style TargetType="ScrollBar">
+        </Style>
+    </Page.Resources>
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFFFC386" Offset="1" />
+            <GradientStop Color="White" Offset="0" />
+        </LinearGradientBrush>
+    </Page.Background>
+    <Grid>
+        <Image Source="/DashboardApp;component/Resources/cbclouds.png" Stretch="None"  VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <ScrollViewer Foreground="Black" Background="{x:Null}">
+            <Grid x:Name="ContentGrid">
+                <Border BorderThickness="10" CornerRadius="10" Background="#7FF5DEB3" >
+                <StackPanel Margin="20,10,0,0">
+                    <TextBlock Text="General" FontSize="18" Background="#FFDE5B00" Foreground="White" Padding="5,0,0,0" />
+                    <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
+                        <TextBlock Text="If the server is still running, closing the Dashboard window will:" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
+                    <ComboBox Width="280" HorizontalAlignment="Left" x:Name="defaultexitaction">
+                            <ComboBoxItem>
+                                <TextBlock>Ask me what to do <Italic>(Default)</Italic></TextBlock>
+                            </ComboBoxItem>
+                            <Separator />
+                            <ComboBoxItem Content="Always stop the server, then exit" />
+                        <ComboBoxItem Content="Always Minimize the dashboard" />
+                    </ComboBox>
+                    </Grid>
+                    <StackPanel Margin="0,3" Width="420" HorizontalAlignment="Left" Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center">
+                            Path to the default text editor
+                        </TextBlock>
+                            <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Foreground="#FF535353" FontStyle="Italic">
+                            Leave blank for notepad
+                            </TextBlock>
+                        </StackPanel>
+                    <Grid Margin="0,3" Width="420" HorizontalAlignment="Left">
+                            <TextBox HorizontalAlignment="Stretch" x:Name="notepadExec" Grid.Column="1">
+                        </TextBox>
+                    </Grid>
+                    <Grid Margin="0,40,0,0" />
+
+                    <Grid Margin="0,40,0,0" />
+                    <TextBlock Text="My World Profiles" FontSize="18" Background="#FFDE5B00" Foreground="White" Padding="5,0,0,0" />
+                    <TextBlock Text="Exclude the following directories from being listed as 'Worlds':" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,4,0,3" />
+                    <TextBox Width="240" HorizontalAlignment="Left" x:Name="dir2exclude" Grid.Column="1" AcceptsReturn="True" />
+                    <TextBlock VerticalAlignment="Top" Margin="0,0,150,20" TextWrapping="Wrap" Foreground="#FF535353" >
+                    All child directories in Dashboard's directory are listed as separate 'Worlds' in the World Profiles tab.<LineBreak />
+                    However, other non-world data directories such as 'plugins' should be excluded.<LineBreak />
+                    Note: Folders ending with <Bold>_the_end</Bold> or <Bold>_nether</Bold> are automatically treated as part of the same 'World' as the parent world directory.
+                    </TextBlock>
+                    <Separator Margin="0,0,0,50" />
+
+                        <Button x:Name="btnSave" Content="Save changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontWeight="Bold"  Margin="0,10,0,50" />
+                        <TextBlock Text="Factory Reset" FontSize="18" Background="#FFDE5B00" Foreground="White" Padding="5,0,0,0" />
+                    <TextBlock VerticalAlignment="Top" Margin="0,10,150,0" TextWrapping="Wrap" >
+                    This will reset all customisations made to the Dashboard application. You will be asked on the next startup to set up the server for the first time.<LineBreak /><Bold>None of your 'physical' server files (server properties, player lists, world saves, backups, etc.) will be deleted.</Bold>
+                    </TextBlock>
+                     <Button x:Name="btnReset" Content="Factory reset all Dashboard settings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="360" Margin="0,20,0,20" />
+                    
+                </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

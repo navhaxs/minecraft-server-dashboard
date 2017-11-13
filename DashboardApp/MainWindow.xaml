@@ -59,7 +59,7 @@
 						<MenuItem x:Name="mnuDoBackupNow" Foreground="Black" Header="Backup world now" />
 					</MenuItem>
 					<MenuItem Header="Tools">
-						<MenuItem Foreground="Black" Header="Invite new players" Command="{Binding doJoinNewPlayers}" />
+						<MenuItem Foreground="Black" Header="Invite new players" Command="{Binding CommandShowJoinNewPlayers}" />
 						<Separator />
 						<MenuItem Foreground="Black" Header="My Game Server Settings" Command="{Binding doMyServerProperties}" />
 						<MenuItem Foreground="Black" Header="Backend Set-Up" Command="{Binding  doBackendSetup}" />
@@ -78,7 +78,7 @@
 							<MenuItem Foreground="Black" Header="MinecraftForum.net" Command="{Binding wwwMincraftForum}" />
 							<MenuItem Foreground="Black" Header="MinecraftWiki.net" Command="{Binding wwwMincraftWiki}" />
 						</MenuItem>
-						<MenuItem Foreground="Black" Header="About MCDashboard" Command="{Binding doAboutScreen}"  />
+						<MenuItem Foreground="Black" Header="About MCDashboard" Command="{Binding CommandShowAboutScreen}"  />
 						<!--<Separator />
 						<MenuItem Foreground="Black" Header="My Game server info" />-->
 					</MenuItem>
@@ -93,7 +93,7 @@
 							<GradientStop Color="#53000000" Offset="0.762" />
 						</LinearGradientBrush>
 					</Grid.Background>
-					<Label Content="offline" FontFamily="Segoe UI" FontSize="18" FontWeight="Light" Foreground="#FFEFEFEF" x:Name="lblserverstatus" HorizontalAlignment="Right" Width="117" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" />
+					<Label Content="{Binding ServerStatusText, FallbackValue=offline}" FontFamily="Segoe UI" FontSize="18" FontWeight="Light" Foreground="#FFEFEFEF" x:Name="lblserverstatus" HorizontalAlignment="Right" Width="117" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" />
 					<Grid Margin="0,10,119,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="15" Width="15">
 						<Ellipse x:Name="EllipseOnline" Stroke="#FF00C50C">
 							<Ellipse.Fill>
@@ -118,33 +118,25 @@
 			</Grid>
 
 		<Grid >
-			<TabControl TabStripPlacement="Left">
+			<TabControl TabStripPlacement="Left" SelectedIndex="{Binding MainWindow_Tab_SelectedIndex}" >
 				<TabItem Header="Overview">
 					<Frame Source="Views\OverviewPage.xaml" />
 				</TabItem>
-				<TabItem Header="Players">
-					
+				<TabItem Header="Players" Visibility="Collapsed">
+					<Frame Source="Views\PlayersPage.xaml" />
 				</TabItem>
-				<TabItem Header="World">
-					<Grid>
-					</Grid>
+				<TabItem Header="World" Visibility="Collapsed">
+					<Frame Source="Views\WorldPage.xaml" />
+				</TabItem>
+				<TabItem Header="Scheduler" Visibility="Collapsed">
+					<Frame Source="Views\SchedulerPage.xaml" />
 				</TabItem>
 				<TabItem Header="Console">
 					<Frame Source="Views\ConsolePage.xaml" />
 				</TabItem>
 				<TabItem Header="Configuration">
 					<Grid>
-
-						<Label Content="Dashboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="36"/>
-						<TextBox Margin="48,111,88.8,0" Height="84" VerticalAlignment="Top"
-								 Text="{Binding UserSettings.WorkingDirectory}"/>
-						<TextBox Margin="48,223,193.8,0" Height="30" VerticalAlignment="Top"
-								 Text="{Binding UserSettings.JarFile}"/>
-						<Label x:Name="label" Content="Path" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,-0.228"/>
-						<Label x:Name="label_Copy" Content="jarfile" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,-0.228"/>
-						<Label x:Name="label_Copy1" Content="JRE exe:" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,-0.228"/>
-						<TextBox Margin="66,73,192.8,0" Height="30" VerticalAlignment="Top"
-								 Text="{Binding UserSettings.JarExe}"/>
+						<Frame x:Name="ConfigFrameView" Source="Views\ConfigPage.xaml" />
 					</Grid>
 				</TabItem>
 			</TabControl>

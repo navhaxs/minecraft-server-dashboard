@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DashboardApp.Modules
+namespace DashboardApp.Utils
 {
-    class DetectJava
+    static class DetectJava
     {
         /// <summary>
         /// Attempt to find the install path of whatever java version is installed
         /// This method should work for 99% of people using this software :)
         /// </summary>
         /// <returns></returns>
-        static string GuessJavaVersion()
+        static string SearchJavaVersion()
         {
             string e = FindJavaPath();
             string r = null;

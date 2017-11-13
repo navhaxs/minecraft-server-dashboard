@@ -43,6 +43,7 @@ namespace DashboardApp.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<BackendConfigViewModel>();
         }
 
         public MainViewModel Main
@@ -52,7 +53,14 @@ namespace DashboardApp.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public BackendConfigViewModel BackendConfig
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<BackendConfigViewModel>();
+            }
+        }
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

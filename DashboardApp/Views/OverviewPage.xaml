@@ -26,11 +26,11 @@
 
         <Image Height="144" VerticalAlignment="Top" Source="/DashboardApp;component/Resources/cbclouds.png" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="850" />
 
-        <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="33,49,0,0" VerticalAlignment="Top" Width="75" Source="/DashboardApp;component/MC2.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
+        <Image x:Name="imgServerState_Copy" HorizontalAlignment="Left" Height="67" Margin="33,49,0,0" VerticalAlignment="Top" Width="75" Source="/DashboardApp;component/Resources/rocket.ico" Stretch="None" RenderTransformOrigin="0.406,0.938" />
 
         <Grid Height="83" x:Name="Grid1" VerticalAlignment="Top" Background="#CC000000" Margin="0,144,0,0" Grid.ColumnSpan="2">
             <Button x:Name="btnStartStop" Content="Start server" Width="154" Margin="21,9,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16"
-                     Command='{Binding CommandStartServer}'/>
+                     Command="{Binding CommandStartServer}" />
             <Button Content="Backup world now" x:Name="btnDoBackupNow" Width="154" Margin="185,9,-22,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" FontSize="16" />
         </Grid>
         <Rectangle HorizontalAlignment="Left" Width="18" Margin="0" Visibility="Hidden">

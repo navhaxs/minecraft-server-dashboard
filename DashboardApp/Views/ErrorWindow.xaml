@@ -1,0 +1,18 @@
+﻿<Window x:Class="DashboardApp.Views.ErrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DashboardApp.Views"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="ErrorWindow" Height="300" Width="300">
+    <StackPanel>
+        <Label>
+            <Run Text="{Binding ErrorTitle, FallbackValue='Error Title', Mode=OneWay}" />
+        </Label>
+        <Label>
+            <Run Text="{Binding ErrorMessage, FallbackValue='Error Message.', Mode=OneWay}" />
+        </Label>
+    </StackPanel>
+</Window>

@@ -45,7 +45,7 @@ namespace DashboardApp.Views
 
                     //Only send commands if the server is running...
                     App MyApplication = ((App)Application.Current);
-                    MinecraftServer Server = MyApplication.minecraftServer;
+                    Models.Server Server = MyApplication.minecraftServer;
                     if (Server.ServerIsOnline == true)
                     {
                         Server.SendCommand(CommandTextBox.Text);

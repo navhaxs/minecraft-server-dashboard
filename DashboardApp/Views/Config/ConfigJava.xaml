@@ -1,0 +1,102 @@
+﻿<Page x:Class="DashboardApp.Views.Config.ConfigJava"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="489" d:DesignWidth="882"
+      DataContext="{Binding BackendConfig, Source={StaticResource Locator}}"
+      Title="Java, memory and startup">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+    <Grid>
+        <StackPanel>
+            <!--Header-->
+            <!--<Label Content="Java, memory and startup" Margin="10,2,0,0" FontSize="20" FontWeight="Thin" />-->
+
+            <!--Memory-->
+            <Border Background="#FFFFF7C2" Padding="10,0" HorizontalAlignment="Stretch" Height="100" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0">
+                <Grid>
+                    <Label Content="Maximum server memory" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
+
+                    <TextBlock x:Name="lblMaxMB" Text="MB" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,55,78,0" />
+
+                    <TextBox x:Name="maxmem" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Margin="0,52,101,0" BorderThickness="1" TextAlignment="Right"
+                             Text="{Binding ElementName=sliderMemory, Path=Value, Mode=TwoWay}"
+                             
+                             />
+                    <!--<TextBlock Text="Increasing the memory will improve server performance, particlarly as the number of connected players increases" Height="32" HorizontalAlignment="Left" x:Name="Label3_Copy6" VerticalAlignment="Top" Margin="0,42,0,0"  TextWrapping="Wrap" />-->
+                    <Slider x:Name="sliderMemory" Margin="10,52,160,0" VerticalAlignment="Top" Minimum="512" IsSnapToTickEnabled="True" TickFrequency="1" />
+
+                    <TextBlock VerticalAlignment="Bottom" Margin="0,0,0,7" Visibility="Hidden"><Hyperlink>Advanced memory settings</Hyperlink></TextBlock>
+                </Grid>
+            </Border>
+
+            <!--HIDDEN: Min Memory-->
+            <Grid x:Name="MinMemory" Visibility="Collapsed">
+                <Label Content="MB (For advaned users)" Height="32" HorizontalAlignment="Left" Margin="291,146,0,0" x:Name="Label3_Copy1" VerticalAlignment="Top" />
+                <Label Content="Minimum memory to allocate to server:" Height="32" HorizontalAlignment="Left" Margin="10,146,0,0" x:Name="Label3_Copy2" VerticalAlignment="Top" />
+                <TextBox x:Name="minmem" HorizontalAlignment="Left" Height="23" Margin="235,147,0,0" TextWrapping="Wrap" Text="1024" VerticalAlignment="Top" Width="54" />
+            </Grid>
+
+            <!--Startup paramters-->
+            <Border Background="#FFFFFADD" Padding="10,0" HorizontalAlignment="Stretch" Height="160" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" >
+                <Grid>
+                    <Label Content="Server startup parameters" Height="32" HorizontalAlignment="Left" Margin="0,10,0,97" FontWeight="Light" FontSize="18" VerticalAlignment="Top" />
+
+                    <DockPanel Margin="5,47,0,28">
+
+                        <TextBlock TextWrapping="Wrap" DockPanel.Dock="Top">
+                        Set server launch parameters here (e.g. CraftBukkit command line arguments)
+                        <LineBreak />
+                        <Image Height="16" Source="/DashboardApp;component/Resources/Icons/StatusAnnotations_Alert_32xLG_color.png" />
+                        Note: Dashboard automatically appends the <Italic>--nojline nogui</Italic> parameters, and the maximum memory from the above slider.
+                        </TextBlock>
+
+                        <Border BorderBrush="#777777" BorderThickness="1" Margin="0,5,120,0" VerticalAlignment="Stretch">
+                            <TextBox x:Name="parameters" TextWrapping="Wrap" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" HorizontalAlignment="Stretch" Text="{Binding Dashboard.MinecraftServerParams}"/>
+                        </Border>
+
+                    </DockPanel>
+
+                    <TextBlock VerticalAlignment="Bottom" Margin="5,0,0,7"><Hyperlink x:Name="btnSetJavaSpecificArgs">Edit Java parameters (Expert)</Hyperlink></TextBlock>
+                </Grid>
+            </Border>
+
+            <!--Java Executable-->
+            <Border Background="#FFFFFDF1" Padding="10,0" HorizontalAlignment="Stretch" Height="170" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0" >
+                <Grid>
+                    <Label Content="Java runtime" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" FontWeight="Light" FontSize="18"/>
+                    <Label Content="Select the installation of Java on your machine to use:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,38,0,0" FontSize="13" Visibility="Collapsed"/>
+
+                    <RadioButton Margin="10,70,365,0" VerticalAlignment="Top" IsChecked="True" x:Name="jreauto" >
+                        <TextBlock>Auto-detect (<Hyperlink IsEnabled="{Binding IsChecked, ElementName=jreauto}" ><Run x:Name="javainstalltype" Text="{Binding FoundJavaVersionString, FallbackValue='Java not found', Mode=OneWay}" /></Hyperlink>)</TextBlock>
+                    </RadioButton>
+                    <RadioButton x:Name="jremanual" Margin="10,90,0,10" VerticalAlignment="Bottom" >
+                        <Grid>
+                            <TextBlock Text="Or, manually specify the location to Java.exe" VerticalAlignment="Top" />
+                            <Button Content="..." HorizontalAlignment="Left" Margin="334,16,0,0" VerticalAlignment="Top" Width="71" Height="32"
+                                    IsEnabled="{Binding IsChecked, ElementName=jremanual}" />
+                            <TextBox x:Name="jarpath" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Margin="-1,21,0,0" BorderThickness="1"
+                                    IsEnabled="{Binding IsChecked, ElementName=jremanual}"
+                                    Text="{Binding Dashboard.JarExe}"/>
+                        </Grid>
+                    </RadioButton>
+                </Grid>
+            </Border>
+
+            <!--Bottom separator-->
+            <Border Background="#FFFFFDF1" Padding="10,0" HorizontalAlignment="Stretch" Height="1" BorderBrush="#FFDEAC00" BorderThickness="0,1,0,0"/>
+
+        </StackPanel>
+
+
+
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="6,140,0,0" Name="TextBox1" VerticalAlignment="Top" Width="120" Visibility="Collapsed" Grid.RowSpan="2" />
+        <Label Content="PathToJava" FontSize="16" FontWeight="Light" Height="28" HorizontalAlignment="Left" Margin="6,106,0,0" Name="Label2" VerticalAlignment="Top" Visibility="Collapsed" />
+
+
+        <!--TODO: Checl for Java-->
+    </Grid>
+</Page>
