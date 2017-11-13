@@ -26,6 +26,9 @@
                 Dim list As String() = input.Split(New [Char]() {ControlChars.Lf, ControlChars.Cr}, StringSplitOptions.RemoveEmptyEntries)
                 _Task.Commands = list
                 Debug.Print("sayThis")
+            ElseIf thisActionMode_ComboBox.SelectedItem Is restartServer Then
+                _Task.Action = TaskScheduler.TaskActionType.restartServer
+                Debug.Print("restartServer")
             ElseIf thisActionMode_ComboBox.SelectedItem Is doBackup Then
                 _Task.Action = TaskScheduler.TaskActionType.doBackup
                 Debug.Print("doBackup")
