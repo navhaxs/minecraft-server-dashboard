@@ -115,14 +115,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.11.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.11.0\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="Elysium, Version=2.0.976.4, Culture=neutral, PublicKeyToken=afa220db249e5b15, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Elysium.Theme.2.0.4\lib\net40-client\Elysium.dll</HintPath>
       <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>.\Microsoft.Windows.Shell.dll</HintPath>
