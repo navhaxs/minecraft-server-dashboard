@@ -10,8 +10,10 @@
             '                           Note: The Server JVM is only included in the JDK download, NOT JRE
             '       --nojline           Required to redirect console output into Dashboard on CraftBukkit
             '       nogui               Required to redirect console output into Dashboard on Vanilla
+            Dim jlineParameter As String = ""
+            If (MyUserSettings.settingsStore.AppendJlineArg) Then jlineParameter = "--nojline"
             Dim JavaParameters As String = " -client -Xmx" & MyUserSettings.settingsStore.Startup_Memory & " -Xms" & MyUserSettings.settingsStore.Startup_MemoryMin + " " + MyUserSettings.settingsStore.LaunchArgu_JAVA
-            Return JavaParameters + " -jar " & Chr(34) & MyUserSettings.settingsStore.Jarfile & Chr(34) & " " & MyUserSettings.settingsStore.JarLaunchArguments & " --nojline nogui"
+            Return JavaParameters + " -jar " & Chr(34) & MyUserSettings.settingsStore.Jarfile & Chr(34) & " " & MyUserSettings.settingsStore.JarLaunchArguments & " " + jlineParameter + " nogui"
         End Get
     End Property
 

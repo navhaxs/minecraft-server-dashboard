@@ -24,6 +24,7 @@
         minmem.Text = MyUserSettings.settingsStore.Startup_MemoryMin.ToLower.Replace("m", "")
         jarpath.Text = MyUserSettings.settingsStore.Startup_JavaExec
         parameters.Text = MyUserSettings.settingsStore.JarLaunchArguments
+        appendJlineArgCheckbox.IsChecked = MyUserSettings.settingsStore.AppendJlineArg
 
         If MyUserSettings.settingsStore.Startup_JavaExec Is "" Then
             jreauto.IsChecked = True
@@ -133,5 +134,11 @@
         Dim m As New AdvJavaArguementsDialog
         m.Owner = MyMainWindow
         m.ShowDialog()
+    End Sub
+
+    Private Sub AppendJlineArgCheckbox_Checked(sender As Object, e As RoutedEventArgs)
+        If Not isInit Then
+            MyUserSettings.settingsStore.AppendJlineArg = appendJlineArgCheckbox.IsChecked
+        End If
     End Sub
 End Class

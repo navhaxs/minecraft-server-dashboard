@@ -84,6 +84,7 @@ Namespace MyUserSettings
                                                                  "libraries",
                                                                  "mods",
                                                                  "System Volume Information"}
+            Public AppendJlineArg As Boolean = True
         End Class
 
         ' tasks.jsn

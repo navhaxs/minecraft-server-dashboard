@@ -375,6 +375,7 @@ Public Class ServerManager
                 OnPropertyChanged("ServerColdBoot")
 
             Catch ex As Exception
+                KillServer()
                 MessageBox.Show("An error occured whilst trying to start the server!" & vbNewLine & "Exception error message: " & ex.Message, "Failed to launch server")
             End Try
         End If
@@ -398,6 +399,7 @@ Public Class ServerManager
         If Not MyServer.ServerProc.HasExited Then
             MyServer.ServerProc.Kill()
         End If
+        CurrentServerState = ServerState.NotRunning
     End Sub
 
 #End Region
