@@ -14,7 +14,7 @@
     <metro:Window.TitleBar>
         <Grid IsHitTestVisible="False" Width="535" >
             <TextBlock Text="Minecraft Server Dashboard" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" FontSize="20" TextWrapping="Wrap" />
-            <TextBlock Margin="0,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="Build 27/04/2017 " /><Run Text="Copyright © 2013-2017" /></TextBlock>
+            <TextBlock Margin="0,37,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top"><Run FontWeight="Medium" Text="Build 27/04/2019 " /><Run Text="Copyright © 2013-2019" /></TextBlock>
         </Grid>
     </metro:Window.TitleBar>
     <Grid>
@@ -71,7 +71,7 @@
                         The latest updates are available from
                         <LineBreak/>
                         <Image Source="/MinecraftServerDashboard;component/Images/Tab/Home_5699.png" Stretch="None" HorizontalAlignment="Left" />
-                        <Hyperlink Click="Hyperlink_Click">http://navhaxs.tk/minecraft-dashboard/</Hyperlink><LineBreak/>
+                        <Hyperlink Click="Hyperlink_Click">https://navhaxs.au.eu.org/minecraft-dashboard/</Hyperlink><LineBreak/>
                         <LineBreak/>
                         Something not working? Got questions? Visit the Minecraft Forums thread
                         <LineBreak/>

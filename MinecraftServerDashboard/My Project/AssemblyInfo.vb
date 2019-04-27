@@ -14,8 +14,8 @@ Imports System.Windows
 <Assembly: AssemblyTitle("MinecraftServerDashboard")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("navhaxs")> 
-<Assembly: AssemblyProduct("MinecraftServerDashboard")> 
-<Assembly: AssemblyCopyright("Copyright © navhaxs 2014")> 
+<Assembly: AssemblyProduct("MinecraftServerDashboard")>
+<Assembly: AssemblyCopyright("Copyright © Jeremy Wong 2014-2019")>
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(False)> 
 
@@ -39,7 +39,7 @@ Imports System.Windows
 <Assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)> 
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("daf98229-0e38-44bc-a123-f25fe305fac8")> 
+<Assembly: Guid("daf98229-0e38-44bc-a123-f25fe305fac8")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -52,5 +52,5 @@ Imports System.Windows
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.6")> 
+<Assembly: AssemblyVersion("1.0.0.7")>
 <Assembly: AssemblyFileVersion("1.0.0.0")> 
