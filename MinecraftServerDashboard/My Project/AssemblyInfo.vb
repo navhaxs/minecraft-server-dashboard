@@ -15,7 +15,7 @@ Imports System.Windows
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("navhaxs")> 
 <Assembly: AssemblyProduct("MinecraftServerDashboard")>
-<Assembly: AssemblyCopyright("Copyright © Jeremy Wong 2014-2019")>
+<Assembly: AssemblyCopyright("Copyright © Jeremy Wong 2013-2021")>
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(False)> 
 
@@ -52,5 +52,5 @@ Imports System.Windows
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.7")>
+<Assembly: AssemblyVersion("1.0.0.8")>
 <Assembly: AssemblyFileVersion("1.0.0.0")> 

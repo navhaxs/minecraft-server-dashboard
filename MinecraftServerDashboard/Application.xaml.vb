@@ -33,7 +33,11 @@ Class Application
                  ' Let the framework deal with the embeded resources of the application itself
                  Return Nothing
              End If
-             Dim resourceName = parentAssembly.GetManifestResourceNames().First(Function(s) s.EndsWith(name))
+             Dim resourceName = parentAssembly.GetManifestResourceNames().FirstOrDefault(Function(s) s.EndsWith(name))
+
+             If resourceName = Nothing Then
+                 Return Nothing
+             End If
 
              Using stream As IO.Stream = parentAssembly.GetManifestResourceStream(resourceName)
                  Dim block As Byte() = New Byte(stream.Length - 1) {}
